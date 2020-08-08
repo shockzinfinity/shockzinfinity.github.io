@@ -1,7 +1,7 @@
 {
   "name": "shockz-vue-press",
   "version": "0.0.1",
-  "description": "",
+  "description": "github.io 에 vuepress 적용기",
   "main": "index.js",
   "authors": {
     "name": "shockz",

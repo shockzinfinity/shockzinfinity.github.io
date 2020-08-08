@@ -5,7 +5,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "Vuepress Docs Boilerplate",
+  title: "shockz vuepress 삽질",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
