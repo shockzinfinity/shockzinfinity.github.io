@@ -49,4 +49,7 @@ cd -
 $ sh deploy.sh
 ```
 
+> favicon.ico 설정 시  
+> docs/.vuepress/public 에 추가
+
 For more details, please head VuePress's [documentation](https://v1.vuepress.vuejs.org/).
