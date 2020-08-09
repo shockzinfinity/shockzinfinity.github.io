@@ -46,8 +46,8 @@ module.exports = {
         link: "/config/",
       },
       {
-        text: "VuePress",
-        link: "https://v1.vuepress.vuejs.org",
+        text: "devLog",
+        link: "/dev-log/",
       },
     ],
     sidebar: {
@@ -56,6 +56,13 @@ module.exports = {
           title: "Guide",
           collapsable: false,
           children: ["", "using-vue"],
+        },
+      ],
+      "/dev-log/": [
+        {
+          title: "devLog",
+          collapsable: false,
+          children: ["", "vscode-debugging"],
         },
       ],
     },
