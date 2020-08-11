@@ -62,7 +62,7 @@ module.exports = {
         {
           title: "devLog",
           collapsable: false,
-          children: ["", "vscode-debugging"],
+          children: ["", "vscode-debugging", "centos"],
         },
       ],
     },

@@ -272,3 +272,88 @@ $ ln -s /etc/nginx/sites-available/api.shockz.io /etc/nginx/sites-enabled
 $ nginx -t
 $ systemctl reload nginx
 ```
+
+> Let's Encrypt Wildcard SSL 적용 (nas.shockz.io SSL 이용)  
+> 위치: /usr/syno/etc/certificate/system/default)
+
+```bash
+# default
+# Settings for a TLS enabled server.
+
+    server {
+        listen       443 ssl http2 default_server;
+        listen       [::]:443 ssl http2 default_server;
+        server_name  _;
+        root         /var/www/podman.shockz.io/html;
+
+        ssl_certificate "/etc/pki/nginx/fullchain.pem";
+        ssl_certificate_key "/etc/pki/nginx/private/privkey.pem";
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout  10m;
+        ssl_ciphers PROFILE=SYSTEM;
+        ssl_prefer_server_ciphers on;
+
+#        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+}
+
+# api.shockz.io
+server {
+    listen      443;
+    server_name api.shockz.io;
+    charset     utf-8;
+    rewrite_log on;
+    access_log  /var/log/nginx/api.shockz.io.access.log main;
+    error_log   /var/log/nginx/api.shockz.io.error.log  notice;
+    client_max_body_size 100M;
+    root        /var/www/api.shockz.io;
+    index       index.html;
+}
+
+# firewall 적용 필요
+$ firewall-cmd --zone=public --add-port=443/tcp --permanent
+$ firewall-cmd --reload
+
+# default, api.shockz.io 의 conf 에 https redirect 적용
+server {
+   ...
+   return 301 https://$host$request_uri
+   ...
+}
+# e.g. http://api.shockz.io -> https://api.shockz.io 로 redirect
+```
+
+> 참고  
+> [스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 1편](https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-1%ED%8E%B8/)  
+> [스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 2편](https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-2%ED%8E%B8/)  
+> [스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 3편](https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-3%ED%8E%B8/)  
+> [[Nginx] Nginx HTTP redirect 및 포트포워딩(Port Forwarding) 설정](https://jackerlab.com/nginx-redirect-port-forwarding/)  
+> [NGINX VIRTUALHOST](https://www.joinc.co.kr/w/man/12/Nginx/virtualhost)  
+> [nginx 에 HTTPS/SSL 적용하기](https://www.lesstif.com/system-admin/nginx-https-ssl-27984443.html)
+
+> 보안설정참고  
+> [가상서버호스팅 서버 보안 설정 방법 – Nginx +Ubuntu의 경우](https://happist.com/549059/%EA%B0%80%EC%83%81%EC%84%9C%EB%B2%84%ED%98%B8%EC%8A%A4%ED%8C%85%EC%97%90%EC%84%9C-%EC%84%9C%EB%B2%84-%EB%B3%B4%EC%95%88-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95-nginx-ubuntu-16-04%EC%9D%98-%EA%B2%BD)
+
+### node.js 개발 및 호스팅 환경 설정
+
+### .net core 개발 및 호스팅 환경 설정
+
+> [.NET Core 3.1 : Install](https://www.server-world.info/en/note?os=CentOS_8&p=dotnet&f=1)
+
+```bash
+$ dnf info dotnet
+$ dnf -y install dotnet
+$ dotnet --version
+```
