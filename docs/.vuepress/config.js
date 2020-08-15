@@ -5,7 +5,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "shockz vuepress 삽질",
+  title: "개발 기록 및 각종 문서화 with vuepress",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -37,32 +37,32 @@ module.exports = {
     editLinkText: "",
     lastUpdated: false,
     nav: [
-      {
-        text: "Guide",
-        link: "/guide/",
-      },
-      {
-        text: "Config",
-        link: "/config/",
-      },
+      // {
+      //   text: "Guide",
+      //   link: "/guide/",
+      // },
+      // {
+      //   text: "Config",
+      //   link: "/config/",
+      // },
       {
         text: "devLog",
         link: "/dev-log/",
       },
     ],
     sidebar: {
-      "/guide/": [
-        {
-          title: "Guide",
-          collapsable: false,
-          children: ["", "using-vue"],
-        },
-      ],
+      // "/guide/": [
+      //   {
+      //     title: "Guide",
+      //     collapsable: false,
+      //     children: ["", "using-vue"],
+      //   },
+      // ],
       "/dev-log/": [
         {
           title: "devLog",
           collapsable: false,
-          children: ["", "vscode-debugging", "centos"],
+          children: ["vscode-debugging", "centos"],
         },
       ],
     },
@@ -72,4 +72,8 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: ["@vuepress/plugin-back-to-top", "@vuepress/plugin-medium-zoom"],
+
+  markdown: {
+    lineNumbers: true,
+  },
 };

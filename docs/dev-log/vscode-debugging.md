@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # Using edge debugger in vscode
 
 ## setting

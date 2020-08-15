@@ -1,8 +1,14 @@
+---
+sidebar: auto
+---
+
 # Cent OS 설정
 
 > podman.shockz.io
 
-### OS 버전 확인
+[[toc]]
+
+## OS 버전 확인
 
 ```bash
 $ cat /etc/redhat-release
@@ -16,7 +22,7 @@ $ uname -a
 $ uname -v
 ```
 
-### update
+## update
 
 > 참고: [CentOS 설정](https://wnw1005.tistory.com/category/%EB%A6%AC%EB%88%85%EC%8A%A4/CentOS?page=1)
 > 참고2: [CentOS 8 설치 후 기본 설정](https://www.onlab.kr/2020/01/02/centos8-initial-settings/)  
@@ -85,7 +91,7 @@ $ dnf reinstall https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 # enabled=1 로 변경
 ```
 
-### systemctl 사용법
+## systemctl 사용법
 
 1. 서비스 재실행(sshd 의 경우)  
    systemctl restart sshd.service
@@ -106,15 +112,15 @@ $ dnf reinstall https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 > [RHEL/CentOS 7 systemctl 사용법](https://www.lesstif.com/system-admin/rhel-centos-7-systemctl-24445064.html)
 
-### /etc/bashrc 수정
+## /etc/bashrc 수정
 
 ![bashrc](./image/bashrc.png)
 
-### Podman 설치
+## Podman 설치
 
 [https://podman.io/getting-started/installation.html](https://podman.io/getting-started/installation.html)
 
-### 열린 포트 확인
+## 열린 포트 확인
 
 > [열린포트확인](https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%A1%9C%EC%BB%AC%EC%84%9C%EB%B2%84_%EC%97%B4%EB%A6%B0_%ED%8F%AC%ED%8A%B8_%ED%99%95%EC%9D%B8)
 
@@ -167,7 +173,7 @@ Nmap done: 1 IP address (1 host up) scanned in 1.61 seconds
 
 ```
 
-### firewall-cmd
+## firewall-cmd
 
 > --permanent  
 > --permanent 옵션을 붙이면 설정파일(.xml)이 수정되는데, 정상 반영되려면 반드리 reload를 해야한다. (#firewall-cmd --reload)  
@@ -184,7 +190,7 @@ $ firewall-cmd --zone=public --list-service
 $ firewall-cmd --zone=public --add-service=telnet
 ```
 
-### 기본 Nginx 설정
+## 기본 Nginx 설정
 
 > www-data user add & /var/www 설정
 
@@ -346,9 +352,9 @@ server {
 > 보안설정참고  
 > [가상서버호스팅 서버 보안 설정 방법 – Nginx +Ubuntu의 경우](https://happist.com/549059/%EA%B0%80%EC%83%81%EC%84%9C%EB%B2%84%ED%98%B8%EC%8A%A4%ED%8C%85%EC%97%90%EC%84%9C-%EC%84%9C%EB%B2%84-%EB%B3%B4%EC%95%88-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95-nginx-ubuntu-16-04%EC%9D%98-%EA%B2%BD)
 
-### node.js 개발 및 호스팅 환경 설정
+## node.js 개발 및 호스팅 환경 설정
 
-### .net core 개발 및 호스팅 환경 설정
+## .net core 개발 및 호스팅 환경 설정
 
 > [.NET Core 3.1 : Install](https://www.server-world.info/en/note?os=CentOS_8&p=dotnet&f=1)
 
