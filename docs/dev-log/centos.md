@@ -354,6 +354,62 @@ server {
 
 ## node.js 개발 및 호스팅 환경 설정
 
+#### nvm 설치
+
+```bash
+# 개별 사용자별 nvm 설치
+$ sudo dnf update
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+# 추가되는 변수
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+$ source ~/.bash_profile
+$ nvm list-remote v10
+$ nvm list-remote v12
+$ nvm install 12
+$ nvm install 10
+$ nvm use v12
+$ node --version
+```
+
+> [How to Install NVM for Node.js on CentOS 8](https://www.liquidweb.com/kb/install-nvm-node-version-manager-node-js-centos-8/)
+
+#### docker 테스트를 위한 작업
+
+```bash
+$ cd ~/howto/nodetest
+$ npm init -y
+$ npm i express # 테스트를 위한 익스프레스 서버
+```
+
+##### server.js
+
+```javascript
+var express = require("express");
+var app = express();
+
+app.get("/", function(req, res) {
+  res.send("hi there");
+});
+
+app.listen(3000, function() {
+  console.log("running on 3000 port");
+});
+```
+
+```bash
+$ node server.js
+$ curl localhost:3000
+# hi there
+$ echo "# podman-sample-for-test" >> README.md
+$ git init
+$ git add README.md
+$ git commit -m "initialize git repository"
+$ git remote add origin https://github.com/shockzinfinity/podman-sample-for-test.git
+$ git push -u origin master
+```
+
 ## .net core 개발 및 호스팅 환경 설정
 
 > [.NET Core 3.1 : Install](https://www.server-world.info/en/note?os=CentOS_8&p=dotnet&f=1)
