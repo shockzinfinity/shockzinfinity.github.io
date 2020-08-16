@@ -408,6 +408,17 @@ $ git add README.md
 $ git commit -m "initialize git repository"
 $ git remote add origin https://github.com/shockzinfinity/podman-sample-for-test.git
 $ git push -u origin master
+
+# for docker
+$ podman login -u shockz docker.io
+$ podman logout
+$ podman push
+$ podman ps -a
+$ podman images
+$ podman system prune -a
+$ podman build -t shockz/nodetest:0.2 .
+$ podman run -it -p 3000:3000 --rm --name node shockz/nodetest:0.2
+$ podman run -it -p 3000:3000 --rm --name node -v ~/howto/nodetest:/usr/src/nodetest shockz/nodetest:0.2
 ```
 
 ## .net core 개발 및 호스팅 환경 설정
