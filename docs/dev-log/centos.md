@@ -419,6 +419,22 @@ $ podman system prune -a
 $ podman build -t shockz/nodetest:0.2 .
 $ podman run -it -p 3000:3000 --rm --name node shockz/nodetest:0.2
 $ podman run -it -p 3000:3000 --rm --name node -v ~/howto/nodetest:/usr/src/nodetest shockz/nodetest:0.2
+$ sudo firewall-cmd --zone=public --add-port=3000/tcp # for test
+$ npm i mongoose
+# mongodb 테스트를 위한 원격 확인을 위해 27017 포트 오픈 (MongoDB Compass 로 확인)
+$ sudo firewall-cmd --zone=public --add-port=27017/tcp
+# mongodb 컨테이너 run
+$ podman run -d -p 27017:27017 --rm --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=***** mongo
+# compass 로 확인 후 연결문자열 복사
+# e.g. mongodb://root:*****@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
+$ podman stop mongodb
+# db 데이터가 저장될 볼륨 생성
+$ podman volume create mongodb_dev
+$ podman volume ls
+$ podman run -d -p 27017:27017 --rm --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=***** -v mongodb_dev:/data/db mongo
+# 여기까지 진행하면 데이터 볼륨 연결을 통해 로컬에서 DB 연결까지는 마무리 할수 있으나,
+# 이제 각 컨테이너 간 네트워크 부분에서 docker-compose 를 이용하여 서비스간 연결을 맺어줘야 하는 부분에서
+# docker-compose 의 podman alternative 가 마땅치 않음.
 ```
 
 ## .net core 개발 및 호스팅 환경 설정
