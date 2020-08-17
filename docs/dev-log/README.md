@@ -4,6 +4,6 @@ sidebar: auto
 
 # devLog
 
-## centos
+### [centos](./centos)
 
-## vscode-debugging
+### [vscode-debugging](./vscode-debugging)
