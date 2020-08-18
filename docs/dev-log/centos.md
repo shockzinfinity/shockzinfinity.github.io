@@ -185,6 +185,7 @@ $ firewall-cmd --get-default-zone
 $ firewall-cmd --zone=public --list-all
 $ firewall-cmd --zone=public --list-ports
 $ firewall-cmd --zone=public --add-port=22581/tcp
+$ firewall-cmd --zone=public --add-port=8080-8082/tcp
 $ firewall-cmd --zone=public --remove-port=22581/tcp
 $ firewall-cmd --zone=public --list-service
 $ firewall-cmd --zone=public --add-service=telnet
