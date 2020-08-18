@@ -3,7 +3,7 @@ home: true
 heroImage: https://v1.vuepress.vuejs.org/hero.png
 tagline:
 actionText: Quick Start →
-actionLink: /devLog/
+actionLink: /devLog/README.md
 features:
   - title: vscode debugger
     details: how to debug javascript code with vscode debugger
