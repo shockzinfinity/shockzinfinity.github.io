@@ -7,8 +7,10 @@ sidebar: auto
 > Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)
 
 ### Installation on CentOS 8
+
 > Podman 을 삭제하지 않고 진행
-~~~bash
+
+```bash
 # 안전을 위해 sudo 로 진행
 $ sudo dnf makecache
 $ sudo dnf install dnf-utils device-mapper-persistent-data lvm2 fuse-overlayfs wget
@@ -43,9 +45,60 @@ $ pip3.6 install docker-compose --user
 $ docker-compose -version
 
 # podman 삭제는 진행하지 않음
-~~~
+```
+
+### network 설정 (firewalld 관련)
+
+> CentOS 8 상황에서 firewalld 로 인하여 네트워크 rule 추가가 필요함
+
+```bash
+# open all IPs starts with "172" so that all the containers may communicate each other
+$ firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=172.0.0.0/8 accept'
+# make out container able to visit the network outside
+$ firewall-cmd --permanent --zone=public --add-masquerade
+# apply the change
+$ firewall-cmd --reload
+$ cat /etc/firewalld/zones/public.xml
+```
+
+### nodetest 관련
+
+> [docker testing](https://github.com/shockzinfinity/docker-test) 에서 소스 확인
+
+```bash
+# docker-compose 와 nginx reverse proxy를 이용하여 container load balancing (round-robin)
+# 테스트를 위한 port
+$ sudo firewall-cmd --zone=public --add-port=4000/tcp --permanent
+$ sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent # just for test
+$ sudo firewall-cmd --reload
+
+# docker data volume
+$ docker volume create --name mongodb_dev
+$ docker volume ls
+
+$ docker stop $(docker ps -aq)
+$ docker rm $(docker ps -aq)
+$ docker system prune -a
+
+$ docker run -d -p 27017:27017 --rm --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=1234 -v mongodb_dev:/data/db mongo
+
+# for test
+$ docker run -it -p 3000:3000 --rm --name node -v ~/nodetest:/usr/src/nodetest shockz/nodetest:0.2 # tty output
+$ docker run -d -p 3000:3000 --rm --name node -v ~/nodetest:/usr/src/nodetest shockz/nodetest:0.2 # background
+
+# wait-for-it.sh 는 사전에 실행권한 부여
+$ chmod +x wait-for-it.sh
+
+# 세부내용은 docker-compose.yaml 참고
+$ docker-compose up --build
+```
+
+### Kubernetes 설정
+
+> 추후 추가
 
 ### Reference
+
 - [Install Docker CE on CentOS 8](https://linuxhint.com/install_docker_ce_centos8/)
 - [How to install Docker CE on RHEL 8 / CentOS 8](https://linuxconfig.org/how-to-install-docker-in-rhel-8)
 - [Testing with podman - Complete uninstall/reinstall](http://crunchtools.com/testing-with-podman-complete-uninstall-reinstall/)
