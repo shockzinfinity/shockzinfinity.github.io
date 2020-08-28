@@ -91,6 +91,7 @@ $ chmod +x wait-for-it.sh
 
 # 세부내용은 docker-compose.yaml 참고
 $ docker-compose up --build
+$ docker-compose up -d # background run
 ```
 
 ### Kubernetes 설정
