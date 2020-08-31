@@ -6,7 +6,7 @@ sidebar: auto
 
 > Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)
 
-### Installation on CentOS 8
+## Installation on CentOS 8
 
 > Podman 을 삭제하지 않고 진행
 
@@ -47,7 +47,7 @@ $ docker-compose -version
 # podman 삭제는 진행하지 않음
 ```
 
-### network 설정 (firewalld 관련)
+## network 설정 (firewalld 관련)
 
 > CentOS 8 상황에서 firewalld 로 인하여 네트워크 rule 추가가 필요함
 
@@ -61,7 +61,7 @@ $ firewall-cmd --reload
 $ cat /etc/firewalld/zones/public.xml
 ```
 
-### nodetest 관련
+## nodetest 관련
 
 > [docker testing](https://github.com/shockzinfinity/docker-test) 에서 소스 확인
 
@@ -94,11 +94,11 @@ $ docker-compose up --build
 $ docker-compose up -d # background run
 ```
 
-### Kubernetes 설정
+## Kubernetes 설정
 
 > 추후 추가
 
-### Reference
+## Reference
 
 - [Install Docker CE on CentOS 8](https://linuxhint.com/install_docker_ce_centos8/)
 - [How to install Docker CE on RHEL 8 / CentOS 8](https://linuxconfig.org/how-to-install-docker-in-rhel-8)

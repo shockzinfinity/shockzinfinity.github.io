@@ -11,3 +11,5 @@ sidebar: auto
 ### [Podman](./podman)
 
 ### [Docker](./docker)
+
+### [Xwiki](./xwiki)

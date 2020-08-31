@@ -387,16 +387,16 @@ $ npm i express # 테스트를 위한 익스프레스 서버
 ##### server.js
 
 ```javascript
-var express = require("express");
-var app = express();
+var express = require("express")
+var app = express()
 
 app.get("/", function(req, res) {
-  res.send("hi there");
-});
+  res.send("hi there")
+})
 
 app.listen(3000, function() {
-  console.log("running on 3000 port");
-});
+  console.log("running on 3000 port")
+})
 ```
 
 ```bash
@@ -446,4 +446,36 @@ $ podman run -d -p 27017:27017 --rm --name mongodb -e MONGO_INITDB_ROOT_USERNAME
 $ dnf info dotnet
 $ dnf -y install dotnet
 $ dotnet --version
+```
+
+## vim color scheme 지정
+
+> vim 컬러 테마 위치 : /usr/share/vim/vim80/colors (vim80 은 버전)
+> molokai.vim : curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim > /usr/share/vim/vim80/colors/molokai.vim  
+> codeschool.vim : curl https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/codeschool.vim > /usr/share/vim/vim80/colors/codeschool.vim
+
+> /etc/vimrc  
+> ~/.vimrc
+
+```bash
+colo molokai # 추가
+syntax on # 추가
+```
+
+> putty 를 위해서 .vimrc 에 추가 [참고](https://rottk.tistory.com/entry/VIM-Color-Scheme-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0)
+
+```bash
+if &term =~ "xterm"
+    "256 color --
+    let &t_Co=256
+    " restore screen after quitting
+    set t_ti=ESC7ESC[rESC[?47h t_te=ESC[?47lESC8
+    if has("terminfo")
+        let &t_Sf="\ESC[3%p1%dm"
+        let &t_Sb="\ESC[4%p1%dm"
+    else
+        let &t_Sf="\ESC[3%dm"
+        let &t_Sb="\ESC[4%dm"
+    endif
+endif
 ```
