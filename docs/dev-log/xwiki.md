@@ -62,7 +62,11 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE xwiki TO xwikiuser;
 postgres=#\q
 
 $ psql -h localhost -U xwikiuser -d xwiki -W
+```
 
+## Xwiki docker 설치
+
+```bash
 # xwiki
 $ docker run  --detach --publish 8000:8080 --name xwiki --restart always --volume /home/shockz/docker/xwiki/data:/usr/local/xwiki/data -e "DB_USER=xwikiuser" -e "DB_PASSWORD=xwikiuserpassword" -e "DB_DATABASE=xwiki" -e "DB_HOST=172.17.0.1" xwiki:stable-postgres
 

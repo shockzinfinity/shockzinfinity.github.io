@@ -451,8 +451,17 @@ $ dotnet --version
 ## vim color scheme 지정
 
 > vim 컬러 테마 위치 : /usr/share/vim/vim80/colors (vim80 은 버전)
-> molokai.vim : curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim > /usr/share/vim/vim80/colors/molokai.vim  
-> codeschool.vim : curl https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/codeschool.vim > /usr/share/vim/vim80/colors/codeschool.vim
+> molokai.vim
+
+```bash
+$ curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim > /usr/share/vim/vim80/colors/molokai.vim
+```
+
+> codeschool.vim
+
+```bash
+$curl https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/codeschool.vim > /usr/share/vim/vim80/colors/codeschool.vim
+```
 
 > /etc/vimrc  
 > ~/.vimrc
