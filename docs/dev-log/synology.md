@@ -6,6 +6,35 @@ sidebar: auto
 
 [[toc]]
 
+## 도메인 연결 및 DNS Setting
+
+1. [whois](https://whois.co.kr) 등에서 도메인 구입 ([shockz.io](https://shockz.io) 구입 3년)
+2. 네임서버 변경 (ns.shockz.io)  
+   ![domain](./image/synology.domain.1.png)
+3. Synology NAS 에서 DNS Server 설치  
+   ![domain](./image/synology.domain.2.png)
+4. 마스터 영역 및 기타 관련 항목 설정  
+   \_acme-challenge.shockz.io 레코드는 Wildcard SSL 인정서를 발급받기 위한 인증용 TXT 레코드  
+   MX 레코드는 [다음스마트워크](http://mail2.daum.net/hanmailex/domain.html)의 메일서비스 이용을 위한 레코드
+   ![domain](./image/synology.domain.3.0.png)
+   ![domain](./image/synology.domain.3.1.png)
+   ![domain](./image/synology.domain.4.png)
+   ![domain](./image/synology.domain.5.png)
+   ![domain](./image/synology.domain.6.png)
+5. putty를 이용한 synology root 접근  
+   ![putty](./image/putty.1.png)
+   ![putty](./image/putty.2.png)
+   ![putty](./image/putty.3.png)
+   ![putty](./image/putty.4.png)
+6. 인증서 발급 (Let's Encrypt무료 와일드카드)  
+   [Let's Encrypt SSL 인증서 적용](#lets-encrypt-ssl-인증서-적용) 참조
+7. SSL 설정 - 인증서 항목에서 [구성] 클릭 후 각 항목 인증서 변경  
+   ![인증서 변경](./image/synology.service.1.png)
+8. SSL 적용 확인  
+   ![인증서 적용 확인](./image/synology.service.2.png)
+   ![인증서 적용 확인](./image/synology.service.3.png)
+   ![인증서 적용 확인](./image/synology.service.4.png)
+
 ## Let's Encrypt SSL 인증서 적용
 
 > acme.sh 이용
