@@ -4,6 +4,8 @@ sidebar: auto
 
 # XWiki 설치
 
+[[toc]]
+
 ## Postgresql 설치
 
 > CentOS 8 에 기본 설치 패키지 제거 후 설치  

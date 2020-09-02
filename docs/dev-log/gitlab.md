@@ -4,6 +4,10 @@ sidebar: auto
 
 # GitLab
 
+[[toc]]
+
+## docker run
+
 ```bash
 $ docker run --detach --publish 8001:80 --publish 8002:443 --publish 8003:22 --name gitlab --restart always --volume /home/shockz/docker/gitlab/config:/etc/gitlab --volume /home/shockz/docker/gitlab/logs:/var/log/gitlab --volume /home/shockz/docker/gitlab/data:/var/opt/gitlab gitlab/gitlab-ee:latest
 
@@ -89,3 +93,7 @@ EOS
 
 > Slack notification
 > ![incoming webhook add](./image/gitlab.slack.3.png) > ![incoming webhook add](./image/gitlab.slack.4.png) > ![gitlab slack notification](./image/gitlab.slack.1.png) > ![gitlab slack notification](./image/gitlab.slack.2.png)
+
+::: danger
+test danger
+:::

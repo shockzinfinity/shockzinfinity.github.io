@@ -4,6 +4,8 @@ sidebar: auto
 
 # Using edge debugger in vscode
 
+[[toc]]
+
 ## setting
 
 > Vue CLI 3 기준
@@ -30,5 +32,3 @@ $ yarn serve # http://localhost:8080
 ```
 
 > vscode debugger 시작
-
-##

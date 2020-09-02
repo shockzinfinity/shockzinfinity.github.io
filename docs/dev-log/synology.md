@@ -2,7 +2,11 @@
 sidebar: auto
 ---
 
-# Synology Let's Encrypt SSL
+# Synology
+
+[[toc]]
+
+## Let's Encrypt SSL 인증서 적용
 
 > acme.sh 이용
 

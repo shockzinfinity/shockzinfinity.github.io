@@ -4,7 +4,11 @@ sidebar: auto
 
 # Docker
 
-> Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)
+:::warning
+Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)
+:::
+
+[[toc]]
 
 ## Installation on CentOS 8
 

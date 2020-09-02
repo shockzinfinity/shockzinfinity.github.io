@@ -32,32 +32,28 @@ module.exports = {
    */
   themeConfig: {
     repo: "",
+    displayAllHeaders: true,
+    //activeHeaderLinks: false, // Default: true
     editLinks: false,
     docsDir: "",
     editLinkText: "",
-    lastUpdated: false,
+    lastUpdated: "Last Updated",
     nav: [
-      // {
-      //   text: "Guide",
-      //   link: "/guide/",
-      // },
-      // {
-      //   text: "Config",
-      //   link: "/config/",
-      // },
       {
         text: "devLog",
         link: "/dev-log/",
+        items: [
+          { text: "CentOS 8", link: "/dev-log/centos" },
+          { text: "vscode-debugging", link: "/dev-log/vscode-debugging" },
+          { text: "Podman", link: "/dev-log/podman" },
+          { text: "Docker", link: "/dev-log/docker" },
+          { text: "Xwiki", link: "/dev-log/xwiki" },
+          { text: "Synology NAS", link: "/dev-log/synology" },
+          { text: "GitLab", link: "/dev-log/gitlab" },
+        ],
       },
     ],
     sidebar: {
-      // "/guide/": [
-      //   {
-      //     title: "Guide",
-      //     collapsable: false,
-      //     children: ["", "using-vue"],
-      //   },
-      // ],
       "/dev-log/": [
         {
           title: "devLog",
@@ -71,7 +67,7 @@ module.exports = {
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
-  plugins: ["@vuepress/plugin-back-to-top", "@vuepress/plugin-medium-zoom"],
+  plugins: ["@vuepress/back-to-top", "@vuepress/medium-zoom"],
 
   markdown: {
     lineNumbers: true,

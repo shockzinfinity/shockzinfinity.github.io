@@ -9,7 +9,9 @@ sidebar: auto
 > [http://api.shockz.io:8081](http://api.shockz.io:8081)  
 > [http://api.shockz.io:8082](http://api.shockz.io:8082)
 
-### 기본 명령어
+[[toc]]
+
+## 기본 명령어
 
 > build 및 run
 
@@ -69,7 +71,7 @@ $ podman generate kube my-pod >> my-pod.yaml
 $ podman play kube ./my-pod.yaml
 ```
 
-### pod 단위가 아닌 container 단위로 port mapping 시... (rootless 환경)
+## pod 단위가 아닌 container 단위로 port mapping 시... (rootless 환경)
 
 ```bash
 $ podman pod create --name servers --share cgroup,ipc,uts
@@ -80,7 +82,7 @@ $ podman run -itd --rm --pod=servers -v /home/shockz/nodetest:/usr/src/nodetest 
 # 이후 nginx reverse proxy 에서 load balancing...
 ```
 
-### 참고
+## 참고자료
 
 - [https://www.redhat.com/sysadmin/container-networking-podman](https://www.redhat.com/sysadmin/container-networking-podman)
 - [https://www.redhat.com/sysadmin/compose-podman-pods](https://www.redhat.com/sysadmin/compose-podman-pods)

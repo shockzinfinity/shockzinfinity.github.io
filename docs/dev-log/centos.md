@@ -387,16 +387,16 @@ $ npm i express # 테스트를 위한 익스프레스 서버
 ##### server.js
 
 ```javascript
-var express = require("express")
-var app = express()
+var express = require("express");
+var app = express();
 
 app.get("/", function(req, res) {
-  res.send("hi there")
-})
+  res.send("hi there");
+});
 
 app.listen(3000, function() {
-  console.log("running on 3000 port")
-})
+  console.log("running on 3000 port");
+});
 ```
 
 ```bash
@@ -488,3 +488,28 @@ if &term =~ "xterm"
     endif
 endif
 ```
+
+## Cockpit SSL 설정
+
+::: warning
+
+> 2020-09-02 기준
+>
+> - remotectl certificate 커맨드상의 selinux 관련 예러 해결 안됨
+> - synology 역방향 프록시 설정으로 연결한 경우 정상적으로 인증서 적용안됨 (dev.shockz.io 로 연결 시에는 오류, https://192.168.0.117:9090 으로 연결시에는 접속은 가능)  
+>    자체서명 인증서 적용을 고려
+
+:::
+
+```bash
+$ remotectl certificate
+# synology 에서 발급 받은 shockz.io 와일드 카드 인증서 사용
+$ cat /home/shockz/fullchain.pem /home/shockz/privkey.pem >> /etc/cockpit/ws-certs.d/api.shockz.io.cert
+$ chmod 0640 dev.shockz.io.cert
+$ chown :cockpit-ws dev.shockz.io.cert
+$ systemctl restart cockpit
+```
+
+::: tip
+
+:::
