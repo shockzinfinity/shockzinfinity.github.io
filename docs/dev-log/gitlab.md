@@ -80,3 +80,12 @@ EOS
 - project – 회사에서 진행하는 모든 프로덕트 프로젝트가 있으며, 각 프로젝트 별로 sub group이 있습니다.
 
 > 개인별 task 프로젝트 기본 생성 원칙
+
+> External Wiki
+> ![default wiki off](./image/gitlab.wiki.3.png)  
+> ![default wiki off](./image/gitlab.wiki.4.png)  
+> ![external wiki on](./image/gitlab.wiki.1.png)  
+> ![external wiki on](./image/gitlab.wiki.2.png)
+
+> Slack notification
+> ![incoming webhook add](./image/gitlab.slack.3.png) > ![incoming webhook add](./image/gitlab.slack.4.png) > ![gitlab slack notification](./image/gitlab.slack.1.png) > ![gitlab slack notification](./image/gitlab.slack.2.png)
