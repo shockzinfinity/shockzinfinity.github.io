@@ -80,3 +80,8 @@ cp /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/aU6
 # nginx 재시작
 /usr/syno/sbin/synoservicectl --reload nginx
 ```
+
+## 참고
+
+- [시놀로지 NAS, Let's Encrypt WildCard SSL 적용](https://eunpoong.tistory.com/1185)
+- [시놀로지에 Let's Encrypt 와일드카드 인증서 적용하기](https://blog.naver.com/jcjee2004/221831609605)
