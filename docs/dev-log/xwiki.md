@@ -72,6 +72,7 @@ $ docker run  --detach --publish 8000:8080 --name xwiki --restart always --volum
 
 $ docker exec -it -u 0 xwiki bash
 $ unlink /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime # in xwiki shell
+$ date
 
 # ~/docker/xwiki/data/xwiki.cfg 추가 (volume 연결되어 있음)
 xwiki.authentication.ldap=1

@@ -4,12 +4,16 @@ sidebar: auto
 
 # devLog
 
-### [CentOS 8](./centos)
+## [CentOS 8](./centos)
 
-### [vscode-debugging](./vscode-debugging)
+## [vscode-debugging](./vscode-debugging)
 
-### [Podman](./podman)
+## [Podman](./podman)
 
-### [Docker](./docker)
+## [Docker](./docker)
 
-### [Xwiki](./xwiki)
+## [Xwiki](./xwiki)
+
+## [Synology NAS](./synology)
+
+## [GitLab](./gitlab)
