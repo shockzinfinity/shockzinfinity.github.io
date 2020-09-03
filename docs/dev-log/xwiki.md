@@ -43,8 +43,15 @@ $ psql -c "ALTER USER postgres WITH PASSWORD 'StrongPassword'"
 > /var/lib/pgsql/12/data/postgresql.conf 상에서
 
 ```bash
-listen_addresses = 'localhost,172.17.0.1' 로 변경
+#listen_addresses = 'localhost,172.17.0.1' 로 변경
+listen_addresses = '*'
 ```
+
+::: warning
+listen_addresses 를 '\*' 로 설정
+시스템 시작 시 docker network listen이 안되는 현상
+근본적인 해결책 찾기 전까지는 \* 로 설정
+:::
 
 > /var/lib/pgsql/12/data/pg_hba.conf 상에서 (screenshot 참조)
 
