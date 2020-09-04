@@ -108,7 +108,9 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 ```
 
 > 복원
-> ::: warning 테스트 안됨
+> [참고](https://lunightstory.tistory.com/7)
+
+::: warning 테스트 안됨
 
 ```bash
 $ docker exec -d gitlab gitlab-ctl stop unicorn
