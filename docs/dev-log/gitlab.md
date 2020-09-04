@@ -79,6 +79,9 @@ EOS
 > 백업위치 : /home/shockz/docker/gitlab/data/backups
 
 > NAS rsync 활성화
+> ![rsync 1](./image/synology.rsync.1.png)
+> ![rsync 2](./image/synology.rsync.2.png)
+> ![rsync 3](./image/synology.rsync.3.png)
 ```bash
 # on synology
 $ cd /var/services/homes/shockz
