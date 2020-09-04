@@ -5,7 +5,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "개발 기록 및 각종 문서화 with vuepress",
+  title: "개발 기록 with vuepress",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */

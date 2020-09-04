@@ -68,6 +68,40 @@ EOS
 
 ![reverse proxy](./image/gitlab.reverse.proxy.png)
 
+## 백업 & 복원
+
+> docker 볼륨 연결 위치 (--volume /home/shockz/docker/gitlab/data:/var/opt/gitlab)  
+> backup 관련 설정 파일 위치 : vi /home/shockz/docker/gitlab/data/gitlab-rails/etc/gitlab.yml
+   ```bash
+   backup:
+     keep_time: 604800 # 1 week (second 단위)
+   ```
+> 백업위치 : /home/shockz/docker/gitlab/data/backups
+
+> NAS rsync 활성화
+```bash
+# on synology
+$ cd /var/services/homes/shockz
+$ mkdir .ssh
+
+# on linux machine
+$ ssh-keygen -t rsa
+$ chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <synology ssh port> id@synology.address
+$ ssh -p <synology ssh port> id@synology.address # synology 접속
+$ chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+$ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
+```
+
+> crontab 설정
+```bash
+# /etc/crontab
+# gitlab backup
+0 2 * * 7 root  docker exec -d gitlab gitlab-rake gitlab:backup:create
+# rsync
+30 2 * * 7 root rsync -avzO -e 'ssh -i /home/shockz/.ssh/id_rsa -p 2299' /home/shockz/docker/gitlab/data/backups/ id@synology.address:/volume1/gitlabBackup/
+```
+
 ## 기타 설정
 
 - Admin Area > Visibility and access control > default project visibility : internal
