@@ -72,16 +72,17 @@ EOS
 
 > docker 볼륨 연결 위치 (--volume /home/shockz/docker/gitlab/data:/var/opt/gitlab)  
 > backup 관련 설정 파일 위치 : vi /home/shockz/docker/gitlab/data/gitlab-rails/etc/gitlab.yml
-   ```bash
-   backup:
-     keep_time: 604800 # 1 week (second 단위)
-   ```
+
+```bash
+backup:
+  keep_time: 604800 # 1 week (second 단위)
+```
+
 > 백업위치 : /home/shockz/docker/gitlab/data/backups
 
 > NAS rsync 활성화
-> ![rsync 1](./image/synology.rsync.1.png)
-> ![rsync 2](./image/synology.rsync.2.png)
-> ![rsync 3](./image/synology.rsync.3.png)
+> ![rsync 1](./image/synology.rsync.1.png) > ![rsync 2](./image/synology.rsync.2.png) > ![rsync 3](./image/synology.rsync.3.png)
+
 ```bash
 # on synology
 $ cd /var/services/homes/shockz
@@ -97,6 +98,7 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 ```
 
 > crontab 설정
+
 ```bash
 # /etc/crontab
 # gitlab backup
@@ -104,6 +106,20 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 # rsync
 30 2 * * 7 root rsync -avzO -e 'ssh -i /home/shockz/.ssh/id_rsa -p 2299' /home/shockz/docker/gitlab/data/backups/ id@synology.address:/volume1/gitlabBackup/
 ```
+
+> 복원
+> ::: warning 테스트 안됨
+
+```bash
+$ docker exec -d gitlab gitlab-ctl stop unicorn
+$ docker exec -d gitlab gitlab-ctl stop sidekig
+$ docker exec -it gitlab gitlab-ctl status
+$ docker exec -d gitlab gitlab-rake gitlab:backup:restore BACKUP=<Timestamp>_<backup_date>_<GitLab_version>
+# git 을 이용한 복원 (in docker container 에서 실행)
+$ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
+```
+
+:::
 
 ## 기타 설정
 
@@ -123,10 +139,7 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 > 개인별 task 프로젝트 기본 생성 원칙
 
 > External Wiki
-> ![default wiki off](./image/gitlab.wiki.3.png)  
-> ![default wiki off](./image/gitlab.wiki.4.png)  
-> ![external wiki on](./image/gitlab.wiki.1.png)  
-> ![external wiki on](./image/gitlab.wiki.2.png)
+> ![default wiki off](./image/gitlab.wiki.3.png) > ![default wiki off](./image/gitlab.wiki.4.png) > ![external wiki on](./image/gitlab.wiki.1.png) > ![external wiki on](./image/gitlab.wiki.2.png)
 
 > Slack notification
 > ![incoming webhook add](./image/gitlab.slack.3.png) > ![incoming webhook add](./image/gitlab.slack.4.png) > ![gitlab slack notification](./image/gitlab.slack.1.png) > ![gitlab slack notification](./image/gitlab.slack.2.png)
@@ -134,3 +147,7 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 ::: danger
 test danger
 :::
+
+```
+
+```
