@@ -148,6 +148,6 @@ $ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
 
 ## gitlab mass upload
 
-> gitlab REST API 이용
-> [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)
+> gitlab REST API 이용  
+> [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)  
 > 각 폴더별 git repository 생성
