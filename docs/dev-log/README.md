@@ -21,3 +21,5 @@ sidebar: false
 ## [SSL](./ssl)
 
 ## [Nginx](./nginx)
+
+## [.net core](./dotnetcore)

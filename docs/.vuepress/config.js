@@ -52,17 +52,23 @@ module.exports = {
           { text: "GitLab", link: "/dev-log/gitlab" },
           { text: "SSL", link: "/dev-log/ssl" },
           { text: "Nginx", link: "/dev-log/nginx" },
+          { text: ".net core", link: "/dev-log/dotnetcore" },
         ],
+      },
+      {
+        text: "etc",
+        link: "/etc/",
+        items: [{ text: "개발환경설정", link: "/etc/devEnv" }],
       },
     ],
     sidebar: {
-      "/dev-log/": [
-        {
-          title: "devLog",
-          collapsable: false,
-          children: ["vscode-debugging", "centos"],
-        },
-      ],
+      // "/dev-log/": [
+      //   {
+      //     title: "devLog",
+      //     collapsable: false,
+      //     children: ["vscode-debugging", "centos"],
+      //   },
+      // ],
     },
   },
 

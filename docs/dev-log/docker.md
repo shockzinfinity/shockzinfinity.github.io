@@ -98,6 +98,17 @@ $ docker-compose up --build
 $ docker-compose up -d # background run
 ```
 
+::: tip
+
+현재 docker 컨테이너 중지 및 삭제
+
+```bash
+$ docker stop $(docker ps -aq)
+$ docker rm $(docker ps -aq)
+```
+
+:::
+
 ## Kubernetes 설정
 
 > 추후 추가

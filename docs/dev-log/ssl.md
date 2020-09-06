@@ -33,6 +33,16 @@ $ keytool -list -keystore cert.jks -rfc
 $ keytool -list -keystore cert.jks -v
 ```
 
+## crt, key => pem 변환
+
+```bash
+# key 변경
+$ openssl rsa -in server.key -text > private.pem
+
+# crt 변경
+$ openssl x509 -inform PEM -in server.crt > public.pem
+```
+
 ## 자체서명 인증서 생성 (windows)
 
 > ps1 파일로 저장 후 PS command(관리자 권한 필요)에서 실행
