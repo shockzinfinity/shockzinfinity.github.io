@@ -50,6 +50,8 @@ module.exports = {
           { text: "Xwiki", link: "/dev-log/xwiki" },
           { text: "Synology NAS", link: "/dev-log/synology" },
           { text: "GitLab", link: "/dev-log/gitlab" },
+          { text: "SSL", link: "/dev-log/ssl" },
+          { text: "Nginx", link: "/dev-log/nginx" },
         ],
       },
     ],
