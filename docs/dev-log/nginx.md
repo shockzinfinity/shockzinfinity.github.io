@@ -6,6 +6,7 @@ sidebar: auto
 
 ## nginx.conf
 
+> 기본 골격  
 > /etc/nginx/nginx.conf
 
 ```bash

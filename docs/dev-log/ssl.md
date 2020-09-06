@@ -35,6 +35,7 @@ $ keytool -list -keystore cert.jks -v
 
 ## 자체서명 인증서 생성 (windows)
 
+> ps1 파일로 저장 후 PS command(관리자 권한 필요)에서 실행
 ```ps1
 # setup certificate properties including the commonName (DNSName) property for Chrome 58+
 $certificate = New-SelfSignedCertificate `
@@ -79,9 +80,9 @@ Remove-Item $cerFilePath
 ```
 
 ::: tip
-파워쉘 실행 시 실행정책(ExecutionPolicy) 관련 오류 시
-Get-ExecutionPolicy 확인
-Set-ExecutionPolicy RemoteSigned
+파워쉘 실행 시 실행정책(ExecutionPolicy) 관련 오류 시  
+Get-ExecutionPolicy 확인  
+Set-ExecutionPolicy RemoteSigned  
 [참고](https://m.blog.naver.com/vanstraat/221732533202)
 :::
 

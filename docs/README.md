@@ -21,6 +21,7 @@ features:
     details: XWiki 설정
   - title: SSL
     details: SSL 관련 tip
-
+  - title: Nginx
+    details: nginx 설정 관련
 footer: Made by shockz with ❤️
 ---
