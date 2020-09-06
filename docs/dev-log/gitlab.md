@@ -140,16 +140,20 @@ $ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
 
 > 개인별 task 프로젝트 기본 생성 원칙
 
-> External Wiki
-> ![default wiki off](./image/gitlab.wiki.3.png) > ![default wiki off](./image/gitlab.wiki.4.png) > ![external wiki on](./image/gitlab.wiki.1.png) > ![external wiki on](./image/gitlab.wiki.2.png)
+> External Wiki  
+> ![default wiki off](./image/gitlab.wiki.3.png)  
+> ![default wiki off](./image/gitlab.wiki.4.png)  
+> ![external wiki on](./image/gitlab.wiki.1.png)  
+> ![external wiki on](./image/gitlab.wiki.2.png)
 
-> Slack notification
-> ![incoming webhook add](./image/gitlab.slack.3.png) > ![incoming webhook add](./image/gitlab.slack.4.png) > ![gitlab slack notification](./image/gitlab.slack.1.png) > ![gitlab slack notification](./image/gitlab.slack.2.png)
+> Slack notification  
+> ![incoming webhook add](./image/gitlab.slack.3.png)  
+> ![incoming webhook add](./image/gitlab.slack.4.png)  
+> ![gitlab slack notification](./image/gitlab.slack.1.png)  
+> ![gitlab slack notification](./image/gitlab.slack.2.png)
 
-::: danger
-test danger
-:::
+## gitlab mass upload
 
-```
-
-```
+> gitlab REST API 이용  
+> [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)  
+> 각 폴더별 git repository 생성
