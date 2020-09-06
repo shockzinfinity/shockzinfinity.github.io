@@ -19,6 +19,8 @@ features:
     details: Synology NAS 설정
   - title: xwiki 설정
     details: XWiki 설정
+  - title: SSL
+    details: SSL 관련 tip
 
 footer: Made by shockz with ❤️
 ---

@@ -1,3 +1,14 @@
+---
+sidebar: auto
+---
+
+# Nginx
+
+## nginx.conf
+
+> /etc/nginx/nginx.conf
+
+```bash
 user nginx;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
@@ -58,3 +69,4 @@ http {
     # Virtual Host Configs
     include /etc/nginx/sites-enabled/*;
 }
+```
