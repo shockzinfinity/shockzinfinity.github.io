@@ -46,7 +46,8 @@ $ openssl x509 -inform PEM -in server.crt > public.pem
 ## 자체서명 인증서 생성 (windows)
 
 > ps1 파일로 저장 후 PS command(관리자 권한 필요)에서 실행
-```ps1
+
+```powershell
 # setup certificate properties including the commonName (DNSName) property for Chrome 58+
 $certificate = New-SelfSignedCertificate `
     -Subject localhost `

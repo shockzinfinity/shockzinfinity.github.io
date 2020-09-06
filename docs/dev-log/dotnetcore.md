@@ -155,7 +155,7 @@ $ docker-compose up --build -d
 TBD
 :::
 
-> TODO: final nginx.conf
+> TODO: final nginx.conf  
 > TODO: final docker-compose file
 
 ## sql server on linux (docker containerized)
