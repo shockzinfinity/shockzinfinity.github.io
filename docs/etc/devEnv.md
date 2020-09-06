@@ -17,5 +17,6 @@ $ source ~/.zshrc
 
 ## 전반적인 설정
 
-> [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)
+> [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)  
+
 ![개발환경설정](./image/mac.dev.settings.1.jpg)
