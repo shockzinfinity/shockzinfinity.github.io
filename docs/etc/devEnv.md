@@ -1,8 +1,18 @@
 ---
+title: 맥 개발환경 설정
+lang: ko-KR
+meta:
+  - name: description
+    content: 맥북프로의 개발환경 구성에 대해 다룹니다.
+  - name: keywords
+    content: mac, development, env
+tags: ["mac", "dev", "env"]
 sidebar: auto
 ---
 
 # Development Settings on Mac
+
+<TagLinks />
 
 ## 맥 터미널에서 VSCode 실행
 
@@ -17,6 +27,6 @@ $ source ~/.zshrc
 
 ## 전반적인 설정
 
-> [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)  
+> [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)
 
 ![개발환경설정](./image/mac.dev.settings.1.jpg)

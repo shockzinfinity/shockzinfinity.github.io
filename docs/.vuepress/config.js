@@ -40,6 +40,10 @@ module.exports = {
     lastUpdated: "Last Updated",
     nav: [
       {
+        text: "tags",
+        link: "/tags",
+      },
+      {
         text: "devLog",
         link: "/dev-log/",
         items: [
@@ -75,9 +79,19 @@ module.exports = {
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
-  plugins: ["@vuepress/back-to-top", "@vuepress/medium-zoom"],
+  plugins: [
+    "@vuepress/back-to-top",
+    "@vuepress/medium-zoom",
+    "@vuepress/google-analytics",
+  ],
 
   markdown: {
     lineNumbers: true,
+  },
+
+  ga: "UA-177405863-1",
+
+  locales: {
+    "/": { lang: "ko-KR" },
   },
 };

@@ -1,8 +1,18 @@
 ---
+title: VSCode debugging
+lang: ko-KR
+meta:
+  - name: description
+    content: VisualStudio Code 디버깅
+  - name: keywords
+    content: debugging, vscode
+tags: ["vscode", "debugging", "edge"]
 sidebar: auto
 ---
 
 # Using edge debugger in vscode
+
+<TagLinks />
 
 [[toc]]
 

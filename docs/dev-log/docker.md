@@ -1,8 +1,18 @@
 ---
+title: Docker 사용방법
+lang: ko-KR
+meta:
+  - name: description
+    content: docker 사용 및 관련 설정 내용을 다룹니다.
+  - name: keywords
+    content: docker in centos 8
+tags: ["docker"]
 sidebar: auto
 ---
 
 # Docker
+
+<TagLinks />
 
 :::warning
 Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)

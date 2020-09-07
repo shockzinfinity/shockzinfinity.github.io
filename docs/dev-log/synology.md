@@ -1,8 +1,18 @@
 ---
+title: Synology NAS
+lang: ko-KR
+meta:
+  - name: description
+    content: Synology NAS 에 대한 내용을 다룹니다.
+  - name: keywords
+    content: synology, NAS
+tags: ["nas", "synology"]
 sidebar: auto
 ---
 
 # Synology
+
+<TagLinks />
 
 [[toc]]
 
@@ -10,7 +20,7 @@ sidebar: auto
 
 1. [whois](https://whois.co.kr) 등에서 도메인 구입 ([shockz.io](https://shockz.io) 구입 3년)
 2. 네임서버 변경 (ns.shockz.io)  
-   ![domain](./image/synology.domain.1.png)
+   ![domain](./image/synology.domain.1.png) _도메인 추가_
 3. Synology NAS 에서 DNS Server 설치  
    ![domain](./image/synology.domain.2.png)
 4. 마스터 영역 및 기타 관련 항목 설정  

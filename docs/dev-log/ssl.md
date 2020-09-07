@@ -1,8 +1,18 @@
 ---
+title: SSL
+lang: ko-KR
+meta:
+  - name: description
+    content: SSL 과 관련된 설정에 대해 다룹니다.
+  - name: keywords
+    content: ssl
+tags: ["ssl", "x509", "certificate"]
 sidebar: auto
 ---
 
 # SSL tip
+
+<TagLinks />
 
 ## SSL 인증서 key 파일 비밀번호 제거/추가
 

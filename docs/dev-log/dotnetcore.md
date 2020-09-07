@@ -1,8 +1,18 @@
 ---
+title: .net core in CentOS 8
+lang: ko-KR
+meta:
+  - name: description
+    content: .net core in centos 관련 내용을 다룹니다.
+  - name: keywords
+    content: .net core
+tags: [".net core", "centos8", "docker"]
 sidebar: auto
 ---
 
-# dotnet core in Cent OS 8
+# dotnet core in CentOS 8
+
+<TagLinks />
 
 ## runtime 및 sdk 설치
 
@@ -20,7 +30,7 @@ $ dotnet --info
 
 ## test repository
 
-> [test](https://github.com/shockzinfinity/dotnetcore-dockerized.git)
+> [test repository](https://github.com/shockzinfinity/dotnetcore-dockerized.git)
 
 ```bash
 $ mkdir HelloAspNetCore3 && cd HelloAspNetCore3
@@ -29,7 +39,7 @@ $ dotnet new webapi --name HelloAspNetCore3.Api
 $ dotnet sln add HelloAspNetCore3.Api/HelloAspNetCore3.Api.csproj
 ```
 
-> add forwarded headers in **Startup.cs**
+> add forwarded headers in `Startup.cs`
 
 ```dotnet
 // Starup.cs Configure(), remove app.UseHttpsRedirection(), then add followed code

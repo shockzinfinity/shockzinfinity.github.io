@@ -1,8 +1,18 @@
 ---
+title: Nginx
+lang: ko-KR
+meta:
+  - name: description
+    content: Nginx 설정 파일, 기타 내용을 다룹니다.
+  - name: keywords
+    content: nginx
+tags: ["nginx", "reverse proxy"]
 sidebar: auto
 ---
 
 # Nginx
+
+<TagLinks />
 
 ## nginx.conf
 

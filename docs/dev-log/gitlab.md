@@ -1,8 +1,18 @@
 ---
+title: GitLab
+lang: ko-KR
+meta:
+  - name: description
+    content: gitlab 설치, 백업 및 복원에 대해 다룹니다.
+  - name: keywords
+    content: gitlab
+tags: ["git", "gitlab", "docker"]
 sidebar: auto
 ---
 
 # GitLab
+
+<TagLinks />
 
 [[toc]]
 

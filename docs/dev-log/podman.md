@@ -1,8 +1,18 @@
 ---
+title: Podman
+lang: ko-KR
+meta:
+  - name: description
+    content: Podman on CentOS 8
+  - name: keywords
+    content: podman
+tags: ["podman", "centos8"]
 sidebar: auto
 ---
 
 # Podman
+
+<TagLinks />
 
 > 테스트 환경 : CentOS 8  
 > [http://api.shockz.io:8080](http://api.shockz.io:8080)  
