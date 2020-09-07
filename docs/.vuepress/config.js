@@ -17,12 +17,34 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
+    ["link", { rel: "icon", href: "/logo.png" }],
+    ["link", { rel: "manifest", href: "/manifest.json" }],
     ["meta", { name: "theme-color", content: "#3eaf7c" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
       { name: "apple-mobile-web-app-status-bar-style", content: "black" },
     ],
+    [
+      "link",
+      { rel: "apple-touch-icon", href: "/icons/apple-touch-icon-152x152.png" },
+    ],
+    [
+      "link",
+      {
+        rel: "mask-icon",
+        href: "/icons/safari-pinned-tab.svg",
+        color: "#3eaf7c",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "msapplication-TileImage",
+        content: "/icons/msapplication-icon-144x144.png",
+      },
+    ],
+    ["meta", { name: "msapplication-TileColor", content: "#000000" }],
   ],
 
   /**
@@ -34,9 +56,9 @@ module.exports = {
     repo: "",
     displayAllHeaders: true,
     //activeHeaderLinks: false, // Default: true
-    editLinks: false,
+    // editLinks: false,
+    // editLinkText: "",
     docsDir: "",
-    editLinkText: "",
     lastUpdated: "Last Updated",
     nav: [
       {
@@ -45,7 +67,8 @@ module.exports = {
       },
       {
         text: "devLog",
-        link: "/dev-log/",
+        // link: "/dev-log/",
+        ariaLabel: "Developement Log",
         items: [
           { text: "CentOS 8", link: "/dev-log/centos" },
           { text: "vscode-debugging", link: "/dev-log/vscode-debugging" },
@@ -57,6 +80,7 @@ module.exports = {
           { text: "SSL", link: "/dev-log/ssl" },
           { text: "Nginx", link: "/dev-log/nginx" },
           { text: ".net core", link: "/dev-log/dotnetcore" },
+          { text: "Konva", link: "/dev-log/konva" },
         ],
       },
       {
@@ -83,10 +107,17 @@ module.exports = {
     "@vuepress/back-to-top",
     "@vuepress/medium-zoom",
     "@vuepress/google-analytics",
+    [
+      "@vuepress/pwa",
+      {
+        serviceWorker: true,
+        updatePopup: true,
+      },
+    ],
   ],
 
   markdown: {
-    lineNumbers: true,
+    // lineNumbers: true,
   },
 
   ga: "UA-177405863-1",

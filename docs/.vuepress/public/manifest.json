@@ -1,0 +1,10 @@
+{
+  "name": "shockz-vue-press",
+  "short_name": "vuePress",
+  "lang": "ko",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "scope": "/shockz-vue-press",
+  "start_url": "/shockz-vue-press"
+}
