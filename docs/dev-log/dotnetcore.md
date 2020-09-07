@@ -10,13 +10,14 @@ tags: [".net core", "centos8", "docker"]
 sidebar: auto
 ---
 
-# dotnet core in CentOS 8
+# dotnet core in CentOS 8 & mac
 
 <TagLinks />
 
 ## runtime 및 sdk 설치
 
 ```bash
+# centos
 $ dnf info dotnet-runtime-3.1
 $ dnf install dotnet-runtime-3.1
 $ dnf info aspnetcore-runtime-3.1
@@ -26,6 +27,46 @@ $ dnf install dotnet-sdk-3.1
 
 $ dotnet --version
 $ dotnet --info
+
+# mac
+$ brew cask install dotnet-sdk
+$ dotnet --version
+# other sdk version
+$ brew tap isen-ng/dotnet-sdk-versions
+$ brew cask install <version>
+$ dotnet --list-sdks
+```
+
+## project skeleton scaffolding
+
+```bash
+$ mkdir todoApi
+$ dotnet new sln --name todoApi
+$ dotnet new webapi -o todoApi.Api
+$ dotnet sln add todoApi.Api
+$ cd todoApi.Api
+$ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+$ dotnet add package Microsoft.EntityFrameworkCore.InMemory
+$ cd ..
+$ code .
+
+# scaffolding tools install
+$ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+$ dotnet add package Microsoft.EntityFrameworkCore.Design
+$ dotnet tool install --global dotnet-aspnet-codegenerator
+$ dotnet tool update -g dotnet-aspnet-codegenerator
+# async endpoint, TodoItem 모델 사용, TodoContext db 컨텍스트 사용, Controllers 폴더 하위에 생성
+$ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+# dotnet ef core tool install
+$ dotnet tool install --global dotnet-ef
+$ dotnet ef
+```
+
+## ef core migration
+
+```bash
+$ dotnet ef migrations add CreateTodoItem --project todoApi.Api
+$ dotnet ef database update --project todoApi.Api
 ```
 
 ## test repository

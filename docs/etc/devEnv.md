@@ -25,6 +25,12 @@ code () { VOCODE_CWD ="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 $ source ~/.zshrc
 ```
 
+## .net core sdk on mac
+
+```bash
+$ brew cask install dotnet-sdk
+```
+
 ## 전반적인 설정
 
 > [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)
