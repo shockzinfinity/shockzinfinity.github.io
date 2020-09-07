@@ -18,10 +18,149 @@ $ dotnet --version
 $ dotnet --info
 ```
 
+## test repository
+
+> [test](https://github.com/shockzinfinity/dotnetcore-dockerized.git)
+
+```bash
+$ mkdir HelloAspNetCore3 && cd HelloAspNetCore3
+$ dotnet new sln --name HelloAspNetCore3
+$ dotnet new webapi --name HelloAspNetCore3.Api
+$ dotnet sln add HelloAspNetCore3.Api/HelloAspNetCore3.Api.csproj
+```
+
+> add forwarded headers in **Startup.cs**
+
+```dotnet
+// Starup.cs Configure(), remove app.UseHttpsRedirection(), then add followed code
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+  ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+})
+```
+
+> add **Api.Dockerfile**
+
+```docker
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine AS build
+WORKDIR /src
+COPY ["HelloAspNetCore3.Api.csproj", "./"]
+RUN dotnet restore "./HelloAspNetCore3.Api.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "HelloAspNetCore3.Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "HelloAspNetCore3.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS http://*:5000
+ENTRYPOINT ["dotnet", "HelloAspNetCore3.Api.dll"]
+```
+
+```bash
+$ docker build -t hello-aspnetcore3 -f Api.Dockerfile . # on Api.Dockerfile location
+$ docker run -d -p 5000:5000 --name hello-aspnetcore3 hello-aspnetcore3
+$ docker ps -a
+```
+
+> browse **[http://localhost:5000/weatherforecast](http://localhost:5000/weatherforecast)**
+
+```bash
+$ docker rm -f hello-aspnetcore3
+$ docker rmi hello-aspnetcore3
+```
+
+> add **Nginx** folder to the solution folder, and then add **Nginx.Dockerfile**, **nginx.conf**
+
+```docker
+FROM nginx:latest
+
+COPY nginx.conf /etc/nginx/nginx.conf
+```
+
+> in nginx.conf
+
+```bash
+worker_processes auto;
+
+events { worker_connections 2048; }
+
+http {
+
+    sendfile on;
+
+    upstream web-api {
+        server api:5000;
+    }
+
+    server {
+        listen 80;
+        server_name $hostname;
+        location / {
+            proxy_pass         http://web-api;
+            proxy_redirect     off;
+            proxy_http_version 1.1;
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection keep-alive;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+    }
+}
+```
+
+> add docker-compose.yml to the solution folder.
+
+```docker
+version: "3.7"
+
+services:
+
+  reverseproxy:
+    build:
+      context: ./Nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - "80:80"
+    restart: always
+
+  api:
+    depends_on:
+      - reverseproxy
+    build:
+      context: ./HelloAspNetCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: always
+```
+
+```bash
+$ docker-compose up --build -d
+```
+
+## SSL 적용
+
+::: warning
+TBD
+:::
+
+> TODO: final nginx.conf  
+> TODO: final docker-compose file
+
 ## sql server on linux (docker containerized)
 
-> [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)  
-> [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
+> [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server) > [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
 
 ```bash
 $ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=strongpassword" --name sql1 mcr.microsoft.com/mssql/server:2019-latest

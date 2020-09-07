@@ -23,5 +23,7 @@ features:
     details: SSL 관련 tip
   - title: Nginx
     details: nginx 설정 관련
+  - title: .net core
+    details: .net core 관련
 footer: Made by shockz with ❤️
 ---
