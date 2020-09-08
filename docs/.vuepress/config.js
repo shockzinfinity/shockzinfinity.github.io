@@ -80,7 +80,8 @@ module.exports = {
           { text: "SSL", link: "/dev-log/ssl" },
           { text: "Nginx", link: "/dev-log/nginx" },
           { text: ".net core", link: "/dev-log/dotnetcore" },
-          { text: "Konva", link: "/dev-log/konva" },
+          { text: "Konva Test", link: "/dev-log/konva" },
+          { text: "VuePress", link: "/dev-log/vuepress" },
         ],
       },
       {
