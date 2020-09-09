@@ -211,7 +211,8 @@ TBD
 
 ## sql server on linux (docker containerized)
 
-> [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server) > [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
+> [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)  
+> [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
 
 ```bash
 $ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=strongpassword" --name sql1 mcr.microsoft.com/mssql/server:2019-latest

@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /img/hero.png
+heroImage: /img/logos/logo.png
 tagline: devLog
 actionText: Start →
 actionLink: /dev-log/
@@ -25,5 +25,9 @@ features:
     details: nginx 설정 관련
   - title: .net core
     details: .net core 관련
+  - title: VuePress
+    details: VuePress 관련 Tip
+  - title: MS SQL
+    details: mssql on docker
 footer: Made by shockz with ❤️
 ---

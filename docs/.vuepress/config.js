@@ -82,6 +82,7 @@ module.exports = {
           { text: ".net core", link: "/dev-log/dotnetcore" },
           { text: "Konva Test", link: "/dev-log/konva" },
           { text: "VuePress", link: "/dev-log/vuepress" },
+          { text: "mssql", link: "/dev-log/mssql" },
         ],
       },
       {
