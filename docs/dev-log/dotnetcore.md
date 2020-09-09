@@ -90,7 +90,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 })
 ```
 
-> add **Api.Dockerfile**
+> add `Api.Dockerfile` to the project folder
 
 ```docker
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine AS base
@@ -127,15 +127,15 @@ $ docker rm -f hello-aspnetcore3
 $ docker rmi hello-aspnetcore3
 ```
 
-> add **Nginx** folder to the solution folder, and then add **Nginx.Dockerfile**, **nginx.conf**
-
+> add **Nginx** folder to the solution folder, and then add `Nginx.Dockerfile`, `nginx.conf`  
+> Nginx.Dockerfile
 ```docker
 FROM nginx:latest
 
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
-> in nginx.conf
+> nginx.conf
 
 ```bash
 worker_processes auto;
