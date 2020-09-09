@@ -62,13 +62,6 @@ $ dotnet tool install --global dotnet-ef
 $ dotnet ef
 ```
 
-## ef core migration
-
-```bash
-$ dotnet ef migrations add CreateTodoItem --project todoApi.Api
-$ dotnet ef database update --project todoApi.Api
-```
-
 ## test repository
 
 > [test repository](https://github.com/shockzinfinity/dotnetcore-dockerized.git)

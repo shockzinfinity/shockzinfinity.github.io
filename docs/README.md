@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /img/logos/logo.png
-tagline: devLog
+tagline: devLog, tutorial and etc.
 actionText: Start →
 actionLink: /dev-log/
 features:
