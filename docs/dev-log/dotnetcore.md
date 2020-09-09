@@ -128,14 +128,15 @@ $ docker rmi hello-aspnetcore3
 ```
 
 > add **Nginx** folder to the solution folder, and then add `Nginx.Dockerfile`, `nginx.conf`  
-> Nginx.Dockerfile
+> **Nginx.Dockerfile**
+
 ```docker
 FROM nginx:latest
 
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
-> nginx.conf
+> **nginx.conf**
 
 ```bash
 worker_processes auto;
@@ -203,30 +204,89 @@ $ docker-compose up --build -d
 ## SSL 적용
 
 ::: warning
-TBD
+SSL 인증서 발급은 [#SSL](./ssl) 참조
 :::
 
-> TODO: final nginx.conf  
-> TODO: final docker-compose file
-
-## sql server on linux (docker containerized)
-
-> [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)  
-> [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
+> https redirection 및 proxy 적용  
+> `localhost.crt`, `localhost.key` 는 빌드 시 복사
 
 ```bash
-$ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=strongpassword" --name sql1 mcr.microsoft.com/mssql/server:2019-latest
+worker_processes auto;
+
+events { worker_connections 2048; }
+
+http {
+  sendfile on;
+
+  upstream web-api {
+    server api:5000;
+  }
+
+  server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+      return 301 https://$host$request_uri;
+    }
+  }
+
+  server {
+    listen 443 ssl;
+    server_name localhost;
+
+    ssl_certificate /etc/ssl/certs/localhost.crt;
+    ssl_certificate_key /etc/ssl/private/localhost.key;
+
+    location / {
+      proxy_pass          http://web-api;
+      proxy_redirect      off;
+      proxy_http_version  1.1;
+      proxy_cache_bypass  $http_upgrade;
+      proxy_set_header    Upgrade $http_upgrade;
+      proxy_set_header    Connection keep-alive;
+      proxy_set_header    Host $host;
+      proxy_set_header    X-Real-IP $remote_addr;
+      proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header    X-Forwarded-Proto $scheme;
+      proxy_set_header    X-Forwarded-Host $server_name;
+    }
+  }
+}
 ```
 
-::: tip
+> **Nginx.Dockerfile**
 
-> SSMS 와 비슷한 툴 : Azure Data Studio (과거 SQL operation studio)  
-> [install](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
+```docker
+FROM nginx:latest
 
-:::
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY localhost.crt /etc/ssl/certs/localhost.crt
+COPY localhost.key /etc/ssl/private/localhost.key
+```
 
-## mssql SA 암호 변경
+> **docker-compose.yml**
 
-```bash
-$ docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "password" -Q 'ALTER LOGIN SA WITH PASSWORD="password"'
+```docker
+version: "3.7"
+
+services:
+  reverseproxy:
+    build:
+      context: ./Nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+
+  api:
+    depends_on:
+      - reverseproxy
+    build:
+      context: ./HelloAspNetCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: always
 ```

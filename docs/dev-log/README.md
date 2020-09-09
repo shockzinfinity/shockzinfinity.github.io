@@ -4,8 +4,6 @@ sidebar: false
 
 # devLog
 
-<TagLinks />
-
 ## [CentOS 8](./centos)
 
 ## [vscode-debugging](./vscode-debugging)

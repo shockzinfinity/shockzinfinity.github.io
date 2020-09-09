@@ -85,7 +85,16 @@ $ docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
    -Q "BACKUP DATABASE [AdventureWorks2019] TO DISK = N'/var/opt/mssql/backup/AdventureWorks2019_2.bak' WITH NOFORMAT, NOINIT, NAME = 'AdventureWorks2019-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
 ```
 
+## mssql sa 암호 변경
+
+```bash
+$ docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "y0urStrong!Password" -Q 'ALTER LOGIN SA WITH PASSWORD="y0urNewStrong!Password"'
+```
+
 ## Reference
+
 - [https://docs.microsoft.com/ko-kr/sql/linux/tutorial-restore-backup-in-sql-server-container?view=sql-server-ver15](https://docs.microsoft.com/ko-kr/sql/linux/tutorial-restore-backup-in-sql-server-container?view=sql-server-ver15)
 - [https://www.c-sharpcorner.com/article/using-docker-volumes-for-sql-server-in-linux/](https://www.c-sharpcorner.com/article/using-docker-volumes-for-sql-server-in-linux/)
 - [https://www.sqlservercentral.com/blogs/docker-containers-and-persistent-data](https://www.sqlservercentral.com/blogs/docker-containers-and-persistent-data)
+- [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)  
+- [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)

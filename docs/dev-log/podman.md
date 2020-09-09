@@ -92,7 +92,7 @@ $ podman run -itd --rm --pod=servers -v /home/shockz/nodetest:/usr/src/nodetest 
 # 이후 nginx reverse proxy 에서 load balancing...
 ```
 
-## 참고자료
+## Reference
 
 - [https://www.redhat.com/sysadmin/container-networking-podman](https://www.redhat.com/sysadmin/container-networking-podman)
 - [https://www.redhat.com/sysadmin/compose-podman-pods](https://www.redhat.com/sysadmin/compose-podman-pods)

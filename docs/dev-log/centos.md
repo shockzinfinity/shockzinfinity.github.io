@@ -6,7 +6,7 @@ meta:
     content: CentOS 8 설치 후 기본적인 설정을 포함합니다.
   - name: keywords
     content: centos8 settings
-tags: ["centos", "linux", "centos8"]
+tags: ["linux", "centos8"]
 sidebar: auto
 ---
 
