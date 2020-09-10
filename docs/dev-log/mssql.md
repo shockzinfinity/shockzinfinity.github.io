@@ -60,7 +60,9 @@ MOVE 'AdventureWorks2017' TO '/var/opt/mssql/data/AdventureWorks2019.mdf',
 MOVE 'AdventureWorks2017_log' TO '/var/opt/mssql/data/AdventureWorks2019_log.ldf'
 GO
 
--- /var/backups
+SELECT Name FROM sys.Databases
+
+-- /var/opt/mssql/backup 에 백업생성
 BACKUP DATABASE [AdventureWorks2019] TO DISK = N'/var/opt/mssql/backup/AdventureWorks2019_2.bak'
 WITH NOFORMAT, NOINIT, NAME = 'AdventureWorks2019-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10
 ```

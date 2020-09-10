@@ -75,7 +75,7 @@ $ dotnet sln add HelloAspNetCore3.Api/HelloAspNetCore3.Api.csproj
 
 > add forwarded headers in `Startup.cs`
 
-```dotnet
+```csharp
 // Starup.cs Configure(), remove app.UseHttpsRedirection(), then add followed code
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {

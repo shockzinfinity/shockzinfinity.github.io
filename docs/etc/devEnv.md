@@ -31,6 +31,12 @@ $ source ~/.zshrc
 $ brew cask install dotnet-sdk
 ```
 
+## cmder
+
+![cmder](./image/cmder.1.png)
+![cmder](./image/cmder.2.png)
+![cmder](./image/cmder.3.png)
+
 ## 전반적인 설정
 
 > [원문](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)

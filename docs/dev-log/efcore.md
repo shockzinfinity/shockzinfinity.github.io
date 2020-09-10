@@ -24,12 +24,6 @@ $ dotnet tool install --global dotnet-ef # cli 방식
 
 ## ef core migration
 
-> cli 를 이용한 업데이트
-```bash
-$ dotnet ef migrations add CreateTodoItem --project todoApi.Api
-$ dotnet ef database update --project todoApi.Api
-```
-
 > migration 생성 및 업데이트
 
 ```bash
