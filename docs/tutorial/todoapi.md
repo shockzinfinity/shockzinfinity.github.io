@@ -70,14 +70,20 @@ $ git flow init
 ```
 
 - `Startup.cs` 수정
-- Configure 메서드 내의 **app.UseHttpsRedirection();** 제거
-- ForwardHeaders 삽입
+  - Configure 메서드 내의 **app.UseHttpsRedirection();** 제거
+  - ForwardHeaders 삽입
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 ```
+::: tip
+Nginx 와 연결되는 docker container 환경과 비슷하게 하기 위하여 Visual Studio 사용하여 디버깅 할 경우,
+Kestrel 웹서버 방식으로 테스트
+![kestrel](./images/todo/vsdebug.1.png)
+참고: [ASP.NET Core에서 Kestrel 웹 서버 구현](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.1)
+:::
 
 - [Postman](https://www.postman.com/downloads/) 등으로 기본 테스트
    ![postman](./images/todo/postman.test.1.png)
@@ -112,7 +118,7 @@ namespace todoCore3.Api.Models
 - SQL Server DbContext 마이그레이션을 위한 sql container 생성 ([참조](../dev-log/mssql))
    - 테스트 및 Todo Api 내에서 connection string 단순화를 위해 docker network 생성 및 연결 (`todo-core` network)
    - data 보존을 위해 docker data volume 생성
-   - 테스트의 편의성을 위해 기본 port 로 진행 (port 변경 시 container 내부의 network 추가 작업 필요)
+   - 테스트의 편의성을 위해 기본 port 로 진행 (port 변경 시 container 간 network는 추가 작업이 필요함)
 ```bash
 # network 생성
 $ docker network create todo-core
@@ -131,26 +137,31 @@ $ docker exec -d sql2 mkdir /var/opt/mssql/backup
 
 - Api 시작 시 db migration 을 위한 작업
    - `Startup.cs` 의 `ConfigureServices()`에 **DbContext** DI(종속성 주입)
-   - EntityFrameworkCore.Design 추가
+   - 프로젝트에 EntityFrameworkCore.Design 추가
+      `dotnet add package Microsoft.EntityFrameworkCore.Design`
    - ef core cli 설치
    - migration 생성 ([패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell) 혹은 CLI 이용), 여기서는 CLI 이용
-   - docker container 간 network 설정을 하게 되므로 연결 문자열은 다음과 같이 설정하면 됨.
-      `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
-```csharp
+```csharp{12-21}
 public void ConfigureServices(IServiceCollection services)
 {
-  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=sql;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
+  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=localhost;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
   ...
 }
 
+// container 시작 시에 자동 migration을 위해 설정
+// 자동 마이그레이션을 사용하지 않을 경우 CLI 를 통해 migration 추가 및 update
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
    ...
-   // DB update migrations
-   if (app.ApplicationServices.GetService<TodoContext>().Database.EnsureCreated() &&
-      app.ApplicationServices.GetService<TodoContext>().Database.GetPendingMigrations().Any())
+   using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
    {
-      app.ApplicationServices.GetService<TodoContext>().Database.Migrate();
+      var context = serviceScope.ServiceProvider.GetService<TodoContext>();
+
+      if (context.Database.EnsureCreated() && context.Database.GetPendingMigrations().Any())
+      {
+         // DB update migrations
+         context.Database.Migrate();
+      }
    }
    ...
 }
@@ -201,8 +212,8 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
   "IsCompleted": false
 }
 ```
-   ![postman](./images/todo/postman.test.2.png)
-   ![postman](./images/todo/postman.test.3.png)
+   ![postman](./images/todo/postman.test.4.png)
+   ![postman](./images/todo/postman.test.5.png)
 
 ::: warning
 과도한 게시 방지를 위한 DTO 사용 부분은 추후 업데이트 예정 (2020.9.9)
@@ -232,13 +243,24 @@ COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "todoCore3.Api.dll"]
 ```
-- build & run
-```bash
-$ docker build -t todo-api -f Api.Dockerfile .
-$ docker run -d -p 5000:5000 --name todo-api todo-api
+
+- docker container 간 network 설정을 하게 되므로 연결 문자열 변경
+   `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
+```csharp{3}
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=sql;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
+  ...
+}
 ```
 
-### db migrations
+- api build & run
+```bash
+$ docker build -t todo-api -f Api.Dockerfile .
+$ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
+```
+   ![postman](./images/todo/postman.test.2.png)
+   ![postman](./images/todo/postman.test.3.png)
 
 ### Nginx 연결
 
