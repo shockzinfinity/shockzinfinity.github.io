@@ -288,7 +288,7 @@ http {
   sendfile on;
 
   upstream web-api {
-    server api:5000; # docker-compose 에서 사용될 service 이름
+    server api_1:5000; # docker-compose 에서 사용될 service 이름
   }
 
   server {
@@ -350,11 +350,6 @@ services:
 volumes:
   sql_data:
 ```
-- docker-compose 로 실행
-```bash
-$ docker-compose up --build
-```
-
 ::: warning
 wait-for-it.sh 관련 내용 추가
 :::
@@ -365,11 +360,16 @@ wait-for-it.sh 관련 내용 추가
 `Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
 컨테이너가 실행되는 시점에서 db migration 방법이 필요함 (추후 구현)
 :::
-
+- docker-compose 로 실행
+```bash
+$ docker-compose up --build
+```
 - Postman 으로 테스트
    ![postman](./images/todo/postman.test.6.png)
    ![postman](./images/todo/postman.test.7.png)
    ![postman](./images/todo/postman.test.8.png)
+
+### SSL 적용
 
 ## Conclusion
 
