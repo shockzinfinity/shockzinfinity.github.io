@@ -110,11 +110,12 @@ namespace todoCore3.Api.Models
 }
 ```
 - SQL Server DbContext 마이그레이션을 위한 sql container 생성 ([참조](../dev-log/mssql))
-   - Todo Api 내에서 connection string 단순화를 위해 docker network 생성 및 연결
+   - 테스트 및 Todo Api 내에서 connection string 단순화를 위해 docker network 생성 및 연결 (`todo-core` network)
    - data 보존을 위해 docker data volume 생성
+   - 테스트의 편의성을 위해 기본 port 로 진행 (port 변경 시 container 내부의 network 추가 작업 필요)
 ```bash
 # network 생성
-$ docker network create todoCore3
+$ docker network create todo-core
 $ docker network ls
 
 # volume 생성
@@ -122,7 +123,7 @@ $ docker volume create sql_data
 $ docker volume ls
 
 # sql container run
-$ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=y0urStrong!Password" --network=todoCore3 --name sql2 -v sql_data:/var/opt/mssql mcr.microsoft.com/mssql/server:2019-latest
+$ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=y0urStrong!Password" --network=todo-core --name sql -v sql_data:/var/opt/mssql mcr.microsoft.com/mssql/server:2019-latest
 
 # 추후 백업을 위한 디렉토리 생성
 $ docker exec -d sql2 mkdir /var/opt/mssql/backup
@@ -132,12 +133,26 @@ $ docker exec -d sql2 mkdir /var/opt/mssql/backup
    - `Startup.cs` 의 `ConfigureServices()`에 **DbContext** DI(종속성 주입)
    - EntityFrameworkCore.Design 추가
    - ef core cli 설치
-   - migration 생성
+   - migration 생성 ([패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell) 혹은 CLI 이용), 여기서는 CLI 이용
+   - docker container 간 network 설정을 하게 되므로 연결 문자열은 다음과 같이 설정하면 됨.
+      `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=localhost;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
+  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=sql;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
   ...
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+   ...
+   // DB update migrations
+   if (app.ApplicationServices.GetService<TodoContext>().Database.EnsureCreated() &&
+      app.ApplicationServices.GetService<TodoContext>().Database.GetPendingMigrations().Any())
+   {
+      app.ApplicationServices.GetService<TodoContext>().Database.Migrate();
+   }
+   ...
 }
 ```
 ```bash
@@ -222,6 +237,8 @@ ENTRYPOINT ["dotnet", "todoCore3.Api.dll"]
 $ docker build -t todo-api -f Api.Dockerfile .
 $ docker run -d -p 5000:5000 --name todo-api todo-api
 ```
+
+### db migrations
 
 ### Nginx 연결
 

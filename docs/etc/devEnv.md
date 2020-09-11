@@ -34,6 +34,7 @@ $ brew cask install dotnet-sdk
 ## cmder
 
 ![cmder](./image/cmder.1.png)
+![cmder](./image/cmder.4.png)
 ![cmder](./image/cmder.2.png)
 ![cmder](./image/cmder.3.png)
 
