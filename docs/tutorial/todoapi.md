@@ -150,6 +150,8 @@ public void ConfigureServices(IServiceCollection services)
 
 // container 시작 시에 자동 migration을 위해 설정
 // 자동 마이그레이션을 사용하지 않을 경우 CLI 를 통해 migration 추가 및 update
+// NOTE: 이 방법은 nginx 를 통한 reverse proxy 를 사용하게 되면 제거해야 함.
+// docker-compose 로 api container 가 동시에 시작이 될 경우 문제가 될 수 있음
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
    ...
@@ -157,7 +159,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
    {
       var context = serviceScope.ServiceProvider.GetService<TodoContext>();
 
-      if (context.Database.EnsureCreated() && context.Database.GetPendingMigrations().Any())
+      if (context.Database.GetPendingMigrations().Any())
       {
          // DB update migrations
          context.Database.Migrate();
@@ -264,7 +266,110 @@ $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
 
 ### Nginx 연결
 
-### Wrap up
+- 솔루션 폴더에 Nginx 폴더 추가 후 `Nginx.Dockerfile`, `nginx.conf` 생성
+```bash
+$ mkdir Nginx && cd Nginx
+$ touch Nginx.Dockerfile nginx.conf
+```
+
+- **Nginx.Dockerfile**
+```docker
+FROM nginx:latest
+
+COPY nginx.conf /etc/nginx/nginx.conf
+```
+- **nginx.conf**
+```bash
+worker_processes auto;
+
+events { worker_connections 2048; }
+
+http {
+  sendfile on;
+
+  upstream web-api {
+    server api:5000; # docker-compose 에서 사용될 service 이름
+  }
+
+  server {
+    listen 80;
+    server_name $hostname;
+    location / {
+      proxy_pass         http://web-api;
+      proxy_redirect     off;
+      proxy_http_version 1.1;
+      proxy_cache_bypass $http_upgrade;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection keep-alive;
+      proxy_set_header   Host $host;
+      proxy_set_header   X-Real-IP $remote_addr;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+      proxy_set_header   X-Forwarded-Host $server_name;
+    }
+  }
+}
+```
+- 솔루션 폴더에 `docker-compose.yml` 추가
+```docker
+version: "3.7"
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - "sql_data:/var/opt/mssql"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "y0urStrong!Password"
+    restart: "no"
+
+  nginx:
+    depends_on:
+      - sql
+      - api_1
+    build:
+      context: ./Nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - "4000:80"
+    restart: "no"
+
+  api_1:
+    depends_on:
+      - sql
+    build:
+      context: ./todoCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: "no"
+
+volumes:
+  sql_data:
+```
+- docker-compose 로 실행
+```bash
+$ docker-compose up --build
+```
+
+::: warning
+wait-for-it.sh 관련 내용 추가
+:::
+
+::: danger
+`docker-compose up --build` 로 최초 실행 시
+`TodoContext` 에 대한 마이그레이션이 업데이트 되기 전인 상태가 되므로
+`Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
+컨테이너가 실행되는 시점에서 db migration 방법이 필요함 (추후 구현)
+:::
+
+- Postman 으로 테스트
+   ![postman](./images/todo/postman.test.6.png)
+   ![postman](./images/todo/postman.test.7.png)
+   ![postman](./images/todo/postman.test.8.png)
 
 ## Conclusion
 
