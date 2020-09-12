@@ -2,10 +2,10 @@
 title: Todo App tutorial
 lang: ko-KR
 meta:
-  description:
+  - name: description
     content: Todo App 을 만드는 상당히 복잡한 방법
-  keywords:
-    - todoapp
+  - name: keywords
+    content: todoapp
 tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl"]
 sidebar: auto
 ---
@@ -390,7 +390,7 @@ ENTRYPOINT ["/wait-for-it.sh", "sql:1433", "-t", "120", "--", "dotnet", "todoCor
 `docker-compose up --build` 로 최초 실행 시
 `TodoContext` 에 대한 마이그레이션이 업데이트 되기 전인 상태가 되므로
 `Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
-컨테이너가 실행되는 시점에서 db migration 방법이 필요함 (추후 구현)
+컨테이너가 실행되는 시점에서 db migration 방법이 필요함
 :::
 - docker-compose 로 실행
 ```bash
@@ -542,7 +542,232 @@ $ docker-compose up -d
    ![postman](./images/todo/postman.test.10.png)
    ![postman](./images/todo/postman.test.11.png)
 
-## Upcoming
+### Improvements & Fix
+
+이제껏 만든 Api 에는 몇 가지 문제를 내포하고 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.
+- api 인스턴스를 여러 개 실행하는 경우  
+   인스턴스들이 동시에 마이그레이션을 적용하려고 시도 및 실패 가능성
+- CI 프로세스의 일부로서 배포 시나리오가 동작하는 경우 관리 용이성이 떨어짐
+- 사전 검증 불가능으로 인한 데이터 유실의 위험
+
+그 외에도 WebAPI endpoint 에 대한 과도한 정보 노출, 아키텍쳐 측면의 한계 등이 있을 수 있습니다.
+
+일단 현 단계에서 개선 가능한 부분 몇 가지만 개선하고, 진행이 될 수록 추가적으로 개선해보는 방법으로 접근하겠습니다.
+- SQL 스크립트를 통한 DB 마이그레이션 적용
+- localhost 가 아닌 일반 도메인을 통한 SSL 적용
+- DTO 시나리오 적용
+
+### SQL migration script
+
+- 마이그레이션 추가를 위해 `TodoItem` 모델에 TimeStamp 추가
+```csharp{7-8}
+  public class TodoItem
+  {
+    public long Id { get; set; }
+    public string Name { get; set; }
+    public bool IsCompleted { get; set; }
+
+    [Timestamp]
+    public byte[] RowVersion { get; set; }
+  }
+```
+```bash
+# 마이그레이션 추가
+$ dotnet ef migrations add AddTimeStamp
+# 마이그레이션 리스트
+$ dotnet ef migrations list
+$ dotnet ef migrations script --idempotent -o migrations01.sql
+```
+- `migrations01.sql` 확인
+   idempotent 옵션은 각 마이그레이션 체크 후 실행될 수 있도록 스크립트 생성된다.
+```sql
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200909112636_CreateTodoItem')
+BEGIN
+    CREATE TABLE [TodoItems] (
+        [Id] bigint NOT NULL IDENTITY,
+        [Name] nvarchar(max) NULL,
+        [IsCompleted] bit NOT NULL,
+        CONSTRAINT [PK_TodoItems] PRIMARY KEY ([Id])
+    );
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200909112636_CreateTodoItem')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20200909112636_CreateTodoItem', N'3.1.8');
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200912110359_AddTimeStamp')
+BEGIN
+    ALTER TABLE [TodoItems] ADD [RowVersion] rowversion NULL;
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200912110359_AddTimeStamp')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20200912110359_AddTimeStamp', N'3.1.8');
+END;
+
+GO
+```
+- `Startup.cs`에서 인스턴스 생성 시점에서 migration 하는 부분은 삭제
+```csharp{4-12}
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  ...
+  //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+  //{
+  //	var context = serviceScope.ServiceProvider.GetService<TodoContext>();
+
+  //	if (context.Database.GetPendingMigrations().Any())
+  //	{
+  //		context.Database.Migrate();
+  //	}
+  //}
+  ...
+}
+```
+- 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등으로 수동으로 마이그레이션 한다.
+   ![migrations](./images/todo/migrations.1.png)
+   ![migrations](./images/todo/migrations.2.png)
+- docker-compose 다시 빌드 및 실행
+```bash
+$ docker-compose down
+$ docker-compose up --build -d
+```
+- 마이그레이션 이후 Postman 등으로 테스트 하게 되면 추가된 필드를 확인할 수 있다.
+   ![postman](./images/todo/postman.test.12.png)
+
+### DTO 사용
+
+- DTO(Data Transfer Object)를 사용하는 이유는 일반적으로 클라이언트에 보여지는 속성에 대한 제어를 하기 위함입니다.
+- 추후 이 부분은 Automapper Profile 등으로 제어할 예정입니다.
+- **Models** 에 TodoItemDTO를 추가합니다.
+```csharp
+public class TodoItemDTO
+{
+  public long Id { get; set; }
+  public string Name { get; set; }
+  public bool IsComplete { get; set; }
+}
+```
+- `TodoItemController`의 전반적인 수정
+```csharp{2, 4-9, 13-16, 20, 29, 34, 41-48, 54-57, 64-76, 80-92}
+...
+private bool TodoItemExists(long id) => _context.TodoItems.Any(e => e.Id == id);
+
+private static TodoItemDTO ItemToDTO(TodoItem todoItem) => new TodoItemDTO
+{
+  Id = todoItem.Id,
+  Name = todoItem.Name,
+  IsComplete = todoItem.IsCompleted
+};
+
+// GET: api/TodoItems
+[HttpGet]
+public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
+{
+  return await _context.TodoItems.Select(x => ItemToDTO(x)).ToListAsync();
+}
+
+// GET: api/TodoItems/5
+[HttpGet("{id}")]
+public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
+{
+  var todoItem = await _context.TodoItems.FindAsync(id);
+
+  if (todoItem == null)
+  {
+    return NotFound();
+  }
+
+  return ItemToDTO(todoItem);
+}
+
+// PUT: api/TodoItems/5
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO)
+{
+  if (id != todoItemDTO.Id)
+  {
+    return BadRequest();
+  }
+
+  var todoItem = await _context.TodoItems.FindAsync(id);
+  if (todoItem == null)
+  {
+    return NotFound();
+  }
+
+  todoItem.Name = todoItemDTO.Name;
+  todoItem.IsCompleted = todoItemDTO.IsComplete;
+
+  try
+  {
+    await _context.SaveChangesAsync();
+  }
+  catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
+  {
+    return NotFound();
+  }
+
+  return NoContent();
+}
+
+// POST: api/TodoItems
+[HttpPost]
+public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO)
+{
+  var todoItem = new TodoItem
+  {
+    IsCompleted = todoItemDTO.IsComplete,
+    Name = todoItemDTO.Name
+  };
+
+  _context.TodoItems.Add(todoItem);
+  await _context.SaveChangesAsync();
+
+  return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, ItemToDTO(todoItem));
+}
+
+// DELETE: api/TodoItems/5
+[HttpDelete("{id}")]
+public async Task<IActionResult> DeleteTodoItem(long id)
+{
+  var todoItem = await _context.TodoItems.FindAsync(id);
+  if (todoItem == null)
+  {
+    return NotFound();
+  }
+
+  _context.TodoItems.Remove(todoItem);
+  await _context.SaveChangesAsync();
+
+  return NoContent();
+}
+...
+```
+- Postman 으로 확인해보면 DTO를 통한 데이터 전달로 변경됨을 확인할 수 있습니다.
+   ![postman](./images/todo/postman.test.13.png)
+
+## Upcoming next
 
 - nginx load-balancing
 - Kubernates(k8s)
@@ -554,4 +779,5 @@ $ docker-compose up -d
 
 - [RealWorld](https://github.com/gothinkster/realworld)
 - [자습서: ASP.NET Core를 사용하여 웹 API 만들기](https://docs.microsoft.com/ko-kr/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio)
-
+- [마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
+- [자습서: 마이그레이션 기능 사용 - ASP.NET MVC 및 EF Core 사용](https://docs.microsoft.com/ko-kr/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-3.1)
