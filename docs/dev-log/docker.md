@@ -49,14 +49,18 @@ $ docker version
 $ docker run hello-world
 
 # docker-compose install (release 다운로드 위치: https://github.com/docker/compose/releases)
+# global install
 # /tmp 에서 작업
 $ curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
 $ sudo mv docker-compose /usr/local/bin && sudo chmod +x /usr/local/bin/docker-compose
 
-# per-user installation (현재는 이 방법)
+# per-user installation
 $ sudo dnf install python3-pip
 $ pip3.6 install docker-compose --user
 $ docker-compose -version
+
+# docker-compose 삭제
+$ sudo rm /usr/local/bin/docker-compose
 
 # podman 삭제는 진행하지 않음
 ```

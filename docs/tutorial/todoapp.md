@@ -1,18 +1,19 @@
 ---
-title: Todo Api tutorial
+title: Todo App tutorial
 lang: ko-KR
 meta:
   - name: description
-    content: nginx(reverse proxy), .net core, mssql, dockerized
+    content: Todo App 을 만드는 상당히 복잡한 방법
   - name: keywords
     content: todoapi
-tags: ["todoapi", ".net core", "nginx", "mssql", "docker"]
+tags: ["todoapi", ".net core", "nginx", "mssql", "docker", "ssl"]
 sidebar: auto
 ---
 
-# Todo Api
+# Todo App Tutorial
 
-> 부제: Todo App 을 만드는 복잡한 방법
+> 부제: Todo App 을 만드는 복잡한 방법  
+> [Github Repository](https://github.com/shockzinfinity/todo-api-complicated)
 
 [[toc]]
 
@@ -31,18 +32,20 @@ sidebar: auto
 - SSL
 - Swagger (Not yet)
 - Seq (Not yet)
-- CQRS (Not yet)
 - FluntValidation (Not yet)
 - Automapper (Not yet)
+- CQRS (Not yet)
 - Vue.js (Not yet)
 
 ## Step
 
-### Dockerize Web API
+### Create Web API
 
-- [dotnet core sdk](https://dotnet.microsoft.com/download) 설치
+- [dotnet core sdk](https://dotnet.microsoft.com/download) 설치 (Windows)
    mac 혹은 linux 에서 sdk 설치는 [dotnet core in CentOS 8 & mac](../dev-log/dotnetcore) 참조
-- vscode 와 같은 IDE + C# extensions 혹은 Visual Studio 2019 Community
+- IDE Tools:
+   [Visual Studio Code](https://code.visualstudio.com/) + C# extensions 또는  
+   [Visual Studio 2019 Community](https://visualstudio.microsoft.com/ko/vs/)
 ```bash
 $ mkdir todoCore3 && cd todoCore3
 $ dotnet new sln --name todoCore3
@@ -79,9 +82,9 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 });
 ```
 ::: tip
-Nginx 와 연결되는 docker container 환경과 비슷하게 하기 위하여 Visual Studio 사용하여 디버깅 할 경우,
-Kestrel 웹서버 방식으로 테스트
-![kestrel](./images/todo/vsdebug.1.png)
+Nginx 와 연결되는 docker container 환경과 비슷하게 하기 위하여 Visual Studio 사용하여 디버깅 할 경우,  
+Kestrel 웹서버 방식으로 테스트  
+![kestrel](./images/todo/vsdebug.1.png)  
 참고: [ASP.NET Core에서 Kestrel 웹 서버 구현](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.1)
 :::
 
@@ -118,7 +121,8 @@ namespace todoCore3.Api.Models
 - SQL Server DbContext 마이그레이션을 위한 sql container 생성 ([참조](../dev-log/mssql))
    - 테스트 및 Todo Api 내에서 connection string 단순화를 위해 docker network 생성 및 연결 (`todo-core` network)
    - data 보존을 위해 docker data volume 생성
-   - 테스트의 편의성을 위해 기본 port 로 진행 (port 변경 시 container 간 network는 추가 작업이 필요함)
+   - 테스트의 편의성을 위해 기본 port 로 진행  
+      (port 변경 시 container 간 network는 추가 작업이 필요함)
 ```bash
 # network 생성
 $ docker network create todo-core
@@ -218,10 +222,10 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
    ![postman](./images/todo/postman.test.5.png)
 
 ::: warning
-과도한 게시 방지를 위한 DTO 사용 부분은 추후 업데이트 예정 (2020.9.9)
+Controller endpoint 의 DTO 사용은 추후 업데이트 예정 (2020.9.9)
 :::
 
-### Containerize
+### Dockerize
 
 - `Api.Dockerfile` 을 프로젝트 폴더에 추가
 ```docker
@@ -246,7 +250,7 @@ ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "todoCore3.Api.dll"]
 ```
 
-- docker container 간 network 설정을 하게 되므로 연결 문자열 변경
+- docker container 간 network 설정을 하게 되므로 연결 문자열 변경  
    `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
 ```csharp{3}
 public void ConfigureServices(IServiceCollection services)
@@ -264,7 +268,7 @@ $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
    ![postman](./images/todo/postman.test.2.png)
    ![postman](./images/todo/postman.test.3.png)
 
-### Nginx 연결
+### Nginx reverse proxy
 
 - 솔루션 폴더에 Nginx 폴더 추가 후 `Nginx.Dockerfile`, `nginx.conf` 생성
 ```bash
@@ -351,7 +355,33 @@ volumes:
   sql_data:
 ```
 ::: warning
-wait-for-it.sh 관련 내용 추가
+[wait-for-it.sh](https://github.com/vishnubob/wait-for-it/)  
+> 특정 서버의 특정 포트로 접근이 가능할때까지 프로세스를 홀딩하는 스크립트  
+sql container가 초기화 될때까지 대기하고 있다가 api 가 실행되게 하기 위해서 120초 대기하다가 실행되도록 함  
+`Api.Dockerfile`을 수정
+```docker{19-21}
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ["todoCore3.Api.csproj", "./"]
+RUN dotnet restore "./todoCore3.Api.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "todoCore3.Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "todoCore3.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS http://*:5000
+COPY ./wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+ENTRYPOINT ["/wait-for-it.sh", "sql:1433", "-t", "120", "--", "dotnet", "todoCore3.Api.dll"]
+```
 :::
 
 ::: danger
@@ -371,7 +401,152 @@ $ docker-compose up --build
 
 ### SSL 적용
 
-## Conclusion
+- dotnet SDK 를 설치하거나 Visual Studio 를 통해 디버깅을 하게 되면 보통 자체 서명 인증서 등록되어 있음  
+   ![certificate](./image/../images/todo/certificate.1.png)
+   ![certificate](./image/../images/todo/certificate.2.png)
+- `localhost.pfx`로 *내보내기* 후 **Nginx** 폴더에 저장
+   ![certificate](./image/../images/todo/certificate.3.png)
+   ![certificate](./image/../images/todo/certificate.4.png)
+   ![certificate](./image/../images/todo/certificate.5.png)
+   ![certificate](./image/../images/todo/certificate.6.png)
+   ![certificate](./image/../images/todo/certificate.7.png)
+   ![certificate](./image/../images/todo/certificate.8.png)
+::: tip
+자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고  
+[Windows](../dev-log/ssl)
+:::
+- crt, key 파일 추출
+```bash
+# 키 파일 추출
+# [주의] PEM 패스워드를 지정하면, container 로 로딩시점에서 패스워드 입력을 요청하므로,
+# 패스워드를 입력한 상태로 키 추출 후 패스워드 제거
+$ openssl pkcs12 -in localhost.pfx -nocerts -out localhost_with_key.key
+$ openssl rsa -in localhost_with_key.key -out localhost.key
+# 인증서 파일 추출
+$ openssl pkcs12 -in localhost.pfx -nokeys -clcerts -out localhost.crt
+```
+- `Nginx.Dockerfile` 수정
+```docker{4-5}
+FROM nginx:latest
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY localhost.crt /etc/ssl/certs/localhost.crt
+COPY localhost.key /etc/ssl/private/localhost.key
+```
+- `nginx.conf` 수정
+```bash{12-40}
+worker_processes auto;
+
+events { worker_connections 2048; }
+
+http {
+  sendfile on;
+
+  upstream web-api {
+    server api_1:5000;
+  }
+
+  server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+      return 301 https://$host$request_uri;
+    }
+  }
+
+  server {
+    listen 443 ssl;
+    server_name localhost;
+
+      ssl_certificate /etc/ssl/certs/localhost.crt;
+      ssl_certificate_key /etc/ssl/private/localhost.key;
+
+    location / {
+      proxy_pass         http://web-api;
+      proxy_redirect     off;
+      proxy_http_version 1.1;
+      proxy_cache_bypass $http_upgrade;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection keep-alive;
+      proxy_set_header   Host $host;
+      proxy_set_header   X-Real-IP $remote_addr;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+      proxy_set_header   X-Forwarded-Host $server_name;
+    }
+  }
+}
+```
+::: danger
+현재 외부에서 접속하는 http 포트를 4000 에 할당했기 때문에  
+https 로 자동 리디렉션 하기 위한 방법 강구  
+
+일반적인 80(http), 443(https) 로 할당하게 되면  
+http 로 접근 시 https 로 자동 리디렉션 됨
+:::
+
+- `docker-compose.yml` 수정
+```docker{24}
+version: "3.7"
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - "sql_data:/var/opt/mssql"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "p@ssw0rd"
+    restart: "no"
+
+  nginx:
+    depends_on:
+      - sql
+      - api_1
+    build:
+      context: ./Nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - "4000:80"
+      - "4001:443"
+    restart: "no"
+
+  api_1:
+    depends_on:
+      - sql
+    build:
+      context: ./todoCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: "no"
+
+volumes:
+  sql_data:
+```
+- `docker-compose up`
+```bash
+$ docker-compose down
+$ docker-compose build
+$ docker-compose up -d
+```
+- 브라우저 테스트
+   ![certificate](./images/todo/certificate.9.png)
+- **Postman** 테스트
+   ![postman](./images/todo/postman.test.9.png)
+   ![postman](./images/todo/postman.test.10.png)
+   ![postman](./images/todo/postman.test.11.png)
+
+## Upcoming
+
+- nginx load-balancing
+- Kubernates(k8s)
+- Authentication
+- DDD / CQRS
+- Frontend (Vue.js)
 
 ## Reference
 

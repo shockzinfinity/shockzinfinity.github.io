@@ -123,7 +123,7 @@ module.exports = {
   ],
 
   markdown: {
-    // lineNumbers: true,
+    lineNumbers: true,
   },
 
   ga: "UA-177405863-1",
