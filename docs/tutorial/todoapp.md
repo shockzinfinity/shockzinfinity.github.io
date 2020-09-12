@@ -645,7 +645,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   ...
 }
 ```
-- 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등으로 수동으로 마이그레이션 한다.
+- 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등으로 수동으로 마이그레이션 합니다.
+- 추후에도 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.
+   [런타임에 마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)
    ![migrations](./images/todo/migrations.1.png)
    ![migrations](./images/todo/migrations.2.png)
 - docker-compose 다시 빌드 및 실행
@@ -770,11 +772,11 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 
 ### production level domain ssl 적용
 
-- Synology NAS 에서 Let's Encrypt Wildcard SSL 을 발급받은 관계로 NAS 에서 해당 인증서를 복사해온다. (현재 매주마다 NAS에서 shockz.io 인증서를 갱신하고 있는 상태임)
-- `/usr/syno/etc/certificate/_archive/DEFAULT` 파일의 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해오면 된다.
-   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트 한다.  
-   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정이기 때문에 **DEFAULT**파일의 내용을 통해 경로 확인을 진행한 경우이다.
-- `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 의 내용 중 ssl 관련부분을 수정한다.
+- Synology NAS 에서 Let's Encrypt Wildcard SSL 을 발급받은 관계로 NAS 에서 해당 인증서를 복사해옵니다. (현재 매주마다 NAS에서 shockz.io 인증서를 갱신하고 있는 상태입니다.)
+- `/usr/syno/etc/certificate/_archive/DEFAULT` 파일의 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해오면 됩니다.
+   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트 합니다.  
+   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정이기 때문에 **DEFAULT**파일의 내용을 통해 경로 확인을 진행한 경우입니다.
+- `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 의 내용 중 ssl 관련부분을 수정합니다.
 ```docker{4-5}
 FROM nginx:latest
 
@@ -842,7 +844,7 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
 - `$ docker-compose up --build -d`로 확인합니다.
    ![docker-compose](./images/todo/docker-compose.1.png)
    ![docker-compose](./images/todo/docker-compose.2.png)
-   ![postman](./images/todo/postman.postman.test.14.png)
+   ![postman](./images/todo/postman.test.14.png)
 
 ## Upcoming next
 
