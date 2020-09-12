@@ -56,6 +56,7 @@ meta:
   - name: keywords
     content: SEO 검색 엔진 최적화
 tags: ["SEO", "검색 엔진 최적화", "VuePress"]
+sidebar: auto
 ---
 ```
 

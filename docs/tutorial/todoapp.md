@@ -2,15 +2,17 @@
 title: Todo App tutorial
 lang: ko-KR
 meta:
-  - name: description
+  description:
     content: Todo App 을 만드는 상당히 복잡한 방법
-  - name: keywords
-    content: todoapi
-tags: ["todoapi", ".net core", "nginx", "mssql", "docker", "ssl"]
+  keywords:
+    - todoapp
+tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl"]
 sidebar: auto
 ---
 
 # Todo App Tutorial
+
+<TagLinks />
 
 > 부제: Todo App 을 만드는 복잡한 방법  
 > [Github Repository](https://github.com/shockzinfinity/todo-api-complicated)
@@ -145,7 +147,7 @@ $ docker exec -d sql2 mkdir /var/opt/mssql/backup
       `dotnet add package Microsoft.EntityFrameworkCore.Design`
    - ef core cli 설치
    - migration 생성 ([패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell) 혹은 CLI 이용), 여기서는 CLI 이용
-```csharp{12-21}
+```csharp{14-23}
 public void ConfigureServices(IServiceCollection services)
 {
   services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=localhost;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;"));
@@ -552,3 +554,4 @@ $ docker-compose up -d
 
 - [RealWorld](https://github.com/gothinkster/realworld)
 - [자습서: ASP.NET Core를 사용하여 웹 API 만들기](https://docs.microsoft.com/ko-kr/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio)
+
