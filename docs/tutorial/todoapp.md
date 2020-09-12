@@ -224,10 +224,6 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
    ![postman](./images/todo/postman.test.4.png)
    ![postman](./images/todo/postman.test.5.png)
 
-::: warning
-Controller endpoint 의 DTO 사용은 추후 업데이트 예정 (2020.9.9)
-:::
-
 ### Dockerize
 
 - `Api.Dockerfile` 을 프로젝트 폴더에 추가
@@ -536,7 +532,7 @@ $ docker-compose down
 $ docker-compose build
 $ docker-compose up -d
 ```
-- 브라우저 테스트
+- 브라우저 테스트  
    ![certificate](./images/todo/certificate.9.png)
 - **Postman** 테스트
    ![postman](./images/todo/postman.test.9.png)
@@ -545,20 +541,21 @@ $ docker-compose up -d
 
 ### Improvements & Fix
 
-이제껏 만든 Api 에는 몇 가지 문제를 내포하고 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.
+이제껏 만든 Api 에는 몇 가지 문제를 내포하고 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.  
+예를 들면
 - api 인스턴스를 여러 개 실행하는 경우  
-   인스턴스들이 동시에 마이그레이션을 적용하려고 시도 및 실패 가능성
+   인스턴스들이 동시에 마이그레이션을 적용하려고 하는 시도와 실패 가능성 내포
 - CI 프로세스의 일부로서 배포 시나리오가 동작하는 경우 관리 용이성이 떨어짐
 - 사전 검증 불가능으로 인한 데이터 유실의 위험
 
-그 외에도 WebAPI endpoint 에 대한 과도한 정보 노출, 아키텍쳐 측면의 한계 등이 있을 수 있습니다.
+그 외에도 각 endpoint 에 대한 과도한 정보 노출, 아키텍쳐 측면의 한계 등이 있을 수 있습니다.
 
-일단 현 단계에서 개선 가능한 부분 몇 가지만 개선하고, 진행이 될 수록 추가적으로 개선해보는 방법으로 접근하겠습니다.
+일단 현 단계에서 개선 가능한 부분 몇 가지만 개선하고, 진행하면서 추가적으로 개선하는 방향으로 접근하겠습니다.
 - SQL 스크립트를 통한 DB 마이그레이션 적용
-- localhost 가 아닌 일반 도메인을 통한 SSL 적용
+- 실제 도메인(*.shockz.io) 을 통한 SSL 적용
 - DTO 시나리오 적용
 
-### SQL migration script
+### SQL migration script 적용
 
 - 마이그레이션 추가를 위해 `TodoItem` 모델에 TimeStamp 추가
 ```csharp{7-8}
@@ -579,7 +576,7 @@ $ dotnet ef migrations add AddTimeStamp
 $ dotnet ef migrations list
 $ dotnet ef migrations script --idempotent -o migrations01.sql
 ```
-- `migrations01.sql` 확인
+- `migrations01.sql` 확인  
    idempotent 옵션은 각 마이그레이션 체크 후 실행될 수 있도록 스크립트 생성된다.
 ```sql
 IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
@@ -646,23 +643,23 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 - 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등으로 수동으로 마이그레이션 합니다.
-- 추후에도 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.
+- 추후에도 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.  
    [런타임에 마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)
    ![migrations](./images/todo/migrations.1.png)
    ![migrations](./images/todo/migrations.2.png)
-- docker-compose 다시 빌드 및 실행
+- docker-compose 빌드 및 실행
 ```bash
 $ docker-compose down
 $ docker-compose up --build -d
 ```
-- 마이그레이션 이후 Postman 등으로 테스트 하게 되면 추가된 필드를 확인할 수 있다.
+- 마이그레이션 이후 Postman 등으로 테스트 하게 되면 추가된 필드를 확인할 수 있습니다.
    ![postman](./images/todo/postman.test.12.png)
 
 ### DTO 사용
 
 - DTO(Data Transfer Object)를 사용하는 이유는 일반적으로 클라이언트에 보여지는 속성에 대한 제어를 하기 위함입니다.
 - 추후 이 부분은 Automapper Profile 등으로 제어할 예정입니다.
-- **Models** 에 TodoItemDTO를 추가합니다.
+- 일단, **Models** 에 TodoItemDTO를 추가합니다.
 ```csharp
 public class TodoItemDTO
 {
@@ -767,15 +764,15 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 }
 ...
 ```
-- Postman 으로 확인해보면 DTO를 통한 데이터 전달로 변경됨을 확인할 수 있습니다.
+- Postman 으로 확인해보면 DTO를 통해 데이터가 전달되는 것을 확인할 수 있습니다.
    ![postman](./images/todo/postman.test.13.png)
 
-### production level domain ssl 적용
+### general domain ssl 적용 (shockz.io)
 
 - Synology NAS 에서 Let's Encrypt Wildcard SSL 을 발급받은 관계로 NAS 에서 해당 인증서를 복사해옵니다. (현재 매주마다 NAS에서 shockz.io 인증서를 갱신하고 있는 상태입니다.)
 - `/usr/syno/etc/certificate/_archive/DEFAULT` 파일의 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해오면 됩니다.
-   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트 합니다.  
-   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정이기 때문에 **DEFAULT**파일의 내용을 통해 경로 확인을 진행한 경우입니다.
+   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트하기 때문에  
+   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정으로 Synology NAS의 인증서 **DEFAULT**파일의 내용을 통해 경로를 확인하게 됩니다.
 - `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 의 내용 중 ssl 관련부분을 수정합니다.
 ```docker{4-5}
 FROM nginx:latest
@@ -792,10 +789,10 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
 
 ### load balancing without Kubernetes(k8s)
 
-- 현재까지는 **api_1** 으로만 테스트 하는 상황이었습니다.
-- 이를 nginx reverse proxy를 통한 load balancing 을 구현 해보고자 합니다.
-- 이를 위해 `docker-compose`, `nginx.conf` 를 수정합니다.
-- api_1 과 같이 api_2와 api_3을 추가합니다.
+- 현재까지는 **api_1** 으로만 테스트 하는 상황이었기 때문에 load balancing을 테스트할 수 없었습니다.
+- load balancing을 테스트 하기 위해서는 좀 더 정교한 방법이 필요하나 현 단계에서는 구현의 단순함을 위해 docker-compose 상의 upstream 을 늘리는 방법을 택합니다.
+- 추후 Kubernetes 등을 통해 Auto-scaling 등을 구현할 예정입니다.
+- `docker-compose`, `nginx.conf` 를 수정하여 api_1 과 같이 api_2와 api_3을 추가합니다.
 ```docker{4-6,17-35}
   nginx:
     depends_on:
