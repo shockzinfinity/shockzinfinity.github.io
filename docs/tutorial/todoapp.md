@@ -32,6 +32,7 @@ sidebar: auto
 - Docker
 - Nginx
 - SSL
+- Kubernetes (k8s) (Not yet)
 - Swagger (Not yet)
 - Seq (Not yet)
 - FluntValidation (Not yet)
@@ -669,7 +670,7 @@ public class TodoItemDTO
 }
 ```
 - `TodoItemController`의 전반적인 수정
-```csharp{2, 4-9, 13-16, 20, 29, 34, 41-48, 54-57, 64-76, 80-92}
+```csharp{2,4-9,13-16,20,29,34,41-48,54-57,64-76,80-92}
 ...
 private bool TodoItemExists(long id) => _context.TodoItems.Any(e => e.Id == id);
 
@@ -767,10 +768,85 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 - Postman 으로 확인해보면 DTO를 통한 데이터 전달로 변경됨을 확인할 수 있습니다.
    ![postman](./images/todo/postman.test.13.png)
 
+### production level domain ssl 적용
+
+- Synology NAS 에서 Let's Encrypt Wildcard SSL 을 발급받은 관계로 NAS 에서 해당 인증서를 복사해온다. (현재 매주마다 NAS에서 shockz.io 인증서를 갱신하고 있는 상태임)
+- `/usr/syno/etc/certificate/_archive/DEFAULT` 파일의 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해오면 된다.
+   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트 한다.  
+   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정이기 때문에 **DEFAULT**파일의 내용을 통해 경로 확인을 진행한 경우이다.
+- `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 의 내용 중 ssl 관련부분을 수정한다.
+```docker{4-5}
+FROM nginx:latest
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY fullchain.pem /etc/ssl/certs/fullchain.pem
+COPY privkey.pem /etc/ssl/private/privkey.pem
+```
+```bash
+# nginx.conf
+    ssl_certificate /etc/ssl/certs/fullchain.pem;
+    ssl_certificate_key /etc/ssl/private/privkey.pem;
+```
+
+### load balancing without Kubernetes(k8s)
+
+- 현재까지는 **api_1** 으로만 테스트 하는 상황이었습니다.
+- 이를 nginx reverse proxy를 통한 load balancing 을 구현 해보고자 합니다.
+- 이를 위해 `docker-compose`, `nginx.conf` 를 수정합니다.
+- api_1 과 같이 api_2와 api_3을 추가합니다.
+```docker{4-6,17-35}
+  nginx:
+    depends_on:
+      - sql
+      - api_1
+      - api_2
+      - api_3
+    build:
+      context: ./Nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - "4000:80"
+      - "4001:443"
+    restart: "no"
+
+  ...
+
+  api_2:
+    depends_on:
+      - sql
+    build:
+      context: ./todoCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: "no"
+
+  api_3:
+    depends_on:
+      - sql
+    build:
+      context: ./todoCore3.Api
+      dockerfile: Api.Dockerfile
+    expose:
+      - "5000"
+    restart: "no"
+```
+- `nginx.conf`에 upstream 부분에 api_2, api_3을 추가합니다.
+```bash{3-4}
+  upstream web-api {
+    server api_1:5000;
+    server api_2:5000;
+    server api_3:5000;
+  }
+```
+- `$ docker-compose up --build -d`로 확인합니다.
+   ![docker-compose](./images/todo/docker-compose.1.png)
+   ![docker-compose](./images/todo/docker-compose.2.png)
+   ![postman](./images/todo/postman.postman.test.14.png)
+
 ## Upcoming next
 
-- nginx load-balancing
-- Kubernates(k8s)
+- Kubernetes(k8s)
 - Authentication
 - DDD / CQRS
 - Frontend (Vue.js)
