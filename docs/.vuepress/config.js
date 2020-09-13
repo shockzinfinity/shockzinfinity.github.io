@@ -75,7 +75,6 @@ module.exports = {
         ariaLabel: "Developement Log",
         items: [
           { text: "CentOS 8", link: "/dev-log/centos" },
-          { text: "vscode-debugging", link: "/dev-log/vscode-debugging" },
           { text: "Podman", link: "/dev-log/podman" },
           { text: "Docker", link: "/dev-log/docker" },
           { text: "Xwiki", link: "/dev-log/xwiki" },
@@ -92,7 +91,10 @@ module.exports = {
       {
         text: "etc",
         link: "/etc/",
-        items: [{ text: "개발환경설정", link: "/etc/devEnv" }],
+        items: [
+          { text: "개발환경설정", link: "/etc/devEnv" },
+          { text: "vscode-debugging", link: "/etc/vscode-debugging" },
+        ],
       },
     ],
     sidebar: {

@@ -6,8 +6,6 @@ sidebar: false
 
 ## [CentOS 8](./centos)
 
-## [vscode-debugging](./vscode-debugging)
-
 ## [Podman](./podman)
 
 ## [Docker](./docker)
@@ -27,3 +25,7 @@ sidebar: false
 ## [VuePress](./vuepress)
 
 ## [mssql docker](./mssql)
+
+## [EF core](./efcore)
+
+## [Konva Test](./konva)

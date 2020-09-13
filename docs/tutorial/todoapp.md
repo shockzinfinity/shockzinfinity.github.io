@@ -132,10 +132,12 @@ namespace todoCore3.Api.Models
 - localdb 가 개발 및 테스트적인 측면에서는 편리한 면이 있으나 실제 프로덕션 레벨에서는 잘 사용하지 않습니다.
 - 그래서, SQL Server 에 대한 DbContext 마이그레이션도 필요하므로 container 형태로 생성하겠습니다. ([mssql container 생성 참조](../dev-log/mssql))
 - 기본 조건으로 생성해도 되지만 아래의 추가적인 조건들이 있습니다.
-   - 테스트 및 WebAPI 코드의 connection string 단순화를 위해 docker network 생성하여 연결하겠습니다.(`docker network create todo-core`)
-   - data 보존을 위해서 docker volume 를 이용하겠습니다.(`docker volume create sql_data`)
-   - 테스트의 편의성을 위해 기본 port 로 진행  
-      (port 변경 시 container 간 network는 추가 작업이 필요함)
+   - 테스트 및 WebAPI 코드의 connection string 단순화를 위해 docker network 생성하여 연결합니다.  
+      `docker network create todo-core`
+   - data 보존을 위해서 docker data volume 을 이용합니다.  
+     `docker volume create sql_data`
+   - 테스트의 편의성을 위해 기본 port 로 진행합니다.  
+      (port 변경 시 container 간 network는 추가 작업이 필요할 수 있습니다.)
    - 물론 이 모든 것들은 향후 **docker-compose**로 대체될 예정입니다.
 ```bash
 # network 생성
@@ -152,12 +154,12 @@ $ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=y0urStrong!Passw
 # 추후 백업을 위한 디렉토리 생성
 $ docker exec -d sql mkdir /var/opt/mssql/backup
 ```
-- Api 시작 시 db migration 을 위해 기본적인 코드 수정을 하겠습니다.
+- Api 시작 시 db migration 을 위해 기본적인 코드 수정을 진행합니다.
    - `Startup.cs` 의 `ConfigureServices()`에 **DbContext** DI(종속성 주입)
-   - 프로젝트에 EntityFrameworkCore.Design 추가
+   - 프로젝트에 EntityFrameworkCore.Design 추가  
       `dotnet add package Microsoft.EntityFrameworkCore.Design`
    - ef core cli 설치
-   - migration 생성 ([패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell) 혹은 CLI 이용), 여기서는 CLI 이용
+   - migration 생성은 [패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell)을 이용하는 방법과 CLI로 하는 방법이 있습니다. 이 Turial 에서는 CLI 이용합니다. (mac 이나 linux 에서 코드를 수정하는 경우도 있을 수 있으므로 CLI 방식이 더 효율적입니다.)
 ```csharp{14-23}
 public void ConfigureServices(IServiceCollection services)
 {
@@ -203,15 +205,15 @@ $ dotnet ef database update --project todoCore3.Api.csproj
    ![efcore](./images/todo/efcore.1.png)
    ![efcore](./images/todo/efcore.2.png)
 
-- api Controller scaffolding (선택)
-   IDE 툴에서 직접 수동으로 추가해도 됩니다.
+- api Controller scaffolding (선택사항)  
+   IDE 를 이용하거나 수동으로 직접 추가해도 됩니다.
 ```bash
 $ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 $ dotnet tool install --global dotnet-aspnet-codegenerator
 $ dotnet tool update -g dotnet-aspnet-codegenerator
 $ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
-- 코드 수정이 제대로 됐는지 확인하기 위해 POST 메서드 부분을 수정해 봅니다.
+- 코드가 제대로 반영되었는지 확인하기 위해 **TodoItems Controller**의 POST 메서드 부분을 수정해 봅니다.
 ```csharp{9}
 // POST: api/TodoItems
 [HttpPost]
@@ -224,7 +226,7 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
   return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
 }
 ```
-- Postman 확인
+- Postman 으로 확인하면
 ```json
 {
   "name": "test Todo 1",
@@ -236,8 +238,8 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
 
 ### Dockerize
 
-여기서는 도커에 대한 세부적인 설명을 하지는 않을 예정입니다. 조금만 검색해봐도 자료가 넘쳐나기 때문에 좀 더 나은 설명을 찾아보시는게 좋을 것 같습니다.  
-프로덕션 단계에서도 Docker를 이용하여 배포할 예정이므로 개발 환경 자체도 Docker 베이스로 구현하고자 합니다.
+여기서는 도커에 대한 세부적인 설명은 하지 않습니다. 검색해보면 굉장히 질 좋은 자료들이 많습니다. (~~역시 코딩은 구글검색으로 다 합니다.(모두의 코~딩~) 역시 개발자의 능력은 컨트롤 C + V~~)  
+프로덕션 단계에서도 Docker를 이용하여 배포할 예정이므로 개발 환경 자체도 Docker 베이스로 구현하는것이 좋습니다.
 - `Api.Dockerfile` 을 프로젝트 폴더에 추가합니다. .net core 를 컨테이너로 구동시키기 위해 필요합니다.
 ```docker
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
@@ -260,7 +262,7 @@ COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "todoCore3.Api.dll"]
 ```
-- docker container 간 network 설정을 하게 되므로 연결 문자열에서 서버 연결 부분을 도커 컨테이너 이름으로 변경해줍니다.
+- docker container 간 network 설정을 하게 되므로 연결 문자열에서 서버 연결 부분을 도커 컨테이너 이름으로 변경해줍니다.  
    `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
 ```csharp{3}
 public void ConfigureServices(IServiceCollection services)
@@ -280,7 +282,7 @@ $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
 ### Nginx reverse proxy
 
 현재 Todo App 의 WebAPI 는 Kestrel 서버로 구현이 되어 있습니다. 부족한 웹서버 기능을 보완하기 위해 Nginx 를 사용하겠습니다. 또한 Nginx 를 통해 기본적인 load balancing 을 구현할 예정이므로 docker-compose 도 사용하도록 합니다.
-- 솔루션 폴더에 Nginx 폴더 추가 후 `Nginx.Dockerfile`, `nginx.conf` 생성
+- 솔루션 폴더에 Nginx 폴더 추가 후 `Nginx.Dockerfile`, `nginx.conf` 생성합니다.
 ```bash
 $ mkdir Nginx && cd Nginx
 $ touch Nginx.Dockerfile nginx.conf
@@ -367,7 +369,11 @@ volumes:
 [wait-for-it.sh](https://github.com/vishnubob/wait-for-it/)  
 > 특정 서버의 특정 포트로 접근이 가능할때까지 프로세스를 홀딩하는 스크립트  
 sql container가 초기화 될때까지 대기하고 있다가 api 가 실행되게 하기 위해서 120초 대기하다가 실행되도록 함  
-`Api.Dockerfile`을 수정
+
+- SQL server 를 컨테이너로 구동시키게 되는데 api 컨테이너들이 SQL server 접속을 시도하게 되면 api 컨테이너가 exception 발생이 많아져 구동이 안되는 경우가 생길 수 있습니다.
+- 물론 이를 해결하는 방법에는 여러가지가 있습니다만 구현의 단순함을 위해 해당 SQL server 가 구동이 될때까지 기다리기 위해 **wait-for-it.sh** 를 사용합니다.
+
+- `Api.Dockerfile`을 수정합니다.
 ```docker{19-21}
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
@@ -393,16 +399,15 @@ ENTRYPOINT ["/wait-for-it.sh", "sql:1433", "-t", "120", "--", "dotnet", "todoCor
 ```
 :::
 ::: danger
-현재 WebAPI는 `docker-compose up --build` 로 최초 실행 시
-`TodoContext` 에 대한 DB 마이그레이션이 업데이트 되기 전인 상태가 되므로
-`Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
-컨테이너가 실행되는 시점에서 db migration 방법으로 변경할 예정입니다.
+위에서 구현했던 db migration 부분은 문제가 있습니다.  
+`docker-compose up --build` 로 최초로 실행하거나 DB 스키마가 변경되었을 경우 `TodoContext` 에 대한 DB 마이그레이션이 업데이트 되기 전인 상태가 되므로 다른 방법이 필요합니다.  `Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
+컨테이너가 실행되기 전 db migration script 를 실행하는 방법으로 변경할 예정입니다.
 :::
-- docker-compose 로 실행
+- docker-compose 로 실행합니다.
 ```bash
 $ docker-compose up --build
 ```
-- Postman 으로 테스트
+- Postman 으로 테스트해보면,
    ![postman](./images/todo/postman.test.6.png)
    ![postman](./images/todo/postman.test.7.png)
    ![postman](./images/todo/postman.test.8.png)
@@ -420,10 +425,10 @@ $ docker-compose up --build
    ![certificate](./image/../images/todo/certificate.7.png)
    ![certificate](./image/../images/todo/certificate.8.png)
 ::: tip
-mac 이나 linux 등에서의 자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고합니다.  
-[Windows](../dev-log/ssl)
+Windows 환경에서 자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고합니다.  
+[Windows](../dev-log/ssl)  
 :::
-- crt, key 파일 추출
+- pfx 파일에서 crt, key 파일을 추출합니다.
 ```bash
 # 키 파일 추출
 # [주의] PEM 패스워드를 지정하면, container 로 로딩시점에서 패스워드 입력을 요청하므로,
@@ -433,7 +438,7 @@ $ openssl rsa -in localhost_with_key.key -out localhost.key
 # 인증서 파일 추출
 $ openssl pkcs12 -in localhost.pfx -nokeys -clcerts -out localhost.crt
 ```
-- `Nginx.Dockerfile` 에서 컨테이너 구동 시 인증서를 복사하도록 변경합니다.
+- `Nginx.Dockerfile` 에서 컨테이너 구동 시 인증서를 복사합니다.
 ```docker{4-5}
 FROM nginx:latest
 
@@ -488,7 +493,7 @@ http {
 ```
 ::: danger
 현재 컨테이너 들은 4000(http), 4001(https) 프토로 매핑했기 때문에 http -> https 리디렉션이 정상적으로 동작하지 않습니다. 이는 nginx.conf 의 설정을 수정해야 하는 문제가 있습니다.
-이 부분은 추후 적용할 예정입니다.
+이 부분은 추후 적용할 예정입니다.  
 참고: [StackOverflow](https://stackoverflow.com/questions/15429043/how-to-redirect-on-the-same-port-from-http-to-https-with-nginx-reverse-proxy)
 :::
 
@@ -549,22 +554,22 @@ $ docker-compose up -d
 ### Improvements & Fix
 
 여기까지 만들어진 Api 에는 몇 가지 고민해야할 문제들이 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 DB 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.  
-예를 들면
-- api 인스턴스를 여러 개 실행하는 경우  
-   인스턴스들이 동시에 마이그레이션을 적용하려고 하는 시도와 실패 가능성 내포
-- CI 프로세스의 일부로서 배포 시나리오가 동작하는 경우 관리 용이성이 떨어짐
-- 사전 검증 불가능으로 인한 데이터 유실의 위험
+예를 들어
+   - api 인스턴스를 여러 개 실행하는 경우:  
+      인스턴스들이 동시에 마이그레이션을 적용하려고 시도함으로서 실패 가능성 내포
+   - CI 프로세스의 일부로서 배포 시나리오가 동작하는 경우 관리 용이성이 떨어짐
+   - 사전 검증 불가능으로 인한 데이터 유실의 위험
 
 그 외에도 각 endpoint 에 대한 과도한 정보 노출, 아키텍쳐 측면의 한계 등이 있을 수 있습니다.
 
-일단 현재 단계에서 가능한 다음의 부분을 개선하고, 차차 진행하면서 추가적인 이슈가 나올 경우 개선해보도록 하겠습니다.
-- SQL 스크립트를 통한 DB 마이그레이션 적용
-- 실제 도메인(*.shockz.io) 을 통한 SSL 적용
-- DTO 시나리오 적용
+일단 현재 단계에서는 아래의 부분을 개선하고, 차차 진행하면서 추가적인 이슈가 나올 경우 개선해보도록 하겠습니다.
+   - SQL 스크립트를 통한 DB 마이그레이션 적용
+   - 실제 도메인(*.shockz.io) 을 통한 SSL 적용
+   - DTO 시나리오 적용
 
 ### SQL migration script 적용
 
-- 마이그레이션 추가를 위해 `TodoItem` 모델에 TimeStamp 추가
+- 마이그레이션 추가를 위해 `TodoItem` 모델에 TimeStamp 추가합니다.
 ```csharp{7-8}
   public class TodoItem
   {
@@ -584,7 +589,7 @@ $ dotnet ef migrations list
 $ dotnet ef migrations script --idempotent -o migrations01.sql
 ```
 - `migrations01.sql` 확인  
-   idempotent 옵션은 각 마이그레이션 체크 후 실행될 수 있도록 스크립트 생성된다.
+   idempotent 옵션으로 생성했기 때문에 각 마이그레이션 체크 후 실행될 수 있도록 스크립트 생성됩니다.
 ```sql
 IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
@@ -632,7 +637,7 @@ END;
 
 GO
 ```
-- `Startup.cs`에서 인스턴스 생성 시점에서 migration 하는 부분은 삭제
+- `Startup.cs`에서 DB migration 하는 부분은 삭제합니다.
 ```csharp{4-12}
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
@@ -649,13 +654,14 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   ...
 }
 ```
-- 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등으로 수동으로 마이그레이션 합니다.
-- 추후에도 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.  
+- 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등을 통해 수동으로 마이그레이션 합니다.
+- 추후 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.  
    [런타임에 마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)
    ![migrations](./images/todo/migrations.1.png)
    ![migrations](./images/todo/migrations.2.png)
 ::: tip
-개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않도록 하려면 `docker-compose.yml`에서 1433 포트를 expose만 하면 됩니다.
+개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않는 것이 좋습니다.  
+`docker-compose.yml` 에서 sql 서비스의 포트 매핑을 제거하고 expose로 변경하면 됩니다.
 ```docker{3-4}
   sql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -674,8 +680,8 @@ $ docker-compose up --build -d
 ### DTO 사용
 
 - DTO(Data Transfer Object)를 사용하는 이유는 일반적으로 클라이언트에 보여지는 속성에 대한 제어를 하기 위함입니다.
-- 추후 이 부분은 Automapper Profile 등으로 제어할 예정입니다.
-- 일단, **Models** 에 TodoItemDTO를 추가합니다.
+- 추후 이 부분은 Automapper Profile 등으로 변경할 예정입니다.
+- **Models** 폴더에 TodoItemDTO를 추가합니다. (전달할 데이터 속성만 정의합니다.)
 ```csharp
 public class TodoItemDTO
 {
@@ -684,7 +690,7 @@ public class TodoItemDTO
   public bool IsComplete { get; set; }
 }
 ```
-- `TodoItemController`의 전반적인 수정
+- DTO 적용을 위하여 `TodoItemController`를 전반적으로 수정합니다.
 ```csharp{2,4-9,13-16,20,29,34,41-48,54-57,64-76,80-92}
 ...
 private bool TodoItemExists(long id) => _context.TodoItems.Any(e => e.Id == id);
@@ -785,11 +791,12 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 
 ### general domain ssl 적용 (shockz.io)
 
-- Synology NAS 에서 Let's Encrypt Wildcard SSL 을 발급받은 관계로 NAS 에서 해당 인증서를 복사해옵니다. (현재 매주마다 NAS에서 shockz.io 인증서를 갱신하고 있는 상태입니다.)
-- `/usr/syno/etc/certificate/_archive/DEFAULT` 파일의 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해오면 됩니다.
-   > 여기서는 **shockz.io** 도메인에 대한 경우로 테스트하기 때문에  
-   > 해당 도메인이 NAS 에 기본 인증서로 설정되어 있다는 가정으로 Synology NAS의 인증서 **DEFAULT**파일의 내용을 통해 경로를 확인하게 됩니다.
-- `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 의 내용 중 ssl 관련부분을 수정합니다.
+- 상용 도메인을 구입하여 사용하고 있는 경우라면 해당 도메인에 대한 인증서를 구매하여 사용하고 있을 수 있습니다.
+- 제가 사용하는 **shockz.io** 도메인은 Let's Encrypt WildCard SSL 을 사용하고 있습니다. (~~물론 무료 입니다.~~) 갱신이 귀찮아  Synology NAS 에서 자동 갱신하고 있습니다.
+- [Synology NAS에서 인증서 적용](../dev-log/synology)
+- Synology NAS의 기본 인증서 위치는 `/usr/syno/etc/certificate/_archive/DEFAULT` 파일에 기록되어 있습니다. Synology NAS에 ssh 로 연결하여 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사헤사 씁니다.
+- 상용 도메인 인증서를 가지고 있는 경우는 해당 사이트를 참조하시기 바랍니다.
+- `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 에서 ssl 관련부분을 수정합니다.
 ```docker{4-5}
 FROM nginx:latest
 
@@ -808,7 +815,7 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
 - 현재까지는 **api_1** 으로만 테스트 하는 상황이었기 때문에 load balancing을 테스트할 수 없었습니다.
 - load balancing을 테스트 하기 위해서는 좀 더 정교한 방법이 필요하나 현 단계에서는 구현의 단순함을 위해 docker-compose 상의 upstream 을 늘리는 방법을 택합니다.
 - 추후 Kubernetes 등을 통해 Auto-scaling 등을 구현할 예정입니다.
-- `docker-compose`, `nginx.conf` 를 수정하여 api_1 과 같이 api_2와 api_3을 추가합니다.
+- `docker-compose`, `nginx.conf` 를 수정하여 api_1 과 같이 api_2, api_3을 추가합니다.
 ```docker{4-6,17-35}
   nginx:
     depends_on:
@@ -872,24 +879,25 @@ docker 컨테이너들이 자동 시작되도록 하기 위해서는 다음의 �
 :::
 
 ### logging
-이 시점에서 logging 을 추가하는 것이 좋습니다. 추후 프로덕션 환경을 위해서라도 logging 은 초반부터 정리하고 가는 것이 좋기 때문입니다.  
+
+이 시점에서 api 내부의 logging 을 추가하는 것이 좋습니다. 추후 프로덕션 환경을 위해서라도 logging 은 초반부터 정리하고 가는 것이 좋기 때문입니다.  
 logging 은 .Net core 의 기본 로거도 있고 전통적으로 사용되는 여러가지 외부 라이브러리들 (NLog, log4net 등)이 있으나, 여기서는 다음의 로거를 사용할 예정입니다.
 - [Serilog](https://serilog.net/)
 - [Seq](https://datalust.co/seq)
 
 **Serilog** 는 api 내부의 세부적인 로깅을 위해서 사용하며 **Seq** 는 로그 검색 및 비주얼화를 위해 사용하겠습니다.
 
-- **Seq** 를 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인하면 됩니다.
+- **Seq** Logger는 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인합니다.
 ```bash
 $ docker volume create seq_data # 로깅 데이터 저장을 위한 볼륨 생성
 $ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data:/data --network=todo-core -p 5340:80 -p 5341:5341 datalust/seq:latest
 ```
 ::: warning
-Todo api 와는 별개의 container 로 동작시키면서 Todo api 의 로깅을 받기 위해 docker network 를 연결할 필요가 있습니다. (**--network=todo-core**)
+Todo api 와는 별개의 container 로 동작되므로 컨테이너 간 네트워크 연결을 위해 Todo api와 같은 네트워크로 설정합니다.(**--network=todo-core**)
 :::
 
-- **Serilog** 적용시에는 고려사항이 있습니다.
-  - 보통 logger 에 대한 세부적인 설정들을 appSettings.json 과 같은 파일에 기록하여 사용하게 되는데, app 이 실행되면서 Configuration을 읽어오는 과정을 거쳐야 하기 때문에 최대한 초기에 configuration 을 로드 해야 합니다.
+- **Serilog** 적용시에는 몇 가지 고려사항이 있습니다.
+  - 보통 logger 에 대한 세부적인 설정들을 appsettings.json 과 같은 파일에 기록하여 사용하게 되는데, app 이 실행되면서 Configuration을 읽어오는 과정을 거쳐야 하기 때문에 최대한 초기에 configuration 을 로드 해야 합니다.
   - .net core 에서는 일반적으로 `Startup()` 이 실행되는 시점에서는 Configuration 로딩이 마무리가 되지만 `Startup()` 에서 Logger를 세팅할 경우 app 진입 시점의 로깅이 빠지는 상황이 발생할 수 있습니다.
   - 또한, configuration 파일의 스키마 혹은 단순 JSON syntax 오류, configuration 파일 단순 누락, JSON syntax 오류, 어셈블리 로딩 이슈 등의 문제가 발생할때 logging 이 되지 않는 상황이 발생할 수 있습니다.
   - Logger는 가능하면 로깅하고자 하는 대상보다 먼저 세팅이 되어야 하며 종속성으로부터 최대한 자유로워야 합니다.

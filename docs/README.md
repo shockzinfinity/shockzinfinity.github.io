@@ -2,8 +2,8 @@
 home: true
 heroImage: /img/logos/logo.png
 tagline: devLog, tutorial and etc.
-actionText: Start →
-actionLink: /dev-log/
+actionText: Todo Tutorial →
+actionLink: /tutorial/
 features:
   - title: vscode debugger
     details: how to debug javascript code with vscode debugger
