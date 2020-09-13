@@ -40,11 +40,10 @@ Todo App 은 새로운 언어 및 개발 기술을 습득하기 위해 자주 �
 - SSL
 - Seq, Serilog Logger
 - Swagger (upcoming)
-- FluntValidation (upcoming)
-- Automapper (upcoming)
-- CQRS (upcoming)
-- Vue.js (upcoming)
+- FluntValidation & Automapper (upcoming)
 - Kubernetes (k8s) (upcoming)
+- DDD / CQRS (upcoming)
+- Vue.js (upcoming)
 
 ## Step
 
@@ -159,7 +158,7 @@ $ docker exec -d sql mkdir /var/opt/mssql/backup
    - 프로젝트에 EntityFrameworkCore.Design 추가  
       `dotnet add package Microsoft.EntityFrameworkCore.Design`
    - ef core cli 설치
-   - migration 생성은 [패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell)을 이용하는 방법과 CLI로 하는 방법이 있습니다. 이 Turial 에서는 CLI 이용합니다. (mac 이나 linux 에서 코드를 수정하는 경우도 있을 수 있으므로 CLI 방식이 더 효율적입니다.)
+   - migration 생성은 [패키지 관리자 콘솔](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell)을 이용하는 방법과 CLI로 하는 방법이 있습니다. 이 Tutorial 에서는 CLI 이용합니다. (mac 이나 linux 에서 코드를 수정하는 경우도 있을 수 있으므로 CLI 방식이 더 효율적입니다.)
 ```csharp{14-23}
 public void ConfigureServices(IServiceCollection services)
 {
@@ -226,7 +225,7 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
   return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
 }
 ```
-- Postman 으로 확인하면
+- Postman 에서 request body 에 아래를 추가하여 테스트 해봅니다.
 ```json
 {
   "name": "test Todo 1",
@@ -661,7 +660,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
    ![migrations](./images/todo/migrations.2.png)
 ::: tip
 개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않는 것이 좋습니다.  
-`docker-compose.yml` 에서 sql 서비스의 포트 매핑을 제거하고 expose로 변경하면 됩니다.
+언제든지 `docker-compose.yml` 에서 sql 서비스의 포트 매핑을 제거하고 expose로 변경하면 됩니다.
 ```docker{3-4}
   sql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -794,8 +793,8 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 - 상용 도메인을 구입하여 사용하고 있는 경우라면 해당 도메인에 대한 인증서를 구매하여 사용하고 있을 수 있습니다.
 - 제가 사용하는 **shockz.io** 도메인은 Let's Encrypt WildCard SSL 을 사용하고 있습니다. (~~물론 무료 입니다.~~) 갱신이 귀찮아  Synology NAS 에서 자동 갱신하고 있습니다.
 - [Synology NAS에서 인증서 적용](../dev-log/synology)
-- Synology NAS의 기본 인증서 위치는 `/usr/syno/etc/certificate/_archive/DEFAULT` 파일에 기록되어 있습니다. Synology NAS에 ssh 로 연결하여 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사헤사 씁니다.
-- 상용 도메인 인증서를 가지고 있는 경우는 해당 사이트를 참조하시기 바랍니다.
+- Synology NAS의 기본 인증서 위치는 `/usr/syno/etc/certificate/_archive/DEFAULT` 파일에 기록되어 있습니다. Synology NAS에 ssh 로 연결하여 내용을 확인한 후 해당 디렉토리에서 `fullchain.pem`, `privkey.pem` 파일만 복사해서 사용하도록 합니다..
+- 상용 도메인 인증서를 가지고 있는 경우는 발급받는 사이트에서 안내해주는 방법으로 사용하시기 바랍니다.
 - `Nginx/Nginx.Dockerfile`, `Nginx/nginx.conf` 에서 ssl 관련부분을 수정합니다.
 ```docker{4-5}
 FROM nginx:latest
@@ -881,13 +880,13 @@ docker 컨테이너들이 자동 시작되도록 하기 위해서는 다음의 �
 ### logging
 
 이 시점에서 api 내부의 logging 을 추가하는 것이 좋습니다. 추후 프로덕션 환경을 위해서라도 logging 은 초반부터 정리하고 가는 것이 좋기 때문입니다.  
-logging 은 .Net core 의 기본 로거도 있고 전통적으로 사용되는 여러가지 외부 라이브러리들 (NLog, log4net 등)이 있으나, 여기서는 다음의 로거를 사용할 예정입니다.
+logging 은 .net core 의 기본 로거도 있고 전통적으로 사용되는 여러가지 외부 라이브러리들 (NLog, log4net 등)이 있으나, 여기서는 다음의 로거를 사용할 예정입니다.
 - [Serilog](https://serilog.net/)
 - [Seq](https://datalust.co/seq)
 
-**Serilog** 는 api 내부의 세부적인 로깅을 위해서 사용하며 **Seq** 는 로그 검색 및 비주얼화를 위해 사용하겠습니다.
+**Serilog** 는 api 내부의 세부적인 로깅을 위해서 사용하며 **Seq** 는 로그 검색 및 비주얼화를 위해 사용됩니다.
 
-- **Seq** Logger는 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인합니다.
+- **Seq** Logger는 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인할 수 있습니다.
 ```bash
 $ docker volume create seq_data # 로깅 데이터 저장을 위한 볼륨 생성
 $ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data:/data --network=todo-core -p 5340:80 -p 5341:5341 datalust/seq:latest
@@ -1011,6 +1010,8 @@ networks:
 
 ## Upcoming next
 
+- Swagger
+- FluntValidation & Automapper
 - Kubernetes(k8s)
 - Authentication
 - DDD / CQRS
