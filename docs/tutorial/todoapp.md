@@ -875,8 +875,12 @@ logging 은 .Net core 의 기본 로거도 있고 전통적으로 사용되는 �
 - **Seq** 를 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인하면 됩니다.
 ```bash
 $ docker volume create seq_data # 로깅 데이터 저장을 위한 볼륨 생성
-$ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data:/data -p 5340:80 -p 5341:5341 datalust/seq:latest
+$ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data:/data --network=todo-core -p 5340:80 -p 5341:5341 datalust/seq:latest
 ```
+::: warning
+Todo api 와는 별개의 container 로 동작시키면서 Todo api 의 로깅을 받기 위해 docker network 를 연결할 필요가 있습니다. (**--network=todo-core**)
+:::
+
 - **Serilog** 적용시에는 고려사항이 있습니다.
   - 보통 logger 에 대한 세부적인 설정들을 appSettings.json 과 같은 파일에 기록하여 사용하게 되는데, app 이 실행되면서 Configuration을 읽어오는 과정을 거쳐야 하기 때문에 최대한 초기에 configuration 을 로드 해야 합니다.
   - .net core 에서는 일반적으로 `Startup()` 이 실행되는 시점에서는 Configuration 로딩이 마무리가 되지만 `Startup()` 에서 Logger를 세팅할 경우 app 진입 시점의 로깅이 빠지는 상황이 발생할 수 있습니다.
@@ -894,6 +898,100 @@ $ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data
     ```
   - 하지만 여기서는 구현의 단순함을 위하여 `appSettings.json` 을 사용하겠습니다.
 
+- **Serilog** 관련 패키지를 추가합니다.
+```bash
+$ dotnet add package Serilog.AspNetCore
+$ dotnet add package Serilog.Seq
+$ dotnet add package Serilog.Sinks.Seq
+```
+
+- `Program.cs` 을 수정합니다.
+```csharp{3-8,12-23,25-27,29-37,42}
+public class Program
+{
+  public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+    .AddEnvironmentVariables()
+    .Build();
+
+  public static void Main(string[] args)
+  {
+    Log.Logger = new LoggerConfiguration()
+      .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+      .Enrich.FromLogContext()
+      .WriteTo.Console()
+      .WriteTo.File(
+        new RenderedCompactJsonFormatter(),
+        "./logs/log.json",
+        rollingInterval: RollingInterval.Day,
+        rollOnFileSizeLimit: true, // maximum 1GB, could be null
+        retainedFileCountLimit: 31) // number of files, could be null
+      .WriteTo.Seq(Configuration.GetValue<string>("SEQ_URL"))
+      .CreateLogger();
+
+    try
+    {
+      Log.Information("Starting up...");
+      CreateHostBuilder(args).Build().Run();
+    }
+    catch (Exception ex)
+    {
+      Log.Fatal(ex, "Application start-up failed.");
+    }
+    finally
+    {
+      Log.CloseAndFlush();
+    }
+  }
+
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .UseSerilog()
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+          webBuilder.UseStartup<Startup>();
+        });
+}
+```
+- `appsettings.json` 에 .net core logger 설정은 제거합니다. (appsettings.Development.json 은 선택사항)
+```json
+"Logging": {
+  "LogLevel": {
+    "Default": "Information",
+    "Microsoft": "Warning",
+    "Microsoft.Hosting.Lifetime": "Information"
+  }
+},
+```
+- `appsettings.json`에 **SEQ_URL** 추가
+```json{3}
+{
+  "AllowedHosts": "*",
+  "SEQ_URL": "http://seq:5341" // seq 는 container 이름입니다.
+}
+```
+- Request logging 을 위해 `Startup.cs` 에 logging 추가
+```csharp{4}
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  ...
+  app.UseSerilogRequestLogging();
+  ...
+}
+```
+- 현재 Seq Logger 는 docker-compose 외부의 컨테이너로 띄운 상태이므로 컨테이너 간 통신을 위하여 네트워크 조인이 필요하므로 `docker-compose.yml`에 network 부분 추가하여 연결합니다.
+```docker{2-5}
+...
+networks:
+  default:
+    external:
+      name: "todo-core"
+...
+```
+- `docker-compose up --build -d` 로 컨테이너를 작동시킨 후 **seq logger (http://localhost:5340)** 로 접속하여 확인합니다
+   ![seq](./images/todo/seq.result.1.png)
 
 ## Upcoming next
 
