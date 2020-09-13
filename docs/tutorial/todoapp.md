@@ -14,7 +14,7 @@ sidebar: auto
 
 <TagLinks />
 
-> 부제: Todo App 을 만드는 복잡한 방법  
+> 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
 > [Github Repository](https://github.com/shockzinfinity/todo-api-complicated)
 
 [[toc]]
@@ -23,50 +23,58 @@ sidebar: auto
 
 ## 개요
 
-> Todo App을 다양한 기술 스택을 이용하여 구현
+Todo App 은 새로운 언어 및 개발 기술을 습득하기 위해 자주 이용되는 방법 중에 하나라고 생각합니다. (아마 Hello World 다음으로 가장 많지 않을까 합니다.) 인터넷상에 대충 검색해봐도 간단하게 Todo App 을 만드는 방법 Frontend, Backend 가릴 것 없이 굉장히 많습니다.  
+다만, 개인적인 생각으로는 Todo App 을 구현하는 방법은 많지만 내용들이 너무 파편화가 심한것 같습니다. 특정한 기술 및 언어를 가지고 어떻게 구현하는지에 대한 방법은 셀수 없이 많지만 정작 Todo App 을 처음부터 시작해서 마지막 배포하여 운영하는 전체 과정을 다룬 내용은 아직까지 찾지 못했습니다. (~~검색을 잘 못합니다.~~)  
+물론 [RealWorld](https://github.com/gothinkster/realworld)와 같은 훌륭한 프로젝트도 있습니다.  
 
-## Tools (Prerequisite)
+이 Tutorial 의 목적은 다양한 기술 스택에 대해 좀 더 잘 이해하고 능숙해지고자 작성하게 됐습니다. 가진 기술의 한계와 생각의 한계로 인하여 최고의 방법으로 구현하지는 못할 수 있으나 최소한 생각거리를 제공하고 노하우를 공유하고자 하는 마음으로 작성해보고자 합니다.
+
+**주의**: 이 Tutorial 은 수시로 업데이트 되며 기술 스택 및 아키텍처등이 예고없이 변경될 수 있습니다.
+
+## Tech Stack (Prerequisite)
 
 - ASP.NET core 3.1
 - MS SQL Server 2019
 - Docker
 - Nginx
 - SSL
-- Kubernetes (k8s) (Not yet)
-- Swagger (Not yet)
-- Seq (Not yet)
-- FluntValidation (Not yet)
-- Automapper (Not yet)
-- CQRS (Not yet)
-- Vue.js (Not yet)
+- Seq, Serilog Logger
+- Swagger (upcoming)
+- FluntValidation (upcoming)
+- Automapper (upcoming)
+- CQRS (upcoming)
+- Vue.js (upcoming)
+- Kubernetes (k8s) (upcoming)
 
 ## Step
 
-### Create Web API
+### Todo WebAPI(RESTful)
 
-- [dotnet core sdk](https://dotnet.microsoft.com/download) 설치 (Windows)
-   mac 혹은 linux 에서 sdk 설치는 [dotnet core in CentOS 8 & mac](../dev-log/dotnetcore) 참조
-- IDE Tools:
+- [dotnet core sdk](https://dotnet.microsoft.com/download)  
+   mac 혹은 linux 에서 sdk 설치에 대해서는 [dotnet core in CentOS 8 & mac](../dev-log/dotnetcore) 참조해주시기 바랍니다.
+- IDE Tools:  
    [Visual Studio Code](https://code.visualstudio.com/) + C# extensions 또는  
-   [Visual Studio 2019 Community](https://visualstudio.microsoft.com/ko/vs/)
+   [Visual Studio 2019 Community](https://visualstudio.microsoft.com/ko/vs/)  
+   여기서는 두 IDE 툴을 혼용해서 쓸 예정입니다. (아무래도 VSCode 가 Visual Studo 의 편의성을 아직 따라가진 못한다고 생각합니다. 물론 C# 개발에 한해서 말이죠.)
+- .net core CLI 를 이용하여 프로젝트를 생성합니다. (Windows 개발 환경이라면 bash 환경을 이용할때 Git 설치 시 같이 설치되는 **Git Bash** 혹은 [Cmder](https://cmder.net/) 를 이용하시길 추천드립니다.)
 ```bash
 $ mkdir todoCore3 && cd todoCore3
 $ dotnet new sln --name todoCore3
 $ dotnet new webapi --name todoCore3.Api
 $ dotnet sln add todoCore3.Api/todoCore3.Api.csproj
 ```
-
-- 추후 db 연결을 위하여 패키지 미리 설치
+- 추후 db 연결을 위하여 패키지 미리 설치하도록 하겠습니다.
+- EF core 를 사용합니다.
 ```bash
 $ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-$ dotnet add package Microsoft.EntityFrameworkCore.InMemory
+$ dotnet add package Microsoft.EntityFrameworkCore.InMemory # 간단한 테스트용도
 ```
-
-- Ctrl+F5 등으로 앱 실행 후 브라우저에서 `https://localhost:5001/weatherforecast` 접속
-- `.gitignore` 추가 후 git repository 초기화
-- [gitignore github](https://github.com/github/gitignore) 참조
+- Visual Studio 혹은 VisualStudio Code 등에서 `Ctrl+F5` 로 앱 실행 후 브라우저에서 `https://localhost:5001/weatherforecast` 접속하여 테스트 해봅니다.
+- `.gitignore` 추가 후 git repository 초기화합니다.
+- 참고: [gitignore github](https://github.com/github/gitignore)
 ```bash
 $ git init
+# git.shockz.io 는 개인 git 서버입니다. github 주소로 대체하시면 됩니다.
 $ git remote add origin https://git.shockz.io/shockz/todocore3.git
 $ git add .
 $ git commit -m "Initial commit"
@@ -74,10 +82,10 @@ $ git push -u origin master
 $ git lfs install
 $ git flow init
 ```
-
-- `Startup.cs` 수정
-  - Configure 메서드 내의 **app.UseHttpsRedirection();** 제거
-  - ForwardHeaders 삽입
+- 프로젝트 폴더의 `Startup.cs` 수정 합니다.
+  - Configure 메서드 내의 **app.UseHttpsRedirection();** 제거  
+     https 리디렉션은 nginx 에서 처리할 예정이므로 필요하지 않습니다.
+  - ForwardHeaders 삽입 (추후 nginx reverse proxy 설정을 위해 필요합니다.)
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
@@ -85,15 +93,14 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 });
 ```
 ::: tip
-Nginx 와 연결되는 docker container 환경과 비슷하게 하기 위하여 Visual Studio 사용하여 디버깅 할 경우,  
-Kestrel 웹서버 방식으로 테스트  
+여기서 만들어지는 Todo App 은 nginx reverse proxy 를 이용하여 docker container 형태로 구동이 될 예정이므로 디버깅 환경을 비슷하게 하기 위하여 Kestrel 웹 서버 방식을 사용할 예정입니다.
+Kestrel 웹서버 방식으로 테스트하기 위해서는 Visual Studo 등의 디버깅 환경을 적절하게 조정해줘야 합니다. (~~IIS Express 테스트하게 되면 인증서등의 문제가 좀 귀찮아 집니다.~~)  
 ![kestrel](./images/todo/vsdebug.1.png)  
 참고: [ASP.NET Core에서 Kestrel 웹 서버 구현](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.1)
 :::
-
-- [Postman](https://www.postman.com/downloads/) 등으로 기본 테스트
+- [Postman](https://www.postman.com/downloads/) 등과 같은 툴로 기본적인 테스트를 진행합니다.  
    ![postman](./images/todo/postman.test.1.png)
-- `TodoItem.cs` 모델을 `Models` 폴더에 추가
+- 프로젝트에 `Models` 폴더를 생성하고 `TodoItem.cs` 모델을 추가합니다.
 ```csharp
 namespace todoCore3.Api.Models
 {
@@ -105,7 +112,7 @@ namespace todoCore3.Api.Models
 	}
 }
 ```
-- `TodoContext.cs` 추가
+- 기본적인 CRUD 테스트를 위해 `TodoContext.cs` 추가합니다.
 ```csharp
 using Microsoft.EntityFrameworkCore;
 
@@ -121,11 +128,15 @@ namespace todoCore3.Api.Models
 	}
 }
 ```
-- SQL Server DbContext 마이그레이션을 위한 sql container 생성 ([참조](../dev-log/mssql))
-   - 테스트 및 Todo Api 내에서 connection string 단순화를 위해 docker network 생성 및 연결 (`todo-core` network)
-   - data 보존을 위해 docker data volume 생성
+- 이제 SQL Server 가 필요한데 많은 예제들이 localdb 를 사용합니다.
+- localdb 가 개발 및 테스트적인 측면에서는 편리한 면이 있으나 실제 프로덕션 레벨에서는 잘 사용하지 않습니다.
+- 그래서, SQL Server 에 대한 DbContext 마이그레이션도 필요하므로 container 형태로 생성하겠습니다. ([mssql container 생성 참조](../dev-log/mssql))
+- 기본 조건으로 생성해도 되지만 아래의 추가적인 조건들이 있습니다.
+   - 테스트 및 WebAPI 코드의 connection string 단순화를 위해 docker network 생성하여 연결하겠습니다.(`docker network create todo-core`)
+   - data 보존을 위해서 docker volume 를 이용하겠습니다.(`docker volume create sql_data`)
    - 테스트의 편의성을 위해 기본 port 로 진행  
       (port 변경 시 container 간 network는 추가 작업이 필요함)
+   - 물론 이 모든 것들은 향후 **docker-compose**로 대체될 예정입니다.
 ```bash
 # network 생성
 $ docker network create todo-core
@@ -139,10 +150,9 @@ $ docker volume ls
 $ docker run -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=y0urStrong!Password" --network=todo-core --name sql -v sql_data:/var/opt/mssql mcr.microsoft.com/mssql/server:2019-latest
 
 # 추후 백업을 위한 디렉토리 생성
-$ docker exec -d sql2 mkdir /var/opt/mssql/backup
+$ docker exec -d sql mkdir /var/opt/mssql/backup
 ```
-
-- Api 시작 시 db migration 을 위한 작업
+- Api 시작 시 db migration 을 위해 기본적인 코드 수정을 하겠습니다.
    - `Startup.cs` 의 `ConfigureServices()`에 **DbContext** DI(종속성 주입)
    - 프로젝트에 EntityFrameworkCore.Design 추가
       `dotnet add package Microsoft.EntityFrameworkCore.Design`
@@ -188,19 +198,20 @@ $ dotnet ef migrations remove
 # db update
 $ dotnet ef database update --project todoCore3.Api.csproj
 ```
-- 생성확인
+- DB tool을 이용해 확인합니다.
+   > [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
    ![efcore](./images/todo/efcore.1.png)
    ![efcore](./images/todo/efcore.2.png)
 
-- api Controller scaffolding
+- api Controller scaffolding (선택)
+   IDE 툴에서 직접 수동으로 추가해도 됩니다.
 ```bash
 $ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 $ dotnet tool install --global dotnet-aspnet-codegenerator
 $ dotnet tool update -g dotnet-aspnet-codegenerator
 $ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
-
-- POST method 조정
+- 코드 수정이 제대로 됐는지 확인하기 위해 POST 메서드 부분을 수정해 봅니다.
 ```csharp{9}
 // POST: api/TodoItems
 [HttpPost]
@@ -213,7 +224,6 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
   return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
 }
 ```
-
 - Postman 확인
 ```json
 {
@@ -226,7 +236,9 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
 
 ### Dockerize
 
-- `Api.Dockerfile` 을 프로젝트 폴더에 추가
+여기서는 도커에 대한 세부적인 설명을 하지는 않을 예정입니다. 조금만 검색해봐도 자료가 넘쳐나기 때문에 좀 더 나은 설명을 찾아보시는게 좋을 것 같습니다.  
+프로덕션 단계에서도 Docker를 이용하여 배포할 예정이므로 개발 환경 자체도 Docker 베이스로 구현하고자 합니다.
+- `Api.Dockerfile` 을 프로젝트 폴더에 추가합니다. .net core 를 컨테이너로 구동시키기 위해 필요합니다.
 ```docker
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
@@ -248,8 +260,7 @@ COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "todoCore3.Api.dll"]
 ```
-
-- docker container 간 network 설정을 하게 되므로 연결 문자열 변경  
+- docker container 간 network 설정을 하게 되므로 연결 문자열에서 서버 연결 부분을 도커 컨테이너 이름으로 변경해줍니다.
    `Data Source=(docker container name);Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;`
 ```csharp{3}
 public void ConfigureServices(IServiceCollection services)
@@ -258,8 +269,7 @@ public void ConfigureServices(IServiceCollection services)
   ...
 }
 ```
-
-- api build & run
+- build & run
 ```bash
 $ docker build -t todo-api -f Api.Dockerfile .
 $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
@@ -269,19 +279,19 @@ $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
 
 ### Nginx reverse proxy
 
+현재 Todo App 의 WebAPI 는 Kestrel 서버로 구현이 되어 있습니다. 부족한 웹서버 기능을 보완하기 위해 Nginx 를 사용하겠습니다. 또한 Nginx 를 통해 기본적인 load balancing 을 구현할 예정이므로 docker-compose 도 사용하도록 합니다.
 - 솔루션 폴더에 Nginx 폴더 추가 후 `Nginx.Dockerfile`, `nginx.conf` 생성
 ```bash
 $ mkdir Nginx && cd Nginx
 $ touch Nginx.Dockerfile nginx.conf
 ```
-
-- **Nginx.Dockerfile**
+- **Nginx.Dockerfile**를 추가합니다.
 ```docker
 FROM nginx:latest
 
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
-- **nginx.conf**
+- **nginx.conf**를 추가해줍니다.
 ```bash
 worker_processes auto;
 
@@ -313,7 +323,7 @@ http {
   }
 }
 ```
-- 솔루션 폴더에 `docker-compose.yml` 추가
+- 솔루션 폴더에 `docker-compose.yml` 추가합니다.
 ```docker
 version: "3.7"
 
@@ -382,12 +392,11 @@ RUN chmod +x /wait-for-it.sh
 ENTRYPOINT ["/wait-for-it.sh", "sql:1433", "-t", "120", "--", "dotnet", "todoCore3.Api.dll"]
 ```
 :::
-
 ::: danger
-`docker-compose up --build` 로 최초 실행 시
-`TodoContext` 에 대한 마이그레이션이 업데이트 되기 전인 상태가 되므로
+현재 WebAPI는 `docker-compose up --build` 로 최초 실행 시
+`TodoContext` 에 대한 DB 마이그레이션이 업데이트 되기 전인 상태가 되므로
 `Startup.cs/Configure()` 메서드 내의 **Migration** 관련 코드를 제거하고,
-컨테이너가 실행되는 시점에서 db migration 방법이 필요함
+컨테이너가 실행되는 시점에서 db migration 방법으로 변경할 예정입니다.
 :::
 - docker-compose 로 실행
 ```bash
@@ -400,7 +409,7 @@ $ docker-compose up --build
 
 ### SSL 적용
 
-- dotnet SDK 를 설치하거나 Visual Studio 를 통해 디버깅을 하게 되면 보통 자체 서명 인증서 등록되어 있음  
+- dotnet SDK 를 설치하거나 Visual Studio 를 통해 디버깅을 하게 되면 보통 자체 서명 인증서 등록되어 있으므로 그것을 이용하겠습니다.  
    ![certificate](./image/../images/todo/certificate.1.png)
    ![certificate](./image/../images/todo/certificate.2.png)
 - `localhost.pfx`로 *내보내기* 후 **Nginx** 폴더에 저장
@@ -411,7 +420,7 @@ $ docker-compose up --build
    ![certificate](./image/../images/todo/certificate.7.png)
    ![certificate](./image/../images/todo/certificate.8.png)
 ::: tip
-자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고  
+mac 이나 linux 등에서의 자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고합니다.  
 [Windows](../dev-log/ssl)
 :::
 - crt, key 파일 추출
@@ -424,7 +433,7 @@ $ openssl rsa -in localhost_with_key.key -out localhost.key
 # 인증서 파일 추출
 $ openssl pkcs12 -in localhost.pfx -nokeys -clcerts -out localhost.crt
 ```
-- `Nginx.Dockerfile` 수정
+- `Nginx.Dockerfile` 에서 컨테이너 구동 시 인증서를 복사하도록 변경합니다.
 ```docker{4-5}
 FROM nginx:latest
 
@@ -432,7 +441,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY localhost.crt /etc/ssl/certs/localhost.crt
 COPY localhost.key /etc/ssl/private/localhost.key
 ```
-- `nginx.conf` 수정
+- `nginx.conf` 에서 인증서를 적용하여 SSL로 접속되도록 수정합니다.
 ```bash{12-40}
 worker_processes auto;
 
@@ -478,14 +487,12 @@ http {
 }
 ```
 ::: danger
-현재 외부에서 접속하는 http 포트를 4000 에 할당했기 때문에  
-https 로 자동 리디렉션 하기 위한 방법 강구  
-
-일반적인 80(http), 443(https) 로 할당하게 되면  
-http 로 접근 시 https 로 자동 리디렉션 됨
+현재 컨테이너 들은 4000(http), 4001(https) 프토로 매핑했기 때문에 http -> https 리디렉션이 정상적으로 동작하지 않습니다. 이는 nginx.conf 의 설정을 수정해야 하는 문제가 있습니다.
+이 부분은 추후 적용할 예정입니다.
+참고: [StackOverflow](https://stackoverflow.com/questions/15429043/how-to-redirect-on-the-same-port-from-http-to-https-with-nginx-reverse-proxy)
 :::
 
-- `docker-compose.yml` 수정
+- `docker-compose.yml` 도 수정합니다.
 ```docker{24}
 version: "3.7"
 
@@ -541,7 +548,7 @@ $ docker-compose up -d
 
 ### Improvements & Fix
 
-이제껏 만든 Api 에는 몇 가지 문제를 내포하고 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.  
+여기까지 만들어진 Api 에는 몇 가지 고민해야할 문제들이 있습니다. 개발 및 테스트 단계에서는 프로그래밍 방식으로 DB 마이그레이션 하는 것이 생산성 측면에서는 좋을 수 있으나 프로덕션 레벨에서는 치명적인 문제를 발생시킬 수 있습니다.  
 예를 들면
 - api 인스턴스를 여러 개 실행하는 경우  
    인스턴스들이 동시에 마이그레이션을 적용하려고 하는 시도와 실패 가능성 내포
@@ -550,7 +557,7 @@ $ docker-compose up -d
 
 그 외에도 각 endpoint 에 대한 과도한 정보 노출, 아키텍쳐 측면의 한계 등이 있을 수 있습니다.
 
-일단 현 단계에서 개선 가능한 부분 몇 가지만 개선하고, 진행하면서 추가적으로 개선하는 방향으로 접근하겠습니다.
+일단 현재 단계에서 가능한 다음의 부분을 개선하고, 차차 진행하면서 추가적인 이슈가 나올 경우 개선해보도록 하겠습니다.
 - SQL 스크립트를 통한 DB 마이그레이션 적용
 - 실제 도메인(*.shockz.io) 을 통한 SSL 적용
 - DTO 시나리오 적용
@@ -897,6 +904,7 @@ Todo api 와는 별개의 container 로 동작시키면서 Todo api 의 로깅�
     )
     ```
   - 하지만 여기서는 구현의 단순함을 위하여 `appSettings.json` 을 사용하겠습니다.
+  - [간단한 serilog 예제](https://github.com/shockzinfinity/simple-serilog-seq)
 
 - **Serilog** 관련 패키지를 추가합니다.
 ```bash
