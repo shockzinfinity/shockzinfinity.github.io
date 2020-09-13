@@ -647,6 +647,15 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
    [런타임에 마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)
    ![migrations](./images/todo/migrations.1.png)
    ![migrations](./images/todo/migrations.2.png)
+::: tip
+개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않도록 하려면 `docker-compose.yml`에서 1433 포트 매핑을 수정하면 됩니다.
+```docker{4}
+  sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433"
+```
+:::
 - docker-compose 빌드 및 실행
 ```bash
 $ docker-compose down
@@ -842,6 +851,18 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
    ![docker-compose](./images/todo/docker-compose.1.png)
    ![docker-compose](./images/todo/docker-compose.2.png)
    ![postman](./images/todo/postman.test.14.png)
+::: tip
+docker 컨테이너들이 자동 시작되도록 하기 위해서는 다음의 옵션 중에 하나를 선택할 수 있습니다.
+> docker-compose restart 옵션  
+   - no: 수동으로 재시작합니다.
+   - always: 수동으로 끄기 전까지는 항상 재시작됩니다.
+   - on-failure: 오류가 있을 시에 재시작합니다.
+```docker{3}
+  api_3:
+    ...
+    restart: "always"
+```
+:::
 
 ## Upcoming next
 
