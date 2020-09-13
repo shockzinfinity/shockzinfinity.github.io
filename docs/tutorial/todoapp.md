@@ -648,11 +648,11 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
    ![migrations](./images/todo/migrations.1.png)
    ![migrations](./images/todo/migrations.2.png)
 ::: tip
-개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않도록 하려면 `docker-compose.yml`에서 1433 포트 매핑을 수정하면 됩니다.
-```docker{4}
+개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않도록 하려면 `docker-compose.yml`에서 1433 포트를 expose만 하면 됩니다.
+```docker{3-4}
   sql:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
+    expose:
       - "1433"
 ```
 :::
@@ -863,6 +863,37 @@ docker 컨테이너들이 자동 시작되도록 하기 위해서는 다음의 �
     restart: "always"
 ```
 :::
+
+### logging
+이 시점에서 logging 을 추가하는 것이 좋습니다. 추후 프로덕션 환경을 위해서라도 logging 은 초반부터 정리하고 가는 것이 좋기 때문입니다.  
+logging 은 .Net core 의 기본 로거도 있고 전통적으로 사용되는 여러가지 외부 라이브러리들 (NLog, log4net 등)이 있으나, 여기서는 다음의 로거를 사용할 예정입니다.
+- [Serilog](https://serilog.net/)
+- [Seq](https://datalust.co/seq)
+
+**Serilog** 는 api 내부의 세부적인 로깅을 위해서 사용하며 **Seq** 는 로그 검색 및 비주얼화를 위해 사용하겠습니다.
+
+- **Seq** 를 컨테이너로 띄우고 `http://localhost:5340` 으로 접속하여 확인하면 됩니다.
+```bash
+$ docker volume create seq_data # 로깅 데이터 저장을 위한 볼륨 생성
+$ docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v seq_data:/data -p 5340:80 -p 5341:5341 datalust/seq:latest
+```
+- **Serilog** 적용시에는 고려사항이 있습니다.
+  - 보통 logger 에 대한 세부적인 설정들을 appSettings.json 과 같은 파일에 기록하여 사용하게 되는데, app 이 실행되면서 Configuration을 읽어오는 과정을 거쳐야 하기 때문에 최대한 초기에 configuration 을 로드 해야 합니다.
+  - .net core 에서는 일반적으로 `Startup()` 이 실행되는 시점에서는 Configuration 로딩이 마무리가 되지만 `Startup()` 에서 Logger를 세팅할 경우 app 진입 시점의 로깅이 빠지는 상황이 발생할 수 있습니다.
+  - 또한, configuration 파일의 스키마 혹은 단순 JSON syntax 오류, configuration 파일 단순 누락, JSON syntax 오류, 어셈블리 로딩 이슈 등의 문제가 발생할때 logging 이 되지 않는 상황이 발생할 수 있습니다.
+  - Logger는 가능하면 로깅하고자 하는 대상보다 먼저 세팅이 되어야 하며 종속성으로부터 최대한 자유로워야 합니다.
+  - Serilog 의 sample 을 비교하는 것도 도움이 될것입니다.
+    - [Inline initialization](https://github.com/serilog/serilog-aspnetcore/blob/71165692d5f66c811c3b251047b12c259ac2fe23/samples/InlineInitializationSample/Program.cs#L20)
+    - [Early initailization](https://github.com/serilog/serilog-aspnetcore/blob/71165692d5f66c811c3b251047b12c259ac2fe23/samples/EarlyInitializationSample/Program.cs#L12)
+  - 위의 방법 말고도 한가지 대안이 더 있습니다.
+  - 현재 app 이 container 상에서 구동이 되기 때문에 container가 올라가는 시점에서 환경변수로 Logger configuration 을 지정하여 Logger를 초기화 하는 방법이 있습니다.
+    ```csharp{2}
+    .WriteTo.Seq(
+      Environment.GetEnvironmentVariable("SEQ_URL") ?? "http://localhost:5341"
+    )
+    ```
+  - 하지만 여기서는 구현의 단순함을 위하여 `appSettings.json` 을 사용하겠습니다.
+
 
 ## Upcoming next
 

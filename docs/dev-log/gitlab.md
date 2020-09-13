@@ -167,3 +167,25 @@ $ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
 > gitlab REST API 이용  
 > [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)  
 > 각 폴더별 git repository 생성
+
+## gitlab repository mirroring to github
+
+```bash
+# gitlab repo의 bare clone 생성
+$ git clone --bare https://gitlab/user/gitlab-repository.git
+$ cd gitlab-repository.git
+# github 로 미러링
+$ git push --mirror https://github.com/user/github-repository.git
+# bare 클론 저장소는 삭제해도 됨
+```
+- 100 MB 이상의 파일이 repo 에 존재하는 경우 (github 에서 100 MB 이상은 오류 발생)
+```bash
+# gitlab repo 클론
+$ git clone --mirror https://gitlab/user/gitlab-repository.git
+$ git filter-branch --tree-filter 'git lfs track "*.{zip}"' -- --all
+# BFG 이용하여 git lfs 로 변경 (java runtime 이 설치되어 있어야 하는 안타까운 현실)
+$ java -jar ~/usr/bfg-repo-cleaner/bfg-1.13.0.jar --convert-to-git-lfs '*.zip'
+$ cd git-repository.git
+$ git push --mirror https://github.com/user/github-repository.git
+# gitlab-repository.git 삭제
+```

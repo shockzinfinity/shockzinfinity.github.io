@@ -113,6 +113,7 @@ module.exports = {
     "@vuepress/back-to-top",
     "@vuepress/medium-zoom",
     "@vuepress/google-analytics",
+    "@vuepress/nprogress",
     [
       "@vuepress/pwa",
       {
