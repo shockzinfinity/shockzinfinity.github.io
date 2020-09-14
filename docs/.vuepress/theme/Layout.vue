@@ -1,6 +1,6 @@
 <template lang="pug">
 ParentLayout
-  Disqus.content(slot="page-bottom" v-if="this.$frontmatter.disqus")
+  Disqus.content(slot='page-bottom', v-if='this.$frontmatter.disqus')
 </template>
 
 <script>
@@ -14,3 +14,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.content {
+  padding: 0 10%;
+}
+</style>
