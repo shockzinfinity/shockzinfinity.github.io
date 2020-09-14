@@ -1,5 +1,5 @@
 <template lang="pug">
-.tags Tags:
+.tags Tags:&nbsp;
   router-link.tag(
     v-for="tag in $page.frontmatter.tags",
     :key="tag",
@@ -13,7 +13,7 @@
 }
 
 .tag {
-  padding: 5px;
+  padding: 5px 5px;
   border-radius: 7px;
   font-size: small;
   background: #3eaf7c;
