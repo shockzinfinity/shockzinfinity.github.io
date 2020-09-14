@@ -26,9 +26,7 @@
         </v-group>
       </v-layer>
     </v-stage>
-    <div class="cache">
-      <input type="checkbox" @change="handleCacheChange" /> cache shapes
-    </div>
+    <div class="cache"><input type="checkbox" @change="handleCacheChange" /> cache shapes</div>
   </div>
 </template>
 

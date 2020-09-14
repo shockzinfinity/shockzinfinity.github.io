@@ -16,8 +16,8 @@ export default {
         x: 100,
         y: 100,
         radius: 70,
-        fill: "magenta",
-        stroke: "red",
+        fill: 'magenta',
+        stroke: 'red',
         strokeWidth: 4,
       },
     };
