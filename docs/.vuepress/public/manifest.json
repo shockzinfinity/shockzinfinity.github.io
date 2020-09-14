@@ -6,5 +6,12 @@
   "background_color": "#2196f3",
   "display": "standalone",
   "scope": "/shockz-vue-press",
-  "start_url": "/shockz-vue-press"
+  "start_url": "/shockz-vue-press/?utm_source=homescreen",
+  "icons": [
+    {
+      "src": "icons/msapplication-icon-144x144.png",
+      "size": "144x144",
+      "type": "image/png"
+    }
+  ]
 }

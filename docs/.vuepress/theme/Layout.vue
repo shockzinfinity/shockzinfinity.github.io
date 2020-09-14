@@ -1,6 +1,6 @@
 <template lang="pug">
 ParentLayout
-  Disqus.content(slot="page-bottom")
+  Disqus.content(slot="page-bottom" v-if="this.$frontmatter.disqus")
 </template>
 
 <script>

@@ -8,6 +8,7 @@ meta:
     content: todoapp
 tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl"]
 sidebar: auto
+disqus: yes
 ---
 
 # Todo App Tutorial
