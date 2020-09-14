@@ -6,7 +6,7 @@ name: build & deploy
 # events but only for the gh-pages branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,13 +19,13 @@ jobs:
     steps:
       - name: checkout
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: install and build
         run: |
           npm install
           npm run build
-          
+
       - name: deploy build files
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -36,4 +36,4 @@ jobs:
           git init
           git add -A
           git commit -m 'deploy with vuepress'
-          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages         
+          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
