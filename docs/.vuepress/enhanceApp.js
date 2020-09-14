@@ -14,4 +14,16 @@ export default ({
 }) => {
   // ...apply enhancements for the site.
   Vue.use(VueKonva);
+  router.afterEach((to, from) => {
+    if (from.path !== to.path) {
+      if (typeof window !== "undefined" && window.DISQUS) {
+        setTimeout(() => {
+          console.log("DISQUS is existing and try to load!");
+          window.DISQUS.reset({ reload: true });
+        }, 0);
+      }
+    } else {
+      // same page but hash changed
+    }
+  });
 };
