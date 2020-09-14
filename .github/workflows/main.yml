@@ -27,7 +27,7 @@ jobs:
 
       - name: deploy build files
         env:
-          ACCESS_TOKEN: 145242b0246f64e331d741aae9251b3808b560c1
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           cd docs/.vuepress/dist
           git config --global user.email "shockzinfinity@gmail.com"
@@ -35,4 +35,4 @@ jobs:
           git init
           git add -A
           git commit -m 'deploy with vuepress'
-          git push -f https://github.com/shockzinfinity/shockz-vue-press.git master:gh-pages
+          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
