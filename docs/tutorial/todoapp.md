@@ -16,7 +16,7 @@ disqus: yes
 <TagLinks />
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
-> [Github Repository](https://github.com/shockzinfinity/todo-api-complicated)
+> [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
 
 [[toc]]
 
@@ -1050,7 +1050,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   ...
 }
 ```
-   - 4번 라인의 경우 swagger는 기본적으로 런타임에서 생성되는 json 기반으로 동작되기 때문에 정적파일에 대한 경로가 필요하므로 추가합니다.
+   - 4번 라인의 경우 swagger는 기본적으로 런타임에서 생성되는 json 기반으로 동작되기 때문에 정적파일에 대한 경로가 필요하므로 추가합니다.  
+     [ASP.NET Core의 정적 파일](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/static-files?view=aspnetcore-3.1)
    - 6번 ~ 11번 라인은 swagger 를 사용하기 위한 미들웨어 추가와 엔드포인트를 위한 라인입니다. `https://localhost:4001`로 접속하면 swagger api spec 이 나옵니다.
      > route prefix 를 기본값으로 사용할때 swagger ui 는 `https://localhost:4001/swagger/` 입니다.
 
