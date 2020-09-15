@@ -6,7 +6,7 @@ meta:
     content: Todo App 을 만드는 상당히 복잡한 방법
   - name: keywords
     content: todoapp
-tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl"]
+tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl", "swagger", "seq", "serilog", "docker-compose"]
 sidebar: auto
 disqus: yes
 ---
