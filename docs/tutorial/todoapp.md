@@ -1011,6 +1011,51 @@ networks:
 - `docker-compose up --build -d` 로 컨테이너를 작동시킨 후 **seq logger (http://localhost:5340)** 로 접속하여 확인합니다
    ![seq](./images/todo/seq.result.1.png)
 
+### Swagger (OpenAPI)
+
+API 를 개발할때 중요한 요소 중 하나가 **문서화** 입니다. 개발자 혹은 기계들에게 접근성과 가독성을 제공하는 것이 중요하기 때문입니다. 특히 개발자에게 문서화는 중요한 도전과제이기도 합니다.(~~문서화가 제일 힘든듯...~~) API spec, Help page, Guide 등은 다른 개발자와 소통할 수 있는 중요한 주제이기 때문에 이번 섹션에서는 문서화를 다룹니다. 추후 API 변경이 있을때마다 스펙문서를 조정해야 하기 때문에 코드와 결합이 되어 있는 것이 좋습니다. 문서의 디자인의 변경이 필요한 경우를 제외하고는 대부분 자동생성이 가능하기 때문에 **디자이느님**의 가르침이 있기 전까지는 해당 문서는 자동 생성하는 방법을 택하는 것이 좋습니다.
+
+OpenAPI Specification 으로도 알려져 있는 [Swagger](https://swagger.io/)의 .NET 구현체인 [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) 를 적용하도록 하겠습니다.
+
+- 프로젝트에 Swashbuckle.AspNetCore 를 추가합니다.
+```bash
+$ dotnet add package Swashbuckle.AspNetCore
+```
+- Swagger Middleware 를 추가합니다.
+```csharp{6-9}
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=sql;Database=todos;Integrated Security=false;User ID=sa;Password=********"));
+  services.AddControllers();
+
+  services.AddSwaggerGen(c =>
+  {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
+  });
+}
+```
+- **Configure()** 메서드에서 Swagger UI 를 활성화 시킵니다.
+```csharp{4,6-11}
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  ...
+  app.UseStaticFiles(); // Swagger UI 가 Static files를 사용하므로 추가
+
+  app.UseSwagger(); // JSON endpoint 로 생성된 Swagger 활성화
+  app.UseSwaggerUI(c =>
+  {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API v1");
+    c.RoutePrefix = string.Empty; // https://localhost:4001/ 로 접속했을때 나오게 하기 위해...
+  });
+  ...
+}
+```
+   - 4번 라인의 경우 swagger는 기본적으로 런타임에서 생성되는 json 기반으로 동작되기 때문에 정적파일에 대한 경로가 필요하므로 추가합니다.
+   - 6번 ~ 11번 라인은 swagger 를 사용하기 위한 미들웨어 추가와 엔드포인트를 위한 라인입니다.
+
+위의 코드로 기본적으로 생성이 가능합니다만 풍부한 문서화를 위해 몇가지 더 추가하도록 하겠습니다.
+
+
 ## Upcoming next
 
 - Swagger
