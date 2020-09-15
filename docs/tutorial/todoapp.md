@@ -30,25 +30,29 @@ Todo App 은 새로운 언어 및 개발 기술을 습득하기 위해 자주 �
 
 이 Tutorial 의 목적은 다양한 기술 스택에 대해 좀 더 잘 이해하고 능숙해지고자 작성하게 됐습니다. 보유하고 있는 기술 및 아이디어의 한계로 인하여 최고의 방법으로 구현하지는 못할 수 있으나 최소한 생각거리를 제공하고 노하우를 공유하고자 하는 마음으로 작성합니다.
 
-이 Tutorial 에서는 Todo App 이라는 비즈니스 요구사항을 닷넷 기반 혹은 관련 기술들로 구현한다고 가정하겠습니다. 전반적인 기술 스택 및 아키텍처에 대해서는 차차 도식화를 추가할 예정입니다.
+이 Tutorial 에서는 Todo App 이라는 비즈니스 요구사항을 닷넷 기반 혹은 관련 기술들로 구현한다고 가정하겠습니다. 전반적인 기술 스택 및 아키텍처에 대해서는 차차 도식화를 추가할 예정입니다. 여기서 다뤄지는 비즈니스 요구사항은 가정이 많습니다. 현실과 동떨어진 내용이 있을 수 있으니 양해바랍니다.
 
-**주의**: 이 Tutorial 은 수시로 업데이트 되며 기술 스택 및 아키텍처등이 예고없이 변경될 수 있습니다. 또한 현실을 반영하여 비즈니스 요구사항은 수시로 변경될 수 있다고 가정합니다.
+**주의**: 이 Tutorial 은 수시로 업데이트 되며 기술 스택 및 애플리케이션 아키텍처등이 예고없이 변경될 수 있습니다. 가상의 비즈니스 상황에 따라 작성하다 보니 비즈니스 요구사항은 수시로 변경될 수 있고 그에 따라 어떻게 기술 스택에 바꾸고 개선하는지에 대한 내용을 다루고자 합니다. 다만 의식의 흐름에 따라 작성하다 보니 두서 없이 내용이 전개될 수 있으니 참고해주시면 감사하겠습니다.
 
 ## Tech Stack (Prerequisite)
 
-- ASP.NET core 3.1
-- MS SQL Server 2019
-- Docker
-- Nginx
-- SSL
-- Seq, Serilog Logger
-- Swagger
-- FluntValidation & Automapper (upcoming)
-- Kubernetes (k8s) (upcoming)
-- DDD / CQRS (upcoming)
-- Vue.js (upcoming)
+- API (Backend)
+  - ASP.NET core 3.1
+  - MS SQL Server 2019
+  - Docker
+  - Nginx
+  - SSL
+  - Seq, Serilog Logger
+  - Swagger
+  - Kubernetes (k8s) (upcoming)
+  - DDD / CQRS (upcoming)
+  - FluntValidation & Automapper (upcoming)
+  - Authentication
 
-## Step
+- App (Frontend)
+  - Vue.js (upcoming)
+
+## API Step (Backend)
 
 ### Todo WebAPI(RESTful)
 
@@ -1185,11 +1189,11 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 
 ## Upcoming next
 
-- FluntValidation & Automapper
-- Kubernetes(k8s)
 - Authentication
+- Kubernetes(k8s)
 - DDD / CQRS
-- Frontend (Vue.js)
+- FluntValidation & Automapper
+- Vue.js (Frontend)
 
 ## Reference
 
