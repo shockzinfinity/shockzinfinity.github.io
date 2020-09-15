@@ -75,14 +75,18 @@ module.exports = {
 
 일반적으로는 `sh deploy.sh`를 이용하여 **deploy.sh** 를 이용한 배포를 로컬에서 진행하여 github repository 의 **gh-pages** 브랜치로 배포하는 방법을 사용했었음.
 
-이를 자동화 하기 위해 Github Actions를 이용함
-```docker
+하지만 이 방법은 매번 로컬에서 `deploy.sh` 를 통해 배포해야 하는 번거로움이 있다. master 브랜치에 push 하면 자동으로 deploy 되도록 해보자.
+![vuepress.github.actions](./image/vuepress.github.actions.1.png)
+![vuepress.github.actions](./image/vuepress.github.actions.2.png)
+
+이를 자동화 하기 위해 Github Actions를 이용한다.
+```docker{31-32,41}
 # This is a basic workflow to help you get started with Actions
 
-name: build & deploy
+name: build & deploy # actions 의 workflow 이름
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the gh-pages branch
+# workflow 가 동작되는 상황
+# master 브랜치에 push 가 발생되는 상황에서 동작한다는 뜻
 on:
   push:
     branches: [master]
@@ -90,23 +94,25 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-and-deploy:
+  build-and-deploy: # job의 이름, 여러개의 job이 등록될 수 있음
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # job 이 돌아가는 환경
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # GITHUB_WORKSPACE 로 체크아웃
 
+      # node package 설치
       - name: install and build
         run: |
           npm install
           npm run build
 
+      # gh-pages 로 배포 (vuepress 배포 스크립트에서 차용)
       - name: deploy build files
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 해당 repository 의 Secrets 의 토큰정보를 환경변수에 저장한 후
         run: |
           cd docs/.vuepress/dist
           git config --global user.email "shockzinfinity@gmail.com"
@@ -114,10 +120,22 @@ jobs:
           git init
           git add -A
           git commit -m 'deploy with vuepress'
+          # 토큰정보를 바탕으로 gh-pages 브랜치에 push
           git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
 ```
 [Github Actions](https://docs.github.com/en/actions)에 Workflow 를 생성한 후 위의 Workflow를 등록합니다.
 
-::: tip
-세부 설정은 추후에 설명
+::: warning
+위의 actions 의 32번 라인의  
+ACCESS_TOKEN 은 해당 repository > Settings > Secrets 에 등록되는 환경 변수를 읽어오는 부분으로서  
+![vuepress.github.actions](./image/vuepress.vuepress.github.actions.3.png)
+여기서는 **Personal Access Token** 을 발급해서 등록하여 읽어올 수 있다.  
+41번 라인의 workflow 의 `${GITHUB_REPOSITORY}` 는 기본 환경변수.
+:::
+::: tip Github Personal Access Token 발급방법
+![vuepress.github.actions](./image/vuepress.vuepress.github.actions.6.png)
+![vuepress.github.actions](./image/vuepress.vuepress.github.actions.4.png)
+![vuepress.github.actions](./image/vuepress.vuepress.github.actions.5.png)
+토큰 권한은 아래를 체크해준다.
+![vuepress.github.actions](./image/vuepress.vuepress.github.actions.7.png)
 :::
