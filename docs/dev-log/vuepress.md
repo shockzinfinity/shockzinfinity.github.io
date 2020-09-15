@@ -76,10 +76,11 @@ module.exports = {
 일반적으로는 `sh deploy.sh`를 이용하여 **deploy.sh** 를 이용한 배포를 로컬에서 진행하여 github repository 의 **gh-pages** 브랜치로 배포하는 방법을 사용했었음.
 
 하지만 이 방법은 매번 로컬에서 `deploy.sh` 를 통해 배포해야 하는 번거로움이 있다. master 브랜치에 push 하면 자동으로 deploy 되도록 해보자.
-![vuepress.github.actions](./image/vuepress.github.actions.1.png)
-![vuepress.github.actions](./image/vuepress.github.actions.2.png)
 
 이를 자동화 하기 위해 Github Actions를 이용한다.
+
+![vuepress.github.actions](./image/vuepress.github.actions.1.png)
+![vuepress.github.actions](./image/vuepress.github.actions.2.png)
 ```docker{31-32,41}
 # This is a basic workflow to help you get started with Actions
 
