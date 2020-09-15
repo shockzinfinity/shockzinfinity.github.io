@@ -128,14 +128,14 @@ jobs:
 ::: warning
 위의 actions 의 32번 라인의  
 ACCESS_TOKEN 은 해당 repository > Settings > Secrets 에 등록되는 환경 변수를 읽어오는 부분으로서  
-![vuepress.github.actions](./image/vuepress.vuepress.github.actions.3.png)
+![vuepress.github.actions](./image/vuepress.github.actions.3.png)
 여기서는 **Personal Access Token** 을 발급해서 등록하여 읽어올 수 있다.  
 41번 라인의 workflow 의 `${GITHUB_REPOSITORY}` 는 기본 환경변수.
 :::
 ::: tip Github Personal Access Token 발급방법
-![vuepress.github.actions](./image/vuepress.vuepress.github.actions.6.png)
-![vuepress.github.actions](./image/vuepress.vuepress.github.actions.4.png)
-![vuepress.github.actions](./image/vuepress.vuepress.github.actions.5.png)
+![vuepress.github.actions](./image/vuepress.github.actions.6.png)
+![vuepress.github.actions](./image/vuepress.github.actions.4.png)
+![vuepress.github.actions](./image/vuepress.github.actions.5.png)
 토큰 권한은 아래를 체크해준다.
-![vuepress.github.actions](./image/vuepress.vuepress.github.actions.7.png)
+![vuepress.github.actions](./image/vuepress.github.actions.7.png)
 :::
