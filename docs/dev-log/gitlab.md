@@ -190,7 +190,7 @@ $ git push --mirror https://github.com/user/github-repository.git
 # gitlab-repository.git 삭제
 ```
 - 위의 방법 말고도 Gitlab 서버상에서 Mirror Repository 를 통해서도 가능함.  
-   ![gitlab.mirror](./image/gitlab.gitlab.mirror.1.png)
+   ![gitlab.mirror](./image/gitlab.mirror.1.png)
    > repository url: github repository clone.git  
    > password 부분은 github 에서 Personal Access Token 을 발급받을때 `pulic_repo` 권한을 부여한 상태로 토큰을 생성하고 그 토큰을 넣어줘야 함
 
