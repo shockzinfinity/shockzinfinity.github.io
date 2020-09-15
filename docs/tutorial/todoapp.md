@@ -42,7 +42,7 @@ Todo App 은 새로운 언어 및 개발 기술을 습득하기 위해 자주 �
 - Nginx
 - SSL
 - Seq, Serilog Logger
-- Swagger (upcoming)
+- Swagger
 - FluntValidation & Automapper (upcoming)
 - Kubernetes (k8s) (upcoming)
 - DDD / CQRS (upcoming)
@@ -812,7 +812,7 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
     ssl_certificate_key /etc/ssl/private/privkey.pem;
 ```
 
-### load balancing without Kubernetes(k8s)
+### load balancing with docker-compose
 
 - 현재까지는 **api_1** 으로만 테스트 하는 상황이었기 때문에 load balancing을 테스트할 수 없었습니다.
 - load balancing을 테스트 하기 위해서는 좀 더 정교한 방법이 필요하나 현 단계에서는 구현의 단순함을 위해 docker-compose 상의 upstream 을 늘리는 방법을 택합니다.
@@ -1051,7 +1051,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
    - 4번 라인의 경우 swagger는 기본적으로 런타임에서 생성되는 json 기반으로 동작되기 때문에 정적파일에 대한 경로가 필요하므로 추가합니다.
-   - 6번 ~ 11번 라인은 swagger 를 사용하기 위한 미들웨어 추가와 엔드포인트를 위한 라인입니다.
+   - 6번 ~ 11번 라인은 swagger 를 사용하기 위한 미들웨어 추가와 엔드포인트를 위한 라인입니다. `https://localhost:4001`로 접속하면 swagger api spec 이 나옵니다.
      > route prefix 를 기본값으로 사용할때 swagger ui 는 `https://localhost:4001/swagger/` 입니다.
 
 위의 코드로 기본적인 API 스펙문서가 생성되지만 좀 더 풍부한 스펙 문서화를 위해 몇가지 더 추가하도록 하겠습니다.
@@ -1091,8 +1091,8 @@ services.AddSwaggerGen(c =>
     <NoWarn>$(NoWarn);1591</NoWarn>
 </PropertyGroup>
 ```
-> public type 과 members 가 주석이 없으면 **warning code: 1591** 을 발생시키게 되는데, **<NoWarn>$(NoWarn);1591</NoWarn>** 이 해당 warning 을 없애줍니다.  
-> 코드 내부에서 warning 을 제거하기 위해서는 **#pragma warning** 프리프로세서를 사용합니다. 예를 들어 Program 클래스 전체에 대한 warning 메시지 제거를 위해서는 다음과 같이 사용합니다.
+> - public type 과 members 가 주석이 없으면 **warning code: 1591** 을 발생시키게 되는데, **<NoWarn>$(NoWarn);1591</NoWarn>** 이 해당 warning 을 없애줍니다.
+> - 코드 내부에서 warning 을 제거하기 위해서는 **#pragma warning** 프리프로세서를 사용합니다. 예를 들어 Program 클래스 전체에 대한 warning 메시지 제거를 위해서는 다음과 같이 사용합니다.
 ```csharp{3,16}
 namespace todoCore3.Api
 {
@@ -1184,7 +1184,6 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 
 ## Upcoming next
 
-- Swagger
 - FluntValidation & Automapper
 - Kubernetes(k8s)
 - Authentication
