@@ -6,7 +6,7 @@ meta:
     content: Todo App 을 만드는 상당히 복잡한 방법
   - name: keywords
     content: todoapp
-tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl"]
+tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl", "swagger", "seq", "serilog", "docker-compose"]
 sidebar: auto
 disqus: yes
 ---
@@ -16,7 +16,7 @@ disqus: yes
 <TagLinks />
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
-> [Github Repository](https://github.com/shockzinfinity/todo-api-complicated)
+> [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
 
 [[toc]]
 
@@ -30,25 +30,29 @@ Todo App 은 새로운 언어 및 개발 기술을 습득하기 위해 자주 �
 
 이 Tutorial 의 목적은 다양한 기술 스택에 대해 좀 더 잘 이해하고 능숙해지고자 작성하게 됐습니다. 보유하고 있는 기술 및 아이디어의 한계로 인하여 최고의 방법으로 구현하지는 못할 수 있으나 최소한 생각거리를 제공하고 노하우를 공유하고자 하는 마음으로 작성합니다.
 
-이 Tutorial 에서는 Todo App 이라는 비즈니스 요구사항을 닷넷 기반 혹은 관련 기술들로 구현한다고 가정하겠습니다. 전반적인 기술 스택 및 아키텍처에 대해서는 차차 도식화를 추가할 예정입니다.
+이 Tutorial 에서는 Todo App 이라는 비즈니스 요구사항을 닷넷 기반 혹은 관련 기술들로 구현한다고 가정하겠습니다. 전반적인 기술 스택 및 아키텍처에 대해서는 차차 도식화를 추가할 예정입니다. 여기서 다뤄지는 비즈니스 요구사항은 가정이 많습니다. 현실과 동떨어진 내용이 있을 수 있으니 양해바랍니다.
 
-**주의**: 이 Tutorial 은 수시로 업데이트 되며 기술 스택 및 아키텍처등이 예고없이 변경될 수 있습니다. 또한 현실을 반영하여 비즈니스 요구사항은 수시로 변경될 수 있다고 가정합니다.
+**주의**: 이 Tutorial 은 수시로 업데이트 되며 기술 스택 및 애플리케이션 아키텍처등이 예고없이 변경될 수 있습니다. 가상의 비즈니스 상황에 따라 작성하다 보니 비즈니스 요구사항은 수시로 변경될 수 있고 그에 따라 어떻게 기술 스택에 바꾸고 개선하는지에 대한 내용을 다루고자 합니다. 다만 의식의 흐름에 따라 작성하다 보니 두서 없이 내용이 전개될 수 있으니 참고해주시면 감사하겠습니다.
 
 ## Tech Stack (Prerequisite)
 
-- ASP.NET core 3.1
-- MS SQL Server 2019
-- Docker
-- Nginx
-- SSL
-- Seq, Serilog Logger
-- Swagger (upcoming)
-- FluntValidation & Automapper (upcoming)
-- Kubernetes (k8s) (upcoming)
-- DDD / CQRS (upcoming)
-- Vue.js (upcoming)
+- API (Backend)
+  - ASP.NET core 3.1
+  - MS SQL Server 2019
+  - Docker
+  - Nginx
+  - SSL
+  - Seq, Serilog Logger
+  - Swagger
+  - Kubernetes (k8s) (upcoming)
+  - DDD / CQRS (upcoming)
+  - FluntValidation & Automapper (upcoming)
+  - Authentication
 
-## Step
+- App (Frontend)
+  - Vue.js (upcoming)
+
+## API Step (Backend)
 
 ### Todo WebAPI(RESTful)
 
@@ -812,7 +816,7 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
     ssl_certificate_key /etc/ssl/private/privkey.pem;
 ```
 
-### load balancing without Kubernetes(k8s)
+### load balancing with docker-compose
 
 - 현재까지는 **api_1** 으로만 테스트 하는 상황이었기 때문에 load balancing을 테스트할 수 없었습니다.
 - load balancing을 테스트 하기 위해서는 좀 더 정교한 방법이 필요하나 현 단계에서는 구현의 단순함을 위해 docker-compose 상의 upstream 을 늘리는 방법을 택합니다.
@@ -1010,6 +1014,178 @@ networks:
 ```
 - `docker-compose up --build -d` 로 컨테이너를 작동시킨 후 **seq logger (http://localhost:5340)** 로 접속하여 확인합니다
    ![seq](./images/todo/seq.result.1.png)
+
+### Swagger (OpenAPI)
+
+API 를 개발할때 중요한 요소 중 하나가 **문서화** 입니다. 개발자 혹은 기계들에게 접근성과 가독성을 제공하는 것이 중요하기 때문입니다. 특히 개발자에게 문서화는 중요한 도전과제이기도 합니다.(~~문서화가 제일 힘든듯...~~) API spec, Help page, Guide 등은 다른 개발자와 소통할 수 있는 중요한 주제이기 때문에 이번 섹션에서는 문서화를 다룹니다. 추후 API 변경이 있을때마다 스펙문서를 조정해야 하기 때문에 코드와 결합이 되어 있는 것이 좋습니다. 문서의 디자인의 변경이 필요한 경우를 제외하고는 대부분 자동생성이 가능하기 때문에 **디자이느님**의 가르침이 있기 전까지는 해당 문서는 자동 생성하는 방법을 택하는 것이 좋습니다.
+
+OpenAPI Specification 으로도 알려져 있는 [Swagger](https://swagger.io/)의 .NET 구현체인 [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) 를 적용하도록 하겠습니다.
+
+- 프로젝트에 Swashbuckle.AspNetCore 를 추가합니다.
+```bash
+$ dotnet add package Swashbuckle.AspNetCore
+```
+- `Startup.cs` 에 Swagger Middleware 를 추가합니다.
+```csharp{6-9}
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("Data Source=sql;Database=todos;Integrated Security=false;User ID=sa;Password=********"));
+  services.AddControllers();
+
+  services.AddSwaggerGen(c =>
+  {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
+  });
+}
+```
+- **Startup/Configure()** 메서드에서 Swagger UI 를 활성화 시킵니다.
+```csharp{4,6-11}
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  ...
+  app.UseStaticFiles(); // Swagger UI 가 Static files를 사용하므로 추가
+
+  app.UseSwagger(); // JSON endpoint 로 생성된 Swagger 활성화
+  app.UseSwaggerUI(c =>
+  {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API v1");
+    c.RoutePrefix = string.Empty; // https://localhost:4001/ 로 접속했을때 나오게 하기 위해...
+  });
+  ...
+}
+```
+   - 4번 라인의 경우 swagger는 기본적으로 런타임에서 생성되는 json 기반으로 동작되기 때문에 정적파일에 대한 경로가 필요하므로 추가합니다.  
+     [ASP.NET Core의 정적 파일](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/static-files?view=aspnetcore-3.1)
+   - 6번 ~ 11번 라인은 swagger 를 사용하기 위한 미들웨어 추가와 엔드포인트를 위한 라인입니다. `https://localhost:4001`로 접속하면 swagger api spec 이 나옵니다.
+     > route prefix 를 기본값으로 사용할때 swagger ui 는 `https://localhost:4001/swagger/` 입니다.
+
+위의 코드로 기본적인 API 스펙문서가 생성되지만 좀 더 풍부한 스펙 문서화를 위해 몇가지 더 추가하도록 하겠습니다.
+
+- `Startup/ConfigureServices()` 에서 SwaggerDoc 부분을 보강합니다.
+```csharp
+services.AddSwaggerGen(c =>
+{
+  c.SwaggerDoc("v1", new OpenApiInfo
+  {
+    Version = "v1",
+    Title = "ToDo API",
+    Description = "Todo App 을 만드는 꽤 복잡한 방법에 대한 ASP.NET Core WebAPI",
+    TermsOfService = new Uri("http://todo.shockz.io/terms"),
+    Contact = new OpenApiContact
+    {
+      Name = "shockz",
+      Email = string.Empty, // 스팸은 먹는겁니다.
+      Url = new Uri("https://twitter.com/somebody"), // 트위터를 안써봐서...
+    },
+    License = new OpenApiLicense
+    {
+      Name = "MIT",
+      Url = new Uri("https://github.com/shockzinfinity/todo-app-complicated/blob/2c4c937fa9ecfca72e37ba4e79581e2eabe4e9b8/LICENSE#L1")
+    }
+  });
+});
+```
+![swagger](./images/todo/swagger.2.png)
+
+- 각 엔드포인트의 XML 주석을 표현하기 위해서 다음과 같이 작업합니다.
+   1. 프로젝트 빌드시에 XML generate 되도록 합니다.
+   2. 각 컨트롤러의 메서드에서 XML 주석을 통하여 내용을 보강합니다.
+```csharp
+<PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+</PropertyGroup>
+```
+> - public type 과 members 가 주석이 없으면 **warning code: 1591** 을 발생시키게 되는데, **<NoWarn>$(NoWarn);1591</NoWarn>** 이 해당 warning 을 없애줍니다.
+> - 코드 내부에서 warning 을 제거하기 위해서는 **#pragma warning** 프리프로세서를 사용합니다. 예를 들어 Program 클래스 전체에 대한 warning 메시지 제거를 위해서는 다음과 같이 사용합니다.
+```csharp{3,16}
+namespace todoCore3.Api
+{
+#pragma warning disable CS1591
+  public class Program
+  {
+    ...
+    public static void Main(string[] args)
+    {
+      ...
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) => {
+      ...
+    }
+  }
+#pragma warning restore CS1591
+}
+```
+- swagger 가 생성된 XML 주석 파일을 사용하게 위해서는 다음과 같이 코드를 `AddSwaggerGen()` 메서드 내부에 추가합니다.
+```csharp{1-18}
+/// <summary>
+/// Todo item 을 생성합니다.
+/// </summary>
+/// <remarks>
+/// Sample request:
+///
+///		POST api/TodoItems
+///		{
+///			"name": "Item no 1",
+///			"isCompleted": false
+///		}
+///
+/// </remarks>
+/// <param name="todoItemDTO"></param>
+/// <returns>생성된 Todo item</returns>
+/// <response code="201">생성된 Todo item</response>
+/// <response code="400">todo item 이 null 일 경우</response>
+/// <returns></returns>
+// POST: api/TodoItems
+[HttpPost]
+public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO)
+{
+  ...
+}
+```
+![swagger](./images/todo/swagger.3.png)
+![swagger](./images/todo/swagger.4.png)
+
+- data annotations 으로 모델에도 적용이 가능합니다.
+```csharp{5,8,19,22}
+public class TodoItem
+{
+  public long Id { get; set; }
+
+  [Required]
+  public string Name { get; set; }
+
+  [DefaultValue(false)]
+  public bool IsCompleted { get; set; }
+
+  [Timestamp]
+  public byte[] RowVersion { get; set; }
+}
+
+public class TodoItemDTO
+{
+  public long Id { get; set; }
+
+  [Required]
+  public string Name { get; set; }
+
+  [DefaultValue(false)]
+  public bool IsComplete { get; set; }
+}
+```
+![swagger](./images/todo/swagger.5.png)
+
+- Http Status Code 에 따른 주석 추가도 가능합니다.
+```csharp{2-3}
+[HttpPost]
+[ProducesResponseType(StatusCodes.Status201Created)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO)
+{
+  ...
+}
+```
 
 ### CQRS
 
