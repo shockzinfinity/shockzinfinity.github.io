@@ -1222,7 +1222,7 @@ CQRS 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다
 - [DDD 및 CQRS 패턴을 사용하여 마이크로 서비스에서 비즈니스 복잡성 처리](https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/)
 :::
 
-#### Api 적용
+### Todo api 에 CQRS 적용
 
 ## Upcoming next
 
