@@ -1011,13 +1011,48 @@ networks:
 - `docker-compose up --build -d` 로 컨테이너를 작동시킨 후 **seq logger (http://localhost:5340)** 로 접속하여 확인합니다
    ![seq](./images/todo/seq.result.1.png)
 
+### CQRS
+
+이번 섹션에서 다룰 주제는 CQRS 입니다. 생소할 수 있는 단어이기에 약간 설명을 해야할 것 같습니다. 단어의 설명에 앞서 주의점이 있습니다.
+
+여기에 적용되는 CQRS 는 선택사항 입니다. 굳이 적용해야할 이유도 별로 없으며 Todo App 정도를 만드는데 있어 좀 과할 수 있습니다. 또한 CQRS는 특정 기술이라기 보다는 패턴이라고 보는 것이 더 적절한 설명이 될 것 같습니다. 즉, 필수사항이 아니란 애기입니다.
+
+그럼에도 불구하고 CQRS 를 적용하는 이유는 아래에 추가적인 설명을 더 하겠지만, 비즈니스 애플리케이션에서 비즈니스를 표현하는데에 있어 많은 장점들을 제공해줄 수 있다고 생각하고 있으며 특히 변화하는 비즈니스의 복잡성을 낮추는데 있어서 상당한 도움이 된다고 개인적으로 믿고 있기 때문입니다. (~~개발자는 기술의 복잡성은 이해가 빠르지만 비즈니스의 복잡성은... 후~~~)
+
+CQRS 라는 단어는 **Command and Query Responsibility Segregation** 의 약자입니다. 단어 자체로만 해석하면 **명령과 조회에 대한 책임을 분리**한다는 뜻입니다. 그리고 CQRS 는 특정 기술을 이야기하는 것이 아닌 단순한 패턴이라고 보는 것이 좋습니다. 보통 CQRS 를 적용할 때는 DDD 와 같이 언급되는 경우가 많은데, 꼭 DDD 의 하위 패턴이거나 구현체를 뜻하지도 않습니다.
+
+전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다.(~~보통 SI 에서 그렇습니다.~~) 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (~~이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.~~)
+
+CQRS 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하겠습니다. CQRS 는 보통 ES (Event Sourcing) 와 같이 구현되는 경우가 많습니다. 간단하게 CQRS / ES 의 장단점을 정리하고 Todo Api 에 CQRS 를 적용해 보겠습니다.
+
+**CQRS / ES 장점**
+- 성능과 확장성을 개선하고 동시성 문제를 처리하기 적합
+- 상대적으로 덜 복잡한 도메인 모델과 단순한 쿼리 모델 구현 가능
+- 교착상태 제거
+- Audit trail 및 특정 시점의 객체(데이터) 상태 추적 가능
+- 테스트 용이
+- 비즈니스 유연성 증가
+
+**CQRS / ES 단점**
+- 읽기/쓰기 모델 동기화
+- 유지 보수 및 관리 비용이 상대적으로 증가
+- 개발자 러닝커브 증가
+
+::: tip CQRS 참고자료
+- [CQRS by Martin Fowler](https://martinfowler.com/bliki/CQRS.html)
+- [CQRS, Task Based UIs, Event Sourcing agh! by Greg Young](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
+- [Event Sourcing by Martin Fowler](https://martinfowler.com/eaaDev/EventSourcing.html)
+- [이벤트 소싱 패턴](https://docs.microsoft.com/ko-kr/azure/architecture/patterns/event-sourcing)
+- [DDD 및 CQRS 패턴을 사용하여 마이크로 서비스에서 비즈니스 복잡성 처리](https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/)
+:::
+
+#### Api 적용
+
 ## Upcoming next
 
-- Swagger
 - FluntValidation & Automapper
 - Kubernetes(k8s)
 - Authentication
-- DDD / CQRS
 - Frontend (Vue.js)
 
 ## Reference
