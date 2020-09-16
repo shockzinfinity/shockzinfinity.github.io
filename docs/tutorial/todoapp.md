@@ -1199,11 +1199,11 @@ CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. �
 
 전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다.(~~보통 SI 에서 그렇습니다.~~) 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (~~이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.~~)
 
-현재 Api 의 endpoint 가 전통적인 CRUD 의 전형으로 볼 수 있습니다. GET, POST, PUT, DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.
+현재 Api 의 endpoint 가 전통적인 CRUD 의 전형적인 구현입니다. GET(SELECT), POST(CREATE), PUT(UPDATE), DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.
 
 TODO : 실제 예시
 
-CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 이는 추가적인 장점을 제공해줄 수 있습니다.
+CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
 
 TODO : ES 개념 설명
 
