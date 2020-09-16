@@ -1189,15 +1189,15 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 
 ### CQRS / ES
 
-이번 섹션에서 다룰 주제는 CQRS 입니다. 생소할 수 있는 단어이기에 약간 설명을 해야할 것 같습니다. 단어의 설명에 앞서 주의점이 있습니다.
+이번 섹션에서 다룰 주제는 CQRS / ES 입니다. 생소할 수 있는 단어이기에 약간 설명을 해야할 것 같습니다. 단어의 설명에 앞서 주의점이 있습니다.
 
 여기에 적용되는 CQRS 는 선택사항 입니다. 굳이 적용해야할 이유도 별로 없으며 Todo App 정도를 만드는데 있어 좀 과할 수 있습니다. 또한 CQRS는 특정 기술이라기 보다는 패턴이라고 보는 것이 더 적절한 설명이 될 것 같습니다. 즉, 필수사항이 아니란 애기입니다.
 
 그럼에도 불구하고 CQRS 를 적용하는 이유는 비즈니스의 복잡도를 낮추고 성능을 끌어올릴 수 있는 방법이기 때문입니다. 특히 변화하는 비즈니스의 요구사항을 적용하는데에 있어 상당한 도움이 될 수 있습니다.
 
-CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. 단어 자체로만 해석하면 **명령과 조회에 대한 책임을 분리**한다는 뜻입니다. CQRS 는 특정 기술을 이야기하는 것이 아닌 단순한 패턴이라고 보는 것이 더 맞습니다. 보통 CQRS 에 대해서 이야기 할때 [DDD (Domain Driven Development)](https://martinfowler.com/bliki/DomainDrivenDesign.html) 와 같이 언급되는 경우가 많은데, 꼭 DDD 의 하위 패턴이거나 구현체를 뜻하지도 않습니다.
+CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. 단어 자체로만 해석하면 **명령과 조회에 대한 책임을 분리**한다는 뜻입니다. CQRS 는 특정 기술을 이야기하는 것이 아닌 단순한 패턴이라고 보는 것이 더 맞습니다. 보통 CQRS 에 대해서 이야기 할때 [DDD (Domain Driven Design)](https://martinfowler.com/bliki/DomainDrivenDesign.html) 와 같이 언급되는 경우가 많은데, 꼭 DDD 의 하위 패턴이거나 구현체를 뜻하지도 않습니다.
 
-전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다.(~~보통 SI 에서 그렇습니다.~~) 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (~~이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.~~)
+전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다. 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (~~이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.~~)
 
 현재 Api 의 endpoint 가 전통적인 CRUD 의 전형적인 구현입니다. GET(SELECT), POST(CREATE), PUT(UPDATE), DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.
 
@@ -1207,7 +1207,7 @@ CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 
 
 TODO : ES 개념 설명
 
-CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo Api 에 CQRS 를 적용해 보겠습니다.
+CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 Todo 에 대한 변경 이력이 보여졌으면 좋겠다고 하는 비즈니스 요구사항 추가되었다고 가정하고 CQRS / ES 를 적용해 보겠습니다.
 
 **CQRS / ES 장점**
 - 성능과 확장성을 개선하고 동시성 문제를 처리하기 적합
