@@ -1232,6 +1232,8 @@ CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추�
 
 ### Todo api 에 CQRS 적용
 
+upcoming
+
 ## Upcoming next
 
 - FluntValidation & Automapper
