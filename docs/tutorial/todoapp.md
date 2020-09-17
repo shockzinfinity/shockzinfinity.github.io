@@ -1212,7 +1212,7 @@ CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. �
 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
 
 ::: warning TODO
-ES 개념 설명
+ES 개념 설명 추가 예정
 :::
 
 CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 Todo 에 대한 변경 이력이 보여졌으면 좋겠다고 하는 비즈니스 요구사항 추가되었다고 가정하고 CQRS / ES 를 적용해 보겠습니다.
