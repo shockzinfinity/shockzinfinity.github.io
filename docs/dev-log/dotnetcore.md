@@ -14,6 +14,10 @@ sidebar: auto
 
 <TagLinks />
 
+## .net framework Stack
+
+![tech.stack](./image/dotnet.techstack.1.png)
+
 ## runtime 및 sdk 설치
 
 ```bash
