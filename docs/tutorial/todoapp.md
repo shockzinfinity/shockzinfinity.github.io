@@ -1201,7 +1201,7 @@ CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. �
 
 현재 Api 의 endpoint 가 전통적인 CRUD 의 전형적인 구현입니다. GET(SELECT), POST(CREATE), PUT(UPDATE), DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.
 
-TODO : 실제 예시
+TODO : 실제 예시 추가 예정
 
 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
 
