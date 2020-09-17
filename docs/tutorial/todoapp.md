@@ -6,14 +6,18 @@ meta:
     content: Todo App 을 만드는 상당히 복잡한 방법
   - name: keywords
     content: todoapp
-tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl", "swagger", "seq", "serilog", "docker-compose"]
+tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl", "swagger", "seq", "serilog", "docker-compose", "cqrs / es"]
 sidebar: auto
 disqus: yes
 ---
 
 # Todo App Tutorial
 
+---
+
 <TagLinks />
+
+---
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
 > [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
