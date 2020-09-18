@@ -794,6 +794,15 @@ public async Task<IActionResult> DeleteTodoItem(long id)
 
   return NoContent();
 }
+
+private bool TodoItemExist(long id) => _context.TodoItems.Any(e => e.Id == id);
+
+private static TodoItemDTO ItemToDTO(TodoItem todoItem) => new TodoItemDTO
+{
+  Id = todoItem.Id,
+  Name = todoItem.Name,
+  IsComplete = todoItem.IsCompleted
+};
 ...
 ```
 - Postman 으로 확인해보면 DTO를 통해 데이터가 전달되는 것을 확인할 수 있습니다.
@@ -1241,7 +1250,7 @@ CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. �
 실제 예시 추가 예정
 :::
 
-CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
+추가적으로 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
 
 ::: warning TODO
 ES 개념 설명 추가 예정
