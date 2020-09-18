@@ -1278,7 +1278,7 @@ public interface ITodoQueryService
 
 ![CQRS diagram](./images/todo/cqrs.pattern.1.png) _CQRS Journey [MSDN](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj554200(v=pandp.10))_
 
-CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 Todo 에 대한 변경 이력이 보여졌으면 좋겠다고 하는 비즈니스 요구사항 추가되었다고 가정하고 CQRS / ES 를 적용해 보겠습니다.
+CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 CQRS / ES 를 적용해 보겠습니다.
 
 **CQRS / ES 장점**
 - 성능과 확장성을 개선하고 동시성 문제를 처리하기 적합
@@ -1303,7 +1303,7 @@ CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추�
 - [DDD CQRS Event Sourcing community](https://github.com/ddd-cqrs-es)
 :::
 
-### Api 에 CQRS 적용 과정
+### Api 에 CQRS 적용 (간소화 버전)
 
 upcoming
 
