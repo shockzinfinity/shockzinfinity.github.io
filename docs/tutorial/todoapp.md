@@ -1275,7 +1275,7 @@ public interface ITodoQueryService
 일반적으로 데이터의 쓰기 작업(CUD)는 읽기 작업(R)보다 상대적으로 빈도가 낮습니다. 모델과 데이터 베이스를 분리하여 각 부분별로 독립적으로 확장하고 심지어 다른 개발기술로 구현하여 비즈니스의 확장을 효율적으로 처리할 수 있게 됩니다.
 
 추가적으로 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
-[CQRS diagram](https://codeopinion.com/wp-content/uploads/2019/02/Capture-1024x542.png)
+![CQRS diagram](./images/todo/cqrs.diagram.1.png) _https://codeopinion.com/wp-content/uploads/2019/02/Capture-1024x542.png_
 
 CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 Todo 에 대한 변경 이력이 보여졌으면 좋겠다고 하는 비즈니스 요구사항 추가되었다고 가정하고 CQRS / ES 를 적용해 보겠습니다.
 
