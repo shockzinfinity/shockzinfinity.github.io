@@ -1305,7 +1305,21 @@ CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추�
 
 ### Api 에 CQRS 적용 (간소화 버전)
 
-upcoming
+TodoItem 의 변경 이력을 보고 싶다고 가정하겟습니다. TodoItem 을 언제 생성했고, 언제 completed 했으며 중간에 incompleted 로 변경했었다가 나중에 완료했다는 상황을 가정합니다. 다시한번 언급하자면 CQRS 적용은 필수사항이 아닙니다.
+
+Command 는 어떠한 행동이기 때문에 **현재형 (present tense)**을 쓰고, Event 는 Command 의 결과이기 때문에 **과거형 (past tense)**으로 만들겠습니다.
+
+먼저 비즈니스의 요구사항에 따라 Command 와 Event 를 정의합니다.
+1. Command  
+   - CreateTodoItem: TodoItem 을 생성합니다.
+   - ChangeTodoItemName: TodoItem 의 이름을 변경합니다.
+   - CompleteTodoItem: TodoItem 을 완료합니다.
+   - IncompleteTodoItem: TodoItem 을 미완료 상태로 변경합니다.
+2. Event  
+   - CreatedTodoItem: TodoItem 이 생성됐습니다.
+   - ChangedTodoItemName: TodoItem 의 이름이 변경됐습니다.
+   - CompletedTodoItem: TodoItem 이 완료됐습니다.
+   - InCompletedTodoItem: TodoItem 이 미완료료 상태로 변경됐습니다.
 
 ## Upcoming next
 
