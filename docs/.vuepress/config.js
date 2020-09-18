@@ -11,6 +11,12 @@ module.exports = {
    */
   description: description,
 
+  logo: '/img/logos/favicon.png',
+  // algolia: {
+  //   apiKey: '',
+  //   indexName: '',
+  // },
+
   /**
    * Extra tags to be injected to the page HTML `<head>`
    *
