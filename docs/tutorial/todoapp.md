@@ -701,7 +701,7 @@ public class TodoItemDTO
 }
 ```
 - DTO 적용을 위하여 `TodoItemController`를 전반적으로 수정합니다.
-```csharp{2,4-9,13-16,20,29,34,41-48,54-57,64-76,80-92}
+```csharp{2,4-9,13-16,20,29,34,41-48,54-57,64-76,80-92,94,96-101}
 ...
 private bool TodoItemExists(long id) => _context.TodoItems.Any(e => e.Id == id);
 
@@ -1245,16 +1245,37 @@ CQRS 는 **Command and Query Responsibility Segregation** 의 약자입니다. �
 전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다. 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (~~이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.~~)
 
 현재 Api 의 endpoint 가 전통적인 CRUD 의 전형적인 구현입니다. GET(SELECT), POST(CREATE), PUT(UPDATE), DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.
+```csharp
+public interface ITodoService
+{
+  Task<ActionReusult<IEnumerable<TodoItemDTO>>> GetTodoItems();
+  Task<ActionResult<TodoItemDTO>> GetTodoItem(long id);
+  Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO);
+  Task<ActionResult> CreateTodoItem(TodoItemDTO todoItemDTO);
+  Task<IActionResult> DeleteTodoItem(long id);
+}
+```
+이 endpoint 들을 CQRS 방식으로 변경해본다면 대충 다음과 같이 될 것 같습니다.
+```csharp
+public interface ITodoCommandService
+{
+  Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO);
+  Task<ActionResult> CreateTodoItem(TodoItemDTO todoItemDTO);
+  Task<IActionResult> DeleteTodoItem(long id);
+}
 
-::: warning TODO
-실제 예시 추가 예정
-:::
+public interface ITodoQueryService
+{
+  Task<ActionReusult<IEnumerable<TodoItemDTO>>> GetTodoItems();
+  Task<ActionResult<TodoItemDTO>> GetTodoItem(long id);
+}
+```
+간단하게 Command (데이터의 상태 변화) 와 Query (데이터 조회) 로 분리했습니다. 굳이 이렇게 분리해야 될까 싶지만 이러한 분리가 비즈니스를 구현하는데에 있어 유연함을 제공해 줄 수 있습니다. (~~코딩의 복잡도는 증가할 수 있습니다.~~)
+
+일반적으로 데이터의 쓰기 작업(CUD)는 읽기 작업(R)보다 상대적으로 빈도가 낮습니다. 모델과 데이터 베이스를 분리하여 각 부분별로 독립적으로 확장하고 심지어 다른 개발기술로 구현하여 비즈니스의 확장을 효율적으로 처리할 수 있게 됩니다.
 
 추가적으로 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.
-
-::: warning TODO
-ES 개념 설명 추가 예정
-:::
+[CQRS diagram](https://codeopinion.com/wp-content/uploads/2019/02/Capture-1024x542.png)
 
 CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 Todo 에 대한 변경 이력이 보여졌으면 좋겠다고 하는 비즈니스 요구사항 추가되었다고 가정하고 CQRS / ES 를 적용해 보겠습니다.
 
