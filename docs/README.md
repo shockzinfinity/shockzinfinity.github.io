@@ -29,5 +29,9 @@ features:
     details: VuePress 관련 Tip
   - title: MS SQL
     details: mssql on docker
+  - title: EF core
+    details: EntityFrameworkCore 관련
+  - title: WordPress
+    details: wordpress, woocommerce
 footer: Made by shockz with ❤️
 ---
