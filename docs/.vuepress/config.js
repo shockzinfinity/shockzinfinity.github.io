@@ -29,7 +29,7 @@ module.exports = {
       'meta',
       { name: 'google-site-verification', content: 'hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA' },
     ],
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
     ['link', { rel: 'apple-touch-icon', sizes: '57x57', href: '/img/icons/apple-icon-57x57.png' }],
@@ -77,9 +77,8 @@ module.exports = {
       'link',
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/icons/favicon-16x16.png' },
     ],
-    ['meta', { name: 'msapplication-TileColor', content: '#ffffff' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#2196f3' }],
     ['meta', { name: 'msapplication-TileImage', content: '/img/icons/ms-icon-144x144.png' }],
-    ['meta', { name: 'theme-color', content: '#ffffff' }],
   ],
 
   /**
