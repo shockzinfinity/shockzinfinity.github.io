@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /img/logos/logo.png
+heroImage: /img/logo_transparent.png
 tagline: devLog, tutorial and etc.
 actionText: Todo Tutorial →
 actionLink: /tutorial/
