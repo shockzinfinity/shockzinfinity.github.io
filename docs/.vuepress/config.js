@@ -10,8 +10,6 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
   description: description,
-
-  logo: '/img/logos/favicon.png',
   // algolia: {
   //   apiKey: '',
   //   indexName: '',

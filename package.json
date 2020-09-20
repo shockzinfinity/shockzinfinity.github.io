@@ -1,13 +1,13 @@
 {
-  "name": "shockz-vue-press",
-  "version": "0.0.1",
-  "description": "github.io 에 vuepress 적용기",
+  "name": "shockzinfinity-blog",
+  "version": "0.0.8",
+  "description": "github.io 에 vuepress 를 이용한 Blog",
   "main": "index.js",
   "authors": {
     "name": "shockz",
     "email": "shockzinfinity@gmail.com"
   },
-  "repository": "https://github.com/shockzinfinity/shockz-vue-press.git/shockz-vue-press",
+  "repository": "https://github.com/shockzinfinity/shockz-vue-press.git",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
