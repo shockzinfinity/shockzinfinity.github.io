@@ -157,5 +157,6 @@ module.exports = {
   ...
 };
 ```
-- vuepress 사이트 배포 후 sitemap.xml 파일 생성확인
-- ![sitemap](image/vuepress.search.sitemap.1.png)
+- vuepress 사이트 배포 후 sitemap.xml 파일 생성확인 후
+- [Google Search Console](https://search.google.com/search-console) 에 sitemap 파일 등록
+- ![sitemap](./image/vuepress.search.sitemap.1.png)
