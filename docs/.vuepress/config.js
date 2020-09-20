@@ -129,6 +129,7 @@ module.exports = {
         updatePopup: true,
       },
     ],
+    ['sitemap', { hostname: 'https://shockzinfinity.github.io' }],
   ],
 
   markdown: {
