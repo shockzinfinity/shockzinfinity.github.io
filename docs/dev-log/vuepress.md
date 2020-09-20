@@ -141,3 +141,21 @@ ACCESS_TOKEN 은 해당 repository > Settings > Secrets 에 등록되는 환경 
 - 토큰 권한은 아래를 체크해준다.  
    ![vuepress.github.actions](./image/vuepress.github.actions.7.png)
 :::
+
+## sitemap 플러그인 적용
+
+```bash
+$ yarn add -D vuepress-plugin-sitemap
+```
+```js{5}
+module.exports = {
+  ...,
+  plugins: [
+    ...,
+    ['sitemap', { hostname: 'https://shockzinfinity.github.io' }],
+  ],
+  ...
+};
+```
+- vuepress 사이트 배포 후 sitemap.xml 파일 생성확인
+- ![sitemap](image/vuepress.search.sitemap.1.png)
