@@ -1,4 +1,5 @@
 const { description } = require('../../package');
+const feed_options = { canonical_base: 'https://shockzinfinity.github.io' };
 
 module.exports = {
   base: '/',
@@ -162,6 +163,7 @@ module.exports = {
       },
     ],
     ['sitemap', { hostname: 'https://shockzinfinity.github.io' }],
+    ['feed', feed_options],
   ],
 
   markdown: {

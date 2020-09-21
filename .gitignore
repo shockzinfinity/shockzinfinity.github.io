@@ -12,3 +12,4 @@ basement_dist
 node_modules
 package-lock.json
 dist/
+yarn-error.log
