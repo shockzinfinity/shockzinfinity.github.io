@@ -8,6 +8,16 @@ meta:
     content: vuepress
 tags: ["vuepress"]
 sidebar: auto
+feed:
+  enable: true
+  title: VuePress 설정
+  description: VuePress 관련 설정
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/vuepress.html
 ---
 
 # VuePress
@@ -160,3 +170,37 @@ module.exports = {
 - vuepress 사이트 배포 후 sitemap.xml 파일 생성확인 후
 - [Google Search Console](https://search.google.com/search-console) 에 sitemap 파일 등록
 - ![sitemap](./image/vuepress.search.sitemap.1.png)
+
+## rss 생성
+
+```bash
+$ yarn add -D vuepress-plugin-feed
+```
+```js{1,7}
+const feed_options = { canonical_base: 'https://shockzinfinity.github.io' };
+
+module.exports = {
+  ...,
+  plugins: [
+    ...,
+    ['feed', feed_options],
+  ]
+  ...
+}
+```
+- 각 페이지의 frontmatter 부분에 feed 관련 설정 추가 (e.g. centos.md 페이지)
+```md{3-12}
+---
+...
+feed:
+  enable: true
+  title: CentOS 8 설정
+  description: CentOS 8 설치 후 기본적인 설정을 포함합니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/centos.html
+---
+```
