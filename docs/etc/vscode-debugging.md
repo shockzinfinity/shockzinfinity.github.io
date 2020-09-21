@@ -8,6 +8,16 @@ meta:
     content: debugging, vscode
 tags: ["vscode", "debugging", "edge"]
 sidebar: auto
+feed:
+  enable: true
+  title: VSCode debugging
+  description: VisualStudio Code 디버깅
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/etc/vscode-debugging.html
 ---
 
 # Using edge debugger in vscode

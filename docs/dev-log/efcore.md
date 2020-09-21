@@ -8,6 +8,16 @@ meta:
     content: ef core
 tags: ["ef core"]
 sidebar: auto
+feed:
+  enable: true
+  title: ef core
+  description: EntityFrameworkCore 관련 내용을 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/efcore.html
 ---
 
 # ef core

@@ -8,6 +8,16 @@ meta:
     content: docker in centos 8
 tags: ["docker"]
 sidebar: auto
+feed:
+  enable: true
+  title: Docker 사용방법
+  description: docker 사용 및 관련 설정 내용을 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/docker.html
 ---
 
 # Docker

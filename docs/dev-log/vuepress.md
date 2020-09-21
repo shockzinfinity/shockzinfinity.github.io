@@ -204,3 +204,7 @@ feed:
       link: https://shockzinfinity.github.io/dev-log/centos.html
 ---
 ```
+- 배포 후에 생성된 파일들 확인
+   ![rss](./image/vuepress.rss.1.jpg)
+- [네이버 웹마스터 도구](https://searchadvisor.naver.com/)에서는 rss 를 등록할 수 있음
+   ![rss](./image/vuepress.rss.2.png)

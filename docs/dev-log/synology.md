@@ -8,6 +8,16 @@ meta:
     content: synology, NAS
 tags: ["nas", "synology"]
 sidebar: auto
+feed:
+  enable: true
+  title: Synology NAS
+  description: Synology NAS 에 대한 내용을 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/synology.html
 ---
 
 # Synology

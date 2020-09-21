@@ -8,6 +8,16 @@ meta:
     content: wordpress
 tags: ["wordpress"]
 sidebar: auto
+feed:
+  enable: true
+  title: WordPress
+  description: WordPress 관련 설정
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/wordpress.html
 ---
 
 # WordPress 관련 기록

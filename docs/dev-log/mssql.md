@@ -8,6 +8,16 @@ meta:
     content: mssql
 tags: ["mssql", "docker"]
 sidebar: auto
+feed:
+  enable: true
+  title: mssql on docker
+  description: mssql on docker
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/mssql.html
 ---
 
 # mssql on docker

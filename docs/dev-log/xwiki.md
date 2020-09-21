@@ -8,6 +8,16 @@ meta:
     content: xwiki
 tags: ["xwiki"]
 sidebar: auto
+feed:
+  enable: true
+  title: XWiki
+  description: XWiki 설치 및 설정에 대해 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/xwiki.html
 ---
 
 # XWiki 설치

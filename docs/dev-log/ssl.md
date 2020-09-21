@@ -8,6 +8,16 @@ meta:
     content: ssl
 tags: ["ssl", "x509", "certificate"]
 sidebar: auto
+feed:
+  enable: true
+  title: SSL
+  description: SSL 과 관련된 설정에 대해 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/ssl.html
 ---
 
 # SSL tip
@@ -111,3 +121,4 @@ Set-ExecutionPolicy RemoteSigned
 
 - [Develop Locally with HTTPS, Self-Signed Certificates and ASP.NET Core](https://www.humankode.com/asp-net-core/develop-locally-with-https-self-signed-certificates-and-asp-net-core)
 - [thecarlo/https-with-asp-net-core](https://github.com/thecarlo/https-with-asp-net-core)
+

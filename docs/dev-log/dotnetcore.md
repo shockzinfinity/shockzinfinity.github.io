@@ -1,13 +1,23 @@
 ---
-title: .net core in CentOS 8
+title: .net core
 lang: ko-KR
 meta:
   - name: description
-    content: .net core in centos 관련 내용을 다룹니다.
+    content: .net core 관련 내용을 다룹니다.
   - name: keywords
     content: .net core
 tags: [".net core", "centos8", "docker"]
 sidebar: auto
+feed:
+  enable: true
+  title: .net core
+  description: .net core 관련 내용을 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/dotnetcore.html
 ---
 
 # dotnet core in CentOS 8 & mac

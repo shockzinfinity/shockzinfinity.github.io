@@ -8,6 +8,16 @@ meta:
     content: gitlab
 tags: ["git", "gitlab", "docker"]
 sidebar: auto
+feed:
+  enable: true
+  title: GitLab
+  description: gitlab 설치, 백업 및 복원에 대해 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/gitlab.html
 ---
 
 # GitLab

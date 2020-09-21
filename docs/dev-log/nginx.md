@@ -8,6 +8,16 @@ meta:
     content: nginx
 tags: ["nginx", "reverse proxy"]
 sidebar: auto
+feed:
+  enable: true
+  title: Nginx
+  description: Nginx 설정 파일, 기타 내용을 다룹니다.
+  image: /public/img/logo.png
+  author:
+    -
+      name: shockz
+      email: shockzinfinity@gmail.com
+      link: https://shockzinfinity.github.io/dev-log/nginx.html
 ---
 
 # Nginx
