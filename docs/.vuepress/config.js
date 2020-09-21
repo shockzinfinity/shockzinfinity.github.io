@@ -27,6 +27,10 @@ module.exports = {
       'meta',
       { name: 'google-site-verification', content: 'hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA' },
     ],
+    [
+      'meta',
+      { name: 'naver-site-verification', content: 'd795a93480ccc9f079f6ce70e020202b3a7d0a72' },
+    ],
     ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
