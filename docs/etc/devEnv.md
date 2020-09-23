@@ -57,3 +57,58 @@ $ brew cask install dotnet-sdk
 ## Visual Studio for Mac
 
 [PC 및 Mac용 Visual Studio 비교](https://visualstudio.microsoft.com/ko/vs/mac/#vs_mac_table)
+
+## brew 업데이트
+
+```bash
+$ brew update
+$ brew upgrade
+$ brew cleanup
+$ brew doctor
+```
+
+## php 개발환경 설정
+
+- [참고사이트](https://getgrav.org/blog/macos-catalina-apache-multiple-php-versions)
+
+- php.ini timezone
+```bash{6}
+/usr/local/etc/php/5.6/php.ini
+/usr/local/etc/php/7.0/php.ini
+/usr/local/etc/php/7.1/php.ini
+/usr/local/etc/php/7.2/php.ini
+/usr/local/etc/php/7.3/php.ini
+/usr/local/etc/php/7.4/php.ini
+```
+- `php.ini`
+```php{4}
+[Date]
+; Defines the default timezone used by the date functions
+; http://php.net/date.timezone
+date.timezone = Asia/Seoul
+```
+- php 설치 후 설정과정 중, 403 Forbidden 현상 발생 시 `httpd.conf` 변경 필요
+```bash{19}
+#
+# DirectoryIndex: sets the file that Apache will serve if a directory
+# is requested.
+#
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+<FilesMatch \.php$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+#
+# The following lines prevent .htaccess and .htpasswd files from being 
+# viewed by Web clients. 
+#
+<FilesMatch ".ht*">
+    # Require all denied
+    Require all granted
+</FilesMatch>
+```
+- $ curl -L https://gist.githubusercontent.com/rhukster/f4c04f1bf59e0b74e335ee5d186a98e2/raw > /usr/local/bin/sphp
+$ chmod +x /usr/local/bin/sphp
