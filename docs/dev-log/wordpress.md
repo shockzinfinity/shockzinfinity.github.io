@@ -289,6 +289,7 @@ $ docker-compose stop webserver
 $ curl -sSLo nginx-conf/options-ssl-nginx.conf https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf
 # 기존 설정 삭제 후 nginx.conf 생성
 $ rm nginx-conf/nginx.conf
+$ touch nginx-conf/nginx.conf
 $ vi nginx-conf/nginx.conf
 ```
 ```bash{5,20,29-31,39-40}
@@ -400,7 +401,7 @@ $ tail -f /var/log/cron.log
 ```
 
 - `ssl_renew.sh` 는 다음과 같이 수정
-```bash{6}
+```bash{6,7}
 #!/bin/bash
 
 COMPOSE="/usr/local/bin/docker-compose --no-ansi"
@@ -427,7 +428,7 @@ $DOCKER system prune -af
 ```
 
 - W3 Total Cache 및 Autoptimizer 설치
-   > Minify 는 Autoptimizer 를 씀
+   > W3 Total Cache 의 Minify 기능은 Autoptimizer 로 대체하여 사용 (W3 Total Cache minify 가 문제가 많다고 함)
 ::: warning
 W3 Total Cache 메시지 중 웹서버 재시작 메시지 나오면 웹서버 재시작
 ```bash
