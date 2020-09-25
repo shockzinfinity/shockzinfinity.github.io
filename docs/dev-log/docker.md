@@ -58,7 +58,7 @@ $ sudo reboot
 $ docker version
 $ docker run hello-world
 
-# docker-compose install (release 다운로드 위치: https://github.com/docker/compose/releases)
+# docker-compose install (release 다운로드 위치: https://github.com/docker/compose/releases) 버전 확인해서 해당 버전으로 변경 후 다운로드
 # global install
 # /tmp 에서 작업
 $ curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
@@ -71,6 +71,8 @@ $ docker-compose -version
 
 # docker-compose 삭제
 $ sudo rm /usr/local/bin/docker-compose
+# docker-compose 삭제 (pip 로 설치한 경우)
+$ pip3.6 uninstall docker-compose
 
 # podman 삭제는 진행하지 않음
 ```
