@@ -36,6 +36,8 @@ feed:
   - Redis
   - Wordpress plugin: [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/), [Autoptimize](https://wordpress.org/plugins/autoptimize/)
 
+> [Repository](https://github.com/shockzinfinity/wordpress-redis)
+
 > 참고사이트: [How To Install WordPress With Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
 
 ### 1. 준비사항
