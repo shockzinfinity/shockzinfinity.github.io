@@ -62,6 +62,7 @@ $ mkdir dataredis
 $ mkdir wordpress && chmod 777 wordpress
 ```
 
+### 3. ssl 생성을 위한 certbot nginx.conf 생성
 - `nginx-conf/nginx.conf` 생성 (certbot ssl 갱신용 설정)
 ```bash{5}
 server {
@@ -110,6 +111,8 @@ server {
 }
 ```
 
+### 4. 워드프레스 용 php.ini 설정
+
 - `php/php.ini` 생성
 ```php  
 short_open_tag = On
@@ -122,6 +125,8 @@ date.timezone = Asia/Seoul
 expose_php = off
 ```
 
+### 5. 환경파일 생성 (.env)
+
 - `wordpress-redis` 디렉토리에 `.env` 생성
 ```bash
 MYSQL_ROOT_PASSWORD=your_root_password
@@ -130,6 +135,8 @@ MYSQL_PASSWORD=your_wordpress_database_password
 ```
 
 - `.gitignore` 에 `.env` 등록하여 git repository 에 들어가지 않도록 설정
+
+### 6. php 도커 이미지 설정
 
 - php 공식 이미지 사용
    > php7.4-fpm-alpine official: [https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile)
@@ -153,6 +160,8 @@ $ chmod +x docker-entrypoint.sh
 ```bash
 $ docker build -t wordpress-fpm-alpine-redis:1.0 .
 ```
+
+### 7. 워드프레스 docker-compose 설정
 
 - `wordpress-redis/docker-compose.yml` 생성
 ```docker{19,67}
@@ -281,6 +290,8 @@ certbot-etc/live/wordpress.shockz.io 디렉토리에서 발급된 테스팅 인�
 ```bash
 $ docker-compose up --force-recreate  --no-deps certbot
 ```
+
+### 8. nginx ssl 설정
 
 - 발급된 인증서를 위한 `nginx-conf/nginx.conf` 수정
 ```bash
@@ -426,6 +437,8 @@ $DOCKER system prune -af
     command: renew
 ...
 ```
+
+### 9. 워드프레스 redis 캐시 설정
 
 - W3 Total Cache 및 Autoptimizer 설치
    > W3 Total Cache 의 Minify 기능은 Autoptimizer 로 대체하여 사용 (W3 Total Cache minify 가 문제가 많다고 함)
