@@ -71,7 +71,7 @@ $ brew doctor
 
 - [참고사이트](https://getgrav.org/blog/macos-catalina-apache-multiple-php-versions)
 
-- php.ini timezone
+- php.ini 위치
 ```bash{6}
 /usr/local/etc/php/5.6/php.ini
 /usr/local/etc/php/7.0/php.ini
@@ -80,7 +80,7 @@ $ brew doctor
 /usr/local/etc/php/7.3/php.ini
 /usr/local/etc/php/7.4/php.ini
 ```
-- `php.ini`
+- `php.ini` 타임존 설정
 ```php{4}
 [Date]
 ; Defines the default timezone used by the date functions
@@ -112,3 +112,7 @@ date.timezone = Asia/Seoul
 ```
 - $ curl -L https://gist.githubusercontent.com/rhukster/f4c04f1bf59e0b74e335ee5d186a98e2/raw > /usr/local/bin/sphp
 $ chmod +x /usr/local/bin/sphp
+
+## PHP on VS Code
+
+> 참고사이트: [php on vscode](http://blog.naver.com/PostView.nhn?blogId=haruby511&logNo=221455944336)
