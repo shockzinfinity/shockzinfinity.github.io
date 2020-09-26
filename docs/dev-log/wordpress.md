@@ -465,3 +465,70 @@ $ docker-compose up -d --force-recreate --no-deps webserver
 ![wordpress.redis](./image/wordpress.redis.6.png)
 ![wordpress.redis](./image/wordpress.redis.7.png)
 ![wordpress.redis](./image/wordpress.redis.8.png)
+
+## wordpress 플러그인 개발용 설정 (macOS 기준)
+
+- localhost 에 wordpress-redis 를 이용하여 플러그인 개발 환경 설정
+- certbot 을 사용하지 않고 localhost 인증서 사용 (재갱신 X)
+
+### 1. localhost 인증서 추출
+
+- **키체인 접근** 실행 후 **localhost** 인증서 확인
+   ![wordpress.mac](./image/wordpress.mac.1.png)  
+   ![wordpress.mac](./image/wordpress.mac.2.png)
+
+- p12 로 추출 후 PEM 변환
+   ![wordpress.mac](./image/wordpress.mac.3.png)
+```bash
+# 편의상 기존 볼륨 이용
+$ cd certbot-etc
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
+$ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
+```
+
+- `nginx.conf` 수정
+```bash{5,20,29-31}
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name localhost;
+
+        location ~ /.well-known/acme-challenge {
+                allow all;
+                root /var/www/html;
+        }
+
+        location / {
+                rewrite ^ https://$host$request_uri? permanent;
+        }
+}
+
+server {
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        server_name localhost;
+
+        index index.php index.html index.htm;
+
+        root /var/www/html;
+
+        server_tokens off;
+        client_max_body_size 100M;
+
+        ssl_certificate /etc/letsencrypt/localhost/localhost.crt.pem;
+        ssl_certificate_key /etc/letsencrypt/localhost/localhost.key.pem;
+        #ssl_trusted_certificate /etc/letsencrypt/localhost/chain.pem;
+        include /etc/nginx/conf.d/options-ssl-nginx.conf;
+        ...
+}
+```
+
+### 2. docker-compose.yml 수정
+
+- `docker-compose.yml` 의 services 하위의 **certbot** 구간 삭제
+- build & up
+```bash
+$ docker build -t wordpress-fpm-alpine-redis:1.0 .
+$ docker-compose up -d
+```
