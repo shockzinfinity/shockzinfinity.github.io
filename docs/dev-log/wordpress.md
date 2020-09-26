@@ -388,6 +388,7 @@ $ docker-compose up -d --force-recreate --no-deps webserver
 ```
 
 - `https://wordpress.shockz.io` 에 접속하여 언어 및 아이디/비밀번호 설정 마무리
+![wordpress.redis](./image/wordpress.redis.9.png)
 
 - SSL 인증서 갱신을 위한 `wordpress-redis/ssl_renew.sh` 생성
 ```bash{6}
