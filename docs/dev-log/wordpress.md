@@ -480,11 +480,25 @@ $ docker-compose up -d --force-recreate --no-deps webserver
 - p12 로 추출 후 PEM 변환
    ![wordpress.mac](./image/wordpress.mac.3.png)
 ```bash
-# 편의상 기존 볼륨 이용
+# 편의상 기존 디렉토리 이용
 $ cd certbot-etc
 $ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
 $ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
 ```
+::: tip
+```bash
+# certificate in localhost.crt.pem
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
+# private key in localhost.key.pem
+$ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
+# certificate 와 private key 를 한 파일에 넣을 경우 (password 없이)
+$ openssl pkcs12 -in localhost.p12 -out localhost.pem --nodes
+# password 있는 상태로 추출은
+$ openssl pkcs12 -in localhost.p12 -out localhost.pem
+# command line 상에서 직접 입력할 경우
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys -passin 'pass:p@ssw0rd'
+```
+:::
 
 - `nginx.conf` 수정
 ```bash{5,20,29-31}
