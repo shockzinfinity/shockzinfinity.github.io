@@ -532,3 +532,16 @@ server {
 $ docker build -t wordpress-fpm-alpine-redis:1.0 .
 $ docker-compose up -d
 ```
+- `https://localhost` 접속 후 설정 마무리
+
+::: tip
+- 이미 80, 443 포트가 사용중이어서 `docker-compose up -d` 실패하는 경우, 아래의 사항들 확인 필요
+```bash
+# 80 포트 사용중인 프로세스 확인
+$ lsof -i :80
+# apache 가 기동 중일 경우
+$ apachectl -k stop
+# or brew service 로 등록되어 있는 경우
+$ sudo brew services stop httpd
+```
+:::
