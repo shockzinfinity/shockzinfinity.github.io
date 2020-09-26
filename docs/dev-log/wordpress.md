@@ -5,8 +5,8 @@ meta:
   - name: description
     content: WordPress 관련 설정
   - name: keywords
-    content: wordpress
-tags: ["wordpress"]
+    content: wordpress, redis, docker
+tags: ["wordpress", "redis", "docker", "docker-compose"]
 sidebar: auto
 feed:
   enable: true
@@ -47,7 +47,7 @@ feed:
 
 ### 2. 관련 디렉토리 생성
 
-- Wordpress 시작 유저 홈 디렉토리에서 `/home/xxxx` 에서 시작
+- 작업 시작 디렉토리: 각 유저 홈 디렉토리 - 여기서는 `/home/shockz` 기준
 ```bash
 # wordpress redis 작업 기준 디렉토리
 $ mkdir wordpress-redis && cd wordpress-redis
@@ -66,6 +66,7 @@ $ mkdir wordpress && chmod 777 wordpress
 ```
 
 ### 3. ssl 생성을 위한 certbot nginx.conf 생성
+
 - `nginx-conf/nginx.conf` 생성 (certbot ssl 갱신용 설정)
 ```bash{5}
 server {

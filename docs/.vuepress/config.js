@@ -133,6 +133,7 @@ module.exports = {
         items: [
           { text: '개발환경설정', link: '/etc/devEnv' },
           { text: 'vscode-debugging', link: '/etc/vscode-debugging' },
+          { text: 'VS Code 관련', link: '/etc/vscode' },
         ],
       },
     ],
