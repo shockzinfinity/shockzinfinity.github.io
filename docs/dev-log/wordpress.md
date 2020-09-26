@@ -42,7 +42,8 @@ feed:
 
 ### 1. 준비사항
 
-- wordpress.shockz.io (DNS 설정완료)
+- 워드프레스를 구동하기 위한 도메인 - 여기서는 **wordpress.shockz.io** (DNS 설정완료) 로 구동
+- certbot 을 통해 인증서 발급 및 자동갱신을 할 예정이므로 80, 443 port 를 오픈할 수 있는 여건이어야 함.
 
 ### 2. 관련 디렉토리 생성
 
@@ -141,12 +142,12 @@ MYSQL_PASSWORD=your_wordpress_database_password
 ### 6. php 도커 이미지 설정
 
 - php 공식 이미지 사용
-   > php7.4-fpm-alpine official: [https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile)
+   > [php7.4-fpm-alpine official image](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile)
 ```bash
 $ wget https://raw.githubusercontent.com/docker-library/wordpress/master/php7.4/fpm-alpine/Dockerfile
 ```
 
-- `Dockerfile` 에 redis 추가 (34, 35번 라인)
+- 공식 이미지의 `Dockerfile` 에 redis 추가 (34, 35번 라인)
 ```docker
 pecl install imagick-3.4.4 redis;
 docker-php-ext-enable imagick redis;
@@ -264,7 +265,7 @@ $ docker-compose up -d
 $ docker-compose ps
 ```
 ::: tip
-certbot 은 Exit 0 로 나와야 함
+`docker-compose ps` 로 확인할 때 certbot 은 Exit 0 나오는 이유는 certbot 을 통해 인증서 테스트만을 구동했기 때문
 ```bash
 $ docker-compose logs certbot
 ```
@@ -274,7 +275,8 @@ certbot-etc/live/wordpress.shockz.io 디렉토리에서 발급된 테스팅 인�
 
 - SSL 인증서 발급을 위한 `docker-compose.yml` 수정
 ::: warning
-보유하고 있는 Wildcard SSL 등을 사용 예정이면 docker-compose.yml 에서 certbot 서비스 제거 후 nginx.conf 에서 ssl 인증서 관련 경로를 수정하면 됨
+1. 보유하고 있는 Wildcard SSL 등을 사용하는 경우라면 `docker-compose.yml` 에서 certbot 서비스 제거하고 추후 `nginx.conf` 에서 ssl 인증서 관련 경로를 수정하면 됨
+2. 이전 과정에서 **--staging** 부분을 **--force-renewal** 로 교체하여 실제 인증서 발급
 :::
 ```docker{10}
 ...
@@ -295,7 +297,7 @@ $ docker-compose up --force-recreate  --no-deps certbot
 
 ### 8. nginx ssl 설정
 
-- 발급된 인증서를 위한 `nginx-conf/nginx.conf` 수정
+- 발급된 인증서를 사용하기 위해 `nginx-conf/nginx.conf` 수정
 ```bash
 $ docker-compose stop webserver
 # ssl options 파일 다운로드
@@ -384,7 +386,7 @@ server {
 $ docker-compose up -d --force-recreate --no-deps webserver
 ```
 
-- `wordpress.shockz.io` 에 접속하여 언어 및 아이디/비밀번호 설정 마무리
+- `https://wordpress.shockz.io` 에 접속하여 언어 및 아이디/비밀번호 설정 마무리
 
 - SSL 인증서 갱신을 위한 `wordpress-redis/ssl_renew.sh` 생성
 ```bash{6}
@@ -404,11 +406,12 @@ $ crontab -e
 ```bash
 * * * * * /home/shockz/wordpress-redis/ssl_renew.sh >> /var/log/cron.log 2>&1
 ```
+- cron 작업을 통해 재갱신 시도가 이뤄짐. log 확인
 ```bash
 $ tail -f /var/log/cron.log
 ```
 
-- 재갱신이 성공하면 주기설정 (매일 12시 재갱신)
+- 로그에서 재갱신 성공을 확인 후 crontab 을 수정하여 주기설정 (매일 12시 재갱신)
 ```bash
 0 12 * * * /home/shockz/wordpress-redis/ssl_renew.sh >> /var/log/cron.log 2>&1
 ```
@@ -425,7 +428,7 @@ $COMPOSE run certbot renew && $COMPOSE kill -s SIGHUP webserver
 $DOCKER system prune -af
 ```
 
-- docker-compose.yml 에서 webserver의 --force-renewal 옵션은 더이상 필요하지 않으므로, renew 만 하는 것으로...
+- crontab 을 통해 주기적으로 재갱신 작업이 이뤄지기 때문에 `docker-compose.yml` 의 certbot 서비스의 **--force-renewal** 은 필요치 않고 **docker-compose** 재기동 시 **renew** 하는 것으로 수정
 ```docker{10}
 ...
   certbot:
