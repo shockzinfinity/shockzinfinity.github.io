@@ -125,6 +125,7 @@ module.exports = {
           { text: 'mssql', link: '/dev-log/mssql' },
           { text: 'EF core', link: '/dev-log/efcore' },
           { text: 'WordPress', link: '/dev-log/wordpress' },
+          { text: 'NPM', link: '/dev-log/npm' },
         ],
       },
       {
