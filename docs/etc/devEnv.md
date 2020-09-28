@@ -116,3 +116,10 @@ $ chmod +x /usr/local/bin/sphp
 ## PHP on VS Code
 
 > 참고사이트: [php on vscode](http://blog.naver.com/PostView.nhn?blogId=haruby511&logNo=221455944336)
+
+## VisualStudio 2019 Community
+
+인코딩 문제 발생 시
+![vs2019.encoding](./image/vs2019.encoding.1.png)
+![vs2019.encoding](./image/vs2019.encoding.2.png)
+![vs2019.encoding](./image/vs2019.encoding.3.png)
