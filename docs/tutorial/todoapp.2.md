@@ -1,5 +1,5 @@
 ---
-title: Todo App tutorial
+title: Todo App tutorial #2
 lang: ko-KR
 meta:
   - name: description
@@ -11,7 +11,7 @@ sidebar: auto
 disqus: yes
 feed:
   enable: true
-  title: Todo App tutorial
+  title: Todo App tutorial #2
   description: Todo App 을 만드는 꽤 복잡한 방법
   image: /public/img/logo.png
   author:
@@ -21,7 +21,7 @@ feed:
       link: https://shockzinfinity.github.io/tutorial/todoapp.html
 ---
 
-# Todo App Tutorial
+# Todo App Tutorial #2 - Backend
 
 <TagLinks />
 
