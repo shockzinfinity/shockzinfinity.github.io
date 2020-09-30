@@ -1217,3 +1217,18 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 ```
 
 ### Autentication (upcoming)
+
+### Slightly changes
+
+Todo App 을 제작 의뢰한 클라이언트로 부터 추가적인 요구사항이 왔다고 가정하겠습니다. 할일 목록을 각각의 분류로 좀 나누고 싶다는 요구사항이 있다고 가정하겠습니다.
+
+Todo Item 들을 각각의 영역으로 구분짓기 위해 [Trello 사이트](https://trello.com) 처럼 각 보드별로 todo를 분리하기 위해 API 에 Board 별로 구분짓기 위한 요구사항을 적용해 보겠습니다.
+
+- 각 Todo Item 을 별도의 Board 로 구분 짓고 해당 Board 에 귀속되어 있는 형태로 API 변경
+
+- Todo Item 에 Board id 추가
+- Board 를 관리할 수 있는 API 추가
+
+### Conclusion
+
+여기까지 기본적인 API 구현은 마무리 됩니다. Infra 와 Backend 의 영역은 더 복잡해질 수 있는 부분이나, Tutorial 이 너무 복잡해지는 것을 막고자 여기까지만 구현하겠습니다. 여기서 다루는 기술이 전부가 아니며, 현업에 종사하면서 경험하는 극히 일부분만을 다루는 것임을 이해하는 것이 중요한 것 같습니다.
