@@ -28,7 +28,7 @@ feed:
 ---
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
-> [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
+> 참고 Repository: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
 
 [[toc]]
 
