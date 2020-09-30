@@ -18,12 +18,19 @@ feed:
     -
       name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/tutorial/todoapp.1.html
+      link: https://shockzinfinity.github.io/tutorial/todoapp.4.html
 ---
 
 # Todo App Tutorial #4 - Refactoring
 
 <TagLinks />
+
+---
+
+> 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
+> [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
+
+[[toc]]
 
 ---
 

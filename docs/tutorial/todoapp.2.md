@@ -18,7 +18,7 @@ feed:
     -
       name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/tutorial/todoapp.html
+      link: https://shockzinfinity.github.io/tutorial/todoapp.2.html
 ---
 
 # Todo App Tutorial #2 - Backend
