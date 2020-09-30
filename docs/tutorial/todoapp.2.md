@@ -36,6 +36,12 @@ feed:
 
 ## API Step (Backend)
 
+### Intorduction
+
+이번 섹션에서는 Backend 를 다룹니다. Backend 는 사실 눈에 보이는 뭔가를 설명하기는 좀 힘들다고 생각합니다. 비즈니스 정의와 비즈니스 영역 내에서 눈으로 보여지기 힘든 부분을 다루는 경우가 많습니다. 그럼에도 불구하고 Backend 의 영역은 비즈니스와 직접적으로 연관되어 있는 경우가 많기에 난해해질 수 있는 가능성을 항상 가지고 있으며 Application 이 진화하는 과정에서 가장 변화가 심한 부분일 수 있습니다. 단지 Frontend 의 그것 처럼 눈에 보이지 않을 뿐입니다.
+
+이 섹션에서는 인프라와 기본적인 비즈니스 요구사항에서 대해서만 다루겠습니다. 비즈니스의 변화되는 과정은 후반부에 다뤄지는 섹션에서 더 자세하게 살펴볼 수 있을 것 같습니다.
+
 ### Todo WebAPI(RESTful)
 
 - [dotnet core sdk](https://dotnet.microsoft.com/download)  
