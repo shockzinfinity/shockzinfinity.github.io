@@ -1216,9 +1216,19 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 }
 ```
 
-### Autentication (upcoming)
+### Authentication
 
-추후 추가 예정
+인증은 실제 서비스를 운영하는 데에 있어서 상당히 중요한 부분입니다. 추후 별도의 포스트를 통해 더 자세하게 다뤄보기로 하고 이 Tutorial 에서는 서비스에 필요한 최소한을 구현하는 것을 목표로 하겠습니다.
+
+인증은  
+1. 서비스 자체에서 구현하는 방법
+2. 외부 인증 서비스를 이용하는 방법  
+으로 생각해볼 수 있을것 같습니다. 외부 인증서비스를 이용하는 것이 속 편하지만 이 Tutorial 에서는 간단하게 JWT 토큰을 이용하는 인증을 구현해보겠습니다.
+
+- 먼저 User
+
+
+#### 
 
 ### Slightly changes
 
@@ -1235,7 +1245,7 @@ Todo Item 들을 각각의 영역으로 구분짓기 위해 [Trello 사이트](h
 
 #### 1. Category 관련 모델 추가
 
-- `Category`, `CategoryDTO` 추가
+- `Models/Category.cs`, `Models/CategoryDTO.cs` 추가
 ```csharp
 public class Category
 {
@@ -1254,7 +1264,7 @@ public class CategoryDTO
 }
 ```
 
-- DbContext 에 Category 추가
+- **DbContext** 에 Category 추가
 ```csharp{12}
 public class TodoContext : DbContext
 {
@@ -1316,6 +1326,7 @@ DB 에 적용하기 위해서는 커맨드를 통해 `dotnet ef database update`
 
 #### 3. CategoryController 추가
 
+- `Controllers/CategoryController.cs` 추가 ()
 ```csharp
     [Produces("application/json")]
     [Route("api/[controller]")]
