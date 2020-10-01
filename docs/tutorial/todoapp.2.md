@@ -1218,17 +1218,265 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 
 ### Autentication (upcoming)
 
+추후 추가 예정
+
 ### Slightly changes
 
 Todo App 을 제작 의뢰한 클라이언트로 부터 추가적인 요구사항이 왔다고 가정하겠습니다. 할일 목록을 각각의 분류로 좀 나누고 싶다는 요구사항이 있다고 가정하겠습니다.
 
 Todo Item 들을 각각의 영역으로 구분짓기 위해 [Trello 사이트](https://trello.com) 처럼 각 보드별로 todo를 분리하기 위해 API 에 Board 별로 구분짓기 위한 요구사항을 적용해 보겠습니다.
 
-- 각 Todo Item 을 별도의 Board 로 구분 짓고 해당 Board 에 귀속되어 있는 형태로 API 변경
+- 요구사항: 각 Todo Item 을 각각의 Category 구분
+- 변경사항
+  1. Category 관련 모델 추가
+  2. TodoItem 에 CategoryId 를 추가하여 분류 -> TodoItem 모델에 `CategoryId` 컬럼 추가 
+  3. Category 를 관리할 수 있는 컨트롤러 추가
+  4. TodoItemsController 의 GET, POST, PUT endpoint 에 CategoryId 추가 및 관련 로직 수정
 
-- Todo Item 에 Board id 추가
-- Board 를 관리할 수 있는 API 추가
+#### 1. Category 관련 모델 추가
+
+- `Category`, `CategoryDTO` 추가
+```csharp
+public class Category
+{
+  public long Id { get; set; }
+  [Required]
+  public string Name { get; set; }
+  [Timestamp]
+  public byte[] RowVersion { get; set; }
+}
+
+public class CategoryDTO
+{
+  public long Id { get; set; }
+  [Required]
+  public string Name { get; set; }
+}
+```
+
+- DbContext 에 Category 추가
+```csharp{12}
+public class TodoContext : DbContext
+{
+  public TodoContext(DbContextOptions<TodoContext> options) : base(options)
+  {
+  }
+
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+  {
+  }
+
+  public DbSet<TodoItem> TodoItems { get; set; }
+  public DbSet<Category> Categories { get; set; }
+}
+``` 
+
+- ef core 마이그레이션 추가
+```bash
+$ dotnet ef migrations add AddCategory
+$ dotnet ef migrations list
+```
+
+#### 2. TodoItem 및 TodoItemDTO 에 CategoryId 추가
+
+```csharp{4,16}
+public class TodoItem
+{
+  public long Id { get; set; }
+  public long CategoryId { get; set; }
+  [Required]
+  public string Name { get; set; }
+  [DefaultValue(false)]
+  public bool IsCompleted { get; set; }
+  [Timestamp]
+  public byte[] RowVersion { get; set; }
+}
+
+public class TodoItemDTO
+{
+  public long Id { get; set; }
+  public long CategoryId { get; set; }
+  [Required]
+  public string Name { get; set; }
+  [DefaultValue(false)]
+  public bool IsComplete { get; set; }
+}
+```
+- migration 생성 및 관련 스크립트 생성
+```bash
+$ dotnet ef migrations add AddCategoryIdToTodoItem
+$ dotnet ef migrations list
+
+# project 디렉토리에서 진행하면 따로 프로젝트 지정하지 않아도 됨.
+$ dotnet ef migrations script --idempotent -o migrations02.sql
+```
+::: tip
+DB 에 적용하기 위해서는 커맨드를 통해 `dotnet ef database update` 를 실행하거나 위에서 생성된 sql 을 Azure Data Studio 나 SSMS 에서 직접 실행하여 DB 에 반영합니다.
+:::
+
+#### 3. CategoryController 추가
+
+```csharp
+    [Produces("application/json")]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CategoryController : ControllerBase
+    {
+      private readonly TodoContext _context;
+      public CategoryController(TodoContext context)
+      {
+        _context = context ?? throw new ArgumentNullException(nameof(context));
+      }
+
+    private bool CategoryExists(long id) => _context.Categories.Any(c => c.Id == id);
+
+    private static CategoryDTO CategoryToDTO(Category category) => new CategoryDTO
+    {
+      Id = category.Id,
+      Name = category.Name
+    };
+
+    /// <summary>
+    /// 모든 카테고리를 불러옵니다.
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetCategorys()
+    {
+      return await _context.Categories.Select(x => CategoryToDTO(x)).ToListAsync();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<CategoryDTO>> GetCategory(long id)
+    {
+      var category = await _context.Categories.FindAsync(id);
+
+      if(category == null)
+      {
+        return NotFound();
+      }
+
+      return CategoryToDTO(category);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateCategory(long id, CategoryDTO categoryDTO)
+    {
+      if(id != categoryDTO.Id)
+      {
+        return BadRequest();
+      }
+
+      var category = await _context.Categories.FindAsync(id);
+      if(category == null)
+      {
+        return NotFound();
+      }
+
+      category.Name = categoryDTO.Name;
+
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException) when (!CategoryExists(id))
+      {
+        return NotFound();
+      }
+
+      return NoContent();
+    }
+
+    /// <summary>
+    /// Category 를 생성합니다.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///   POST api/Category
+    ///   {
+    ///     name: "Category 1"
+    ///   }
+    ///   
+    /// </remarks>
+    /// <param name="categoryDTO"></param>
+    /// <returns>생성된 Category</returns>
+    /// <response code="201">생성된 Category</response>
+    /// <response code="400">category 가 null 일 경우</response>
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Category>> CreateCategory(CategoryDTO categoryDTO)
+    {
+      var category = new Category
+      {
+        Name = categoryDTO.Name
+      };
+
+      _context.Categories.Add(category);
+      await _context.SaveChangesAsync();
+
+      return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, CategoryToDTO(category));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteCategory(long id)
+    {
+      var category = await _context.Categories.FindAsync(id);
+
+      if(category == null)
+      {
+        return NotFound();
+      }
+
+      _context.Remove(category);
+      await _context.SaveChangesAsync();
+
+      return NoContent();
+    }
+  }
+```
+
+#### 4. TodoItemsController 관련사항 변경
+
+- TodoItemsController 에 관련 메서드들을 수정합니다.
+```csharp{6,15,26}
+private static TodoItemDTO ItemToDTO(TodoItem todoItem) => new TodoItemDTO
+{
+  Id = todoItem.Id,
+  Name = todoItem.Name,
+  IsComplete = todoItem.IsCompleted,
+  CategoryId = todoItem.CategoryId
+};
+
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO)
+{
+  ...
+  todoItem.Name = todoItemDTO.Name;
+  todoItem.IsCompleted = todoItemDTO.IsComplete;
+  todoItem.CategoryId = todoItemDTO.CategoryId;
+  ...
+}
+
+[HttpPost]
+public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO)
+{
+  var todoItem = new TodoItem
+  {
+    IsCompleted = todoItemDTO.IsComplete,
+    Name = todoItemDTO.Name,
+    CategoryId = todoItemDTO.CategoryId
+  };
+  ...
+}
+```
+
+- Postman 등으로 테스트 해봅니다.
+![postman.test](./images/todo/postman.test.15.png)
+![postman.test](./images/todo/postman.test.16.png)
+![postman.test](./images/todo/postman.test.17.png)
 
 ### Conclusion
 
-여기까지 기본적인 API 구현은 마무리 됩니다. Infra 와 Backend 의 영역은 더 복잡해질 수 있는 부분이나, Tutorial 이 너무 복잡해지는 것을 막고자 여기까지만 구현하겠습니다. 여기서 다루는 기술이 전부가 아니며, 현업에 종사하면서 경험하는 극히 일부분만을 다루는 것임을 이해하는 것이 중요한 것 같습니다.
+여기까지 기본적인 API 구현은 마무리 됩니다. Infra 와 Backend 의 영역은 더 복잡해질 수 있는 부분이나, Tutorial 이 너무 복잡해지는 것을 막고자 여기까지만 구현하겠습니다. 여기서 다루는 기술이 전부가 아닐뿐더러 더 좋은 방법들은 훨씬 많습니다. 이 Tutorial 의 나머지 부분에서 좀 더 찾아보도록 할 예정입니다. 일단 다음 파트에서 Frontend 를 만들어 보겠습니다.
