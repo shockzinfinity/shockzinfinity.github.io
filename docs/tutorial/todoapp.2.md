@@ -1225,12 +1225,418 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 2. 외부 인증 서비스를 이용하는 방법  
 으로 생각해볼 수 있을것 같습니다. 외부 인증서비스를 이용하는 것이 속 편하지만 이 Tutorial 에서는 간단하게 JWT 토큰을 이용하는 인증을 구현해보겠습니다.
 
-- 먼저 User
+- 먼저 User 모델 및 관련 DTO 들을 먼저 만들겠습니다.
+```csharp
+// Models/User.cs 추가
+public class User
+{
+  public int Id { get; set; }
+  public string FirstName { get; set; }
+  public string LastName { get; set; }
+  public string Username { get; set; }
+  public byte[] PasswordHash { get; set; }
+  public byte[] PasswordSalt { get; set; }
+}
 
+// Models/UserAuthenticateDTO.cs 추가 - Frontend 의 로그인을 위한 DTO
+public class UserAuthenticateDTO
+{
+  [Required]
+  public string Username { get; set; }
+  [Required]
+  public string Password { get; set; }
+}
 
-#### 
+// Models/UserDTO.cs - 유저 정보를 위한 DTO
+public class UserDTO
+{
+  public int Id { get; set; }
+  public string FirstName { get; set; }
+  public string LastName { get; set; }
+  public string Username { get; set; }
+}
 
-### Slightly changes
+// Models/UserRegisterDTO.cs - 유저 등록을 위한 DTO
+public class UserRegisterDTO
+{
+  [Required]
+  public string FirstName { get; set; }
+  [Required]
+  public string LastName { get; set; }
+  [Required]
+  public string Username { get; set; }
+  [Required]
+  public string Password { get; set; }
+}
+
+// Models/UserUpdateDTO.cs - 유저 정보 수정을 위한 DTO (이름, 패스워드 등과 같은...)
+public class UserUpdateDTO
+{
+  public string FirstName { get; set; }
+  public string LastName { get; set; }
+  public string Username { get; set; }
+  public string Password { get; set; }
+}
+```
+
+- 객체 복사의 편의를 위해 [AutoMapper](https://automapper.org/) 패키지를 추가하고, mapping 을 추가합니다. **AutoMapper** 는 Tutorial 전반에 걸쳐서 사용할 예정입니다.
+```bash
+$ dotnet add package Automapper
+$ dotnet add package Automapper.Extensions.Microsoft.DependencyInjection
+```
+```csharp
+public class UserProfile : Profile
+{
+  public UserProfile()
+  {
+    CreateMap<User, UserDTO>();
+    CreateMap<UserRegisterDTO, User>();
+    CreateMap<UserUpdateDTO, User>();
+  }
+}
+```
+
+- User 와 관련된 로직을 수행할 `UserService`를 생성하고, DI (Dependency Injection) 를 위해 interface 를 추가하겠습니다.
+```csharp
+public interface IUserService
+{
+  User Authenticate(string username, string password);
+  IEnumerable<User> GetAll();
+  User GetBy(int id);
+  User Create(User user, string password);
+  void Update(User user, string password = null);
+  void Delete(int id);
+}
+
+public class UserService : IUserService
+{
+  private TodoContext _context;
+
+  public UserService(TodoContext context)
+  {
+    _context = context ?? throw new ArgumentNullException(nameof(context));
+  }
+
+  public User Authenticate(string username, string password)
+  {
+    if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+      return null;
+
+    var user = _context.Users.SingleOrDefault(u => u.Username == username);
+
+    if (user == null) return null;
+
+    if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) return null;
+
+    return user;
+  }
+
+  public User Create(User user, string password)
+  {
+    if (string.IsNullOrWhiteSpace(password)) throw new AppException("Password is required.");
+
+    if (_context.Users.Any(u => u.Username == user.Username))
+      throw new AppException($"Username: '${user.Username}' is taken.");
+
+    byte[] passwordHash, passwordSalt;
+    CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+    user.PasswordHash = passwordHash;
+    user.PasswordSalt = passwordSalt;
+
+    _context.Users.Add(user);
+    _context.SaveChanges();
+
+    return user;
+  }
+
+  public void Delete(int id)
+  {
+    var user = _context.Users.Find(id);
+    if(user != null)
+    {
+      _context.Users.Remove(user);
+      _context.SaveChanges();
+    }
+  }
+
+  public IEnumerable<User> GetAll()
+  {
+    return _context.Users;
+  }
+
+  public User GetBy(int id)
+  {
+    return _context.Users.Find(id);
+  }
+
+  public void Update(User user, string password = null)
+  {
+    var updateUser = _context.Users.Find(user.Id);
+
+    if (updateUser == null) throw new AppException("User not found.");
+
+    if(!string.IsNullOrWhiteSpace(user.Username) && user.Username != user.Username)
+    {
+      if (_context.Users.Any(u => u.Username == user.Username))
+        throw new AppException($"Username: '${user.Username}'is taken.");
+
+      updateUser.Username = user.Username;
+    }
+
+    if (!string.IsNullOrWhiteSpace(user.FirstName))
+      updateUser.FirstName = user.FirstName;
+
+    if (!string.IsNullOrWhiteSpace(user.LastName))
+      updateUser.LastName = user.LastName;
+
+    if(!string.IsNullOrWhiteSpace(password))
+    {
+      byte[] passwordHash, passwordSalt;
+      CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+      user.PasswordHash = passwordHash;
+      user.PasswordSalt = passwordSalt;
+    }
+
+    _context.Update(updateUser);
+    _context.SaveChanges();
+  }
+
+  private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+  {
+    if (password == null) throw new ArgumentNullException(nameof(password));
+    if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value could not be empty or whitespace.", nameof(password));
+
+    using (var hmac = new System.Security.Cryptography.HMACSHA512())
+    {
+      passwordSalt = hmac.Key;
+      passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+    }
+  }
+
+  private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+  {
+    if (password == null) throw new ArgumentNullException(nameof(password));
+    if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value could not be empty or whitespace.", nameof(password));
+    if (storedHash.Length != 64) throw new ArgumentException("Invalid stored hash.", nameof(storedHash));
+    if (storedSalt.Length != 128) throw new ArgumentException("Invalid stored salt.", nameof(storedSalt));
+
+    using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
+    {
+      var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+      for (int i = 0; i < computedHash.Length; i++)
+      {
+        if (computedHash[i] != storedHash[i]) return false;
+      }
+    }
+
+    return true;
+  }
+}
+```
+
+- `UsersController` 을 통해 endpoint 를 생성합니다.
+- JWT 토큰을 사용할 것이므로 관련 패키지도 설치합니다.
+```bash
+$ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+```
+```csharp
+[Authorize]
+[Route("api/[controller]")]
+[ApiController]
+public class UsersController : ControllerBase
+{
+  private IUserService _userService;
+  private IMapper _mapper;
+  private readonly AppSettings _appSettings;
+
+  public UsersController(IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
+  {
+    _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+    _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    _appSettings = appSettings.Value;
+  }
+
+  [AllowAnonymous]
+  [HttpPost("authenticate")]
+  public IActionResult Authenticate([FromBody]UserAuthenticateDTO model)
+  {
+    var user = _userService.Authenticate(model.Username, model.Password);
+
+    if (user == null)
+      return BadRequest(new { message = "Username or Password is incorrect" });
+
+    var tokenHandler = new JwtSecurityTokenHandler();
+    var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+    var tokenDescriptor = new SecurityTokenDescriptor
+    {
+      Subject = new ClaimsIdentity(new Claim[]
+      {
+        new Claim(ClaimTypes.Name, user.Id.ToString())
+      }),
+      Expires = DateTime.UtcNow.AddDays(7),
+      SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+    };
+
+    var token = tokenHandler.CreateToken(tokenDescriptor);
+    var tokenString = tokenHandler.WriteToken(token);
+
+    return Ok(new
+    {
+      Id = user.Id,
+      Username = user.Username,
+      FirstName = user.FirstName,
+      LastName = user.LastName,
+      Token = tokenString
+    });
+  }
+
+  [AllowAnonymous]
+  [HttpPost("register")]
+  public IActionResult Register([FromBody] UserRegisterDTO model)
+  {
+    var user = _mapper.Map<User>(model);
+
+    try
+    {
+      _userService.Create(user, model.Password);
+      return Ok();
+    }
+    catch (AppException ex)
+    {
+      return BadRequest(new { message = ex.Message });
+    }
+  }
+
+  [HttpGet]
+  public IActionResult GetAll()
+  {
+    var users = _userService.GetAll();
+    var model = _mapper.Map<IList<UserDTO>>(users);
+
+    return Ok(model);
+  }
+
+  [HttpGet("{id}")]
+  public IActionResult GetBy(int id)
+  {
+    var user = _userService.GetBy(id);
+    var model = _mapper.Map<UserDTO>(user);
+
+    return Ok(model);
+  }
+
+  [HttpPut("{id}")]
+  public IActionResult Update(int id, [FromBody]UserUpdateDTO model)
+  {
+    var user = _mapper.Map<User>(model);
+    user.Id = id;
+
+    try
+    {
+      _userService.Update(user, model.Password);
+      return Ok();
+    }
+    catch (AppException ex)
+    {
+      return BadRequest(new { message = ex.Message });
+    }
+  }
+
+  [HttpDelete("{id}")]
+  public IActionResult Delete(int id)
+  {
+    _userService.Delete(id);
+
+    return Ok();
+  }
+}
+```
+
+- 최종적으로 `Startup.cs` 에서 관련 인스턴스들을 injection 합니다.
+```csharp{4-48,57,59}
+public void ConfigureServices(IServiceCollection services)
+{
+  ...
+  services.AddCors();
+  services.AddControllers();
+  services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+  var appSettingsSection = Configuration.GetSection("AppSettings");
+  services.Configure<AppSettings>(appSettingsSection);
+
+  var appSettings = appSettingsSection.Get<AppSettings>();
+  var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+  services.AddAuthentication(s =>
+  {
+    s.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    s.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+  })
+  .AddJwtBearer(j =>
+  {
+    j.Events = new JwtBearerEvents
+    {
+      OnTokenValidated = context =>
+      {
+        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+        var userId = int.Parse(context.Principal.Identity.Name);
+        var user = userService.GetBy(userId);
+        if (user == null)
+        {
+          context.Fail("Unauthorized");
+        }
+
+        return Task.CompletedTask;
+      }
+    };
+
+    j.RequireHttpsMetadata = false;
+    j.SaveToken = true;
+    j.TokenValidationParameters = new TokenValidationParameters
+    {
+      ValidateIssuerSigningKey = true,
+      IssuerSigningKey = new SymmetricSecurityKey(key),
+      ValidateIssuer = false,
+      ValidateAudience = false
+    };
+  });
+
+  services.AddScoped<IUserService, UserService>();
+  ...
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  ...
+  app.UseRouting();
+
+  app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+  app.UseAuthentication();
+  app.UseAuthorization();
+  ...
+}
+```
+- `appsettings.json` 에 토큰 검증 시 사용할 **Secret** 을 넣습니다.
+```json{4-6}
+{
+  "AllowedHosts": "*",
+  "SEQ_URL": "http://seq:5341",
+  "AppSettings": {
+    "Secret": "SuperPowerPassword"
+  }
+}
+```
+
+::: warning
+여기에서 구현한 인증은 실제 production level 에서 사용하기에는 무리가 좀 있습니다. 실제 인증 서비스에서는 refresh token, HTTP Only cookie, XSS (cross site scripting), CSRF (cross site request forgery) 등 고려해야할 사항이 많습니다.  
+이도 저도 다 귀찮을때 외부 인증서비스를 이용하는게 가장 편하긴 합니다. (~~Firebase 인증 보니 잘 되어 있더군요~~)  
+추후 다른 포스트를 통해 외부 인증서비스 사용에 대해서도 다뤄볼까 합니다.
+:::
+
+### Slightly business changes
 
 Todo App 을 제작 의뢰한 클라이언트로 부터 추가적인 요구사항이 왔다고 가정하겠습니다. 할일 목록을 각각의 분류로 좀 나누고 싶다는 요구사항이 있다고 가정하겠습니다.
 
