@@ -1630,6 +1630,16 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
+- Postman 을 통해 확인해보겠습니다.
+- 사용자 등록
+![postman.test](./images/todo/postman.test.18.png)
+- 사용자 인증
+![postman.test](./images/todo/postman.test.19.png)
+- JWT 토큰을 이용한 API 호출
+![postman.test](./images/todo/postman.test.20.png)
+- 토큰 검증
+![postman.test](./images/todo/postman.test.21.png)
+
 ::: warning
 여기에서 구현한 인증은 실제 production level 에서 사용하기에는 무리가 좀 있습니다. 실제 인증 서비스에서는 refresh token, HTTP Only cookie, XSS (cross site scripting), CSRF (cross site request forgery) 등 고려해야할 사항이 많습니다.  
 이도 저도 다 귀찮을때 외부 인증서비스를 이용하는게 가장 편하긴 합니다. (~~Firebase 인증 보니 잘 되어 있더군요~~)  
@@ -1896,4 +1906,5 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 
 ### Conclusion
 
-여기까지 기본적인 API 구현은 마무리 됩니다. Infra 와 Backend 의 영역은 더 복잡해질 수 있는 부분이나, Tutorial 이 너무 복잡해지는 것을 막고자 여기까지만 구현하겠습니다. 여기서 다루는 기술이 전부가 아닐뿐더러 더 좋은 방법들은 훨씬 많습니다. 이 Tutorial 의 나머지 부분에서 좀 더 찾아보도록 할 예정입니다. 일단 다음 파트에서 Frontend 를 만들어 보겠습니다.
+여기까지 기본적인 API 구현은 마무리 합니다. Infra 와 Backend 의 영역은 더 복잡해질 수 있는 개연성이 충분히 존재하는 부분입니다. Tutorial 이 너무 복잡해지는 것을 막고자 여기까지만 구현하지만 추후 더 내용을 보강해볼 생각입니다.  
+이 섹션에서 다루는 기술이 전부가 아닐뿐더러 더 좋은 방법들이 훨씬 많습니다. 나머지 부분에서 좀 더 다뤄볼 수 있지 않을까 합니다. 일단 다음 파트에서는 Frontend 를 구현해 보도록 하겠습니다.
