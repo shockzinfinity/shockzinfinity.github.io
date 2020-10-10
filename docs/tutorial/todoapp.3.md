@@ -28,7 +28,9 @@ feed:
 ---
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
-> 참고 Repository: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
+> 참고 Repository:  
+  - Backend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
+  - Frontend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated-trello-copy)
 
 [[toc]]
 
@@ -37,7 +39,6 @@ feed:
 ## Frontend (upcoming)
 
 - copy [Trello](https://trello.com)
-- [Github Repository](https://github.com/shockzinfinity/todo-app-complicated-trello-copy)
 
 ::: warning
 현재까지 버그 및 필요사항
