@@ -40,11 +40,12 @@ feed:
 - [Github Repository](https://github.com/shockzinfinity/todo-app-complicated-trello-copy)
 
 ::: warning
-현재까지 버그
+현재까지 버그 및 필요사항
 1. input blur 이벤트 버블링에 문제가 있음. 원인 파악중
 2. Flow 간 TodoItem 이동 시 FlowId 변경이 안되는 현상
    - Backend API 에서 JsonPatch 적용 필요
 3. Category 추가 시 기본 Flow 생성하여 DB 저장 필요
+4. 테스트 서버 배포
 :::
 
 ### 요구사항 분석 (기본, 추가)
