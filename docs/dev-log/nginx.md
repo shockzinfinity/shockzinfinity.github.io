@@ -91,3 +91,22 @@ http {
     include /etc/nginx/sites-enabled/*;
 }
 ```
+
+## Vue.js 배포시 설정 추가
+
+- Vue-Router 를 사용하기 위해 `nginx-conf` 혹은 `sites-available`의 설정에 다음을 추가한다.
+```bash
+location / {
+    try_files $uri $uri/ @rewrites;
+}
+
+location @rewrites {
+    rewrite ^(.+)$ /index.html last;
+}
+
+location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+    expires max;
+    add_header Pragma public;
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+}
+```
