@@ -201,3 +201,11 @@ $ git push --mirror https://github.com/user/github-repository.git
 ```bash
 $ git push origin --delete feature/toDELETEbranch
 ```
+
+## .gitignore 가 제대로 동작하지 않을때
+
+```bash
+$ git rm -r --cached .
+$ git add .
+$ git commit -m "fixed untracked files"
+```
