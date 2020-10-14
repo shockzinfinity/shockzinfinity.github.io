@@ -126,6 +126,7 @@ module.exports = {
           { text: 'EF core', link: '/dev-log/efcore' },
           { text: 'WordPress', link: '/dev-log/wordpress' },
           { text: 'NPM', link: '/dev-log/npm' },
+          { text: 'Jenkins', link: '/dev-log/jenkins' },
         ],
       },
       {
