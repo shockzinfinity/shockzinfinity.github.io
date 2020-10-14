@@ -175,3 +175,7 @@ server {
 	}
 }
 ```
+> 참고:  
+> - [https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/](https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/)
+> - [https://k2boys.tistory.com/34](https://k2boys.tistory.com/34)
+> - [https://www.kurien.net/post/view/34](https://www.kurien.net/post/view/34)
