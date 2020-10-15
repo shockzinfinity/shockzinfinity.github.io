@@ -29,8 +29,10 @@ feed:
 
 [[toc]]
 
-참고: [Github](https://github.com/shockzinfinity/signup-verification-test)
 ---
+
+[Github Repository](https://github.com/shockzinfinity/signup-verification-test)
+
 
 ## 기능 정의
 - Email sign up and verification
