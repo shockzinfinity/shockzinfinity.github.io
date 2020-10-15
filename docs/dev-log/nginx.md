@@ -110,3 +110,72 @@ location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
     add_header Cache-Control "public, must-revalidate, proxy-revalidate";
 }
 ```
+
+## https custom port redirection
+
+- e.g. http://todo.shockz.io:8080 -> https://todo.shockz.io:4443 으로 redirection `/etc/nginx/site-available/xxx.xxx.xxx` 상에서 조정
+```bash{11,16,50}
+server {
+    listen       8080;
+    server_name  todo.shockz.io;
+    charset utf-8;
+    rewrite_log  on;
+    access_log  /var/log/nginx/todo.shockz.io.access.log  main;
+    error_log  /var/log/nginx/todo.shockz.io.error.log  notice;
+    client_max_body_size 0;
+	root		/var/www/todo.shockz.io;
+	location / {
+		return 301 https://$host:4443$request_uri;
+	}
+}
+
+server {
+	listen		4443 ssl;
+	server_name	todo.shockz.io;
+	charset		utf-8;
+	rewrite_log	on;
+	access_log	/var/log/nginx/todo.shockz.io.access.log	main;
+	error_log	/var/log/nginx/todo.shockz.io.error.log	notice;
+	client_max_body_size 100M;
+	root		/var/www/todo.shockz.io;
+	index		index.html;
+	ssl on;
+	ssl_certificate "/etc/pki/nginx/fullchain.pem";
+	ssl_certificate_key "/etc/pki/nginx/private/privkey.pem";
+	ssl_session_cache shared:SSL:1m;
+	ssl_session_timeout  10m;
+	ssl_ciphers PROFILE=SYSTEM;
+	ssl_prefer_server_ciphers on;
+
+	# Load configuration files for the default server block.
+	include /etc/nginx/default.d/*.conf;
+
+	location / {
+		try_files $uri $uri/ @rewrites;
+	}
+
+	location @rewrites {
+		rewrite ^(.+)$ /index.html last;
+	}
+
+	location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+		expires max;
+		add_header Pragma public;
+		add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+	}
+
+	error_page 497 301 =307 https://$host:$server_port$request_uri;
+
+	error_page 404 /404.html;
+	location = /40x.html {
+	}
+
+	error_page 500 502 503 504 /50x.html;
+	location = /50x.html {
+	}
+}
+```
+> 참고:  
+> - [https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/](https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/)
+> - [https://k2boys.tistory.com/34](https://k2boys.tistory.com/34)
+> - [https://www.kurien.net/post/view/34](https://www.kurien.net/post/view/34)
