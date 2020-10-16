@@ -21,7 +21,7 @@ feed:
       link: https://shockzinfinity.github.io/tutorial/auth.html
 ---
 
-# Authe API tutorial
+# Auth API tutorial
 
 <TagLinks />
 
