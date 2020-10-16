@@ -45,3 +45,17 @@ feed:
 - HTTP only cookie (prevent XSS)
 - Refresh token rotation (prevent CSRF)
 - Secret key for generating a JWT signing
+
+# Postman 테스팅
+
+1. Register a new account
+2. Verify an account
+3. Access an account with forgotten password
+4. Reset the password of an account
+5. Authenticate to get a JWT token and a refresh token
+6. Get a list of all accounts
+7. Update an account
+8. Use a refresh token to get a new JWT token
+9. Revoke a refresh token
+10. Delete an account
+
