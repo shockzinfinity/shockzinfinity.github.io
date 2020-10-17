@@ -51,7 +51,7 @@ feed:
 
 ## Postman 테스팅
 
-- Register a new account
+### Register a new account
    > 따로 role 명시되어 있지 않을 경우, 첫번째 등록된 이메일이 Admin 권한을 가짐.
 ```json
 {
@@ -68,7 +68,7 @@ feed:
 ![postman.test](./images/auth/postman.test.1.png)
 ![postman.test](./images/auth/postman.test.2.png)
 
-- Verify an account
+### Verify an account
    > 이메일을 통해 확인한 토큰으로 이메일 인증
 ```json
 {
@@ -77,7 +77,7 @@ feed:
 ```
 ![postman.test](./images/auth/postman.test.3.png)
 
-- Access an account with forgotten password
+### Access an account with forgotten password
    > 비밀번호 재설정 메일 발송
 ```json
 {
@@ -88,7 +88,7 @@ feed:
 ![email](./images/auth/email.2.png)
 
 
-- Reset the password of an account
+### Reset the password of an account
 ```json
 {
   "token":"FA858667CDA02501F5A975C38CC346A6EDEF7158DE4AD38A505544269CEA9DEBE47D67EB5C8783A0",
@@ -98,7 +98,7 @@ feed:
 ```
 ![postman.test](./images/auth/postman.test.5.png)
 
-- Authenticate to get a JWT token and a refresh token
+### Authenticate to get a JWT token and a refresh token
 ```json
 {
   "email": "maddreamer@nate.com",
@@ -108,10 +108,10 @@ feed:
 ![postman.test](./images/auth/postman.test.6.png)
 ![postman.test](./images/auth/postman.test.7.png)
 
-- Get a list of all accounts (Admin)
+### Get a list of all accounts (Admin)
 ![postman.test](./images/auth/postman.test.8.png)
 
-- Update an account
+### Update an account
 ```json
 {
   "firstName": "Jun(nate)",
@@ -120,12 +120,12 @@ feed:
 ```
 ![postman.test](./images/auth/postman.test.9.png)
 
-- Use a refresh token to get a new JWT token
+### Use a refresh token to get a new JWT token
    > 발급받은 jwt token 을 이용해 refresh token 을 재발급 받을 수 있다.
 ![postman.test](./images/auth/postman.test.10.png)
 ![table.query](./images/auth/table.query.1.png)
 
-- Revoke a refresh token
+### Revoke a refresh token
    > refresh token 취소하면서 refresh token 은 다시 http only cookie 로 다시 전달된다.
 ```json
 {
@@ -135,7 +135,7 @@ feed:
 ![postman.test](./images/auth/postman.test.11.png)
 ![postman.test](./images/auth/postman.test.12.png)
 
-- Delete an account
+### Delete an account
 ![postman.test](./images/auth/postman.test.13.png)
 
 ::: warning
