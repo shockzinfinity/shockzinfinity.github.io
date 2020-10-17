@@ -51,14 +51,89 @@ feed:
 
 # Postman 테스팅
 
-1. Register a new account
-2. Verify an account
-3. Access an account with forgotten password
-4. Reset the password of an account
-5. Authenticate to get a JWT token and a refresh token
-6. Get a list of all accounts
-7. Update an account
-8. Use a refresh token to get a new JWT token
-9. Revoke a refresh token
-10. Delete an account
+- Register a new account
+   > 따로 role 명시되어 있지 않을 경우, 첫번째 등록된 이메일이 Admin 권한을 가짐.
+```json
+{
+  "gender": "male",
+  "firstName": "Jun",
+  "lastName": "Yu",
+  "email": "maddreamer@naver.com",
+  "password": "my-super-secret-password",
+  "confirmPassword": "my-super-secret-password",
+  "acceptTerms": true
+}
+```
+![email](./images/auth/email.1.png)
+![postman.test](./images/auth/postman.test.1.png)
+![postman.test](./images/auth/postman.test.2.png)
 
+- Verify an account
+   > 이메일을 통해 확인한 토큰으로 이메일 인증
+```json
+{
+  "token": "6F5ABE621398231BA103351806A6BEDA4D86E2CA9DB456B1B25096D040A2B907450647D82B5F6723"
+}
+```
+![postman.test](./images/auth/postman.test.3.png)
+
+- Access an account with forgotten password
+   > 비밀번호 재설정 메일 발송
+```json
+{
+  "email": "maddreamer@nate.com"
+}
+```
+![postman.test](./images/auth/postman.test.4.png)
+![email](./images/auth/email.2.png)
+
+
+- Reset the password of an account
+```json
+{
+  "token":"FA858667CDA02501F5A975C38CC346A6EDEF7158DE4AD38A505544269CEA9DEBE47D67EB5C8783A0",
+  "password": "newSuperPassword",
+  "confirmPassword": "newSuperPassword"
+}
+```
+![postman.test](./images/auth/postman.test.5.png)
+
+- Authenticate to get a JWT token and a refresh token
+```json
+{
+  "email": "maddreamer@nate.com",
+  "password": "newSuperPassword"
+}
+```
+![postman.test](./images/auth/postman.test.6.png)
+![postman.test](./images/auth/postman.test.7.png)
+
+- Get a list of all accounts (Admin)
+![postman.test](./images/auth/postman.test.8.png)
+
+- Update an account
+```json
+{
+  "firstName": "Jun(nate)",
+  "lastName": "Yu(nate)"
+}
+```
+![postman.test](./images/auth/postman.test.9.png)
+
+- Use a refresh token to get a new JWT token
+   > 발급받은 jwt token 을 이용해 refresh token 을 재발급 받을 수 있다.
+![postman.test](./images/auth/postman.test.10.png)
+![table.query](./images/auth/table.query.1.png)
+
+- Revoke a refresh token
+   > refresh token 취소하면서 refresh token 은 다시 http only cookie 로 다시 전달된다.
+```json
+{
+  "token": "C90FAE4789BB4CFE1EEF6BFF1020AFDA0E52BB8FBE3F26850F3A6688CD1B8CA8388CA152762BE0F4"
+}
+```
+![postman.test](./images/auth/postman.test.11.png)
+![postman.test](./images/auth/postman.test.12.png)
+
+- Delete an account
+![postman.test](./images/auth/postman.test.13.png)
