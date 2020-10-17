@@ -49,7 +49,7 @@ feed:
 - Refresh token rotation (prevent CSRF)
 - Secret key for generating a JWT signing
 
-# Postman 테스팅
+## Postman 테스팅
 
 - Register a new account
    > 따로 role 명시되어 있지 않을 경우, 첫번째 등록된 이메일이 Admin 권한을 가짐.
