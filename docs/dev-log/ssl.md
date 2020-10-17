@@ -63,6 +63,15 @@ $ openssl rsa -in server.key -text > private.pem
 $ openssl x509 -inform PEM -in server.crt > public.pem
 ```
 
+## p12
+
+```bash
+# 키 분리
+$ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
+# 인증서 분리
+$ openssl pkcs12 -in localhost.p12 -clcerts -nokeys -out localhost.pem
+```
+
 ## 자체서명 인증서 생성 (windows)
 
 > ps1 파일로 저장 후 PS command(관리자 권한 필요)에서 실행
