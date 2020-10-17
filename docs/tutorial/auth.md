@@ -137,3 +137,25 @@ feed:
 
 - Delete an account
 ![postman.test](./images/auth/postman.test.13.png)
+
+::: warning
+현재는 테스트를 위해 Gmail smtp 를 사용하고 있으나 추후 smtp 에 대한 근본적인 해결책이 필요한 상황입니다.  
+현재의 Tutorial 은 docker 컨테이너를 통해 nginx reverse proxy 에 api 가 구동되는 구조인데, Mailkit smtp client 상에서 ssl handshake 문제가 발생하고 있습니다.  
+임시적으로 해결하기 위해 Gmail smtp 의 보안수준을 낮추고, `EmailService` 에서 ssl handshake 관련 예외를 회피하도록 구성되어 있습니다.  
+![google.setting](./images/auth/google.setting.1.png)
+```csharp{6-7}
+public void Send(string to, string subject, string html, string from = null)
+{
+  ...
+  using (var smtp = new SmtpClient())
+  {
+    smtp.CheckCertificateRevocation = false;
+    smtp.ServerCertificateValidationCallback = (s, c, h, e) => true;
+    smtp.Connect(_appSettings.SmtpHost, _appSettings.SmtpPort, SecureSocketOptions.Auto);
+    smtp.Authenticate(_appSettings.SmtpUser, _appSettings.SmtpPassword);
+    smtp.Send(email);
+    smtp.Disconnect(true);
+  }
+}
+```
+:::
