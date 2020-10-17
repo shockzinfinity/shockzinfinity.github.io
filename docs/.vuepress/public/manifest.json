@@ -1,12 +1,13 @@
 {
-  "name": "shockzBlog",
-  "short_name": "Blog",
+  "name": "Blog | ironPot",
+  "short_name": "ironPot",
   "lang": "ko",
-  "description": "shockzinfinity Blog",
+  "description": "ironPot devBlog",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
   "scope": "/",
+  "orientation": "any",
   "start_url": "/?utm_source=homescreen",
   "icons": [
     {
