@@ -123,3 +123,10 @@ $ chmod +x /usr/local/bin/sphp
 ![vs2019.encoding](./image/vs2019.encoding.1.png)
 ![vs2019.encoding](./image/vs2019.encoding.2.png)
 ![vs2019.encoding](./image/vs2019.encoding.3.png)
+
+## mac 에서 윈도우용 키보드 사용 시
+
+> 시스템 환경설정 > 키보드
+![mac.keyboard](./image/mac.keyboard.1.png)
+![mac.keyboard](./image/mac.keyboard.2.png)
+![mac.keyboard](./image/mac.keyboard.3.png)
