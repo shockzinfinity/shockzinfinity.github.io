@@ -137,7 +137,7 @@ $ chmod +x /usr/local/bin/sphp
 ```bash
 $ brew tap AdoptOpenJDK/openjdk
 ```
-- 설치할 자바 버전 확인
+- 설치할 자바 버전 확인  
 | <center>Java version</center>          | <center>JDK</center>        | <center>JRE</center>            |
 | :------------------------------------- | :-------------------------- | :------------------------------ |
 | OpenJDK8 with Hotsopt JVM              | adoptopenjdk8               | adoptopenjdk8-jre               |
