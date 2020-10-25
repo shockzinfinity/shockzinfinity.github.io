@@ -17,7 +17,7 @@ feed:
     -
       name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/mac_etc.html
+      link: https://shockzinfinity.github.io/etc/mac-etc.html
 ---
 
 # mac 사용상 문제해결
