@@ -10,4 +10,6 @@ sidebar: false
 
 ## [vscode](./vscode)
 
-## [mac 사용환경 개선](./mac-etc)
+## [mac 사용관련](./mac-etc)
+
+## [iPad 사용관련](./iPad)
