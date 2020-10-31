@@ -118,6 +118,7 @@ module.exports = {
           { text: 'vscode-debugging', link: '/etc/vscode-debugging' },
           { text: 'VS Code 관련', link: '/etc/vscode' },
           { text: 'mac 사용관련', link: '/etc/mac-etc' },
+          { text: 'iPad 사용관련', link: '/etc/iPad' },
         ],
       },
     ],
