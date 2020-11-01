@@ -43,6 +43,16 @@ $ docker create --name=code-server --net=host --env-file="./.env" -v /home/shock
 $ docker start code-server
 ```
 
+- env 파일 예시
+```bash
+$ vi .env
+PASSWORD=******** # 원하는 패스워드
+SUDO_PASSWORD=******** # code-server 내부적으로 sudo 사용 시 패스워드
+PUID=$UID
+PGID=$(id -g $USER)
+TZ=Asia/Seoul
+```
+
 ## Synology reverse proxy 설정
 
 - NAS 상에서 nginx reverse proxy 설정이 되어 있다는 가정하에 code-server 는 http 상으로 서비스하고, 인증서 처리는 NAS nginx 에 맡김.  
