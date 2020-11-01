@@ -29,7 +29,10 @@ feed:
 ## 관련 링크
 
 ::: tip
+[linuxserver/code-server](https://www.linuxserver.io/)
 [cdr/code-server](https://github.com/cdr/code-server)
+
+- 여기서는 linuxserver.io docker 이미지를 사용함
 :::
 
 ## Docker run
