@@ -108,6 +108,7 @@ module.exports = {
           { text: 'WordPress', link: '/dev-log/wordpress' },
           { text: 'NPM', link: '/dev-log/npm' },
           { text: 'Jenkins', link: '/dev-log/jenkins' },
+          { text: 'code-server', link: '/dev-log/code-server' },
         ],
       },
       {

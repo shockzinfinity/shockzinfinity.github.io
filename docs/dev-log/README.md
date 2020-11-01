@@ -35,3 +35,5 @@ sidebar: false
 ## [npm](./npm)
 
 ## [jenkins](./jenkins)
+
+## [code-server](./code-server)
