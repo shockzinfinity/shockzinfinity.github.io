@@ -109,6 +109,7 @@ module.exports = {
           { text: 'NPM', link: '/dev-log/npm' },
           { text: 'Jenkins', link: '/dev-log/jenkins' },
           { text: 'code-server', link: '/dev-log/code-server' },
+          { text: 'aws', link: '/dev-log/aws' },
         ],
       },
       {
