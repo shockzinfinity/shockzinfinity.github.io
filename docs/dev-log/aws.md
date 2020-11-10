@@ -5,7 +5,7 @@ meta:
   - name: description
     content: aws 관련 내용
   - name: keywords
-    content: wordpress, redis, docker
+    content: aws, redis, docker
 tags: ["aws", "redis", "docker", "docker-compose"]
 sidebar: auto
 feed:
