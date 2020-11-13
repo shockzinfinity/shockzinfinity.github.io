@@ -8,7 +8,7 @@ _./docs/.vuepress/config.js_
 ```bash
 module.exports = {
   ...,
-  base: "/shockz-vue-press/",
+  base: "/",
   ...
 }
 ```

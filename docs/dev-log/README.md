@@ -37,3 +37,5 @@ sidebar: false
 ## [jenkins](./jenkins)
 
 ## [code-server](./code-server)
+
+## [aws](./aws)
