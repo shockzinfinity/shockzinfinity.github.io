@@ -1,5 +1,7 @@
 const { description } = require('../../package');
 const feed_options = { canonical_base: 'https://shockzinfinity.github.io' };
+const moment = require('moment');
+const { lang } = require('moment');
 
 module.exports = {
   base: '/',
@@ -150,8 +152,23 @@ module.exports = {
         updatePopup: true,
       },
     ],
-    ['sitemap', { hostname: 'https://shockzinfinity.github.io' }],
+    [
+      'sitemap',
+      {
+        hostname: 'https://shockzinfinity.github.io',
+        dateFormatter: time => moment(time).toISOString(),
+      },
+    ],
     ['feed', feed_options],
+    // [
+    //   '@vuepress/last-updated',
+    //   {
+    //     transformer: (timestamp, lang) => {
+    //       moment.locale('ko');
+    //       return moment(timestamp).fromNow();
+    //     },
+    //   },
+    // ],
   ],
 
   markdown: {
