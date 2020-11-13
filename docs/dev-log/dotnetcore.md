@@ -24,6 +24,8 @@ feed:
 
 <TagLinks />
 
+[[toc]]
+
 ## .net framework Stack
 
 ![tech.stack](./image/dotnet.techstack.1.png)

@@ -24,6 +24,8 @@ feed:
 
 <TagLinks />
 
+[[toc]]
+
 ## 마우스 끊김/버벅임 현상 해결과정
 
 - [맥 OS에서 일반 무선 마우스 끊김/버벅임 현상 해결 과정](https://korog.tistory.com/2)

@@ -22,6 +22,10 @@ feed:
 
 # ef core
 
+<TagLinks />
+
+[[toc]]
+
 ## ef core tool 설치
 > docker 로 .net core app 을 실행 시에 ef core migration 이 필요한 경우가 있음  
 > csproj에 ef core tool 을 포함시킬 경우는
