@@ -236,3 +236,9 @@ $ git commit -m "fixed untracked files"
 - git stash / git stash save “description” : 작업코드 임시저장하고 브랜치 바꾸기
 - git stash pop : 마지막으로 임시저장한 작업코드 가져오기
 - git branch — set-upstream-to=remote_path/branch_name : git pull no tracking info 에러해결
+
+## bitbucket 연결시 ssh 상에서 비밀번호 캐시 저장
+
+```bash
+$ git config --global credential.helper 'cache --timeout 3600'
+```

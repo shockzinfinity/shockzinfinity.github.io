@@ -561,3 +561,9 @@ $ apachectl -k stop
 $ sudo brew services stop httpd
 ```
 :::
+
+## Tip
+
+### plugin deactivate
+
+[https://kinsta.com/knowledgebase/disable-wordpress-plugins/](https://kinsta.com/knowledgebase/disable-wordpress-plugins/)

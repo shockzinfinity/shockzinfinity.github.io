@@ -79,3 +79,20 @@ $ find . -name "*.c" -exec ls -l {} \;
 | 검색 중 에러 메시지 출력하지 않기 (find, redirection)       | find . -name [FILE] 2> /dev/null           |
 | 하위 디렉토리 검색하지 않기                                 | find . -maxdepth 1 -name [FILE]            |
 | 검색된 파일 복사. (find + cp)                               | find . -name [FILE] -exec cp {} [PATH] \;  |
+
+## ls
+
+```bash
+# 리스트 형태로 파일 및 디렉토리 이름만...
+$ ls | tr '\n' '\n'
+```
+
+## tar.gz
+
+```bash
+# 압축
+$ tar -zcvf [파일명.tar.gz] [폴더명]
+
+# 풀기
+$ tar -zxvf [파일명.tar.gz]
+```

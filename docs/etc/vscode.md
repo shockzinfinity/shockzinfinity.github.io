@@ -30,3 +30,12 @@ feed:
 ```json
 "explorer.openEditors.visible": 0
 ```
+
+## ssh 연결시 key 파일 지정
+
+```
+Host api.shockz.io
+  HostName api.shockz.io
+  User user
+  IdentityFile ~/Desktop/AWS-keypair/dev.key.pem
+```
