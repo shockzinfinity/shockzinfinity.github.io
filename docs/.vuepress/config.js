@@ -112,6 +112,7 @@ module.exports = {
           { text: 'Jenkins', link: '/dev-log/jenkins' },
           { text: 'code-server', link: '/dev-log/code-server' },
           { text: 'aws', link: '/dev-log/aws' },
+          { text: 'linux', link: '/dev-log/linux' },
         ],
       },
       {
