@@ -567,3 +567,12 @@ $ sudo brew services stop httpd
 ### plugin deactivate
 
 [https://kinsta.com/knowledgebase/disable-wordpress-plugins/](https://kinsta.com/knowledgebase/disable-wordpress-plugins/)
+
+
+### DB 상 패스워드 변경
+
+```sql
+UPDATE wp_users 
+SET user_pass = MD5('패스워드')
+WHERE ID = 1
+```

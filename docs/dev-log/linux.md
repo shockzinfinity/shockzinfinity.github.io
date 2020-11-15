@@ -33,9 +33,13 @@ feed:
 ```bash
 # 현재 디렉토리 사용량
 $ du -sh
+$ du -sh /var/www/vhosts/webroot/wp-content/*
 
 # 현재 디렉토리 하위 모든 디렉토리 사용량
 $ du -ch
+
+# depth 지정하여 사용량 현황 보기
+$ du -hd 3 /var/www/vhosts/webroot/wp-content/*
 
 # 디스크 여유공간 확인
 $ df -h

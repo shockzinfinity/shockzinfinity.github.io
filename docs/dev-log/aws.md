@@ -29,10 +29,22 @@ feed:
 ## AWS EC2 Linux 2 에 Docker 설치
 
 ```bash
-$ sudo yum update -y
-$ sudo amazon-linux-extras install docker
+$ sudo yum update
+$ sudo yum install git
+$ sudo yum install docker
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
 $ sudo service docker start
+$ sudo usermod -aG docker $USER
+```
 
-# 그룹 추가 후 재접속
-$ sudo usermod -a -G docker ec2-user
+## ssh console 에서 s3 접근
+
+```bash
+$ aws configure
+access key : <액세스 키 입력>
+secret key : <시크릿 키 입력>
+default region : <리전 입력>
+
+$ aws s3 cp s3://주소/20201108_170001_bak.db.sql ./
 ```
