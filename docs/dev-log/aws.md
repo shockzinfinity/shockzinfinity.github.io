@@ -53,7 +53,14 @@ $ aws s3 cp s3://주소/20201108_170001_bak.db.sql ./
 
 - ubuntu 20.04 ami
 - t2.micro instance
-- `ssh -i key.pem ubuntu@xxx.xxx.xxx.xxx
+- `ssh -i key.pem ubuntu@xxx.xxx.xxx.xxx`
+
+### mosh 설치
+
+```bash
+$ sudo apt-get install mosh
+# 60000-61000/udp 보안그룹에 추가
+```
 
 ### jupyter notebook 설치 (웹콘솔을 위한...)
 
@@ -159,4 +166,68 @@ $ sudo apt install docker-ce
 $ sudo systemctl status docker
 
 $ sudo usermod -aG docker $USER
+```
+
+### apache + php5.6 docker
+
+```docker
+FROM ubuntu:18.04
+MAINTAINER temp <temp@temp.io>
+
+# Avoiding user interation with tzdata
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN apt-get install -y apache2
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:ondrej/php
+RUN apt-get update
+RUN apt-get install -y php5.6
+
+EXPOSE 80
+
+CMD ["apachectl", "-D", "FOREGROUND"]
+```
+```bash
+$ docker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example
+```
+
+### mysql
+
+```bash
+$ docker run -d -p 9876:3306 -e MYSQL_ROOT_PASSWORD=password mysql:5.6
+$ docker exec -it 5bb05609cbe4 /bin/bash
+5bb05609cbe4$ mysql -uroot -ppassword
+mysql> CREATE DATABASE TEST;
+mysql> SHOW DATABASES;
+mysql> \q
+5bb05609cbe4$ exit
+
+$ sudo apt install mysql-client-core-8.0
+# docker inspect 로 나오는 ip 혹은 로컬
+$ mysql -uroot -p --host 172.17.0.2 --port 3306
+$ mysql -uroot -p --host 127.0.0.1 --port 9876
+
+# mysql 유저 생성
+mysql> CREATE USER 'test'@'%' IDENTIFIED BY 'password';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'test'@'%';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+$ docker restart 5bb05609cbe4
+```
+
+### php, mysql 연결
+
+```bash
+$ vi ~/example/Dockerfile
+...
+RUN apt-get install -y php5.6-mysql
+...
+
+$ docker build -t example .
 ```
