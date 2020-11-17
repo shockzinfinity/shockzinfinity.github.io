@@ -114,3 +114,61 @@ $ user
 $ who
 $ who -auH
 ```
+
+## ubuntu firewall
+
+```bash
+$ sudo ufw status
+
+$ sudo iptables -L
+```
+
+## fail2ban
+
+- 86400분 (60일) 동안
+- 10회의 로그인을 실패하면
+- 10800분 (180시간) 차단
+
+```bash
+$ apt-get install fail2ban
+
+$ vi /etc/fail2ban/jail.conf
+```
+```bash
+[DEFAULT]
+
+## 차단하지 않을 IP
+ignoreip = 127.0.0.1/8 192.168.10.0/24
+
+# 접속을 차단할 시간. 600 = 10분
+bantime  = 10800
+
+# 최대 허용 횟수
+maxretry = 10
+
+#아래 시간동안 maxretry횟수만큼 실패시 차단
+findtime  = 86400
+
+# (선택) 메일 알림기능
+destemail = sysadmin@example.com
+sender = fail2ban@my-server.com
+mta = sendmail
+action = %(action_mwl)s
+
+[sshd]
+enabled = true
+
+#여러 포트를 사용할 경우 port = ssh,10022
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+```
+```bash
+$ service fail2ban restart
+
+# 현재 차단 현황
+$ fail2ban-client status sshd
+
+# 차단 풀기
+$ fail2ban-client set sshd unbanip 000.000.000.000
+```
