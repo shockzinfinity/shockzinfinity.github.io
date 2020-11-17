@@ -100,3 +100,17 @@ $ tar -zcvf [파일명.tar.gz] [폴더명]
 # 풀기
 $ tar -zxvf [파일명.tar.gz]
 ```
+
+## ssh 접속 기록, 접속자 현황 등
+
+```bash
+# ssh 접속 성공
+$ last
+# ssh 접속 실패
+$ last -f /var/log/btmp
+
+# 현재 로그인한 사용자 
+$ user
+$ who
+$ who -auH
+```
