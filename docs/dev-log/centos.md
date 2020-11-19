@@ -533,3 +533,36 @@ $ systemctl restart cockpit
 ::: tip
 
 :::
+
+## XRDP 설치
+
+- 윈도우의 원격데스크탑을 통해 CentOS 8의 GUI 에 연결하기 위한 패키지 설치
+```bash
+$ sudo dnf info epel-release
+$ sudo dnf update epel-release
+$ sudo dnf install xrdp tigervnc-server
+
+$ sudo firewall-cmd --list-all
+$ sudo firewall-cmd --add-port=3389/tcp --permanent
+$ sudo firewall-cmd --reload
+
+$ sudo systemctl start xrdp
+$ sudo systemctl status xrdp
+```
+![centos8.xrdp](./image/centos8.xrdp.1.png)
+![centos8.xrdp](./image/centos8.xrdp.2.png)
+![centos8.xrdp](./image/centos8.xrdp.3.png)
+
+- (선택) 포트 변경
+```bash{4}
+# /etc/xrdp/xrdp.ini
+[Globals]
+...
+port=3390
+...
+
+$ sudo firewall-cmd --add-port=3389/tcp --permanent
+$ sudo firewall-cmd --reload
+
+$ sudo systemctl restart xrdp
+```
