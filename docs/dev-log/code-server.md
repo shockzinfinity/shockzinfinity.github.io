@@ -62,3 +62,10 @@ TZ=Asia/Seoul
 - Synology NAS nginx 를 이용하여 reverse proxy 할 경우 아래 처럼 WebSocket 관련 헤더를 추가해줘야 함
 ![code-server.reverse](./image/code-server.reverse.1.png)
 :::
+
+## 확장 설치
+
+- code-server 터미널을 이용하여 설치
+```bash
+$ code-server --install-extension <extension identifier>
+```
