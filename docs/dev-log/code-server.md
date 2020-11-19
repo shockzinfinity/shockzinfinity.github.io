@@ -69,3 +69,10 @@ TZ=Asia/Seoul
 ```bash
 $ code-server --install-extension <extension identifier>
 ```
+
+## github 연동
+
+- container 를 이용하여 code-server 를 띄운 상황이므로 github 인증 기능이 원할하지 않을 수 있음
+- github.com > Settings > Developer settings > Personal Access Tokens (PATs) 에서 토큰을 추가하여 입력하면 해결 가능
+![code-server.github](./image/code-server.github.1.png)
+![code-server.github](./image/code-server.github.2.png)
