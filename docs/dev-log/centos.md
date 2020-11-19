@@ -566,3 +566,9 @@ $ sudo firewall-cmd --reload
 
 $ sudo systemctl restart xrdp
 ```
+
+::: tip
+connection 관련 오류 시 아래 링크 참고
+
+[XRDP VNC error - problem connecting 해결](https://ibdstorage.tistory.com/62)
+:::
