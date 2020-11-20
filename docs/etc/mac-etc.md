@@ -30,5 +30,5 @@ feed:
 
 - [맥 OS에서 일반 무선 마우스 끊김/버벅임 현상 해결 과정](https://korog.tistory.com/2)
 - 나의 경우는 블루투스 초기화  
-  > Shift + Option 키 누른 상태로 `Bluetooth` 아이콘 클릭
+  > \<Shift\> \+ \<Option\> 키 누른 상태로 `Bluetooth` 아이콘 클릭
 ![mac.mouse](./image/mac.mouse.1.png)

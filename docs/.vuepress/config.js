@@ -1,7 +1,7 @@
 const { description } = require('../../package');
 const feed_options = { canonical_base: 'https://shockzinfinity.github.io' };
 const moment = require('moment');
-const { lang } = require('moment');
+// const { lang } = require('moment');
 
 module.exports = {
   base: '/',
