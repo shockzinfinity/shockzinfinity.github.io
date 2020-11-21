@@ -41,6 +41,6 @@ edge_options = {
 
 browser = webdriver.Edge(**edge_options)
 ```
-::: info
+::: tip
 [https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234](https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234)
 :::
