@@ -113,6 +113,7 @@ module.exports = {
           { text: 'code-server', link: '/dev-log/code-server' },
           { text: 'aws', link: '/dev-log/aws' },
           { text: 'linux', link: '/dev-log/linux' },
+          { text: 'selenium', link: '/dev-log/selenium' },
         ],
       },
       {

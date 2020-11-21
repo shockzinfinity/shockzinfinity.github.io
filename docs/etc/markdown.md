@@ -12,7 +12,7 @@ feed:
   enable: true
   title: markdown 사용 관련
   description: markdown 사용과 관련된 팁
-  image: /public/imgrkdown/logo.png
+  image: /public/img/logo.png
   author:
     -
       name: shockz
