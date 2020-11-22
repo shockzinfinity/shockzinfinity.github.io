@@ -44,3 +44,7 @@ browser = webdriver.Edge(**edge_options)
 ::: tip
 [https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234](https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234)
 :::
+
+## tutorial site
+
+- [Selenium with Python](https://selenium-python.readthedocs.io/)
