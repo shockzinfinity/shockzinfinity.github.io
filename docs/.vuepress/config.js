@@ -114,6 +114,7 @@ module.exports = {
           { text: 'aws', link: '/dev-log/aws' },
           { text: 'linux', link: '/dev-log/linux' },
           { text: 'selenium', link: '/dev-log/selenium' },
+          { text: 'python', link: '/dev-log/python' },
         ],
       },
       {

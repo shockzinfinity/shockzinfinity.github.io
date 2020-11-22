@@ -41,3 +41,5 @@ sidebar: false
 ## [aws](./aws)
 
 ## [mariaDB](./maria)
+
+## [python](./python)

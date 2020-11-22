@@ -165,3 +165,42 @@ openjdk version "1.8.0_265"
 OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_265-b01)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.265-b01, mixed mode)
 ```
+
+## pyenv, python, anaconda
+
+- (BigSur 기준) pyenv 로 python 3.8.6 과 anaconda3-5.3.1 설치 기준
+```bash
+$ brew install pyenv
+or
+$ brew upgrade pyenv
+
+# zlib, bzip2 관련 warning 오류 시 (.zshrc 설정은 아래로)
+$ brew install zlib bzip2
+
+$ pyenv install --list # 설치 가능한 python 패키지 리스트
+# anaconda3-5.3.1
+$ pyenv install anaconda3-5.3.1
+# python 3.8.6
+$ pyenv install 3.8.6
+
+$ pyenv versions # 현재 설치된 패키지 확인
+# 기본으로 anaconda3-5.3.1 을 설정
+$ pyenv global anaconda3-5.3.1
+```
+```bash
+# .zshrc 내의 pyenv 부분
+# for pyenv
+#CFLAGS="-I$(brew --prefix openssl)/include"
+#LDFLAGS="-L$(brew --prefix openssl)/lib"
+export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+export CPPFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
+export PATH="$HOME/.pyenv/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+```
+::: tip
+- 참고 사이트
+   [The right and wrong way to set Python 3 as default on a Mac](https://opensource.com/article/19/5/python-3-default-mac)
+   [pyenv wiki](https://github.com/pyenv/pyenv/wiki/Common-build-problems)
+:::
