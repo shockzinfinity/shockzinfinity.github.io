@@ -106,6 +106,7 @@ module.exports = {
           { text: 'Konva Test', link: '/dev-log/konva' },
           { text: 'VuePress', link: '/dev-log/vuepress' },
           { text: 'mssql', link: '/dev-log/mssql' },
+          { text: 'mariaDB', link: '/dev-log/maria' },
           { text: 'EF core', link: '/dev-log/efcore' },
           { text: 'WordPress', link: '/dev-log/wordpress' },
           { text: 'NPM', link: '/dev-log/npm' },
