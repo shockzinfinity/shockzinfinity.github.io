@@ -82,3 +82,22 @@ ORDER BY date DESC
 
 $ sed -i 's/DEFINER=[^*]*\*/\*/g' backup.db.sql
 ```
+
+## 쿼리 실행 결과를 csv 로...
+
+```bash
+#!/bin/bash
+db=dbname
+user=username
+pass=password
+query=""
+
+filename=users.csv
+host=koreatraveleasy-v2.cwwm9hfs6ga5.ap-southeast-1.rds.amazonaws.com
+db=koreatraveleasy
+user=wpuser
+pass=wpuser1234
+query="SELECT wp_users.user_login, wp_users.user_email, firstmeta.meta_value as first_name, lastmeta.meta_value as last_name, rolemeta.meta_value as role FROM wp_users INNER JOIN wp_usermeta wu2 ON wp_users.ID = wu2.user_id left join wp_usermeta as firstmeta on wp_users.ID = firstmeta.user_id and firstmeta.meta_key = 'first_name' left join wp_usermeta as lastmeta on wp_users.ID = lastmeta.user_id and lastmeta.meta_key = 'last_name' left join wp_usermeta as rolemeta on wp_users.ID = rolemeta.user_id and rolemeta.meta_key = 'wp_capabilities' WHERE wu2.meta_key = 'account_status' AND wu2.meta_value = 'approved' AND rolemeta.meta_value='a:1:\{s:8:\"customer\";b:1;\}' AND wp_users.user_email <> ''"
+
+mysql -h $host -u$user -p$pass $db -e $query | sed 's/\t/","/g;s/^/"/;s/$/"/;' > $filename
+```
