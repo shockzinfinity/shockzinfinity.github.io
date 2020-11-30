@@ -32,3 +32,11 @@ feed:
 - 나의 경우는 블루투스 초기화  
   > \<Shift\> \+ \<Option\> 키 누른 상태로 `Bluetooth` 아이콘 클릭
 ![mac.mouse](./image/mac.mouse.1.png)
+
+## Operation Not Permitted
+
+- vscode 로 python 작업 시, 스크립트 실행 중 `Operation Not Permitted` 에러가 계속 나올 경우
+- Mac OSX 의 SIP (System Integrity Protection) 때문에 발생하는 문제라고 함.
+- `보안 및 개인 정보 보호 탭 > 개인 정보 보호 > 전체 디스크 접근 권한`에서 Terminal, iTerm, vscode 등 필요한 앱에 권한 할당
+![vscode.operation](./image/vscode.operationnotpermitted.1.png)
+![vscode.operation](./image/vscode.operationnotpermitted.2.png)
