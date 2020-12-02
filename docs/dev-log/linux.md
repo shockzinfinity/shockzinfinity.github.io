@@ -172,3 +172,16 @@ $ fail2ban-client status sshd
 # 차단 풀기
 $ fail2ban-client set sshd unbanip 000.000.000.000
 ```
+
+## ubuntu update
+
+```bash
+# 업데이트 목록 갱신
+$ sudo apt-get update
+
+# 현재 패키지 업그레이드
+$ sudo apt-get upgrade
+
+# 신규 업데이트 설치
+$ sudo apt-get dist-upgrade
+```
