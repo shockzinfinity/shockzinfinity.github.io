@@ -242,3 +242,10 @@ $ git commit -m "fixed untracked files"
 ```bash
 $ git config --global credential.helper 'cache --timeout 3600'
 ```
+
+## git 계정 정보 저장 (on linux)
+
+```bash
+$ git config --global credential.helper store
+$ git config --global -l
+```
