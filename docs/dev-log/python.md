@@ -87,3 +87,19 @@ $ echo "pyenv activate test-env" > .env
 
 $ cd test-dir
 ```
+
+## Tip
+
+- 작업디렉토리 변경 및 이동
+  - realpath() : 심볼릭 링크등의 실제경로
+  - abspath() : 절대경로
+```python
+import os
+
+os.path.realpath(__file__)
+os.path.abspath(__file__)
+os.getcwd()
+os.listdir(os.getcwd())
+os.chdir("workspace")
+os.system("git clone https://temp.shockz.io/shockz/temp.git")
+```

@@ -249,3 +249,78 @@ $ git config --global credential.helper 'cache --timeout 3600'
 $ git config --global credential.helper store
 $ git config --global -l
 ```
+
+## gitlab project 이동
+> 단순하게 repository 이동만을 위한 방법 (GitLab API 의 import/export project 는 좀 과해서...)
+
+`config.json`
+```json
+{
+    "targetAddr": "https://targetgit.shockz.io/api/v4",
+    "targetToken": "**********",
+    "origAddr": "https://origgit.shockz.io/api/v4",
+    "origToken": "**********"
+}
+```
+`gitlab_move_repo.py`
+```python
+import requests
+import json
+import csv
+import os
+
+failFilename = "failProject.csv"
+f = open(failFilename, "w", encoding="utf-8-sig", newline="")
+writer = csv.writer(f)
+
+with open("config.json") as f:
+    config = json.load(f)
+
+targetHeaders = {
+    'PRIVATE-TOKEN': config["targetToken"]
+}
+origHeaders = {
+    'Authorization': 'Bearer ' + config["origToken"]
+}
+repoListFile = "repo_list.json"
+res = requests.get(config["origAddr"] + "/projects?per_page=100", headers=origHeaders)
+res.raise_for_status()
+
+cloneAddrs = []
+
+totalProjects = int(res.headers["X-Total"])
+totalPages = int(res.headers["X-Total-Pages"])
+
+for page in range(totalPages):
+    if page != 0:
+        res = requests.get(config["origAddr"] + "/projects?per_page=100&&page=" + str(page + 1), headers=origHeaders)
+        res.raise_for_status()
+
+    temps = json.loads(res.text)
+    for i, temp in enumerate(temps):
+        data = {
+            "http_url_to_repo": temp["http_url_to_repo"],
+            "name": temp["name"],
+            "path": temp["path"]
+        }
+        cloneAddrs.append(data)
+
+for i, addr in enumerate(cloneAddrs):
+    try:
+        os.system("git clone " + addr["http_url_to_repo"])
+        os.chdir(addr["path"])
+        os.system("git remote remove origin")
+
+        res2 = requests.post(config["targetAddr"] + "/projects?visibility=public&name=" +
+                             addr["name"], headers=targetHeaders)
+        res2.raise_for_status()
+
+        retClone = json.loads(res2.text)
+        os.system("git remote add origin " + retClone["http_url_to_repo"])
+        os.system("git push -u origin master")
+        os.chdir("..")
+        os.system("rm -rf ./" + addr["path"])
+    except:
+        writer.writerow(addr.values())
+        continue
+```
