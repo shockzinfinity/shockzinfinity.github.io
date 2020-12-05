@@ -58,15 +58,15 @@ $ aws s3 cp s3://주소/20201108_170001_bak.db.sql ./
 ### mosh 설치
 
 ```bash
-$ sudo apt-get install mosh
+$ sudo apt install mosh
 # 60000-61000/udp 보안그룹에 추가
 ```
 
 ### jupyter notebook 설치 (웹콘솔을 위한...)
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install python3-pip
+$ sudo apt update
+$ sudo apt install python3-pip
 
 # jupyter notebook 설치
 $ sudo pip3 install notebook
@@ -78,25 +78,29 @@ $ python3
 >>> exit()
 
 # sudo 로 config 파일을 생성할 경우 root 디렉토리에 생성됨.
-$ jupyter-notebook --generate-config
+$ jupyter notebook --generate-config
 Writing default config to: /home/ubuntu/.jupyter/jupyter_notebook_config.py
 $ vi /home/ubuntu/.jupyter/jupyter_notebook_config.py
 ```
 
-- notebook config 수정
+- notebook config 수정 (제일 아래에 작성)
 ```python
 c = get_config()
-c.NotebookApp.password = '생성된 패스워드'
-c.NotebookApp.ip = 'xxx.xxx.xxx.xxx'
-c.NotebookApp.notebook_dir = '/'
+c.NotebookApp.password = '생성된 패스워드' # 위에서 생성한 패스워드
+c.NotebookApp.ip = 'xxx.xxx.xxx.xxx' # 현재 인스턴스 아이피
+c.NotebookApp.notebook_dir = '/' # 최상위 디렉토리 지정
 ```
 ```bash
-$ jupyter-notebook --allow-root
+$ jupyter notebook --allow-root
 
 # Ctrl-Z 로 background
 $ bg
 [1]+  Stopped                 jupyter-notebook --allow-root
 $ disown -h # 소유권 릴리즈
+
+# netstat, ifconfig 등이 없을 경우
+$ sudo apt install net-tools
+
 $ netstat -nap | grep 8888
 (Not all processes could be identified, non-owned process info
  will not be shown, you would have to be root to see it all.)
@@ -136,7 +140,7 @@ Description=Jupyter Notebook Server
 [Service]
 Type=simple
 User=ubuntu
-ExecStart=/usr/bin/sudo /usr/local/bin/jupyter-notebook --allow-root --config /home/ubuntu/.jupyter/jupyter_notebook_config.py
+ExecStart=/usr/bin/sudo /usr/local/bin/jupyter notebook --allow-root --config /home/ubuntu/.jupyter/jupyter_notebook_config.py
 
 [Install]
 WantedBy=multi-user.target

@@ -103,3 +103,11 @@ os.listdir(os.getcwd())
 os.chdir("workspace")
 os.system("git clone https://temp.shockz.io/shockz/temp.git")
 ```
+
+- jupyter notebook 확장 설치
+```bash
+$ pip install jupyter_contrib_nbextensions # nbextensions 설치
+$ jupyter contrib nbextension install --user # 사용 설정
+```
+> 2020-12-05 기준 설치한 확장  
+> Code prettify, Codefolding, contrib_nbextensions_help_item, ExecuteTime, Hide input all, jupyter-js-widgets/extension, Nbextensions dashboard tab, Nbextensions edit menu item, Python Markdown, Variable Inspector
