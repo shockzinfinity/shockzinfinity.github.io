@@ -174,14 +174,18 @@ $ fail2ban-client set sshd unbanip 000.000.000.000
 ```
 
 ## ubuntu update
+> apt 는 apt-get 과 apt-cache 의 기능 중에서 잘 사용되지 않는 기능을 제외하고 만든 새로운 tool 이다.  
+> apt-get 은 패키지 설치를 담당하고, apt-cache 는 패키지 검색을 담당하는 tool 이다.  
+> apt-get 보다는 apt 사용이 권장된다.  
+> apt (Advanced Packaging Tool)
 
 ```bash
 # 업데이트 목록 갱신
-$ sudo apt-get update
+$ sudo apt update
 
 # 현재 패키지 업그레이드
-$ sudo apt-get upgrade
+$ sudo apt upgrade
 
 # 신규 업데이트 설치
-$ sudo apt-get dist-upgrade
+$ sudo apt dist-upgrade
 ```
