@@ -189,3 +189,49 @@ $ sudo apt upgrade
 # 신규 업데이트 설치
 $ sudo apt dist-upgrade
 ```
+
+## ubuntu booting usb on mac
+
+- usb umount 상태에서 시작
+- [ubuntu image download](https://releases.ubuntu.com/20.04/) - 여기서는 desktop image 로 시작
+- iso -> img
+- .img.dmg 형태로 변환되어 저장되니, .dmg 를 삭제
+```bash
+$ hdiutil convert -format UDRW -o ~/Downloads/ubuntu-20.04.1-desktop-amd64.img ~/Downloads/ubuntu-20.04.1-desktop-amd64.iso
+$ mv ~/Downloads/ubuntu-20.04.1-desktop-amd64.img.dmg ~/Downloads/ubuntu-20.04.1-desktop-amd64.img
+```
+- disk number 확인
+- mount 되어 있다면 unmount 해야 만들수 있음.
+```bash
+$ diskutil list
+$ diskutil unmountDisk /dev/disk2
+$ sudo dd if=~/Downloads/ubuntu-20.04.1-desktop-amd64.img of=/dev/disk2 bs=1m
+```
+- 설치할 머신에서 해당 usb 로 부팅하여 설치 시작
+- desktop 버전은 설치된 이후 기본적으로 ssh 가 비활성화 되어 있기때문에 ssh 는 별도 설치가 필요함
+```bash
+# on ubuntu machine
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt install openssh-server
+# 보안관련 설정 수정
+$ sudo vi /etc/ssh/sshd_config
+
+Port 22000
+PermitRootLogin no
+UsePrivilegeSeparation yes
+PermitEmptyPasswords no
+#PubkeyAuthentication yes # 추후 설정
+#PasswordAuthentication no # 추후 설정
+MaxAuthTries 5
+LoginGraceTime 30
+
+$ sudo systemctl enable ssh
+$ sudo systemctl start ssh
+```
+::: tip
+- ssh 키 복사 (대상: 192.168.10.1 일 경우)
+```bash
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub temp@192.168.10.1
+```
+:::
