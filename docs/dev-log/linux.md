@@ -235,3 +235,78 @@ $ sudo systemctl start ssh
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub temp@192.168.10.1
 ```
 :::
+
+## ubuntu zsh install
+
+```bash
+$ sudo apt install zsh
+$ which zsh
+/usr/bin/zsh
+$ chsh -s /usr/bin/zsh
+
+# logout / login
+# This is the Z Shell configuration function for new users,
+# zsh-newuser-install.
+# You are seeing this message because you have no zsh startup files
+# (the files .zshenv, .zprofile, .zshrc, .zlogin in the directory
+# ~).  This function can help you with a few settings that should
+# make your use of the shell easier.
+# 
+# You can:
+# 
+# (q)  Quit and do nothing.  The function will be run again next time.
+# 
+# (0)  Exit, creating the file ~/.zshrc containing just a comment.
+#      That will prevent this function being run again.
+# 
+# (1)  Continue to the main menu.
+# 
+# (2)  Populate your ~/.zshrc with the configuration recommended
+#      by the system administrator and exit (you will need to edit
+#      the file by hand, if so desired).
+# 
+# --- Type one of the keys in parentheses ---
+# 2 번 선택
+
+$ echo $SHELL
+$ $SHELL --version
+zsh 5.8 (x86_64-ubuntu-linux-gnu)
+
+# curl, wget, git, git-lfs, git-flow 설치
+$ sudo apt install curl wget git git-lfs git-flow
+
+# oh-my-zsh install
+$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# powerlevel10k theme 설치
+# .zshrc 에서 ZSH_THEME="powerlevel10k/powerlevel10k" 변경
+$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions 설치
+$ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+$ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# plugin 에 추가
+
+# fzf (fuzzy finder)
+$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+$ ~/.fzf/install
+```
+
+## ubuntu docker install
+
+```bash
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+$ sudo apt update && sudo apt -y upgrade
+$ sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+$ sudo apt update
+$ sudo apt install -y docker-ce docker-ce-cli containerd.io
+$ docker ps -a
+$ docker run hello-world
+$ docker ps -a
+# docker-compose for all user
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
