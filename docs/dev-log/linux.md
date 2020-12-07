@@ -290,6 +290,41 @@ $ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 # fzf (fuzzy finder)
 $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 $ ~/.fzf/install
+
+# powerline font 설치
+$ git clone https://github.com/powerline/fonts.git && cd fonts
+$ ./install.sh
+
+# neovim 설치
+$ sudo apt install neovim
+$ vi ~/.zshrc
+...
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
+export EDITOR=/usr/local/bin/nvim
+...
+$ source ~/.zshrc
+
+# spacevim 설치
+$ curl -sLf https://spacevim.org/install.sh | bash
+$ mkdir ~/.SpaceVim.d/colors
+$ curl https://gist.githubusercontent.com/subicura/91696d2da58ad28b5e8b2877193015e1/raw/6fb5928c9bda2040b3c9561d1e928231dbcc9184/snazzy-custom.vim -o ~/.SpaceVim.d/colors/snazzy-custom.vim
+$ vi ~/.SpaceVim.d/init.toml
+...
+[options]
+  colorscheme = "snazzy-custom"
+  enable_guicolors = true
+  statusline_separator = "arrow"
+  enable_tabline_filetype_icon = true
+  enable_statusline_mode = true
+  statusline_unicode_symbols = true
+...
+
+# vimproc_linux64.so is not found 에러시
+$ sudo apt install gcc make
+$ cd ~/.SpaceVim/bundle/vimproc.vim
+$ make
 ```
 
 ## ubuntu docker install
