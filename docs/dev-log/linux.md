@@ -362,3 +362,14 @@ $ sudo vi /etc/sudoers
 # or
 $ echo 'id ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 ```
+
+## cifs (윈도우 공유폴더용 프로토콜) 마운트
+
+```bash
+$ sudo apt install cifs-utils
+$ sudo mount -t cifs -o username=shockz //192.168.0.99/photo ~/synology
+$ df -h
+Filesystem            Size  Used Avail Use% Mounted on
+...
+//192.168.0.99/photo  7.0T  1.8T  5.2T  26% /home/shockz/synology
+```
