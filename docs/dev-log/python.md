@@ -87,6 +87,12 @@ $ echo "pyenv activate test-env" > .env
 
 $ cd test-dir
 ```
+::: tip
+- `cd ~`과 같이 홈 디렉토리에 진입할 경우 가상환경을 해제하기 위해서는 홈 디렉토리에 `.env` 파일을 만들고 아래와 같이 해서 홈 디렉토리로 가면 해제되도록 한다.
+```bash
+$ echo "pyenv deactivate" >> .env
+```
+:::
 
 ## Tip
 
