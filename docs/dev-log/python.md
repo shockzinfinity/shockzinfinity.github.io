@@ -111,3 +111,56 @@ $ jupyter contrib nbextension install --user # 사용 설정
 ```
 > 2020-12-05 기준 설치한 확장  
 > Code prettify, Codefolding, contrib_nbextensions_help_item, ExecuteTime, Hide input all, jupyter-js-widgets/extension, Nbextensions dashboard tab, Nbextensions edit menu item, Python Markdown, Variable Inspector
+
+## jupyter lab docker-compose
+
+- `docker-compose.yml' without config file path
+```docker
+version: '3'
+
+services:
+  jupyter:
+    image: ufoym/deepo:all-cpu
+    volumes:
+      - /home/shockz/docker/deepo/data:/data
+      - /home/shockz/docker/deepo/config:/config
+    ipc: host
+    ports:
+      - "8888:8888"
+      - "6006-6015:6006-6015"
+    restart: unless-stopped
+    entrypoint: sh -c 'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data'
+```
+- config file generation
+```bash
+$ docker-compose exec jupyter bash
+jupyter$ jupyter lab --generate-config
+```
+- jupyter password generation
+```python
+from notebook.auth import passwd
+passwd()
+
+```
+- `jupyter_notebook_config.py`
+```python
+c = get_config()
+c.NotebookApp.password = u''
+```
+- `docker-compose.yml` with config file path
+```docker
+version: '3'
+
+services:
+  jupyter:
+    image: ufoym/deepo:all-cpu
+    volumes:
+      - /home/shockz/docker/deepo/data:/data
+      - /home/shockz/docker/deepo/config:/config
+    ipc: host
+    ports:
+      - "8888:8888"
+      - "6006-6015:6006-6015"
+    restart: unless-stopped
+    entrypoint: sh -c 'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'
+```
