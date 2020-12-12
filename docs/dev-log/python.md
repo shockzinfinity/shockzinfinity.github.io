@@ -120,7 +120,7 @@ $ jupyter contrib nbextension install --user # 사용 설정
 
 ## jupyter lab docker-compose
 
-- `docker-compose.yml' without config file path
+- `docker-compose.yml` without config file path
 ```docker
 version: '3'
 
