@@ -345,3 +345,20 @@ $ docker ps -a
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
+
+## 대상 서버에 ssh key 로 접속
+
+```bash
+# 키 생성 시 passphrase 를 입력하지 않으면 비밀번호 입력 없이 키를 사용할 수 있게됨.
+$ ssh-keygen -t rsa
+# 연결할 서버에 생성된 키를 복사
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <port> id@address
+```
+
+## sudo 사용 시 패스워드 없이 사용하고자 할때
+
+```bash
+$ sudo vi /etc/sudoers
+# or
+$ echo 'id ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+```
