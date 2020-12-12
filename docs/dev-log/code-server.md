@@ -76,3 +76,43 @@ $ code-server --install-extension <extension identifier>
 - github.com > Settings > Developer settings > Personal Access Tokens (PATs) 에서 토큰을 추가하여 입력하면 해결 가능
 ![code-server.github](./image/code-server.github.1.png)
 ![code-server.github](./image/code-server.github.2.png)
+
+## ubuntu package 로 설치하는 방법
+
+```bash
+$ wget https://github.com/cdr/code-server/releases/download/v3.7.2/code-server-3.7.2-linux-amd64.tar.gz
+$ tar xvfz code-server-3.7.2-linux-amd64.tar.gz
+$ mkdir -p ~/.config/code-server
+$ curl https://gist.githubusercontent.com/shockzinfinity/aad803519b04c6bd06c9424f43f00233/raw/147d3e425744c8327efd62f750c7b18dbe463405/config.yaml -o ~/.config/code-server/config.yaml
+$ mkdir ~/project
+$ sudo curl https://gist.githubusercontent.com/shockzinfinity/227a0f2ef792fdbe01063c72f564ba7a/raw/7a06277a3f38c90543259aea9198d7ad22ebce2e/codeserver.service -o /lib/systemd/system/codeserver.service
+$ sudo systemctl start codeserver
+$ sudo systemctl enable codeserver
+```
+- `code-server/config.yaml` 수정
+```bash
+bind-addr: 0.0.0.0:8080
+auth: password
+password: ********
+cert: false
+```
+- 필요에 따라 `codeserver.service` 파일 수정
+```bash{7,11}
+[Unit]
+Description=Code Server IDE
+After=network.target
+
+[Service]
+Type=simple
+User=shockz
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/home/shockz/code-server-3.7.2-linux-amd64
+ExecStart=/home/shockz/code-server-3.7.2-linux-amd64/code-server --port 8080 /home/shockz/docker/deepo/data
+
+StandardOutput=file:/var/log/code-server-output.log
+StandardError=file:/var/log/code-server-error.log
+
+[Install]
+WantedBy=multi-user.target
+```
