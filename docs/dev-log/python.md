@@ -54,6 +54,7 @@ $ source ~/.bash_profile
 $ pyenv versions
 
 # 필요한 버전 설치
+$ pyenv install --list
 $ pyenv install 3.9.0
 $ pyenv shell 3.9.0
 $ python -V
@@ -170,3 +171,6 @@ services:
     restart: unless-stopped
     entrypoint: sh -c 'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'
 ```
+
+- jupyterlab synology nas reverse proxy 설정 시 웹소켓 관련 헤더 추가가 필요함
+![jupyterlab.reverse.nas](./image/jupyterlab.reverse.nas.1.png)
