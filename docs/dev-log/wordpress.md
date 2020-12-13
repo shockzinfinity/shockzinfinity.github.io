@@ -572,6 +572,7 @@ $ sudo brew services stop httpd
 ### DB 상 패스워드 변경
 
 ```sql
+-- admin id change
 UPDATE wp_users 
 SET user_pass = MD5('패스워드')
 WHERE ID = 1
