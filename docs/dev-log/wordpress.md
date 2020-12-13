@@ -577,3 +577,7 @@ UPDATE wp_users
 SET user_pass = MD5('패스워드')
 WHERE ID = 1
 ```
+
+### 워드프레스 퍼미션 관련
+
+- [php7.4-fpm-alpine official image](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile) 이미지를 사용중이므로, www-data 에 대한 공식 uid/gid 가 `82` 로 맞춰줘야 할 경우가 있으므로, 권한 문제 발생시 `chown -R 82:82 wordpress` 를 통해 퍼미션 문제 해결
