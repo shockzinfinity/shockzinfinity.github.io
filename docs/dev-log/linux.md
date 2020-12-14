@@ -360,7 +360,7 @@ $ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <port> id@address
 ```bash
 $ sudo vi /etc/sudoers
 # or
-$ echo 'id ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+$ echo 'id ALL=NOPASSWD: ALL' >> /etc/sudoers
 ```
 
 ## cifs (윈도우 공유폴더용 프로토콜) 마운트
