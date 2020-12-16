@@ -15,3 +15,5 @@ sidebar: false
 ## [iPad 사용관련](./iPad)
 
 ## [markdown](./markdown)
+
+## [windows 기타](./windows)

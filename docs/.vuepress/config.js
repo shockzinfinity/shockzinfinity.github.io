@@ -128,6 +128,7 @@ module.exports = {
           { text: 'mac 사용관련', link: '/etc/mac-etc' },
           { text: 'iPad 사용관련', link: '/etc/iPad' },
           { text: 'markdown', link: '/etc/markdown' },
+          { text: 'windows', link: '/etc/windows' },
         ],
       },
     ],
