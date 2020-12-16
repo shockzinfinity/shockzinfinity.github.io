@@ -166,7 +166,7 @@ OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_265-b01)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.265-b01, mixed mode)
 ```
 
-## pyenv, python, anaconda
+## pyenv, python, anaconda ([python 개발환경](../dev-log/python)과 비교 필요)
 
 - (BigSur 기준) pyenv 로 python 3.8.6 과 anaconda3-5.3.1 설치 기준
 ```bash
