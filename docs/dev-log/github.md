@@ -26,19 +26,37 @@ feed:
 
 [[toc]]
 
-## GitHub Workflow 를 활용한 Github Container Registry (ghcr.io) 이미지 배포
-> 원문: [Migrating my Docker images to the GitHub Container Registry](https://www.mediaglasses.blog/2020/09/27/migrating-my-docker-images-to-the-github-container-registry/)  
-> 참고 URL:  
->   - [Github Actions를 이용한 CI/CD 구축](https://velog.io/@chrishan/Github-Actions%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-CICD)  
->   - [깃허브 컨테이너 레지스트리 베타 오픈 및 사용법](https://www.44bits.io/ko/post/news--github-container-registry-beta-release)
+## GitHub Workflow 를 활용한 Github Container Registry (ghcr.io) 에 Docker image 배포
+> 원문:
+> - [Migrating my Docker images to the GitHub Container Registry](https://www.mediaglasses.blog/2020/09/27/migrating-my-docker-images-to-the-github-container-registry/)
+> 
+> 참고 URL:
+> - [Github Actions를 이용한 CI/CD 구축](https://velog.io/@chrishan/Github-Actions%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-CICD)  
+> - [깃허브 컨테이너 레지스트리 베타 오픈 및 사용법](https://www.44bits.io/ko/post/news--github-container-registry-beta-release)
 
-- 전체 workflow
+- Scenario
+
+  github repository 에 코드를 commit 하면 github actions 의 workflow 에 의해 ghcr.io(github container registry) 에 docker image 를 upload 되는 과정을 설명합니다.
+
+  `/.github/workflows`
+  ```yml
+  
+  ```
+
 - Naming the Workflow
+
 - When do run the job?
+
 - Defining the job
+
 - Step #1
+
 - Step #2
+
 - Step #3
+
 - Step #4
+
 - Step #5
+
 - Step #6

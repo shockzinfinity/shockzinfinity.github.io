@@ -100,6 +100,7 @@ module.exports = {
           { text: 'Xwiki', link: '/dev-log/xwiki' },
           { text: 'Synology NAS', link: '/dev-log/synology' },
           { text: 'GitLab', link: '/dev-log/gitlab' },
+          { text: 'GitHub', link: '/dev-log/github' },
           { text: 'SSL', link: '/dev-log/ssl' },
           { text: 'Nginx', link: '/dev-log/nginx' },
           { text: '.net core', link: '/dev-log/dotnetcore' },
