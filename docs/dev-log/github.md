@@ -40,7 +40,7 @@ feed:
   > 
   > GitHub Repo: [shockzinfinity/docker-build](https://github.com/shockzinfinity/docker-build)
 
-- Scenario
+### Scenario
 
   github repository 에 코드를 commit 하면 github actions 의 workflow 에 의해 ghcr.io(github container registry) 에 docker image 를 upload 되는 과정을 설명합니다.
 
@@ -88,14 +88,14 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 ```
 
-- Naming the Workflow
+### Naming the Workflow
 
 ```yml
 name: wordpress
 ```
   workflow 이름을 지정해서 `github.workflow` 와 같이 변수로 활용
 
-- When do run the job?
+### When do run the job?
 
 ```yml
 on:
@@ -111,7 +111,7 @@ on:
   
   `github.workflow` 변수를 활용할 수 없어서 하드코딩된 부분
 
-- Defining the job
+### Defining the job
 
 ```yml
 jobs:
@@ -121,7 +121,7 @@ jobs:
 ```
   job 정의 부분으로서 ubuntu 머신을 이용하여 빌드
 
-- Step #1
+### Step #1
 
 ```yml
       - name: Checkout
@@ -129,7 +129,7 @@ jobs:
 ```
   repository 체크 아웃
 
-- Step #2
+### Step #2
 
 ```yml
       - name: Set up Docker Buildx
@@ -139,7 +139,7 @@ jobs:
 ```
   **Docker Buildx** 를 활용하여 빌드하겠다는 것으로 추후 빌드된 이미지를 두개의 tag 로 push 하기 위해서 buildx 플러그인을 사용
 
-- Step #3
+### Step #3
 
 ```yml
       - name: Get current date
@@ -148,7 +148,7 @@ jobs:
 ```
   tagging 을 위한 current date 저장
 
-- Step #4
+### Step #4
 
 ```yml
       - name: Login to the GitHub Container Registry
@@ -162,7 +162,7 @@ jobs:
 
   secrets.CR_PAT 는 해당 repository > settings 에서 PAT(Personal Access Token) 을 등록하여 사용
 
-- Step #5
+### Step #5
 
 ```yml
       - name: Build and push image
@@ -178,7 +178,7 @@ jobs:
 ```
   context 와 file 은 docker build 를 위해 지정
 
-- Step #6
+### Step #6
 
 ```yml
       - name: Image digest
