@@ -147,25 +147,26 @@ $ chmod +x /usr/local/bin/sphp
 ```bash
 $ brew tap AdoptOpenJDK/openjdk
 ```
-- 설치할 자바 버전 확인  
-| Java version                           | JDK                         | JRE                             |
-| :------------------------------------- | :-------------------------- | :------------------------------ |
-| OpenJDK8 with Hotsopt JVM              | adoptopenjdk8               | adoptopenjdk8-jre               |
-| OpenJDK8 with OpenJ9 JVM               | adoptopenjdk8-openj9        | adoptopenjdk8-openj9-jre        |
-| OpenJDK8 with OpenJ9 JVM, large heap*  | adoptopenjdk8-openj9-large  | adoptopenjdk8-openj9-jre-large  |
-| OpenJDK9 with Hotsopt JVM              | adoptopenjdk9               | n/a                             |
-| OpenJDK10 with Hotsopt JVM             | adoptopenjdk10              | n/a                             |
-| OpenJDK11 with Hotsopt JVM             | adoptopenjdk11              | adoptopenjdk11-jre              |
-| OpenJDK11 with OpenJ9 JVM              | adoptopenjdk11-openj9       | adoptopenjdk11-openj9-jre       |
-| OpenJDK11 with OpenJ9 JVM, large heap* | adoptopenjdk11-openj9-large | adoptopenjdk11-openj9-jre-large |
-| OpenJDK12 with Hotsopt JVM             | adoptopenjdk12              | adoptopenjdk12-jre              |
-| OpenJDK12 with OpenJ9 JVM              | adoptopenjdk12-openj9       | adoptopenjdk12-openj9-jre       |
-| OpenJDK12 with OpenJ9 JVM, large heap* | adoptopenjdk12-openj9-large | adoptopenjdk12-openj9-jre-large |
-| OpenJDK13 with Hotsopt JVM             | adoptopenjdk13              | adoptopenjdk13-jre              |
-| OpenJDK13 with OpenJ9 JVM              | adoptopenjdk13-openj9       | adoptopenjdk13-openj9-jre       |
-| OpenJDK13 with OpenJ9 JVM, large heap* | adoptopenjdk13-openj9-large | adoptopenjdk13-openj9-jre-large |
+- 설치할 자바 버전 확인
 
-- brew cask install <version>
+  | Java version                           | JDK                         | JRE                             |
+  | :------------------------------------- | :-------------------------- | :------------------------------ |
+  | OpenJDK8 with Hotsopt JVM              | adoptopenjdk8               | adoptopenjdk8-jre               |
+  | OpenJDK8 with OpenJ9 JVM               | adoptopenjdk8-openj9        | adoptopenjdk8-openj9-jre        |
+  | OpenJDK8 with OpenJ9 JVM, large heap*  | adoptopenjdk8-openj9-large  | adoptopenjdk8-openj9-jre-large  |
+  | OpenJDK9 with Hotsopt JVM              | adoptopenjdk9               | n/a                             |
+  | OpenJDK10 with Hotsopt JVM             | adoptopenjdk10              | n/a                             |
+  | OpenJDK11 with Hotsopt JVM             | adoptopenjdk11              | adoptopenjdk11-jre              |
+  | OpenJDK11 with OpenJ9 JVM              | adoptopenjdk11-openj9       | adoptopenjdk11-openj9-jre       |
+  | OpenJDK11 with OpenJ9 JVM, large heap* | adoptopenjdk11-openj9-large | adoptopenjdk11-openj9-jre-large |
+  | OpenJDK12 with Hotsopt JVM             | adoptopenjdk12              | adoptopenjdk12-jre              |
+  | OpenJDK12 with OpenJ9 JVM              | adoptopenjdk12-openj9       | adoptopenjdk12-openj9-jre       |
+  | OpenJDK12 with OpenJ9 JVM, large heap* | adoptopenjdk12-openj9-large | adoptopenjdk12-openj9-jre-large |
+  | OpenJDK13 with Hotsopt JVM             | adoptopenjdk13              | adoptopenjdk13-jre              |
+  | OpenJDK13 with OpenJ9 JVM              | adoptopenjdk13-openj9       | adoptopenjdk13-openj9-jre       |
+  | OpenJDK13 with OpenJ9 JVM, large heap* | adoptopenjdk13-openj9-large | adoptopenjdk13-openj9-jre-large |
+
+- brew cask install version
 ```bash
 $ brew cask install adoptopenjdk8
 $ java -version
