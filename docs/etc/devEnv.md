@@ -56,6 +56,14 @@ $ brew cask install dotnet-sdk
 
 ![개발환경설정](./image/mac.dev.settings.1.jpg)
 
+## zsh-autosuggestion color
+
+- `.zshrc` 에 다음 라인 추가
+```bash
+# zsh-autosuggestion suggest color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+```
+
 ## Visual Studio for Mac
 
 [PC 및 Mac용 Visual Studio 비교](https://visualstudio.microsoft.com/ko/vs/mac/#vs_mac_table)
