@@ -185,3 +185,6 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 ```
   최종 결과 출력
+
+![github.actions](./image/github.actions.1.png)
+![github.actions](./image/github.actions.2.png)
