@@ -99,6 +99,8 @@ $ tar -zcvf [파일명.tar.gz] [폴더명]
 
 # 풀기
 $ tar -zxvf [파일명.tar.gz]
+# 특정위치에 풀기
+$ tar -zxvf [파일명.tar.gz] -C /temp
 ```
 
 ## ssh 접속 기록, 접속자 현황 등
