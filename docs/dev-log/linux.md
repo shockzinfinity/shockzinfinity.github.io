@@ -99,7 +99,7 @@ $ tar -zcvf [파일명.tar.gz] [폴더명]
 
 # 풀기
 $ tar -zxvf [파일명.tar.gz]
-# 특정위치에 풀기
+# 특정위치에 풀기 ( -C : Change directory)
 $ tar -zxvf [파일명.tar.gz] -C /temp
 ```
 
