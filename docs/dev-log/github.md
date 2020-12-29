@@ -188,3 +188,13 @@ jobs:
 
 ![github.actions](./image/github.actions.1.png)
 ![github.actions](./image/github.actions.2.png)
+
+## GitHub Container Registry 에 업로드 하기 위한 준비
+
+- github.com > Settings > Developer settings > Personal access tokens 에서
+- delete:packages, workflow, write:packages 의 권한으로 GH_TOKEN.txt 로 로컬에 저장
+![github.token](./image/github.token.1.png)
+- `docker push` 가 가능해짐
+```bash
+$ cat ~/Desktop/GH_TOKEN.txt| docker login ghcr.io -u shockzinfinity --password-stdin
+```
