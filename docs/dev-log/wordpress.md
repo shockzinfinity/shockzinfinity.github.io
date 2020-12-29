@@ -581,3 +581,27 @@ WHERE ID = 1
 ### 워드프레스 퍼미션 관련
 
 - [php7.4-fpm-alpine official image](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile) 이미지를 사용중이므로, www-data 에 대한 공식 uid/gid 가 `82` 로 맞춰줘야 할 경우가 있으므로, 권한 문제 발생시 `chown -R 82:82 wordpress` 를 통해 퍼미션 문제 해결
+
+### wp-admin bar customize
+
+- wordpress 사이트를 개발용과 운영용으로 구분하면서 매번 주소 확인이 잘 안되서 실수하는 경우가 있다.
+- 실수를 줄이기 위해서 시각적인 효과를 고민하다가 top banner 를 admin bar 에 적용할까 하다가 단순한 방법으로 적용한다.
+
+```php
+// 전역적으로 적용하기 위해 CSS 를 변경하기 위함
+// Theme 에서 Additional CSS 로 적용하게 되면 front 쪽만 수정되고, back office 쪽은 적용이 안되므로, function.php 기능 추가 형태로 작업
+// path: 사이트메인디렉토리/wp-includes/functions.php
+
+function style_tool_bar() {
+	echo '
+		<style type="text/css">
+			#wpadminbar {
+				background: red;
+			}
+		</style>';
+}
+
+add_action( 'admin_head', 'style_tool_bar' );
+add_action( 'wp_head', 'style_tool_bar' );
+```
+![wordpress.adminbar](./image/wordpress.adminbar.1.png)
