@@ -196,5 +196,5 @@ jobs:
 ![github.token](./image/github.token.1.png)
 - `docker push` 가 가능해짐
 ```bash
-$ cat ~/Desktop/GH_TOKEN.txt| docker login ghcr.io -u shockzinfinity --password-stdin
+$ cat -p ~/Desktop/GH_TOKEN.txt| docker login ghcr.io -u shockzinfinity --password-stdin
 ```
