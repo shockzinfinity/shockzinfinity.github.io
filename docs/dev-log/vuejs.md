@@ -247,3 +247,68 @@ $ docker-compose up --force-recreate --no-deps certbot
 ### Step 4. /dist vue.js 앱 배포
 
 - `yarn build` 등을 통해 빌드된 결과를 `/dist` 에 복사
+
+## nginx + vue.js 를 docker 를 통해 배포
+
+- 호스트에 이미 docker 를 통한 reverse proxy 가 설정되어 있다는 가정하에 시작합니다.
+- docker 를 통한 reverse proxy 설정은 [다음](https://shockzinfinity.github.io/dev-log/nginx.html#nginx-reverse-proxy-containerizing)을 참고합니다.
+- 참조: [Dockrize Vue.js App](https://kr.vuejs.org/v2/cookbook/dockerize-vuejs-app.html#Real-World-Example)
+- 해당 앱 디렉토리에 `nginx.conf` 를 추가합니다. (vue router history mode 관련 설정을 추가합니다.)
+```nginx{7}
+server {
+  listen 8080;
+  client_max_body_size 5M;
+
+  location / {
+    alias /usr/share/nginx/html/;
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+- `Dockerfile`
+```docker{13}
+# build stage
+FROM node:lts-alpine as build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN yarn
+COPY . .
+RUN yarn build
+
+# production stage
+FROM nginx:stable-alpine as production-stage
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- `docker-compose.yml`
+```yml{9,16}
+version: '3'
+
+services:
+  vuejs-app:
+    container_name: vuejs-app
+    image: ghcr.io/shockzinfinity/vuejs-app:latest
+    environment:
+      - VIRTUAL_HOST=vuejs.your.domain
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=vuejs.your.domain
+      - LETSCRYPT_EMAIL=email@your.domain
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+```
+
+- 결과 확인
+```bash
+$ docker-compose up -d
+$ docker-compose ps
+  Name                 Command               State        Ports
+---------------------------------------------------------------------
+vuejs-app   /docker-entrypoint.sh ngin ...   Up      80/tcp, 8080/tcp
+```
