@@ -283,6 +283,16 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 ```
+::: tip
+
+- docker build 를 통해 이미지 생성 후 ghcr.io 에 배포는 다음과 같이 진행했습니다.
+- ghcr.io 로그인은 [다음](https://shockzinfinity.github.io/dev-log/github.html#github-container-registry-%E1%84%8B%E1%85%A6-%E1%84%8B%E1%85%A5%E1%86%B8%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%8C%E1%85%AE%E1%86%AB%E1%84%87%E1%85%B5)을 참고합니다.
+```bash
+$ docker build -t ghcr.io/shockzinfinity/vuejs-app:latest .
+# ghcr.io 에 로그인 되어있다고 가정
+$ docker push ghcr.io/shockzinfinity/vuejs-app:latest
+```
+:::
 
 - `docker-compose.yml`
 ```yml{9,16}
