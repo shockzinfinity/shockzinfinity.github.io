@@ -28,4 +28,12 @@ Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과�
 
 ## [Authentication & Authorization in .net core](./auth)
 
+> .net core 를 이용한 인증 api
+
 ## [EXIF - GeoLocation](./geolocation)
+
+> python 을 이용한 EXIF 태그 중 위도/경도 추출
+
+## [node.js Sample App](./nodejs.sample.app)
+
+> node.js 를 이용한 sample app 생성
