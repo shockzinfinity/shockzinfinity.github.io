@@ -101,3 +101,18 @@ query="SELECT wp_users.user_login, wp_users.user_email, firstmeta.meta_value as 
 
 mysql -h $host -u$user -p$pass $db -e $query | sed 's/\t/","/g;s/^/"/;s/$/"/;' > $filename
 ```
+
+## mysqldump
+
+- backup 시 에러 대처
+```bash
+$ mysqldump -uwordpress -p --databases dbname > /var/lib/mysql/backup.db.sql
+mysqldump: Got error: 1045: "Access denied for user 'wordpress'@'%' (using password: YES)" when using LOCK TABLES
+
+$ mysql -uwordpress -p
+MariaDB > GRANT SELECT, LOCK TABLES ON dbname.* TO 'wordpress'@'%';
+MariaDB > FLUSH PRIVILEGES;
+
+# 그래도 동일한 에러가 날 경우
+$ mysqldump -h db -uwordpress -p --single-transaction --databases dbname > /var/lib/mysql/backup.db.sql
+```
