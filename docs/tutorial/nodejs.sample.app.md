@@ -32,7 +32,7 @@ feed:
 
 ## Steps
 
-- [fastify](https://fastify.io)
+- [fastify.io](https://fastify.io) 를 이용한 sample app
 ```bash
 $ mkdir node-sample-app
 $ yarn init -y
@@ -42,8 +42,7 @@ $ git init
 $ touch app.js
 ```
 
-- `app.js` 파일 내용 편집
-- fastify quick start 참조
+- `app.js` 파일 내용 편집 (fastify.io quick start 참조)
 ```js
 const os = require('os')
 
