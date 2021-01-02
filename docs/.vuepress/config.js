@@ -183,7 +183,8 @@ module.exports = {
     lineNumbers: true,
   },
 
-  ga: 'UA-177405863-1',
+  //  ga: 'UA-177405863-1',
+  ga: 'G-04FN4SLVHS',
 
   locales: {
     '/': { lang: 'ko-KR' },
