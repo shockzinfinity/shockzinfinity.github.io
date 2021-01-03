@@ -143,6 +143,11 @@ module.exports = {
       //   },
       // ],
     },
+    yuu: {
+      defaultDarkTheme: true,
+      colorThemes: ['red', 'blue', 'green', 'purple'],
+      defaultColorTheme: 'red',
+    },
   },
 
   /**
