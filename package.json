@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "eslint": "^7.9.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "vuepress-theme-yuu": "^2.3.0"
   }
 }

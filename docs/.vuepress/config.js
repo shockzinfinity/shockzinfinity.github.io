@@ -189,4 +189,5 @@ module.exports = {
   locales: {
     '/': { lang: 'ko-KR' },
   },
+  theme: 'yuu',
 };
