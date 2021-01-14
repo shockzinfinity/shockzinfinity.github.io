@@ -111,6 +111,9 @@ ENTRYPOINT ["dotnet", "sample.api.dll"]
 ```bash
 System.Data.SqlClient.SqlException (0x80131904): A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
 ```
+
+### 해결
+
 - 이 에러를 해결하기 위해서는 `Dockerfile` 에서 base 이미지를 하위 버전은 리눅스 이미지 (Ubuntu 18.04 를 base로 하는 `3.1-bionic`)를 사용하도록 하거나, ENTRYPOINT 전에 `/etc/ssl/openssl.cnf` 를 조정해줘야 한다.
 - [https://itectec.com/ubuntu/ubuntu-ubuntu-20-04-how-to-set-lower-ssl-security-level/#](https://itectec.com/ubuntu/ubuntu-ubuntu-20-04-how-to-set-lower-ssl-security-level/#)
 - [https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level](https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level)
@@ -123,6 +126,12 @@ ENV ASPNETCORE_URLS http://*:5001
 RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
 ENTRYPOINT ["dotnet", "sample.api.dll"]
 ```
+- openssl 의 SECLEVEL 을 조정함으로서 SSL 관련 오류를 우회한다.
+::: tip
+- 관련 정보
+  - [Ubuntu 20.04 openssl의 key길이 문제(SECLEVEL)](https://ivorycirrus.github.io/TIL/openssl-seclevel/)
+  - [디피 헬만 키 (Diffie-Hellman Key) 를 2048 bit 로 바꿔야 하는 이유](https://rsec.kr/?p=242)
+:::
 
 ## Reference
 - [package management console](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell)
