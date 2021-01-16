@@ -81,4 +81,36 @@ DocumentRoot /Users/shockz/Sites
 - `sudo mount -o nobrowse -t apfs /dev/disk1s1 ./` 로 별도 디렉토리에 마운트하여 삭제해야 함
 ![mac.systemfile.delete](./image/mac.systemfile.delete.2.png)
 
+### XDebug 추가 설정
 
+- `xdebug.start_with_request=yes`
+- `xdebug.client_port=9000`
+- `xdebug.client_host=localhost`
+- edge 용 Xdebug helper 확장 설치 (옵션)
+- vscode php 위치 설정 필요 ("php.validate.executablePath": "/usr/local/bin/php")
+![php.executable.path](./image/php.executable.path.1.png)
+- vscode launch.json 설정
+```json
+{
+  // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+  // 기존 특성에 대한 설명을 보려면 가리킵니다.
+  // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for XDebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003
+    },
+    {
+      "name": "Launch currently open script",
+      "type": "php",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "port": 9003
+    }
+  ]
+}
+```
