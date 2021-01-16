@@ -96,6 +96,8 @@ $ ls | tr '\n' '\n'
 ```bash
 # 압축
 $ tar -zcvf [파일명.tar.gz] [폴더명]
+# 특정 디렉토리, 파일 제외
+$ tar cvzf [파일명.tar.gz] [폴더명] --exclude [파일 또는 폴더명]
 
 # 풀기
 $ tar -zxvf [파일명.tar.gz]
