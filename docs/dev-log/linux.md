@@ -386,3 +386,4 @@ Filesystem            Size  Used Avail Use% Mounted on
 10 5 * * * find /var/log/ -mtime +10 -type f -ls -exec rm {} \;
 ```
 - 매일 5시 10분에 /var/log 에서 현재시각 기준 10일전 일반 파일들 검색하여 삭제
+  > pmlogger 용량이 과도하게 늘어나는 상황때문에 추가함.
