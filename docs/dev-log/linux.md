@@ -43,6 +43,9 @@ $ du -hd 3 /var/www/vhosts/webroot/wp-content/*
 
 # 디스크 여유공간 확인
 $ df -h
+
+# 현재 디렉토리 용량 상위 10개
+$ du -hsx * | sort -rh | head -n 10
 ```
 
 ## find
