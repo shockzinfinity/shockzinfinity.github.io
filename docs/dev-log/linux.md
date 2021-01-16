@@ -387,3 +387,4 @@ Filesystem            Size  Used Avail Use% Mounted on
 ```
 - 매일 5시 10분에 /var/log 에서 현재시각 기준 10일전 일반 파일들 검색하여 삭제
   > pmlogger 용량이 과도하게 늘어나는 상황때문에 추가함.
+  > [crontab 시간 설정 참고](https://ponyozzang.tistory.com/402)
