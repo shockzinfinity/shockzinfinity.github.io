@@ -132,6 +132,7 @@ module.exports = {
           { text: 'iPad 사용관련', link: '/etc/iPad' },
           { text: 'markdown', link: '/etc/markdown' },
           { text: 'windows', link: '/etc/windows' },
+          { text: 'PHP', link: '/etc/php' },
         ],
       },
     ],
