@@ -378,3 +378,11 @@ Filesystem            Size  Used Avail Use% Mounted on
 ...
 //192.168.0.99/photo  7.0T  1.8T  5.2T  26% /home/shockz/synology
 ```
+
+## /var/log 용량관리를 위한 crontab
+
+```bash
+# crontab -e 를 통해 다음을 추가
+10 5 * * * find /var/log/ -mtime +10 -type f -ls -exec rm {} \;
+```
+- 매일 5시 10분에 /var/log 에서 현재시각 기준 10일전 일반 파일들 검색하여 삭제
