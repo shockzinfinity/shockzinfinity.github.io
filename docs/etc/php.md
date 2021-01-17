@@ -114,3 +114,16 @@ DocumentRoot /Users/shockz/Sites
   ]
 }
 ```
+
+### composer 설치
+
+```bash
+$ brew install composer
+$ brew uninsall composer
+```
+- 수동 설치 했다가 다시 삭제하기 위해서는 [https://stackoverflow.com/questions/30396451/remove-composer](https://stackoverflow.com/questions/30396451/remove-composer) 를 참고한다.
+- 수동 설치 및 사용 방법은 다음을 참고 : [https://www.lesstif.com/php-and-laravel/php-composer-23757293.html](https://www.lesstif.com/php-and-laravel/php-composer-23757293.html)
+
+### wordpress 개발을 위한 coding standard 설치
+
+- [https://sridharkatakam.com/linting-and-formatting-in-visual-studio-code-for-wordpress/](https://sridharkatakam.com/linting-and-formatting-in-visual-studio-code-for-wordpress/)
