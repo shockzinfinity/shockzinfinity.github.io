@@ -43,6 +43,6 @@ Host api.shockz.io
 ## terminal 사용 시 아이콘 깨지는 현상 해결
 
 - iTerm 등에서 사용하는 폰트가 VSCode 에 지정되어 있지 않아서 생기는 현상 - 현재 `MesloLGS NF` 사용중
-[iTerm.font](./image/iTerm.profiles.font.1.png)
+![iTerm.font](./image/iTerm.profiles.font.1.png)
 - VSCode 설정에서 검색: `terminal.integrated.fontFamily`
-[vscode.settings](./image/vscode.terminal.font.1.png)
+![vscode.settings](./image/vscode.terminal.font.1.png)
