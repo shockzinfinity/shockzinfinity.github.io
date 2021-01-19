@@ -391,3 +391,20 @@ Filesystem            Size  Used Avail Use% Mounted on
 - 매일 5시 10분에 /var/log 에서 현재시각 기준 10일전 일반 파일들 검색하여 삭제
   > pmlogger 용량이 과도하게 늘어나는 상황때문에 추가함.
   > [crontab 시간 설정 참고](https://ponyozzang.tistory.com/402)
+
+## sudoers 에서 NOPASSWD 옵션이 안먹힐때
+
+- /etc/sudoers 에 sudo 권한을 줄 사용자를 매핑하게 된다.
+- 직접 접근하여 수정하는 것은 권장되지 않는다. (기본적으로 /etc/sudoers 는 440 으로 설정되어 있다.)
+- 무리해서 쓰기 권한을 부여하여 수정하면 안된다.
+- `sudo visudo` 를 통해 수정한다. (/tmp 에서 수정해서 적용하는 메커니즘)
+```bash
+# 일반적으로는 이런 라인을 추가하여 sudo 사용 시 패스워드 없이 가능하도록 설정한다.
+username  ALL=(ALL) NOPASSWD:ALL
+```
+::: warning
+- 주의해야 하는 부분은 sudoers 파일은 위에서 아래로 해석되므로 해당 사용자/그룹이 적용되는 sudo 원칙은 제일 아래에 있는 설정이 최종 적용된다.
+- 특정 아이디에 패스워드 없이 sudo 권한 주겠다고 root 항목 밑에 삽입해서 적용해봤자 (~~본인의 경우~~)
+- 아래의 %wheel 설정이 적용된다는 뜻이다.(wheel 그룹에 대한 설정이 보통 root 아래에 있다.)
+- man 페이지에 나와있는 내용이었지만 애초에 man 페이지를 읽지 않았다...
+:::
