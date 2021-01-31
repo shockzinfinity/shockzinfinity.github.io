@@ -224,8 +224,22 @@ Redis server v=6.0.10 sha=00000000:0 malloc=libc bits=64 build=5e44a839a3d17a99
 # installation location : /usr/local/Cellar/redis/...
 # 설정 파일 : /usr/local/etc/redis.conf
 
+# Starting/Stopping the Redis server as a background service
 $ brew services start redis
 $ brew services stop redis
+
+# check
+$ redis-cli ping
+PONG
+
+$ redis-cli monitor
+
+# connect to a different redis server or port 
+$ redis-cli -h <address> -p <port>
+# List users
+$ redis-cli ACL LIST
+# Continous stat
+$ redis-cli --stat
 ```
 
 - test
