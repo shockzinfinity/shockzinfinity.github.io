@@ -213,3 +213,33 @@ fi
    [The right and wrong way to set Python 3 as default on a Mac](https://opensource.com/article/19/5/python-3-default-mac)
    [pyenv wiki](https://github.com/pyenv/pyenv/wiki/Common-build-problems)
 :::
+
+## Redis
+
+```bash
+$ brew install redis
+$ redis-server --version
+Redis server v=6.0.10 sha=00000000:0 malloc=libc bits=64 build=5e44a839a3d17a99
+
+# installation location : /usr/local/Cellar/redis/...
+# 설정 파일 : /usr/local/etc/redis.conf
+
+$ brew services start redis
+$ brew services stop redis
+```
+
+- test
+```bash
+# 실행
+$ redis-server
+
+# 클라이언트로 접속
+$ redis-cli
+127.0.0.1:6379> set shockz https://shockzinfinity.github.io
+OK
+127.0.0.1:6379> get shockz
+"https://shockzinfinity.github.io"
+127.0.0.1:6379> keys *
+1) "shockz"
+127.0.0.1:6379> quit
+```
