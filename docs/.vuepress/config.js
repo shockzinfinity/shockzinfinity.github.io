@@ -133,6 +133,7 @@ module.exports = {
           { text: 'markdown', link: '/etc/markdown' },
           { text: 'windows', link: '/etc/windows' },
           { text: 'PHP', link: '/etc/php' },
+          { text: 'Tools', link: '/etc/tools' },
         ],
       },
     ],
