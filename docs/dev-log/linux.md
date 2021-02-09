@@ -421,6 +421,7 @@ Codename:	focal
 
 $ sudo apt update && sudo apt upgrade
 $ sudo apt install docker.io
+$ sudo apt install docker-compose
 $ sudo usermod -aG docker ubuntu # username 이 ubuntu 라고 가정, 추가 후 재로그인
 $ sudo systemctl enable --now docker
 $ docker version
