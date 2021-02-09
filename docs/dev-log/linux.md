@@ -408,3 +408,47 @@ username  ALL=(ALL) NOPASSWD:ALL
 - 아래의 %wheel 설정이 적용된다는 뜻이다.(wheel 그룹에 대한 설정이 보통 root 아래에 있다.)
 - man 페이지에 나와있는 내용이었지만 애초에 man 페이지를 읽지 않았다...
 :::
+
+## ubuntu docker.io
+
+```bash
+$ lsb_release -a # 리눅스 시스템 확인
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+
+$ sudo apt update && sudo apt upgrade
+$ sudo apt install docker.io
+$ sudo usermod -aG docker ubuntu # username 이 ubuntu 라고 가정, 추가 후 재로그인
+$ sudo systemctl enable --now docker
+$ docker version
+Client:
+ Version:           19.03.8
+ API version:       1.40
+ Go version:        go1.13.8
+ Git commit:        afacb8b7f0
+ Built:             Fri Dec 18 12:15:19 2020
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          19.03.8
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.13.8
+  Git commit:       afacb8b7f0
+  Built:            Fri Dec  4 23:02:49 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.3.3-0ubuntu2.2
+  GitCommit:
+ runc:
+  Version:          spec: 1.0.1-dev
+  GitCommit:
+ docker-init:
+  Version:          0.18.0
+  GitCommit:
+```
