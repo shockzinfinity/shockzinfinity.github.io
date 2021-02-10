@@ -224,6 +224,8 @@ services:
       - /home/temp/nginx-proxy/vhost.d:/etc/nginx/vhost.d
       - /home/temp/nginx-proxy/config:/etc/nginx/conf.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
 
   letsencrypt_nginx_proxy:
     container_name: leten-nginx-proxy
@@ -343,4 +345,50 @@ server {
 ```
 ::: tip
 - 컨테이너를 올리고 나서 인증서 갱신 때문에 약간의 지연시간이 발생할 수 있습니다.
+:::
+
+### phpmyadmin reverse proxy
+
+```bash
+$ pwd
+/home/ubuntu
+$ mkdir phpmyadmin
+$ cd phpmyadmin
+$ touch docker-compose.yml
+```
+```docker
+version: '2'
+
+services:
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOSTS=dbhost
+      - PMA_PORTS=3306
+      - VIRTUAL_HOST=domain.address
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=domain.address
+      - LETSCRYPT_EMAIL=email@email.com
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+```
+::: tip
+- [phpmyadmin environment 참고](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+| env              | Description                                                                                    |
+| :--------------- | :--------------------------------------------------------------------------------------------- |
+| PMA_ARBITRARY    | 로그인 화면에 접속할 서버를 직접 입력할 수 있는 폼을 제공합니다.                               |
+| PMA_HOST         | 접속할 서버를 특정합니다. (로그인 화면에서 접속할 서버를 선택할 수 없음)                       |
+| PMA_PORT         | 접속할 포트를 특정합니다. (로그인 화면에서 접속할 포트를 선택할 수 없음)                       |
+| PMA_HOSTS        | 로그인 화면에 접속할 서버를 선택할 수 있는 드랍다운 폼을 제공합니다.                           |
+| PMA_PORTS        | 로그인 화면에 접속할 포트를 선택할 수 있는 드랍다운 폼을 제공합니다.                           |
+| PMA_USER         | 서버에 접속할 사용자 계정을 특정합니다. (로그인 화면에서 사용자 계정을 입력할 수 없음)         |
+| PMA_PASSWORD     | 서버에 접속할 사용자 비밀번호를 특정합니다. (로그인 화면에서 사용자 비밀번호를 입력할 수 없음) |
+| PMA_ABSOLUTE_URI |                                                                                                |
 :::
