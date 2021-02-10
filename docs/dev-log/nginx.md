@@ -367,8 +367,8 @@ services:
     ports:
       - 8080:80
     environment:
-      - PMA_HOSTS=dbhost
-      - PMA_PORTS=3306
+      - PMA_HOSTS=dbhost # 여기에 접속할 디비 호스트 주소 (쉼표로 구분하여 복수개 지정 가능)
+      - PMA_PORTS=3306 # 디비 호스트 포트 쉼표로 구분 (기본 포트를 사용할 경우는 지정하지 않아도 가능 ex: 13306,,13305)
       - VIRTUAL_HOST=domain.address
       - VIRTUAL_PORT=8080
       - LETSENCRYPT_HOST=domain.address
