@@ -381,6 +381,7 @@ networks:
 ```
 ::: tip
 - [phpmyadmin environment 참고](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+
 | env              | Description                                                                                    |
 | :--------------- | :--------------------------------------------------------------------------------------------- |
 | PMA_ARBITRARY    | 로그인 화면에 접속할 서버를 직접 입력할 수 있는 폼을 제공합니다.                               |
