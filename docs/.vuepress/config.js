@@ -164,7 +164,7 @@ module.exports = {
   plugins: [
     '@vuepress/back-to-top',
     '@vuepress/medium-zoom',
-    '@vuepress/google-analytics',
+    ['@vuepress/google-analytics', { ga: 'G-MM4TDVZJ85' }],
     '@vuepress/nprogress',
     [
       '@vuepress/pwa',
@@ -191,13 +191,9 @@ module.exports = {
     //   },
     // ],
   ],
-
   markdown: {
     lineNumbers: true,
   },
-
-  ga: 'G-MM4TDVZJ85',
-
   locales: {
     '/': { lang: 'ko-KR' },
   },
