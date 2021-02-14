@@ -36,10 +36,39 @@ module.exports = {
   ...,
   plugins: [
     ...,
-    "@vuepress/google-analytics",
+    ["@vuepress/google-analytics", { ga: "추적 ID" }]
+    ...
   ],
+  ...
+}
+```
+
+## Google Analytics 변경사항
+> GA4 로 변경되면서 새롭게 적용해보려고 시도한 작업 기록
+
+- `docs/.vuepress/config.js` 의 내용 수정 필요
+- `@vuepress/plugin-google-analytics` 플러그인이 더이상 동작하지 않게되는 것을 인지 (2021-02-14 기준)
+- `yarn remove @vuepress/plugin-google-analytics` 를 통해 기존 플러그인 삭제 후
+- Global site tag (gtag.js) 관련 설정 작업 이후 데이터가 수집되는 것을 확인
+![google.analytics](./image/google.analytics.2.png)
+```js
+module.exports = {
   ...,
-  ga: "추적 ID"
+  head: [
+    ...,
+    ['script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX' }],
+    [
+      'script',
+      {},
+      `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    `],
+  ],
+  /* plugins 의 @vuepress/google-analytics 관련 내용 삭제 */
+  ...,
 }
 ```
 

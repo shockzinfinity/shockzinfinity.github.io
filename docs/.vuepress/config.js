@@ -191,15 +191,15 @@ module.exports = {
       },
     ],
     ['feed', feed_options],
-    // [
-    //   '@vuepress/last-updated',
-    //   {
-    //     transformer: (timestamp, lang) => {
-    //       moment.locale('ko');
-    //       return moment(timestamp).fromNow();
-    //     },
-    //   },
-    // ],
+    [
+      '@vuepress/last-updated',
+      {
+        transformer: (timestamp, lang) => {
+          moment.locale(lang);
+          return moment(timestamp).fromNow();
+        },
+      },
+    ],
   ],
   markdown: {
     lineNumbers: true,
@@ -209,3 +209,69 @@ module.exports = {
   },
   theme: 'yuu',
 };
+
+/* side bar generator 작업 중 */
+function getSidebarArray() {
+  var fs = require('fs');
+  var docsPath = __dirname + '/../';
+  var sidebarArr = [];
+  var homeFileList = [];
+  var fileList = fs.readdirSync(docsPath);
+  fileList.forEach(function(file) {
+    if (file === '.vuepress') return;
+
+    var stat = fs.lstatSync(docsPath + '/' + file);
+    if (stat.isDirectory()) {
+      // directory
+      // title is file children is readdirSync
+      var docsFolderPath = docsPath + '/' + file;
+      var list = fs.readdirSync(docsFolderPath);
+      sidebarArr.push(makeSidebarObject(file, list));
+    } else {
+      // not directory
+      // title is '/' children is file
+      homeFileList.push(file);
+    }
+  });
+  sidebarArr.unshift(makeSidebarObject('', homeFileList));
+
+  return sidebarArr;
+}
+
+function makeSidebarObject(folder, mdFileList) {
+  var path = folder ? '/' + folder + '/' : '/';
+  mdFileList = aheadOfReadme(mdFileList);
+  var tmp = [];
+  // remove .md, add path
+  mdFileList.forEach(function(mdFile) {
+    if (mdFile.substr(-3) === '.md') {
+      mdFile = mdFile.slice(0, -3) === 'README' ? '' : mdFile.slice(0, -3);
+      tmp.push(path + mdFile);
+    }
+  });
+
+  mdFileList = tmp;
+
+  // remove folder prefix number
+  if (folder) {
+    var dotIdx = folder.indexOf('.');
+    var title = Number(folder.substr(0, dotIdx)) ? folder.substr(dotIdx + 1) : folder;
+  } else {
+    title = 'HOME';
+  }
+
+  return {
+    title: title,
+    children: mdFileList,
+  };
+}
+
+function aheadOfReadme(arr) {
+  // ['1.test.md', 'README.md'] => ['README.md', '1.test.md']
+  var readmeIdx = arr.indexOf('README.md');
+  if (readmeIdx > 0) {
+    arr.unshift(arr.splice(readmeIdx, 1)[0]);
+  }
+
+  return arr;
+}
