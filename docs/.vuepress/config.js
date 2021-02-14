@@ -70,6 +70,17 @@ module.exports = {
     ['meta', { name: 'og:description', content: 'Development log for ironPot42' }],
     ['meta', { name: 'og:url', content: 'https://shockzinfinity.github.io' }],
     ['meta', { name: 'og:image', content: '/img/logo.png' }],
+    ['script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85' }],
+    [
+      'script',
+      {},
+      `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    `,
+    ],
   ],
 
   /**
@@ -164,7 +175,6 @@ module.exports = {
   plugins: [
     '@vuepress/back-to-top',
     '@vuepress/medium-zoom',
-    ['@vuepress/google-analytics', { ga: 'G-MM4TDVZJ85' }],
     '@vuepress/nprogress',
     [
       '@vuepress/pwa',
