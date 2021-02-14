@@ -43,3 +43,12 @@ feed:
 ![windows.cmder](./image/windows.cmder.1.png)
 ![windows.cmder](./image/windows.cmder.2.png)
 ![windows.cmder](./image/windows.cmder.3.png)
+
+## yarn global path 지정
+
+```bash
+$ yarn global bin
+C:\Users\user\AppData\Local\Yarn\bin
+```
+- 해당 path를 windows path 변수에 등록
+![windows.path](./image/windows.path.1.png)
