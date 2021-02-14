@@ -101,3 +101,14 @@ feed:
  ]
 }
 ```
+
+## package.json 종속성을 최신버전으로 유지시켜주는 npm
+
+- `npm-check-upates` 패키지
+- `yarn add global npm-check-update` 를 글로벌로 설치
+
+```bash
+# package.json 이 있는 위치에서 다음을 실행
+$ ncu -u
+$ yarn
+```
