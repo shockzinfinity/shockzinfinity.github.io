@@ -101,3 +101,88 @@ $ sudo mv CentOS-7-x86_64-Minimal-2009.iso /var/lib/libvirt/images
 $ yum list docker-ce.x86-64 --showduplicates
 $ yum list kubernetes.x86-64 --showduplicates
 ```
+
+### docker, kubernetes 의 cgroup 변경
+> kubernetes 에서 권고하는 cgroup driver 를 systemd 로 변경하기 위한 방법
+> kubelet 과 docker 는 cgroupfs 를 사용하고, 나머지 프로세스는 systemd 를 사용하도록 설정된 경우, 리소스가 부족해질때 불안정해지는 현상이 발생될 수 있다. 이로 인한 시스템 리소스 부족 현상이 발생할 수 있으므로 리눅스 init 시스템이 사용하는 cgroups 드라이버와 docker, kubelet 의 드라이버를 맞춰주는 것이 효율적이다.
+
+- docker 의 cgroup 확인
+```bash
+$ docker info
+Client:
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  app: Docker App (Docker Inc., v0.9.1-beta3)
+  buildx: Build with BuildKit (Docker Inc., v0.5.1-docker)
+
+Server:
+ Containers: 1
+  Running: 1
+  Paused: 0
+  Stopped: 0
+ Images: 1
+ Server Version: 20.10.3
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 269548fa27e0089a8b8278fc4fc781d7f65a939b
+ runc version: ff819c7e9184c13b7c2607fe6c30ae19403a7aff
+ init version: de40ad0
+ Security Options:
+  apparmor
+  seccomp
+   Profile: default
+ Kernel Version: 5.8.0-41-generic
+ Operating System: Ubuntu 20.04.2 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 7.637GiB
+ Name: pulseLinux
+ ID: U7YY:IBZG:EEGT:U525:O2RL:R6OR:PFD5:FMRN:PXC6:VHLZ:O6FB:6KRA
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+$ docker info | grep -i cgroup
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+```
+> kubernetes 에서는 systemd 를 권고함.
+
+- docker cgroup driver 수정
+```bash
+$ cat > /etc/docker/daemon.json << EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "dns": ["8.8.8.8", "8.8.4.4"]
+}
+EOF
+
+$ systemctl daemon-reload
+$ systemctl restart docker
+$ docker info
+```

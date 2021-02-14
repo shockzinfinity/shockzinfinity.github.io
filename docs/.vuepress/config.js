@@ -65,6 +65,11 @@ module.exports = {
     ],
     ['meta', { name: 'msapplication-TileColor', content: '#2196f3' }],
     ['meta', { name: 'msapplication-TileImage', content: '/img/icons/ms-icon-144x144.png' }],
+    ['meta', { name: 'og:type', content: 'website' }],
+    ['meta', { name: 'og:title', content: 'ironPot42 dev log site' }],
+    ['meta', { name: 'og:description', content: 'Development log for ironPot42' }],
+    ['meta', { name: 'og:url', content: 'https://shockzinfinity.github.io' }],
+    ['meta', { name: 'og:image', content: '/img/logo.png' }],
   ],
 
   /**
