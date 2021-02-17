@@ -96,6 +96,7 @@ libGL error: failed to load driver: swrast
 ```
 - swrast 드라이버가 없는 경우이기 때문에 관련 드라이버를 설치해줘야 함.
 - `apt install mesa-utils libgl1-mesa-glx`
+- 관련 URL: [https://github.com/openai/gym/issues/509](https://github.com/openai/gym/issues/509)
 :::
 
 ### ssh 를 통한 virt-manager 실행을 위한 작업
