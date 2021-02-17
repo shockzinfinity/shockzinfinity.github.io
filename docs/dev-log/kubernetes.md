@@ -87,6 +87,16 @@ $ sudo adduser $(id -un) kvm
 $ curl -O http://mirror.kakao.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
 $ sudo mv CentOS-7-x86_64-Minimal-2009.iso /var/lib/libvirt/images
 ```
+::: tip
+- `virt-manager` 구동 시 다음과 같은 에러가 나오는 경우,
+```bash{2-3}
+$ virt-manager
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+```
+- swrast 드라이버가 없는 경우이기 때문에 관련 드라이버를 설치해줘야 함.
+- `apt install mesa-utils libgl1-mesa-glx`
+:::
 
 ### ssh 를 통한 virt-manager 실행을 위한 작업
 > ssh 를 통한 virt-manager 접속은 속도가 많이 느림
