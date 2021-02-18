@@ -132,12 +132,40 @@ $ docker rm $(docker ps -aq)
 ```
 :::
 
-## Kubernetes 설정
+## docker image export/import/save/load
 
-> 추후 추가
+1. save / load
+  - docker 이미지를 tar 로 저장하고 로드
+  ```bash
+  $ docker save -o nginx.tar nginx:latest
+  $ docker load -i nginx.tar
+  ```
+2. export / import
+  - container 를 tar 로 저장하고 로드
+  ```bash
+  $ docker export container_id > temp.tar
+  $ docker impoort <temp.tar or url> - [image name[:tag name]]
+  ```
+::: tip
+- export / import 는 컨테이너 동작에 필요한 모든 파일을 포함, 루트 파일시스템 전체가 포함됨
+- save / load 는 레이어 구조까지 포함한 형태로 압축
+:::
 
 ## Reference
 
 - [Install Docker CE on CentOS 8](https://linuxhint.com/install_docker_ce_centos8/)
 - [How to install Docker CE on RHEL 8 / CentOS 8](https://linuxconfig.org/how-to-install-docker-in-rhel-8)
 - [Testing with podman - Complete uninstall/reinstall](http://crunchtools.com/testing-with-podman-complete-uninstall-reinstall/)
+
+## docker stats
+
+```bash
+$ docker stats
+$ docker stats --no-stream
+$ docker stats --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+$ docker stats --format "table {{.Container}}:       {{.CPUPerc}}"
+```
+::: tip
+- 사용 가능한 format string
+- .Container, .Name, .ID, .CPUPerc, .MemUsage, .NetIO, .BlockIO, MemPerc, .PIDs
+:::

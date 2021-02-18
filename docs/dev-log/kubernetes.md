@@ -197,3 +197,26 @@ $ systemctl daemon-reload
 $ systemctl restart docker
 $ docker info
 ```
+
+### metrics-server 설치
+
+```bash
+$ wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
+
+# metrics-server container 의 args 조정
+$ vi components.yaml
+...
+      containers:
+      - name: metrics-server
+      ...
+        args:
+        - --cert-dir=/tmp
+        - --secure-port=4443
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+
+$ k apply -f components.yaml
+# 확인
+$ k -n kube-system get deploy,svc
+$ k top node
+```
