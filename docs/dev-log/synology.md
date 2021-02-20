@@ -105,3 +105,16 @@ cp /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/aU6
 
 - [시놀로지 NAS, Let's Encrypt WildCard SSL 적용](https://eunpoong.tistory.com/1185)
 - [시놀로지에 Let's Encrypt 와일드카드 인증서 적용하기](https://blog.naver.com/jcjee2004/221831609605)
+
+## NFS 설정
+
+- NFS 사용 설정
+![synology.nfs](./image/synology.nfs.1.png)
+- 하위 폴더 접근 및 권한을 위해 해당 항목 체크
+![synology.nfs](./image/synology.nfs.2.png)
+- 접근하고자 하는 리눅스 서버 상에서 마운트
+```bash
+$ showmount -e 192.168.0.99
+$ sudo mount 192.168.0.99:/volume1/archive nas-archive
+```
+
