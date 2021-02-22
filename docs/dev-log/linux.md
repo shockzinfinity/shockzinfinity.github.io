@@ -188,6 +188,11 @@ $ fail2ban-client set sshd unbanip 000.000.000.000
 > apt (Advanced Packaging Tool)
 
 ```bash
+# ubuntu version 확인
+$ cat /etc/issue
+$ lsb_release -a
+$ cat /etc/*release
+
 # 업데이트 목록 갱신
 $ sudo apt update
 
@@ -452,4 +457,17 @@ Server:
  docker-init:
   Version:          0.18.0
   GitCommit:
+```
+
+## linux 명령어 설명
+
+- ; : 앞의 명령어가 실패해도 다음 명령어가 실행
+- && : 앞의 명령어가 성공했을 때 다음 명령어가 실행
+- & : 앞의 명령어를 백그라운드로 돌리고 동시에 뒤의 명령어를 실행
+```bash
+$ mkdir test;cd test
+$ mkdir test; cd test; touch abc
+# 실패하면 뒤는 실행이 안됨
+$ mkdir test(실패) && cd test && touch abc
+$ mkdir test3 && { cd test3; touch abc; echo 'success!!' } || echo 'There is no dir';
 ```

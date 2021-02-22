@@ -146,13 +146,13 @@ jupyter$ jupyter lab --generate-config
 - jupyter password generation
 ```python
 from notebook.auth import passwd
-passwd()
+passwd('password', 'sha1')
 
 ```
 - `jupyter_notebook_config.py`
 ```python
 c = get_config()
-c.NotebookApp.password = u''
+c.NotebookApp.password = 'hashed password'
 ```
 - `docker-compose.yml` with config file path
 ```docker
@@ -174,3 +174,43 @@ services:
 
 - jupyterlab synology nas reverse proxy 설정 시 웹소켓 관련 헤더 추가가 필요함
 ![jupyterlab.reverse.nas](./image/jupyterlab.reverse.nas.1.png)
+
+## jupyter lab docker image 에 dotnet interactive 추가하기
+> [참고 repository](https://github.com/shockzinfinity/docker-build.git)
+
+- jupyter 커널에 .net 추가를 위해 .net interactive 설치 방법
+- docker file 수정
+```docker{2-9,11,13}
+FROM ufoym/deepo:all-cpu
+ARG DEBIAN_FRONTEND=noninteractive
+RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt-get install -y apt-transport-https && \
+    apt-get update && \
+    apt-get install -y dotnet-sdk-5.0 && \
+    apt-get install -y aspnetcore-runtime-5.0 && \
+    dotnet tool install -g Microsoft.dotnet-interactive
+
+ENV PATH "~/.dotnet/tools:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+RUN dotnet interactive jupyter install
+```
+- ` docker build -t ghcr.io/shockzinfinity/deepo -f Dockerfile .` 를 이용하여 빌드 후 테스트
+- ufoym/deepo:all-cpu 를 컨테이너 화 해서 dotnet interactive 를 설치하더라도 경로 문제로 인해 jupyter kernel restart 가 되지 않기 때문에 별도의 Dockerfile 을 만들어서 빌드
+- jupyter lab 컨테이너를 올릴 서버에서는 docker-compose.yml 로 컨테이너 화
+```docker{5}
+version: '3'
+
+services:
+  jupyter:
+    image: ghcr.io/shockzinfinity/deepo:latest
+    volumes:
+      - /home/shockz/docker/deepo/data:/data
+      - /home/shockz/docker/deepo/config:/config
+    ipc: host
+    ports:
+      - "8888:8888"
+      - "6006-6015:6006-6015"
+    restart: unless-stopped
+    entrypoint: sh -c 'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'
+```
