@@ -214,3 +214,18 @@ services:
     restart: unless-stopped
     entrypoint: sh -c 'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'
 ```
+- kernel list 확인
+```bash
+$ docker-compose up -d
+$ docker-compose exec jupyter bash
+
+# in container
+$ jupyter kernelspec list
+Available kernels:
+  .net-csharp        /root/.local/share/jupyter/kernels/.net-csharp
+  .net-fsharp        /root/.local/share/jupyter/kernels/.net-fsharp
+  .net-powershell    /root/.local/share/jupyter/kernels/.net-powershell
+  python3            /usr/local/share/jupyter/kernels/python3
+```
+![jupyterlab.net.kernel](./image/jupyterlab.net.kernel.2.png)
+![jupyterlab.net.kernel](./image/jupyterlab.net.kernel.1.png)
