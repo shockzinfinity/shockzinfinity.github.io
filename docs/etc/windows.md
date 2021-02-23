@@ -52,3 +52,9 @@ C:\Users\user\AppData\Local\Yarn\bin
 ```
 - 해당 path를 windows path 변수에 등록
 ![windows.path](./image/windows.path.1.png)
+
+## 윈도우 10 긴 파일 이름 길이 제한 해제 설정
+
+- gpedit.msc 실행
+- `컴퓨터 구성 > 관리 템플릿 > 시스템 > 파일 시스템` 에서 `Win32 긴 경로 사용` 에서 '사용' 체크
+- `gpupdate /force` 로 적용
