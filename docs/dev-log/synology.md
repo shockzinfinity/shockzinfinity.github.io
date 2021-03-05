@@ -92,10 +92,41 @@ $ ./acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-m
 
 # 인증서 등록
 # 복사할 폴더 확인 cat /usr/syno/etc/certificate/_archive/DEFAULT
-cp /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/aU6fsT/cert.pem
-cp /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/aU6fsT/chain.pem
-cp /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/aU6fsT/fullchain.pem
-cp /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/aU6fsT/privkey.pem
+cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/cert.pem
+cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/chain.pem
+cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/fullchain.pem
+cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/privkey.pem
+
+# nginx 재시작
+/usr/syno/sbin/synoservicectl --reload nginx
+```
+
+## Let's Encrypt SSL Reverse Proxy 적용
+
+- 인증서 갱신 이후 `/usr/syno/etc/certificate/_archive/DEFAULT` 에만 적용하게 되면 Synology Reverse Proxy 는 자동 적용되지 않음
+- 개별적으로 적용해야 함
+```bash
+# 예시
+$ for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk '{ print $9 }'`; do
+> cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/cert.pem
+> cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/chain.pem
+> cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/fullchain.pem
+> cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/$reverse/privkey.pem
+> done
+```
+- Synology 작업 스케줄러 최종 스크립트
+```bash
+# 인증서 갱신
+/root/acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+
+# 인증서 등록
+cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/cert.pem
+cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/chain.pem
+cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/fullchain.pem
+cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/privkey.pem
+
+# reverse proxy 에 적용
+for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk '{ print $9 }'`; do cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/cert.pem; cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/chain.pem; cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/fullchain.pem; cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/$reverse/privkey.pem; done
 
 # nginx 재시작
 /usr/syno/sbin/synoservicectl --reload nginx
@@ -117,4 +148,3 @@ cp /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/aU6
 $ showmount -e 192.168.0.99
 $ sudo mount 192.168.0.99:/volume1/archive nas-archive
 ```
-
