@@ -222,3 +222,75 @@ RUN apt-get update && \
   - ADD와 달리 파일 그대로 가져옴
   - 권한 그대로 설정
   - 공통적으로 .dockerignore에 명시된 영역은 제외
+
+## docker 재설치
+
+- container 중지 및 삭제
+```bash
+$ docker stop $(docker ps -q)
+$ docker rm $(docker ps -q)
+$ docker rmi $(docker images -q)
+$ sudo systemctl stop docker
+$ sudo systemctl stop containerd
+```
+
+- docker 패키지 확인
+```bash
+$ yum list installed | grep docker
+```
+
+- 이전 버전 제거
+```bash
+$ sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+$ sudo yum erase containerd.io.x86_64
+$ sudo yum erase docker-ce.x86_64
+$ sudo yum erase docker-ce-cli.x86_64
+```
+
+- 관련 파일 삭제
+```bash
+$ cd /var/lib/docker
+# 주의!
+$ rm -rf *
+
+$ cd /var/run
+# 서비스가 중지됐다면 docker.pid 는 없음
+$ rm docker.sock docker.pid
+# 주의!
+$ rm -rf docker
+```
+
+- 설치 시 종속성 관련 에러가 발생되는 경우가 있음
+- 기본 저장소에는 containerd 의 버전이 늦는 경우가 있음
+```bash
+# 확인
+$ sudo yum list installed | grep docker
+
+# 저장소 추가
+$ sudo yum install -y yum-utils
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# 특정 버전 설치시
+$ sudo yum list docker-ce --showduplicates | sort -r
+
+# docker-ce 설치
+$ sudo yum install docker-ce
+```
+
+- 서비스 시작 및 자동 시작 등록
+```bash
+$ sudo systemctl enable docker
+$ sudo systemctl enable containerd
+$ sudo systemctl start docker
+$ sudo systemctl start containerd
+$ sudo systemctl status docker
+$ sudo systemctl status containerd
+```
