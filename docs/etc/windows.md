@@ -58,3 +58,14 @@ C:\Users\user\AppData\Local\Yarn\bin
 - gpedit.msc 실행
 - `컴퓨터 구성 > 관리 템플릿 > 시스템 > 파일 시스템` 에서 `Win32 긴 경로 사용` 에서 '사용' 체크
 - `gpupdate /force` 로 적용
+
+## Powershell 관리자 권한
+
+- 관리자 권한으로 터미널 실행
+```powershell
+> ExecutionPolicy
+Restricted
+> Set-ExecutionPolicy Unrestricted
+> ExecutionPolicy
+Unrestricted
+```
