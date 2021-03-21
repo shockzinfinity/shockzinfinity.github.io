@@ -279,37 +279,37 @@ upload_max_filesize = 200M
 - `/etc/nginx/sites-available/default` 설정
 ```ini
 server {
-	root /var/www/html;
-	index index.php index.html index.htm index.nginx-debian.html;
-	server_name dev4.koreatraveleasy.com;
-        server_tokens off;
-        client_max_body_size 100M;
-        add_header X-Frame-Options "SAMEORIGIN" always;
-        add_header X-XSS-Protection "1; mode=block" always;
-        add_header X-Content-Type-Options "nosniff" always;
-        add_header Referrer-Policy "no-referrer-when-downgrade" always;
-        add_header Content-Security-Policy "default-src * data: 'unsafe-eval' 'unsafe-inline'" always;
+  root /var/www/html;
+  index index.php index.html index.htm index.nginx-debian.html;
+  server_name shockz-amd.test;
+  server_tokens off;
+  client_max_body_size 100M;
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  add_header X-XSS-Protection "1; mode=block" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header Referrer-Policy "no-referrer-when-downgrade" always;
+  add_header Content-Security-Policy "default-src * data: 'unsafe-eval' 'unsafe-inline'" always;
 
-	location = /robots.txt {
+  location = /robots.txt {
                 add_header Content-Type text/plain;
                 return 200 "User-agent: *\nDisallow: /\n";
   }
-	location / {
-		try_files $uri $uri/ =404;
-		if (!-e $request_filename) {
-			rewrite ^.*$ /index.php last;
-		}
-	}
-	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		include fastcgi_params;
-		fastcgi_read_timeout 300;
-	}
-	location ~ /\.ht {
-		deny all;
-	}
+  location / {
+    try_files $uri $uri/ =404;
+    if (!-e $request_filename) {
+      rewrite ^.*$ /index.php last;
+    }
+  }
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_read_timeout 300;
+  }
+  location ~ /\.ht {
+    deny all;
+  }
   location = /favicon.ico {
     log_not_found off; access_log off;
   }
@@ -317,24 +317,6 @@ server {
     expires max;
     log_not_found off;
   }
-
-    listen [::]:443 ssl ipv6only=on; # managed by Certbot
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/dev4.koreatraveleasy.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/dev4.koreatraveleasy.com/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-}
-
-server {
-    if ($host = dev4.koreatraveleasy.com) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	server_name dev4.koreatraveleasy.com;
-    return 404; # managed by Certbot
 }
 ```
 - `/var/www/html` 권한 조정
@@ -436,4 +418,98 @@ $ sudo service php7.4-fpm restart
     }
   ]
 }
+```
+
+### SSL 적용
+
+- 자체 서명 인증서 생성하고 `/etc/ssl/certs/shockz-amd.test.crt` `/etc/ssl/private/shockz-amd.test.key` 로 복사
+```bash
+$ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout shockz-amd.test.key -out shockz-amd.test.crt -subj "/CN=shockz-amd.test" -addext "subjectAltName=DNS:shockz-amd.test"
+$ sudo cp shockz-amd.test.crt /etc/ssl/certs/shockz-amd.test.crt
+$ sudo cp shockz-amd.test.key /etc/ssl/private/shockz-amd.test.key
+```
+- `/etc/nginx/sites-available/default` 에 적용
+```ini
+server {
+  root /var/www/html;
+
+  index index.php index.html index.htm index.nginx-debian.html;
+
+  server_name shockz-amd.test;
+  server_tokens off;
+  client_max_body_size 100M;
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  add_header X-XSS-Protection "1; mode=block" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header Referrer-Policy "no-referrer-when-downgrade" always;
+  add_header Content-Security-Policy "default-src * data: 'unsafe-eval' 'unsafe-inline'" always;
+
+  location = /robots.txt {
+    add_header Content-Type text/plain;
+    return 200 "User-agent: *\nDisallow: /\n";
+  }
+
+  location / {
+    try_files $uri $uri/ =404;
+    if (!-e $request_filename) {
+      rewrite ^.*$ /index.php last;
+    }
+  }
+
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_read_timeout 300;
+  }
+
+  location ~ /\.ht {
+    deny all;
+  }
+
+  location = /favicon.ico {
+    log_not_found off; access_log off;
+  }
+
+  location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+    expires max;
+    log_not_found off;
+  }
+
+  listen [::]:443 ssl ipv6only=on;
+  listen 443 ssl;
+  ssl_certificate /etc/ssl/certs/shockz-amd.test.crt;
+  ssl_certificate_key /etc/ssl/private/shockz-amd.test.key;
+}
+
+server {
+  if ($host = shockz-amd.test) {
+    return 301 https://$host$request_uri;
+  }
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name shockz-amd.test;
+  return 404;
+}
+```
+
+## ssh key 를 통한 비밀번호 없이 접속
+
+- git bash 등이 설치가 되면 `ssh-keygen` 이 같이 설치됨
+```bash
+$ ssh-keygen -t rsa
+# 비밀번호 입력 필요
+```
+- `C:\Users\userid\.ssh` 에 `id_rsa`, `id_rsa.pub` 파일이 생성됨.
+- id_rsa : private
+- id_rsa.pu : public
+- public 을 접속하고자 하는 ssh 에 복사하고, 연결하고자 하는 클라이언트에서 private 을 이용해 접속
+```bash
+# WSL 환경 기준
+$ cd /mnt/c/Users/myid/.ssh
+$ ssh-copy-id -i ./id_rsa.pub userid@address -p <port>
+
+# 이후 접속부터는 아래를 통해 접속 가능
+$ ssh -i /path/id_rsa userid@address -p <port>
 ```
