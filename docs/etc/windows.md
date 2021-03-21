@@ -69,3 +69,105 @@ Restricted
 > ExecutionPolicy
 Unrestricted
 ```
+
+## WSL 터미널 설정
+> WSL2 Ubuntu 기준
+
+### zsh & oh-my-zsh 설치
+
+```bash
+$ sudo apt update && sudo apt upgrade
+$ sudo apt install git zsh
+
+# chsh 수동 (필요한 경우)
+$ sudo chsh -s $(which zsh)
+
+# oh-my-zsh 설치
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/master/tools/install.sh)"
+```
+
+### zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions
+
+```bash
+$ cd ~
+$ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+# .zshrc plugins 부분에 추가
+plugins = (
+  ...
+  zsh-completions
+  ...
+)
+
+$ autoload -U compinit && compinit
+
+# zsh-syntax-highlighting
+$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# zsh-autosuggestions
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# .zshrc plugins
+plugins=(
+  ...
+  zsh-completions
+  zsh-highlighting
+  zsh-autosuggestions
+)
+```
+
+### powerlevel10k theme
+
+```bash
+$ git clone https://github.com/romkatv/powerlevel10k.git  $ZSH_CUSTOM/themes/powerlevel10k
+
+# .zshrc theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# NerdFonts
+# https://github.com/romkatv/dotfiles-public/.local/share/fonts/NerdFonts
+
+$ p10k configure
+```
+
+### neovim
+
+```bash
+$ sudo apt install neovim
+$ curl -sLf https://spacevim.org/install.sh | bash
+
+# .zshrc alias
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
+export EDITOR=/usr/bin/nvim
+
+$ mkdir ~/.SpaceVim.d/colors
+# ADD snazzy colorscheme download
+
+# ~/.SpaceVim.d/init.toml 수정
+[options]
+  colorscheme = "snazzy-custom"
+  enable_guicolors = true
+  statusline_separator = "arraw"
+  enable_tabline_filetype_icon = true
+  enable_statusline_mode = true
+  statusline_unicode_symbols = true
+```
+
+### fzf, fasd, tig, jq, neofetch
+
+```bash
+$ sudo apt install fzf fasd tig jq neofetch
+```
+
+### nvm
+
+- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+```bash
+$ nvm --version
+$ nvm ls-remote
+$ nvm install v12.21.0
+$ npm use v12.21.0
+```
+
+### Windows Terminal settings
