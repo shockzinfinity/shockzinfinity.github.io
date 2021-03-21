@@ -245,3 +245,195 @@ $ npm use v12.21.0
   ],
 }
 ```
+
+## wsl, php, xdebug, vscode
+
+- TODO: WSL 설치
+- TODO: VisualStudio Code Terminal 설정
+- WSL 설정 (Ubuntu 20.04 기준)
+```bash
+$ sudo apt update && sudo apt upgrade
+$ sudo apt-cache policy nginx
+$ sudo apt update
+$ sudo apt-get update
+$ sudo apt install nginx
+$ nginx -v
+$ sudo chown -R www-data:ubuntu /var/www/
+$ sudo apt install php7.4 php7.4-cli php7.4-fpm php7.4-bcmath php7.4-bz2 php7.4-common php7.4-curl php7.4-dba php7.4-gd php7.4-json php7.4-mbstring php7.4-opcache php7.$ 4-readline php7.4-soap php7.4-xml php7.4-xmlrpc php7.4-zip php-redis php7.4-mysql php-imagick php7.4-intl php7.4-mysql php7.4-gmp php-geoip php7.4-dev -y
+$ php -v
+$ sudo nginx -t
+$ sudo systemctl reload nginx
+$ sudo service nginx restart
+$ sudo service php7.4-fpm start
+$ sudo apt install mariadb-client-core-10.3
+
+```
+- `/etc/php/7.4/fpm/php.ini` 설정
+```ini
+max_execution_time = 1800
+max_input_vars = 10000
+memory_limit = 256M
+post_max_size = 200M
+upload_max_filesize = 200M
+```
+- `/etc/nginx/sites-available/default` 설정
+```ini
+server {
+	root /var/www/html;
+	index index.php index.html index.htm index.nginx-debian.html;
+	server_name dev4.koreatraveleasy.com;
+        server_tokens off;
+        client_max_body_size 100M;
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "no-referrer-when-downgrade" always;
+        add_header Content-Security-Policy "default-src * data: 'unsafe-eval' 'unsafe-inline'" always;
+
+	location = /robots.txt {
+                add_header Content-Type text/plain;
+                return 200 "User-agent: *\nDisallow: /\n";
+  }
+	location / {
+		try_files $uri $uri/ =404;
+		if (!-e $request_filename) {
+			rewrite ^.*$ /index.php last;
+		}
+	}
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
+		fastcgi_read_timeout 300;
+	}
+	location ~ /\.ht {
+		deny all;
+	}
+  location = /favicon.ico {
+    log_not_found off; access_log off;
+  }
+  location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+    expires max;
+    log_not_found off;
+  }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/dev4.koreatraveleasy.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dev4.koreatraveleasy.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = dev4.koreatraveleasy.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	server_name dev4.koreatraveleasy.com;
+    return 404; # managed by Certbot
+}
+```
+- `/var/www/html` 권한 조정
+```bash
+$ sudo chown -R www-data:usergroup /var/www/html/
+$ sudo chmod -R 775 /var/www/html/
+```
+- `/var/www/html/index.php` 작성
+```php
+<?php phpinfo(); ?>
+```
+- xdebug 설치
+```bash
+$ sudo apt install php-pear php-dev
+$ sudo pecl install xdebug
+...
+Build complete.
+Don't forget to run 'make test'.
+
+running: make INSTALL_ROOT="/tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3" install
+Makefile:228: warning: overriding recipe for target 'test'
+Makefile:132: warning: ignoring old recipe for target 'test'
+Installing shared extensions:     /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902/
+
+  +----------------------------------------------------------------------+
+  |                                                                      |
+  |   INSTALLATION INSTRUCTIONS                                          |
+  |   =========================                                          |
+  |                                                                      |
+  |   See https://xdebug.org/install.php#configure-php for instructions  |
+  |   on how to enable Xdebug for PHP.                                   |
+  |                                                                      |
+  |   Documentation is available online as well:                         |
+  |   - A list of all settings:  https://xdebug.org/docs-settings.php    |
+  |   - A list of all functions: https://xdebug.org/docs-functions.php   |
+  |   - Profiling instructions:  https://xdebug.org/docs-profiling2.php  |
+  |   - Remote debugging:        https://xdebug.org/docs-debugger.php    |
+  |                                                                      |
+  |                                                                      |
+  |   NOTE: Please disregard the message                                 |
+  |       You should add "extension=xdebug.so" to php.ini                |
+  |   that is emitted by the PECL installer. This does not work for      |
+  |   Xdebug.                                                            |
+  |                                                                      |
+  +----------------------------------------------------------------------+
+
+
+running: find "/tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3" | xargs ls -dils
+76224    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3
+76334    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr
+76335    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib
+76336    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php
+76337    4 drwxr-xr-x 2 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902
+76332 2396 -rwxr-xr-x 1 root root 2451512 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902/xdebug.so
+
+Build process completed successfully
+Installing '/usr/lib/php/20190902/xdebug.so'
+install ok: channel://pecl.php.net/xdebug-3.0.3
+configuration option "php_ini" is not set to php.ini location
+You should add "zend_extension=/usr/lib/php/20190902/xdebug.so" to php.ini
+```
+- `/etc/php/7.4/fpm/php.ini` 끝에 xdebug 관련 설정 추가
+```ini
+...
+[XDEBUG]
+zend_extension=/usr/lib/php/20190902/xdebug.so
+xdebug.remote_enable = 1
+xdebug.remote_autostart = 1
+xdebug.remote_port = 9000
+```
+```bash
+$ sudo service nginx restart
+$ sudo service php7.4-fpm restart
+```
+![windows.php.dev](./image/windows.php.dev.1.png)
+- vscode debug 설정
+![windows.php.dev](./image/windows.php.dev.2.png)
+- `/var/www/html/.vscode/launch.json` 설정 추가
+```json
+{
+  // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+  // 기존 특성에 대한 설명을 보려면 가리킵니다.
+  // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for XDebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9000
+    },
+    {
+      "name": "Launch currently open script",
+      "type": "php",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "port": 9000
+    }
+  ]
+}
+```
