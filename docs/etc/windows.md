@@ -171,3 +171,77 @@ $ npm use v12.21.0
 ```
 
 ### Windows Terminal settings
+
+- `...\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\sitecore-theme` 에 `Sitecore-Dark2.png`, `sitecore-icon.png` 복사
+- 참고: [https://terminalsplash.com/](https://terminalsplash.com/)
+```json
+{
+  "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+  "profiles": {
+    "defaults": {
+      // Put settings here that you want to apply to all profiles.
+    },
+    "list": [
+      ...,
+      {
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "hidden": false,
+        "fontFace": "MesloLGS NF",
+        "fontSize": 9,
+        "name": "Ubuntu",
+        "source": "Windows.Terminal.Wsl",
+        "backgroundImage": "ms-appdata:///roaming/sitecore-theme/Sitecore-Dark2.png",
+        "backgroundImageOpacity": 0.80000001192092896,
+        "backgroundImageStretchMode": "uniformToFill",
+        "icon": "ms-appdata:///roaming/sitecore-theme/sitecore-icon.png",
+        "colorScheme": "wsl"
+      },
+      ...
+    ],
+  },
+    "schemes": [
+    {
+      "name": "Aurelia",
+      "background": "#1a1a1a",
+      "black": "#000000",
+      "blue": "#579BD5",
+      "brightBlack": "#797979",
+      "brightBlue": "#9CDCFE",
+      "brightCyan": "#2BC4E2",
+      "brightGreen": "#1AD69C",
+      "brightPurple": "#975EAB",
+      "brightRed": "#EB2A88",
+      "brightWhite": "#EAEAEA",
+      "brightYellow": "#e9ad95",
+      "cyan": "#00B6D6",
+      "foreground": "#EA549F",
+      "green": "#4EC9B0",
+      "purple": "#714896",
+      "red": "#E92888",
+      "white": "#EAEAEA",
+      "yellow": "#CE9178"
+    },
+    {
+      "name": "wsl",
+      "background": "#002B36",
+      "black": "#002B36",
+      "blue": "#268BD2",
+      "brightBlack": "#657B83",
+      "brightBlue": "#839496",
+      "brightCyan": "#D33682",
+      "brightGreen": "#B58900",
+      "brightPurple": "#EEE8D5",
+      "brightRed": "#CB4B16",
+      "brightWhite": "#FDF6E3",
+      "brightYellow": "#586E75",
+      "cyan": "#2AA198",
+      "foreground": "#93A1A1",
+      "green": "#859900",
+      "purple": "#6C71C4",
+      "red": "#DC322F",
+      "white": "#93A1A1",
+      "yellow": "#B58900"
+    }
+  ],
+}
+```
