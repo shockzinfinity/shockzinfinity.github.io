@@ -513,3 +513,102 @@ $ ssh-copy-id -i ./id_rsa.pub userid@address -p <port>
 # 이후 접속부터는 아래를 통해 접속 가능
 $ ssh -i /path/id_rsa userid@address -p <port>
 ```
+
+## github multiple ssh key
+
+> 개발 환경 구성 시 여러 github 계정을 사용할 경우
+> 각 github 계정 별 ssh key 등록이 필요하다.
+> 별도 설정 없이 ssh 키를 여러 곳에서 사용할 경우 'Key is already in use' 에러를 볼 수 있다.
+![github.ssh.key.in.use](./image/github.ssh.key.in.use.1.png)
+
+1. 각 계정별 ssh key 생성
+
+```bash
+> ssh-keygen -t rsa -b 4096 -C "github@login.email" -f id_rsa_name # 계정별로 생성
+```
+  이메일 별로 `id_rsa_name`, `id_rsa_name.pub` 로 생성됨
+
+2. github 에 등록
+
+- [Settings] > [SSH and GPG keys] > SSH keys / New SSH key 로 등록 (각 계정별)
+- `.pub` 키를 등록
+![github.ssh.key.in.use](./image/github.ssh.key.in.use.2.png)
+
+3. %HOME%/.ssh/config 설정
+
+- `config` 파일이 없다면 생성하여 수정
+```bash
+# ironpot42.com - github
+Host temp1-github.com
+  HostName github.com
+  User git
+  IdentityFile C:\\Users\\somebody\\.ssh\\id_rsa_temp1
+
+# temp2 - github
+Host temp2-github.com
+  HostName github.com
+  User git
+  IdentityFile C:\\Users\\somebody\\.ssh\\id_rsa_temp2
+
+# tmep3 - github
+Host temp3-github.com
+  HostName github.com
+  User git
+  IdentityFile C:\\Users\\somebody\\.ssh\\id_rsa_temp3
+```
+- `Host` : 임의의 이름
+- `HostName` : github.com 서버 대상이므로 고정
+- `User` : github ssh 는 **git** 으로 고정
+- 저장 후 연결 테스트
+```bash
+> ssh -T temp1-github.com
+Hi temp1! You've successfully authenticated, but GitHub does not provide shell access.
+
+> ssh -T temp2-github.com
+Hi temp2! You've successfully authenticated, but GitHub does not provide shell access.
+
+> ssh -T temp3-github.com
+Hi temp3! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+4. ~/.gitconfig 설정
+
+- `.gitconfig` 전역 파일 수정
+```bash
+[core]
+        editor = \"C:\\Users\\somebody\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" --wait
+[user]
+        name = Temp 1
+        email = github@login.email
+[includeIf "gitdir:C:/temp2/"]
+        path = .gitconfig-temp2
+[includeIf "gitdir:C:/temp3/"]
+        path = .gitconfig-temp3
+```
+- **[includeIf "gitdir:C:/temp2/"]** 는 `C:/temp2` 디렉토리 아래에서는 `.gitconfig-temp2` 가 적용됨을 뜻함.
+- Windows 에서도 linux 스타일 path를 지정해야 동작
+- `.gitconfig-temp2`, `.gitconfig-temp3` 을 생성하여 내용 추가
+```bash
+[user]
+        name = temp2
+        email = temp2.github@login.email
+```
+- `C:/temp2` 아래에서 repository 를 생성하거나 클론하여 `git config --list` 로 확인
+```bash
+...
+user.email=github@login.email
+user.name=Temp 1
+includeif.gitdir:C:/temp2/.path=.gitconfig-temp2
+user.email=temp2.github@login.email
+user.name=temp2
+...
+```
+- `includeif.gitdir:C:/temp2/.path=.gitconfig-temp2` 가 적용되므로 `.gitconfig-temp2`를 불러와서 user.email, user.name 이 적용됨
+
+5. private repository
+
+- `.ssh/config` 에서 설정한 HostName 을 이용하여 clone
+- `git clone temp2-github.com:[계정명]/[repository]` 와 같은 형식으로 클론
+```bash
+> git clone temp2-github.com:temp2/repository.git
+```
