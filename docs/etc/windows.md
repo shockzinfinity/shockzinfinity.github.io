@@ -633,4 +633,7 @@ unable to start ssh-agent service, error :1058
 > ssh-add -D
 ```
 
-- 
+- 기존 repository 에서 ssh 키로 변경된 remote 로 변경 시 아래와 같이 변경
+```bash
+>  git remote set-url origin git@temp2-github.com:temp2/address.git
+```
