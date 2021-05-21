@@ -521,20 +521,20 @@ $ ssh -i /path/id_rsa userid@address -p <port>
 > 별도 설정 없이 ssh 키를 여러 곳에서 사용할 경우 'Key is already in use' 에러를 볼 수 있다.
 ![github.ssh.key.in.use](./image/github.ssh.key.in.use.1.png)
 
-1. 각 계정별 ssh key 생성
+#### 1. 각 계정별 ssh key 생성
 
 ```bash
 > ssh-keygen -t rsa -b 4096 -C "github@login.email" -f id_rsa_name # 계정별로 생성
 ```
   이메일 별로 `id_rsa_name`, `id_rsa_name.pub` 로 생성됨
 
-2. github 에 등록
+#### 2. github 에 등록
 
 - [Settings] > [SSH and GPG keys] > SSH keys / New SSH key 로 등록 (각 계정별)
 - `.pub` 키를 등록
 ![github.ssh.key.in.use](./image/github.ssh.key.in.use.2.png)
 
-3. %HOME%/.ssh/config 설정
+#### 3. ~/.ssh/config 설정
 
 - `config` 파일이 없다면 생성하여 수정
 ```bash
@@ -571,7 +571,7 @@ Hi temp2! You've successfully authenticated, but GitHub does not provide shell a
 Hi temp3! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-4. ~/.gitconfig 설정
+#### 4. ~/.gitconfig 설정
 
 - `.gitconfig` 전역 파일 수정
 ```bash
@@ -605,10 +605,32 @@ user.name=temp2
 ```
 - `includeif.gitdir:C:/temp2/.path=.gitconfig-temp2` 가 적용되므로 `.gitconfig-temp2`를 불러와서 user.email, user.name 이 적용됨
 
-5. private repository
+#### 5. private repository
 
 - `.ssh/config` 에서 설정한 HostName 을 이용하여 clone
 - `git clone temp2-github.com:[계정명]/[repository]` 와 같은 형식으로 클론
 ```bash
 > git clone temp2-github.com:temp2/repository.git
 ```
+
+#### 참고. ssh-agent 관련
+
+- ssh-agent 에 여러 키를 등록하여 사용하고자 할 경우
+```bash
+> ssh-add %HOME%/.ssh/id_rsa_temp2
+unable to start ssh-agent service, error :1058
+```
+- 위의 에러시에는 **OpenSSH Authentication Agent** 서비스 동작을 확인
+![github.ssh.key.in.use](./image/github.ssh.key.in.use.3.png)
+- 여러 키를 사용하는 상황에서는 ssh 를 사용하지 않는 repository 에서 등록되지 않은 키를 잘못 사용하고 있다라고 하면서 접속이 되지 않는 경우가 있음.
+- ssh-agent 에서 전부 삭제하여 ~/.ssh/config 를 사용하도록 설정하거나, 모든 키를 사전에 등록하여 사용
+```bash
+# 키 등록
+> ssh-add %HOME%/.ssh/id_rsa_temp2
+# 등록된 키 확인
+> ssh-add -l
+# 등록된 키 모두 삭제
+> ssh-add -D
+```
+
+- 
