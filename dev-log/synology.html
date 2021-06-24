@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Synology NAS | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="Synology NAS 에 대한 내용을 다룹니다.">
+    <meta name="keywords" content="synology, NAS">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/4.4e2e53e4.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Synology NAS</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/synology.html#도메인-연결-및-dns-setting" class="sidebar-link">도메인 연결 및 DNS Setting</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/synology.html#let-s-encrypt-ssl-인증서-적용" class="sidebar-link">Let's Encrypt SSL 인증서 적용</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/synology.html#let-s-encrypt-ssl-reverse-proxy-적용" class="sidebar-link">Let's Encrypt SSL Reverse Proxy 적용</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/synology.html#참고" class="sidebar-link">참고</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/synology.html#nfs-설정" class="sidebar-link">NFS 설정</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="synology"><a href="#synology" class="header-anchor">#</a> Synology</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#nas" class="tag" data-v-77ca7535>nas</a><a href="/tags.html#synology" class="tag" data-v-77ca7535>synology</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#도메인-연결-및-dns-setting">도메인 연결 및 DNS Setting</a></li><li><a href="#let-s-encrypt-ssl-인증서-적용">Let's Encrypt SSL 인증서 적용</a></li><li><a href="#let-s-encrypt-ssl-reverse-proxy-적용">Let's Encrypt SSL Reverse Proxy 적용</a></li><li><a href="#참고">참고</a></li><li><a href="#nfs-설정">NFS 설정</a></li></ul></div><p></p> <h2 id="도메인-연결-및-dns-setting"><a href="#도메인-연결-및-dns-setting" class="header-anchor">#</a> 도메인 연결 및 DNS Setting</h2> <ol><li><a href="https://whois.co.kr" target="_blank" rel="noopener noreferrer">whois<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 등에서 도메인 구입 (<a href="https://shockz.io" target="_blank" rel="noopener noreferrer">shockz.io<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 구입 3년)</li> <li>네임서버 변경 (ns.shockz.io)<br> <img src="/assets/img/synology.domain.1.4bd9585b.png" alt="domain"> <em>도메인 추가</em></li> <li>Synology NAS 에서 DNS Server 설치<br> <img src="/assets/img/synology.domain.2.843aada8.png" alt="domain"></li> <li>마스터 영역 및 기타 관련 항목 설정<br>
+_acme-challenge.shockz.io 레코드는 Wildcard SSL 인정서를 발급받기 위한 인증용 TXT 레코드<br>
+MX 레코드는 <a href="http://mail2.daum.net/hanmailex/domain.html" target="_blank" rel="noopener noreferrer">다음스마트워크<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>의 메일서비스 이용을 위한 레코드
+<img src="/assets/img/synology.domain.3.0.2bc85da7.png" alt="domain"> <img src="/assets/img/synology.domain.3.1.eb9a41a9.png" alt="domain"> <img src="/assets/img/synology.domain.4.8956f2b0.png" alt="domain"> <img src="/assets/img/synology.domain.5.5a75d0ee.png" alt="domain"> <img src="/assets/img/synology.domain.6.daf63270.png" alt="domain"></li> <li>putty를 이용한 synology root 접근<br> <img src="/assets/img/putty.1.5e6c1273.png" alt="putty"> <img src="data:image/png;base64,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" alt="putty"> <img src="/assets/img/putty.3.66c60d6c.png" alt="putty"> <img src="/assets/img/putty.4.deec1e97.png" alt="putty"></li> <li>인증서 발급 (Let's Encrypt무료 와일드카드)<br> <a href="#lets-encrypt-ssl-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%A0%81%EC%9A%A9">Let's Encrypt SSL 인증서 적용</a> 참조</li> <li>SSL 설정 - 인증서 항목에서 [구성] 클릭 후 각 항목 인증서 변경<br> <img src="/assets/img/synology.service.1.c59b52fd.png" alt="인증서 변경"></li> <li>SSL 적용 확인<br> <img src="/assets/img/synology.service.2.d8ae744c.png" alt="인증서 적용 확인"> <img src="/assets/img/synology.service.3.07d89414.png" alt="인증서 적용 확인"> <img src="/assets/img/synology.service.4.3891837e.png" alt="인증서 적용 확인"></li></ol> <h2 id="let-s-encrypt-ssl-인증서-적용"><a href="#let-s-encrypt-ssl-인증서-적용" class="header-anchor">#</a> Let's Encrypt SSL 인증서 적용</h2> <blockquote><p>acme.sh 이용</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">wget</span> https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh
+$ <span class="token function">chmod</span> a+x acme.sh
+
+$ ./acme.sh --issue --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+<span class="token comment"># Domain: 확인</span>
+<span class="token comment"># TXT Value: 확인</span>
+<span class="token comment"># DNS TXT 레코드 변경 후 확인</span>
+$ <span class="token function">nslookup</span>
+$ <span class="token builtin class-name">set</span> <span class="token assign-left variable">type</span><span class="token operator">=</span>txt
+$ _acme-challenge.shockz.io
+$ ./acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><blockquote><p>ca.cer, shockz.io.key, shockz.io.cer 다운로드 후
+<img src="/assets/img/synology.ssl.1.c2a0bc85.png" alt="1"><br> <img src="/assets/img/synology.ssl.2.89bb2ec8.png" alt="2"><br> <img src="/assets/img/synology.ssl.3.30d7c375.png" alt="3"><br> <img src="/assets/img/synology.ssl.4.0b10a2f9.png" alt="4"></p></blockquote> <blockquote><p>작업스케줄러 등록 (인증서 갱신, 매주 금)
+<img src="/assets/img/synology.ssl.5.5561d951.png" alt="5"><br> <img src="/assets/img/synology.ssl.6.4f5d5009.png" alt="6"><br> <img src="/assets/img/synology.ssl.7.7efdccef.png" alt="7"><br> <img src="/assets/img/synology.ssl.8.4240539d.png" alt="8"><br>
+스크립트 내용</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 인증서 갱신</span>
+/root/acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+
+<span class="token comment"># 인증서 등록</span>
+<span class="token comment"># 복사할 폴더 확인 cat /usr/syno/etc/certificate/_archive/DEFAULT</span>
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/cert.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/chain.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/fullchain.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/privkey.pem
+
+<span class="token comment"># nginx 재시작</span>
+/usr/syno/sbin/synoservicectl --reload nginx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="let-s-encrypt-ssl-reverse-proxy-적용"><a href="#let-s-encrypt-ssl-reverse-proxy-적용" class="header-anchor">#</a> Let's Encrypt SSL Reverse Proxy 적용</h2> <ul><li>인증서 갱신 이후 <code>/usr/syno/etc/certificate/_archive/DEFAULT</code> 에만 적용하게 되면 Synology Reverse Proxy 는 자동 적용되지 않음</li> <li>개별적으로 적용해야 함</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 예시</span>
+$ <span class="token keyword">for</span> <span class="token for-or-select variable">reverse</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">ls</span> -l /usr/syno/etc/certificate/ReverseProxy/ <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot;^d&quot;</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{ print <span class="token variable">$9</span> }'</span><span class="token variable">`</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+<span class="token operator">&gt;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/cert.pem
+<span class="token operator">&gt;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/chain.pem
+<span class="token operator">&gt;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/fullchain.pem
+<span class="token operator">&gt;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/privkey.pem
+<span class="token operator">&gt;</span> <span class="token keyword">done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li>Synology 작업 스케줄러 최종 스크립트</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 인증서 갱신</span>
+/root/acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+
+<span class="token comment"># 인증서 등록</span>
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/cert.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/chain.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/fullchain.pem
+<span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/syno/etc/certificate/_archive/DEFAULT<span class="token variable">`</span></span>/privkey.pem
+
+<span class="token comment"># reverse proxy 에 적용</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">reverse</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">ls</span> -l /usr/syno/etc/certificate/ReverseProxy/ <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot;^d&quot;</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{ print <span class="token variable">$9</span> }'</span><span class="token variable">`</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/cert.pem<span class="token punctuation">;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/chain.pem<span class="token punctuation">;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/fullchain.pem<span class="token punctuation">;</span> <span class="token function">cp</span> -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/<span class="token variable">$reverse</span>/privkey.pem<span class="token punctuation">;</span> <span class="token keyword">done</span>
+
+<span class="token comment"># nginx 재시작</span>
+/usr/syno/sbin/synoservicectl --reload nginx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="참고"><a href="#참고" class="header-anchor">#</a> 참고</h2> <ul><li><a href="https://eunpoong.tistory.com/1185" target="_blank" rel="noopener noreferrer">시놀로지 NAS, Let's Encrypt WildCard SSL 적용<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.naver.com/jcjee2004/221831609605" target="_blank" rel="noopener noreferrer">시놀로지에 Let's Encrypt 와일드카드 인증서 적용하기<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="nfs-설정"><a href="#nfs-설정" class="header-anchor">#</a> NFS 설정</h2> <ul><li>NFS 사용 설정
+<img src="/assets/img/synology.nfs.1.2211a6dc.png" alt="synology.nfs"></li> <li>하위 폴더 접근 및 권한을 위해 해당 항목 체크
+<img src="/assets/img/synology.nfs.2.3096758f.png" alt="synology.nfs"></li> <li>접근하고자 하는 리눅스 서버 상에서 마운트</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ showmount -e <span class="token number">192.168</span>.0.99
+$ <span class="token function">sudo</span> <span class="token function">mount</span> <span class="token number">192.168</span>.0.99:/volume1/archive nas-archive
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/4.4e2e53e4.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

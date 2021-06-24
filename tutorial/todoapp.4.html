@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Todo App tutorial | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="Todo App 을 만드는 꽤 복잡한 방법">
+    <meta name="keywords" content="todoapp">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/35.48549da4.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link router-link-active">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link router-link-active">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Todo App tutorial</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/tutorial/todoapp.4.html#refactoring" class="sidebar-link">Refactoring</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/tutorial/todoapp.4.html#cqrs-es" class="sidebar-link">CQRS / ES</a></li><li class="sidebar-sub-header"><a href="/tutorial/todoapp.4.html#api-에-cqrs-적용-간소화-버전" class="sidebar-link">Api 에 CQRS 적용 (간소화 버전)</a></li><li class="sidebar-sub-header"><a href="/tutorial/todoapp.4.html#api-gateway-upcoming" class="sidebar-link">API Gateway (upcoming)</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="todo-app-tutorial-4-refactoring"><a href="#todo-app-tutorial-4-refactoring" class="header-anchor">#</a> Todo App Tutorial #4 - Refactoring</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#todoapp" class="tag" data-v-77ca7535>todoapp</a><a href="/tags.html#.net core" class="tag" data-v-77ca7535>.net core</a><a href="/tags.html#nginx" class="tag" data-v-77ca7535>nginx</a><a href="/tags.html#mssql" class="tag" data-v-77ca7535>mssql</a><a href="/tags.html#docker" class="tag" data-v-77ca7535>docker</a><a href="/tags.html#ssl" class="tag" data-v-77ca7535>ssl</a><a href="/tags.html#swagger" class="tag" data-v-77ca7535>swagger</a><a href="/tags.html#seq" class="tag" data-v-77ca7535>seq</a><a href="/tags.html#serilog" class="tag" data-v-77ca7535>serilog</a><a href="/tags.html#docker-compose" class="tag" data-v-77ca7535>docker-compose</a><a href="/tags.html#cqrs / es" class="tag" data-v-77ca7535>cqrs / es</a></div> <hr> <blockquote><p>부제: Todo App 을 만드는 <strong>꽤</strong> 복잡한 방법<br>
+참고 Repository: <a href="https://github.com/shockzinfinity/todo-app-complicated" target="_blank" rel="noopener noreferrer">Github Repository<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p></p><div class="table-of-contents"><ul><li><a href="#refactoring">Refactoring</a><ul><li><a href="#cqrs-es">CQRS / ES</a></li><li><a href="#api-에-cqrs-적용-간소화-버전">Api 에 CQRS 적용 (간소화 버전)</a></li><li><a href="#api-gateway-upcoming">API Gateway (upcoming)</a></li></ul></li></ul></div><p></p> <hr> <h2 id="refactoring"><a href="#refactoring" class="header-anchor">#</a> Refactoring</h2> <h3 id="cqrs-es"><a href="#cqrs-es" class="header-anchor">#</a> CQRS / ES</h3> <p>이번 섹션에서 다룰 주제는 CQRS / ES 입니다. 생소할 수 있는 단어이기에 약간 설명을 해야할 것 같습니다. 단어의 설명에 앞서 주의점이 있습니다.</p> <p>여기에 적용되는 CQRS 는 선택사항 입니다. 굳이 적용해야할 이유도 별로 없으며 Todo App 정도를 만드는데 있어 좀 과할 수 있습니다. 또한 CQRS는 특정 기술이라기 보다는 패턴이라고 보는 것이 더 적절한 설명이 될 것 같습니다. 즉, 필수사항이 아니란 애기입니다.</p> <p>그럼에도 불구하고 CQRS 를 적용하는 이유는 비즈니스의 복잡도를 낮추고 성능을 끌어올릴 수 있는 방법이기 때문입니다. 특히 변화하는 비즈니스의 요구사항을 적용하는데에 있어 상당한 도움이 될 수 있습니다.</p> <p>CQRS 는 <strong>Command and Query Responsibility Segregation</strong> 의 약자입니다. 단어 자체로만 해석하면 <strong>명령과 조회에 대한 책임을 분리</strong>한다는 뜻입니다. CQRS 는 특정 기술을 이야기하는 것이 아닌 단순한 패턴이라고 보는 것이 더 맞습니다. 보통 CQRS 에 대해서 이야기 할때 <a href="https://martinfowler.com/bliki/DomainDrivenDesign.html" target="_blank" rel="noopener noreferrer">DDD (Domain Driven Design)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 와 같이 언급되는 경우가 많은데, 꼭 DDD 의 하위 패턴이거나 구현체를 뜻하지도 않습니다.</p> <p>전통적으로 비즈니스 애플리케이션에서는 비즈니스를 표현한다는 것은 데이터의 결과로 표현되는 경우가 많습니다. 즉, 어떠한 객체 혹은 데이터의 상태라고 볼 수 있습니다. 데이터는 CRUD (Create, Read, Update, Delete)로 설명할 수 있는데, CRUD 중에서 압도적으로 많은 비중이 Read (SELECT) 입니다. 상대적으로 CUD 는 객체의 상태를 변경하는 트랜잭션에서 사용하게 되고, 대부분 SELECT 라고 봐도 무방합니다. 여기서 CUD 와 R 을 분리하여 애플리케이션의 성능을 올리고 복잡성을 낮출 수 있다면 좋을 것 같다는 생각을 할 수 있습니다. (<s>이 패턴이 이렇게해서 탄생되었다라는 뜻은 아닙니다.</s>)</p> <p>현재 Api 의 endpoint 가 전통적인 CRUD 의 전형적인 구현입니다. GET(SELECT), POST(CREATE), PUT(UPDATE), DELETE 를 통해 Todo item 을 DB 에 저장/수정/삭제하고 조회할 수 있습니다.</p> <div class="language-csharp line-numbers-mode"><pre class="language-csharp"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ITodoService</span>
+<span class="token punctuation">{</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionReusult<span class="token punctuation">&lt;</span>IEnumerable<span class="token punctuation">&lt;</span>TodoItemDTO<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">GetTodoItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionResult<span class="token punctuation">&lt;</span>TodoItemDTO<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">GetTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>IActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">UpdateTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">,</span> <span class="token class-name">TodoItemDTO</span> todoItemDTO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">CreateTodoItem</span><span class="token punctuation">(</span><span class="token class-name">TodoItemDTO</span> todoItemDTO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>IActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">DeleteTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>이 endpoint 들을 CQRS 방식으로 변경해본다면 대충 다음과 같이 될 것 같습니다.</p> <div class="language-csharp line-numbers-mode"><pre class="language-csharp"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ITodoCommandService</span>
+<span class="token punctuation">{</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>IActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">UpdateTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">,</span> <span class="token class-name">TodoItemDTO</span> todoItemDTO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">CreateTodoItem</span><span class="token punctuation">(</span><span class="token class-name">TodoItemDTO</span> todoItemDTO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>IActionResult<span class="token punctuation">&gt;</span></span> <span class="token function">DeleteTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ITodoQueryService</span>
+<span class="token punctuation">{</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionReusult<span class="token punctuation">&lt;</span>IEnumerable<span class="token punctuation">&lt;</span>TodoItemDTO<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">GetTodoItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>ActionResult<span class="token punctuation">&lt;</span>TodoItemDTO<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">GetTodoItem</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">long</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>간단하게 Command (데이터의 상태 변화) 와 Query (데이터 조회) 로 분리했습니다. 굳이 이렇게 분리해야 될까 싶지만 이러한 분리가 비즈니스를 구현하는데에 있어 유연함을 제공해 줄 수 있습니다. (<s>코딩의 복잡도는 증가할 수 있습니다.</s>)</p> <p>일반적으로 데이터의 쓰기 작업(CUD)는 읽기 작업(R)보다 상대적으로 빈도가 낮습니다. 모델과 데이터 베이스를 분리하여 각 부분별로 독립적으로 확장하고 심지어 다른 개발기술로 구현하여 비즈니스의 확장을 효율적으로 처리할 수 있게 됩니다.</p> <p>추가적으로 CQRS 는 보통 ES (Event Sourcing) 과 같이 구현되는 경우가 많은데 CQRS 를 이해하다 보면 왜 ES 와 함께 구현이 되는지 알 수 있습니다.</p> <p><img src="/assets/img/cqrs.pattern.1.ea97bb56.png" alt="CQRS diagram"> <em>CQRS Journey <a href="https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj554200(v=pandp.10)" target="_blank" rel="noopener noreferrer">MSDN<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></em></p> <p>CQRS / ES 에 대한 내용은 꽤 방대해질 수 있는 주제이므로 추후 다른 포스트에서 좀 더 다루기로 하고 간단하게 CQRS / ES 의 장단점을 정리하고 Todo App 에 CQRS / ES 를 적용해 보겠습니다.</p> <p><strong>CQRS / ES 장점</strong></p> <ul><li>성능과 확장성을 개선하고 동시성 문제를 처리하기 적합</li> <li>상대적으로 덜 복잡한 도메인 모델과 단순한 쿼리 모델 구현 가능</li> <li>교착상태 제거</li> <li>Audit trail 및 특정 시점의 객체(데이터) 상태 추적 가능</li> <li>테스트 용이</li> <li>비즈니스 유연성 증가</li></ul> <p><strong>CQRS / ES 단점</strong></p> <ul><li>읽기/쓰기 모델 동기화</li> <li>유지 보수 및 관리 비용이 상대적으로 증가</li> <li>개발자 러닝커브 증가</li></ul> <div class="custom-block tip"><p class="custom-block-title">CQRS 참고자료</p> <ul><li><a href="https://martinfowler.com/bliki/CQRS.html" target="_blank" rel="noopener noreferrer">CQRS by Martin Fowler<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/" target="_blank" rel="noopener noreferrer">CQRS, Task Based UIs, Event Sourcing agh! by Greg Young<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://martinfowler.com/eaaDev/EventSourcing.html" target="_blank" rel="noopener noreferrer">Event Sourcing by Martin Fowler<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://docs.microsoft.com/ko-kr/azure/architecture/patterns/event-sourcing" target="_blank" rel="noopener noreferrer">이벤트 소싱 패턴<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/" target="_blank" rel="noopener noreferrer">DDD 및 CQRS 패턴을 사용하여 마이크로 서비스에서 비즈니스 복잡성 처리<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/microsoftarchive/cqrs-journey" target="_blank" rel="noopener noreferrer">microsoftarchive / cqrs-journey<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/ddd-cqrs-es" target="_blank" rel="noopener noreferrer">DDD CQRS Event Sourcing community<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <h3 id="api-에-cqrs-적용-간소화-버전"><a href="#api-에-cqrs-적용-간소화-버전" class="header-anchor">#</a> Api 에 CQRS 적용 (간소화 버전)</h3> <p>TodoItem 의 변경 이력을 보고 싶다고 가정하겟습니다. TodoItem 을 언제 생성했고, 언제 completed 했으며 중간에 incompleted 로 변경했었다가 나중에 완료했다는 상황을 가정합니다. 다시한번 언급하자면 CQRS 적용은 필수사항이 아닙니다.</p> <p>Command 는 어떠한 행동이기 때문에 **현재형 (present tense)**을 쓰고, Event 는 Command 의 결과이기 때문에 **과거형 (past tense)**으로 만들겠습니다.</p> <p>먼저 비즈니스의 요구사항에 따라 Command 와 Event 를 정의합니다.</p> <ol><li>Command
+<ul><li>CreateTodoItem: TodoItem 을 생성합니다.</li> <li>ChangeTodoItemName: TodoItem 의 이름을 변경합니다.</li> <li>CompleteTodoItem: TodoItem 을 완료합니다.</li> <li>IncompleteTodoItem: TodoItem 을 미완료 상태로 변경합니다.</li></ul></li> <li>Event
+<ul><li>CreatedTodoItem: TodoItem 이 생성됐습니다.</li> <li>ChangedTodoItemName: TodoItem 의 이름이 변경됐습니다.</li> <li>CompletedTodoItem: TodoItem 이 완료됐습니다.</li> <li>InCompletedTodoItem: TodoItem 이 미완료료 상태로 변경됐습니다.</li></ul></li></ol> <h3 id="api-gateway-upcoming"><a href="#api-gateway-upcoming" class="header-anchor">#</a> API Gateway (upcoming)</h3></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> <div id="disqus_thread" class="content" data-v-9cf26668></div></main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/35.48549da4.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

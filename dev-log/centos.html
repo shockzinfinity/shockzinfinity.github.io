@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CentOS 8 설정 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="CentOS 8 설치 후 기본적인 설정을 포함합니다.">
+    <meta name="keywords" content="centos8 settings">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/11.b9a7e208.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>CentOS 8 설정</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/centos.html#os-버전-확인" class="sidebar-link">OS 버전 확인</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#update" class="sidebar-link">update</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#systemctl-사용법" class="sidebar-link">systemctl 사용법</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#etc-bashrc-수정" class="sidebar-link">/etc/bashrc 수정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#podman-설치" class="sidebar-link">Podman 설치</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#열린-포트-확인" class="sidebar-link">열린 포트 확인</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#firewall-cmd" class="sidebar-link">firewall-cmd</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#기본-nginx-설정" class="sidebar-link">기본 Nginx 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#node-js-개발-및-호스팅-환경-설정" class="sidebar-link">node.js 개발 및 호스팅 환경 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#net-core-개발-및-호스팅-환경-설정" class="sidebar-link">.net core 개발 및 호스팅 환경 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#vim-color-scheme-지정" class="sidebar-link">vim color scheme 지정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#cockpit-ssl-설정" class="sidebar-link">Cockpit SSL 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/centos.html#xrdp-설치" class="sidebar-link">XRDP 설치</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="centos-8-설정"><a href="#centos-8-설정" class="header-anchor">#</a> CentOS 8 설정</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#linux" class="tag" data-v-77ca7535>linux</a><a href="/tags.html#centos8" class="tag" data-v-77ca7535>centos8</a></div> <blockquote><p>podman.shockz.io</p></blockquote> <p></p><div class="table-of-contents"><ul><li><a href="#os-버전-확인">OS 버전 확인</a></li><li><a href="#update">update</a></li><li><a href="#systemctl-사용법">systemctl 사용법</a></li><li><a href="#etc-bashrc-수정">/etc/bashrc 수정</a></li><li><a href="#podman-설치">Podman 설치</a></li><li><a href="#열린-포트-확인">열린 포트 확인</a></li><li><a href="#firewall-cmd">firewall-cmd</a></li><li><a href="#기본-nginx-설정">기본 Nginx 설정</a></li><li><a href="#node-js-개발-및-호스팅-환경-설정">node.js 개발 및 호스팅 환경 설정</a></li><li><a href="#net-core-개발-및-호스팅-환경-설정">.net core 개발 및 호스팅 환경 설정</a></li><li><a href="#vim-color-scheme-지정">vim color scheme 지정</a></li><li><a href="#cockpit-ssl-설정">Cockpit SSL 설정</a></li><li><a href="#xrdp-설치">XRDP 설치</a></li></ul></div><p></p> <h2 id="os-버전-확인"><a href="#os-버전-확인" class="header-anchor">#</a> OS 버전 확인</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">cat</span> /etc/redhat-release
+$ <span class="token function">cat</span> /etc/os-release
+$ <span class="token function">cat</span> /etc/system-release
+$ hostnamectl
+
+<span class="token comment"># 커널 버전 확인</span>
+$ <span class="token function">uname</span> -s -r
+$ <span class="token function">uname</span> -a
+$ <span class="token function">uname</span> -v
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="update"><a href="#update" class="header-anchor">#</a> update</h2> <blockquote><p>참고: <a href="https://wnw1005.tistory.com/category/%EB%A6%AC%EB%88%85%EC%8A%A4/CentOS?page=1" target="_blank" rel="noopener noreferrer">CentOS 설정<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+참고2: <a href="https://www.onlab.kr/2020/01/02/centos8-initial-settings/" target="_blank" rel="noopener noreferrer">CentOS 8 설치 후 기본 설정<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <img src="/assets/img/centos8defaultSetting.bcb94636.jpg" alt="default setting"></p></blockquote> <ul><li>yum -&gt; dnf
+<blockquote><p>EPEL(Extra Packages of Enterprise Linux)
+저장소 리스트 위치 (/etc/yum.repos.d)</p></blockquote></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> dnf upgrade
+$ <span class="token function">bzip2</span> /etc/yum.repos.d/CentOS-*.repo <span class="token comment"># 백업</span>
+$ <span class="token function">rename</span> -v .repo .bak *.repo <span class="token comment"># 확장자 변경</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li>저장소 단일파일 관리</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">vi</span> /etc/yum.repos.d/default.repo
+
+<span class="token punctuation">[</span>AppStream<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - AppStream
+<span class="token comment">#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=AppStream&amp;infra=$infra</span>
+<span class="token comment">##baseurl=http://mirror.centos.org/$contentdir/$releasever/AppStream/$basearch/os/</span>
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://mirror.kakao.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>/AppStream/<span class="token variable">$basearch</span>/os/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment">#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://mirror.kakao.com/centos/RPM-GPG-KEY-CentOS-Official
+
+<span class="token punctuation">[</span>BaseOS<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Base
+<span class="token comment">#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=BaseOS&amp;infra=$infra</span>
+<span class="token comment">##baseurl=http://mirror.centos.org/$contentdir/$releasever/BaseOS/$basearch/os/</span>
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://mirror.kakao.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>/BaseOS/<span class="token variable">$basearch</span>/os/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment">#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://mirror.kakao.com/centos/RPM-GPG-KEY-CentOS-Official
+
+
+<span class="token punctuation">[</span>extras<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Extras
+<span class="token comment">#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=extras&amp;infra=$infra</span>
+<span class="token comment">##baseurl=http://mirror.centos.org/$contentdir/$releasever/extras/$basearch/os/</span>
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://mirror.kakao.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>/extras/<span class="token variable">$basearch</span>/os/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment">#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://mirror.kakao.com/centos/RPM-GPG-KEY-CentOS-Official
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><ul><li>epel reinstall</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ dnf reinstall epel-release
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>remi repo install</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ dnf reinstall https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+<span class="token comment"># remi repo는 기본적으로 활성화되어 있지 않음 -&gt; 활성화 필요</span>
+<span class="token comment"># enabled=1 로 변경</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="systemctl-사용법"><a href="#systemctl-사용법" class="header-anchor">#</a> systemctl 사용법</h2> <ol><li>서비스 재실행(sshd 의 경우)<br>
+systemctl restart sshd.service</li> <li>서비스 중지(sshd 의 경우)<br>
+systemctl stop sshd.service</li> <li>서비스 시작(sshd 의 경우)<br>
+systemctl start sshd.service</li> <li>서비스 상태보기(sshd 의 경우)<br>
+systemctl status sshd.service</li> <li>부팅시 서비스 시작하기(sshd 의 경우)<br>
+systemctl enable sshd.service</li> <li>부팅시 서비스 시작하지 않음(sshd 의 경우)<br>
+systemctl disable sshd.service</li> <li>부팅시 실행되는 서비스인지 검사(sshd의 경우)<br>
+systemctl is-enabled sshd</li> <li>서비스 목록보기<br>
+systemctl list-unit-files --type=service</li></ol> <blockquote><p><a href="https://www.lesstif.com/system-admin/rhel-centos-7-systemctl-24445064.html" target="_blank" rel="noopener noreferrer">RHEL/CentOS 7 systemctl 사용법<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="etc-bashrc-수정"><a href="#etc-bashrc-수정" class="header-anchor">#</a> /etc/bashrc 수정</h2> <p><img src="/assets/img/bashrc.12344776.png" alt="bashrc"></p> <h2 id="podman-설치"><a href="#podman-설치" class="header-anchor">#</a> Podman 설치</h2> <p><a href="https://podman.io/getting-started/installation.html" target="_blank" rel="noopener noreferrer">https://podman.io/getting-started/installation.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="열린-포트-확인"><a href="#열린-포트-확인" class="header-anchor">#</a> 열린 포트 확인</h2> <blockquote><p><a href="https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%A1%9C%EC%BB%AC%EC%84%9C%EB%B2%84_%EC%97%B4%EB%A6%B0_%ED%8F%AC%ED%8A%B8_%ED%99%95%EC%9D%B8" target="_blank" rel="noopener noreferrer">열린포트확인<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">netstat</span> -tnlp
+Active Internet connections <span class="token punctuation">(</span>only servers<span class="token punctuation">)</span>
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:111             <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">1</span>/systemd
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:80              <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">21382</span>/nginx: master
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">192.168</span>.122.1:53        <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">2886</span>/dnsmasq
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:22              <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">18685</span>/sshd
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:5432            <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">1279</span>/postmaster
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:44321         <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">2026</span>/pmcd
+tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:4330          <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">12396</span>/pmlogger
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::111                  :::*                    LISTEN      <span class="token number">1</span>/systemd
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::80                   :::*                    LISTEN      <span class="token number">21382</span>/nginx: master
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::22                   :::*                    LISTEN      <span class="token number">18685</span>/sshd
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::5432                 :::*                    LISTEN      <span class="token number">1279</span>/postmaster
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> ::1:44321               :::*                    LISTEN      <span class="token number">2026</span>/pmcd
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::9090                 :::*                    LISTEN      <span class="token number">1</span>/systemd
+tcp6       <span class="token number">0</span>      <span class="token number">0</span> ::1:4330                :::*                    LISTEN      <span class="token number">12396</span>/pmlogger
+
+$ <span class="token function">lsof</span> -i -nP <span class="token operator">|</span> <span class="token function">grep</span> LISTEN <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable"><span class="token variable">$(</span>NF-1<span class="token variable">)</span></span>&quot; &quot;<span class="token variable">$1</span>}'</span> <span class="token operator">|</span> <span class="token function">sort</span> -u
+*:111 rpcbind
+*:111 systemd
+*:22 sshd
+*:5432 postmaste
+*:80 nginx
+*:9090 systemd
+<span class="token number">127.0</span>.0.1:4330 pmlogger
+<span class="token number">127.0</span>.0.1:44321 pmcd
+<span class="token number">192.168</span>.122.1:53 dnsmasq
+<span class="token punctuation">[</span>::1<span class="token punctuation">]</span>:4330 pmlogger
+<span class="token punctuation">[</span>::1<span class="token punctuation">]</span>:44321 pmcd
+
+$ nmap localhost
+Starting Nmap <span class="token number">7.70</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2020</span>-08-10 <span class="token number">12</span>:12 KST
+Nmap scan report <span class="token keyword">for</span> localhost <span class="token punctuation">(</span><span class="token number">127.0</span>.0.1<span class="token punctuation">)</span>
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.0000060s latency<span class="token punctuation">)</span>.
+Other addresses <span class="token keyword">for</span> localhost <span class="token punctuation">(</span>not scanned<span class="token punctuation">)</span>: ::1
+Not shown: <span class="token number">995</span> closed ports
+PORT     STATE SERVICE
+<span class="token number">22</span>/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>
+<span class="token number">80</span>/tcp   <span class="token function">open</span>  http
+<span class="token number">111</span>/tcp  <span class="token function">open</span>  rpcbind
+<span class="token number">5432</span>/tcp <span class="token function">open</span>  postgresql
+<span class="token number">9090</span>/tcp <span class="token function">open</span>  zeus-admin
+
+Nmap done: <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">1.61</span> seconds
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div><h2 id="firewall-cmd"><a href="#firewall-cmd" class="header-anchor">#</a> firewall-cmd</h2> <blockquote><p>--permanent<br>
+--permanent 옵션을 붙이면 설정파일(.xml)이 수정되는데, 정상 반영되려면 반드리 reload를 해야한다. (#firewall-cmd --reload)<br>
+--permanent 옵션을 붙이지 않으면, 일시적으로 즉시 반영되고 재부팅 시 룰 삭제 된다 (설정파일에 반영 안되어 있으므로...)</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ firewall-cmd --list-all-zone
+$ firewall-cmd --get-default-zone
+$ firewall-cmd --zone<span class="token operator">=</span>public --list-all
+$ firewall-cmd --zone<span class="token operator">=</span>public --list-ports
+$ firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">22581</span>/tcp
+$ firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">8080</span>-8082/tcp
+$ firewall-cmd --zone<span class="token operator">=</span>public --remove-port<span class="token operator">=</span><span class="token number">22581</span>/tcp
+$ firewall-cmd --zone<span class="token operator">=</span>public --list-service
+$ firewall-cmd --zone<span class="token operator">=</span>public --add-service<span class="token operator">=</span>telnet
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="기본-nginx-설정"><a href="#기본-nginx-설정" class="header-anchor">#</a> 기본 Nginx 설정</h2> <blockquote><p>www-data user add &amp; /var/www 설정</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">useradd</span> --shell /sbin/nologin www-data
+$ <span class="token function">mkdir</span> -p /var/www/podman.shockz.io/html
+$ <span class="token function">mkdir</span> -p /var/www/api.shockz.io
+$ <span class="token function">chown</span> -R www-data:www-data /var/www/podman.shockz.io/html
+$ <span class="token function">chown</span> -R www-data:www-data /var/www/api.shockz.io
+$ <span class="token function">chmod</span> -R <span class="token number">755</span> /var/www
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>nginx.conf 파일 설정</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># worker 프로세스를 실행할 사용자 설정</span>
+<span class="token comment"># - 이 사용자에 따라 권한이 달라질 수 있다.</span>
+user  nginx<span class="token punctuation">;</span>
+<span class="token comment"># 실행할 worker 프로세스 설정</span>
+<span class="token comment"># - 서버에 장착되어 있는 코어 수 만큼 할당하는 것이 보통, 더 높게도 설정 가능</span>
+worker_processes  <span class="token number">8</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 오류 로그를 남길 파일 경로 지정</span>
+error_log  /var/log/nginx/error.log warn<span class="token punctuation">;</span>
+<span class="token comment"># NGINX 마스터 프로세스 ID 를 저장할 파일 경로 지정</span>
+pid        /var/run/nginx.pid<span class="token punctuation">;</span>
+
+
+<span class="token comment"># 접속 처리에 관한 설정을 한다.</span>
+events <span class="token punctuation">{</span>
+    <span class="token comment"># 워커 프로레스 한 개당 동시 접속 수 지정 (512 혹은 1024 를 기준으로 지정)</span>
+    worker_connections  <span class="token number">2048</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># 웹, 프록시 관련 서버 설정</span>
+http <span class="token punctuation">{</span>
+    <span class="token comment"># mime.types 파일을 읽어들인다.</span>
+    include       /etc/nginx/mime.types<span class="token punctuation">;</span>
+    <span class="token comment"># MIME 타입 설정</span>
+    default_type  application/octet-stream<span class="token punctuation">;</span>
+
+    <span class="token comment"># 엑세스 로그 형식 지정</span>
+    log_format  main  <span class="token string">'<span class="token variable">$remote_addr</span> - <span class="token variable">$remote_user</span> [<span class="token variable">$time_local</span>] &quot;<span class="token variable">$request</span>&quot; '</span>
+                      <span class="token string">'<span class="token variable">$status</span> <span class="token variable">$body_bytes_sent</span> &quot;<span class="token variable">$http_referer</span>&quot; '</span>
+                      <span class="token string">'&quot;<span class="token variable">$http_user_agent</span>&quot; &quot;<span class="token variable">$http_x_forwarded_for</span>&quot;'</span><span class="token punctuation">;</span>
+
+    <span class="token comment"># 엑세스 로그를 남길 파일 경로 지정</span>
+    access_log  /var/log/nginx/access.log  main<span class="token punctuation">;</span>
+
+    <span class="token comment"># sendfile api 를 사용할지 말지 결정</span>
+    sendfile        on<span class="token punctuation">;</span>
+    <span class="token comment">#tcp_nopush     on;</span>
+
+    <span class="token comment"># 접속시 커넥션을 몇 초동안 유지할지에 대한 설정</span>
+    keepalive_timeout  <span class="token number">65</span><span class="token punctuation">;</span>
+
+    <span class="token comment"># (추가) nginx 버전을 숨길 수 있다. (보통 아래를 사용해서 숨기는게 일반적)</span>
+    server_tokens off
+
+    <span class="token comment">#gzip  on;</span>
+
+    <span class="token comment"># /etc/nginx/conf.d 디렉토리 아래 있는 .conf 파일을 모두 읽어 들임</span>
+    include /etc/nginx/conf.d/*.conf<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br></div></div><blockquote><p>/etc/nginx/sites-available/api.shockz.io</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>server <span class="token punctuation">{</span>
+    listen       <span class="token number">80</span><span class="token punctuation">;</span>
+    server_name  api.shockz.io<span class="token punctuation">;</span>
+    charset utf-8<span class="token punctuation">;</span>
+    rewrite_log  on<span class="token punctuation">;</span>
+    access_log  /var/log/nginx/api.shockz.io.access.log  main<span class="token punctuation">;</span>
+    error_log  /var/log/nginx/api.shockz.io.error.log  notice<span class="token punctuation">;</span>
+    client_max_body_size 100M<span class="token punctuation">;</span>
+        root            /var/www/api.shockz.io<span class="token punctuation">;</span>
+        index           index.html<span class="token punctuation">;</span>
+    <span class="token comment">#location = /favicon.ico { access_log off; log_not_found off; }</span>
+    <span class="token comment">#location = /robots.txt  { access_log off; log_not_found off; }</span>
+<span class="token punctuation">}</span>
+
+$ <span class="token function">ln</span> -s /etc/nginx/sites-available/api.shockz.io /etc/nginx/sites-enabled
+$ nginx -t
+$ systemctl reload nginx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><blockquote><p>Let's Encrypt Wildcard SSL 적용 (nas.shockz.io SSL 이용)<br>
+위치: /usr/syno/etc/certificate/system/default)</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># default</span>
+<span class="token comment"># Settings for a TLS enabled server.</span>
+
+    server <span class="token punctuation">{</span>
+        listen       <span class="token number">443</span> ssl http2 default_server<span class="token punctuation">;</span>
+        listen       <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:443 ssl http2 default_server<span class="token punctuation">;</span>
+        server_name  _<span class="token punctuation">;</span>
+        root         /var/www/podman.shockz.io/html<span class="token punctuation">;</span>
+
+        ssl_certificate <span class="token string">&quot;/etc/pki/nginx/fullchain.pem&quot;</span><span class="token punctuation">;</span>
+        ssl_certificate_key <span class="token string">&quot;/etc/pki/nginx/private/privkey.pem&quot;</span><span class="token punctuation">;</span>
+        ssl_session_cache shared:SSL:1m<span class="token punctuation">;</span>
+        ssl_session_timeout  10m<span class="token punctuation">;</span>
+        ssl_ciphers <span class="token assign-left variable">PROFILE</span><span class="token operator">=</span>SYSTEM<span class="token punctuation">;</span>
+        ssl_prefer_server_ciphers on<span class="token punctuation">;</span>
+
+<span class="token comment">#        # Load configuration files for the default server block.</span>
+        include /etc/nginx/default.d/*.conf<span class="token punctuation">;</span>
+
+        location / <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+
+        error_page <span class="token number">404</span> /404.html<span class="token punctuation">;</span>
+            location <span class="token operator">=</span> /40x.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+
+        error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>
+            location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># api.shockz.io</span>
+server <span class="token punctuation">{</span>
+    listen      <span class="token number">443</span><span class="token punctuation">;</span>
+    server_name api.shockz.io<span class="token punctuation">;</span>
+    charset     utf-8<span class="token punctuation">;</span>
+    rewrite_log on<span class="token punctuation">;</span>
+    access_log  /var/log/nginx/api.shockz.io.access.log main<span class="token punctuation">;</span>
+    error_log   /var/log/nginx/api.shockz.io.error.log  notice<span class="token punctuation">;</span>
+    client_max_body_size 100M<span class="token punctuation">;</span>
+    root        /var/www/api.shockz.io<span class="token punctuation">;</span>
+    index       index.html<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># firewall 적용 필요</span>
+$ firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">443</span>/tcp --permanent
+$ firewall-cmd --reload
+
+<span class="token comment"># default, api.shockz.io 의 conf 에 https redirect 적용</span>
+server <span class="token punctuation">{</span>
+   <span class="token punctuation">..</span>.
+   <span class="token builtin class-name">return</span> <span class="token number">301</span> https://<span class="token variable">$host</span><span class="token variable">$request_uri</span>
+   <span class="token punctuation">..</span>.
+<span class="token punctuation">}</span>
+<span class="token comment"># e.g. http://api.shockz.io -&gt; https://api.shockz.io 로 redirect</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br></div></div><blockquote><p>참고<br> <a href="https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-1%ED%8E%B8/" target="_blank" rel="noopener noreferrer">스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 1편<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-2%ED%8E%B8/" target="_blank" rel="noopener noreferrer">스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 2편<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://www.popit.kr/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%BC%EC%9E%90-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%8B%B8%EA%B2%8C-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-3%ED%8E%B8/" target="_blank" rel="noopener noreferrer">스타트업 개발자 혼자 빠르게 싸게 서버 구축하기 - 3편<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://jackerlab.com/nginx-redirect-port-forwarding/" target="_blank" rel="noopener noreferrer">[Nginx] Nginx HTTP redirect 및 포트포워딩(Port Forwarding) 설정<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://www.joinc.co.kr/w/man/12/Nginx/virtualhost" target="_blank" rel="noopener noreferrer">NGINX VIRTUALHOST<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://www.lesstif.com/system-admin/nginx-https-ssl-27984443.html" target="_blank" rel="noopener noreferrer">nginx 에 HTTPS/SSL 적용하기<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <blockquote><p>보안설정참고<br> <a href="https://happist.com/549059/%EA%B0%80%EC%83%81%EC%84%9C%EB%B2%84%ED%98%B8%EC%8A%A4%ED%8C%85%EC%97%90%EC%84%9C-%EC%84%9C%EB%B2%84-%EB%B3%B4%EC%95%88-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95-nginx-ubuntu-16-04%EC%9D%98-%EA%B2%BD" target="_blank" rel="noopener noreferrer">가상서버호스팅 서버 보안 설정 방법 – Nginx +Ubuntu의 경우<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="node-js-개발-및-호스팅-환경-설정"><a href="#node-js-개발-및-호스팅-환경-설정" class="header-anchor">#</a> node.js 개발 및 호스팅 환경 설정</h2> <h4 id="nvm-설치"><a href="#nvm-설치" class="header-anchor">#</a> nvm 설치</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 개별 사용자별 nvm 설치</span>
+$ <span class="token function">sudo</span> dnf update
+$ <span class="token function">curl</span> -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh <span class="token operator">|</span> <span class="token function">bash</span>
+<span class="token comment"># 추가되는 변수</span>
+<span class="token comment"># export NVM_DIR=&quot;$HOME/.nvm&quot;</span>
+<span class="token comment"># [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span>
+<span class="token comment"># [ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion</span>
+$ <span class="token builtin class-name">source</span> ~/.bash_profile
+$ nvm list-remote v10
+$ nvm list-remote v12
+$ nvm <span class="token function">install</span> <span class="token number">12</span>
+$ nvm <span class="token function">install</span> <span class="token number">10</span>
+$ nvm use v12
+$ node --version
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><blockquote><p><a href="https://www.liquidweb.com/kb/install-nvm-node-version-manager-node-js-centos-8/" target="_blank" rel="noopener noreferrer">How to Install NVM for Node.js on CentOS 8<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h4 id="docker-테스트를-위한-작업"><a href="#docker-테스트를-위한-작업" class="header-anchor">#</a> docker 테스트를 위한 작업</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> ~/howto/nodetest
+$ <span class="token function">npm</span> init -y
+$ <span class="token function">npm</span> i express <span class="token comment"># 테스트를 위한 익스프레스 서버</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h5 id="server-js"><a href="#server-js" class="header-anchor">#</a> server.js</h5> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">var</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">&quot;hi there&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;running on 3000 port&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ node server.js
+$ <span class="token function">curl</span> localhost:3000
+<span class="token comment"># hi there</span>
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;# podman-sample-for-test&quot;</span> <span class="token operator">&gt;&gt;</span> README.md
+$ <span class="token function">git</span> init
+$ <span class="token function">git</span> <span class="token function">add</span> README.md
+$ <span class="token function">git</span> commit -m <span class="token string">&quot;initialize git repository&quot;</span>
+$ <span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/shockzinfinity/podman-sample-for-test.git
+$ <span class="token function">git</span> push -u origin master
+
+<span class="token comment"># for docker</span>
+$ podman login -u shockz docker.io
+$ podman <span class="token builtin class-name">logout</span>
+$ podman push
+$ podman <span class="token function">ps</span> -a
+$ podman images
+$ podman system prune -a
+$ podman build -t shockz/nodetest:0.2 <span class="token builtin class-name">.</span>
+$ podman run -it -p <span class="token number">3000</span>:3000 --rm --name node shockz/nodetest:0.2
+$ podman run -it -p <span class="token number">3000</span>:3000 --rm --name node -v ~/howto/nodetest:/usr/src/nodetest shockz/nodetest:0.2
+$ <span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">3000</span>/tcp <span class="token comment"># for test</span>
+$ <span class="token function">npm</span> i mongoose
+<span class="token comment"># mongodb 테스트를 위한 원격 확인을 위해 27017 포트 오픈 (MongoDB Compass 로 확인)</span>
+$ <span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">27017</span>/tcp
+<span class="token comment"># mongodb 컨테이너 run</span>
+$ podman run -d -p <span class="token number">27017</span>:27017 --rm --name mongodb -e <span class="token assign-left variable">MONGO_INITDB_ROOT_USERNAME</span><span class="token operator">=</span>root -e <span class="token assign-left variable">MONGO_INITDB_ROOT_PASSWORD</span><span class="token operator">=</span>***** mongo
+<span class="token comment"># compass 로 확인 후 연결문자열 복사</span>
+<span class="token comment"># e.g. mongodb://root:*****@localhost:27017/?authSource=admin&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false</span>
+$ podman stop mongodb
+<span class="token comment"># db 데이터가 저장될 볼륨 생성</span>
+$ podman volume create mongodb_dev
+$ podman volume <span class="token function">ls</span>
+$ podman run -d -p <span class="token number">27017</span>:27017 --rm --name mongodb -e <span class="token assign-left variable">MONGO_INITDB_ROOT_USERNAME</span><span class="token operator">=</span>root -e <span class="token assign-left variable">MONGO_INITDB_ROOT_PASSWORD</span><span class="token operator">=</span>***** -v mongodb_dev:/data/db mongo
+<span class="token comment"># 여기까지 진행하면 데이터 볼륨 연결을 통해 로컬에서 DB 연결까지는 마무리 할수 있으나,</span>
+<span class="token comment"># 이제 각 컨테이너 간 네트워크 부분에서 docker-compose 를 이용하여 서비스간 연결을 맺어줘야 하는 부분에서</span>
+<span class="token comment"># docker-compose 의 podman alternative 가 마땅치 않음.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h2 id="net-core-개발-및-호스팅-환경-설정"><a href="#net-core-개발-및-호스팅-환경-설정" class="header-anchor">#</a> .net core 개발 및 호스팅 환경 설정</h2> <blockquote><p><a href="https://www.server-world.info/en/note?os=CentOS_8&amp;p=dotnet&amp;f=1" target="_blank" rel="noopener noreferrer">.NET Core 3.1 : Install<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ dnf info dotnet
+$ dnf -y <span class="token function">install</span> dotnet
+$ dotnet --version
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="vim-color-scheme-지정"><a href="#vim-color-scheme-지정" class="header-anchor">#</a> vim color scheme 지정</h2> <blockquote><p>vim 컬러 테마 위치 : /usr/share/vim/vim80/colors (vim80 은 버전)
+molokai.vim</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">curl</span> https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim <span class="token operator">&gt;</span> /usr/share/vim/vim80/colors/molokai.vim
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><blockquote><p>codeschool.vim</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token variable">$curl</span> https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/codeschool.vim <span class="token operator">&gt;</span> /usr/share/vim/vim80/colors/codeschool.vim
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><blockquote><p>/etc/vimrc<br>
+~/.vimrc</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>colo molokai <span class="token comment"># 추가</span>
+syntax on <span class="token comment"># 추가</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><blockquote><p>putty 를 위해서 .vimrc 에 추가 <a href="https://rottk.tistory.com/entry/VIM-Color-Scheme-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0" target="_blank" rel="noopener noreferrer">참고<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token keyword">if</span> <span class="token operator">&amp;</span>term <span class="token operator">=</span>~ <span class="token string">&quot;xterm&quot;</span>
+    <span class="token string">&quot;256 color --
+    let &amp;t_Co=256
+    &quot;</span> restore <span class="token function">screen</span> after quitting
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">t_ti</span><span class="token operator">=</span>ESC7ESC<span class="token punctuation">[</span>rESC<span class="token punctuation">[</span>?47h <span class="token assign-left variable">t_te</span><span class="token operator">=</span>ESC<span class="token punctuation">[</span>?47lESC8
+    <span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">&quot;terminfo&quot;</span><span class="token punctuation">)</span>
+        <span class="token builtin class-name">let</span> <span class="token operator">&amp;</span><span class="token assign-left variable">t_Sf</span><span class="token operator">=</span><span class="token string">&quot;<span class="token entity" title="\E">\E</span>SC[3%p1%dm&quot;</span>
+        <span class="token builtin class-name">let</span> <span class="token operator">&amp;</span><span class="token assign-left variable">t_Sb</span><span class="token operator">=</span><span class="token string">&quot;<span class="token entity" title="\E">\E</span>SC[4%p1%dm&quot;</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">let</span> <span class="token operator">&amp;</span><span class="token assign-left variable">t_Sf</span><span class="token operator">=</span><span class="token string">&quot;<span class="token entity" title="\E">\E</span>SC[3%dm&quot;</span>
+        <span class="token builtin class-name">let</span> <span class="token operator">&amp;</span><span class="token assign-left variable">t_Sb</span><span class="token operator">=</span><span class="token string">&quot;<span class="token entity" title="\E">\E</span>SC[4%dm&quot;</span>
+    endif
+endif
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="cockpit-ssl-설정"><a href="#cockpit-ssl-설정" class="header-anchor">#</a> Cockpit SSL 설정</h2> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <blockquote><p>2020-09-02 기준</p> <ul><li>remotectl certificate 커맨드상의 selinux 관련 예러 해결 안됨</li> <li>synology 역방향 프록시 설정으로 연결한 경우 정상적으로 인증서 적용안됨 (dev.shockz.io 로 연결 시에는 오류, https://192.168.0.117:9090 으로 연결시에는 접속은 가능)<br>
+자체서명 인증서 적용을 고려</li></ul></blockquote></div> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ remotectl certificate
+<span class="token comment"># synology 에서 발급 받은 shockz.io 와일드 카드 인증서 사용</span>
+$ <span class="token function">cat</span> /home/shockz/fullchain.pem /home/shockz/privkey.pem <span class="token operator">&gt;&gt;</span> /etc/cockpit/ws-certs.d/api.shockz.io.cert
+$ <span class="token function">chmod</span> 0640 dev.shockz.io.cert
+$ <span class="token function">chown</span> :cockpit-ws dev.shockz.io.cert
+$ systemctl restart cockpit
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p></div> <h2 id="xrdp-설치"><a href="#xrdp-설치" class="header-anchor">#</a> XRDP 설치</h2> <ul><li>윈도우의 원격데스크탑을 통해 CentOS 8의 GUI 에 연결하기 위한 패키지 설치</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> dnf info epel-release
+$ <span class="token function">sudo</span> dnf update epel-release
+$ <span class="token function">sudo</span> dnf <span class="token function">install</span> xrdp tigervnc-server
+
+$ <span class="token function">sudo</span> firewall-cmd --list-all
+$ <span class="token function">sudo</span> firewall-cmd --add-port<span class="token operator">=</span><span class="token number">3389</span>/tcp --permanent
+$ <span class="token function">sudo</span> firewall-cmd --reload
+
+$ <span class="token function">sudo</span> systemctl start xrdp
+$ <span class="token function">sudo</span> systemctl status xrdp
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><img src="/assets/img/centos8.xrdp.1.81cb6540.png" alt="centos8.xrdp"> <img src="/assets/img/centos8.xrdp.2.14eef627.png" alt="centos8.xrdp"> <img src="/assets/img/centos8.xrdp.3.3f2bc770.png" alt="centos8.xrdp"></p> <ul><li>(선택) 포트 변경</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br></div><pre class="language-bash"><code><span class="token comment"># /etc/xrdp/xrdp.ini</span>
+<span class="token punctuation">[</span>Globals<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">3390</span>
+<span class="token punctuation">..</span>.
+
+$ <span class="token function">sudo</span> firewall-cmd --add-port<span class="token operator">=</span><span class="token number">3389</span>/tcp --permanent
+$ <span class="token function">sudo</span> firewall-cmd --reload
+
+$ <span class="token function">sudo</span> systemctl restart xrdp
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>connection 관련 오류 시 아래 링크 참고</p> <p><a href="https://ibdstorage.tistory.com/62" target="_blank" rel="noopener noreferrer">XRDP VNC error - problem connecting 해결<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/11.b9a7e208.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

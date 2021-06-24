@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WordPress | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="WordPress 관련 설정">
+    <meta name="keywords" content="wordpress, redis, docker">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/7.1a5c7d14.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>WordPress</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/wordpress.html#wordpress-containerize" class="sidebar-link">Wordpress containerize</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_1-준비사항" class="sidebar-link">1. 준비사항</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_2-관련-디렉토리-생성" class="sidebar-link">2. 관련 디렉토리 생성</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_3-ssl-생성을-위한-certbot-nginx-conf-생성" class="sidebar-link">3. ssl 생성을 위한 certbot nginx.conf 생성</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_4-워드프레스-용-php-ini-설정" class="sidebar-link">4. 워드프레스 용 php.ini 설정</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_5-환경파일-생성-env" class="sidebar-link">5. 환경파일 생성 (.env)</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_6-php-도커-이미지-설정" class="sidebar-link">6. php 도커 이미지 설정</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_7-워드프레스-docker-compose-설정" class="sidebar-link">7. 워드프레스 docker-compose 설정</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_8-nginx-ssl-설정" class="sidebar-link">8. nginx ssl 설정</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_9-워드프레스-redis-캐시-설정" class="sidebar-link">9. 워드프레스 redis 캐시 설정</a></li></ul></li><li><a href="/dev-log/wordpress.html#wordpress-플러그인-개발용-설정-macos-기준" class="sidebar-link">wordpress 플러그인 개발용 설정 (macOS 기준)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_1-localhost-인증서-추출" class="sidebar-link">1. localhost 인증서 추출</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#_2-docker-compose-yml-수정" class="sidebar-link">2. docker-compose.yml 수정</a></li></ul></li><li><a href="/dev-log/wordpress.html#tip" class="sidebar-link">Tip</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#plugin-deactivate" class="sidebar-link">plugin deactivate</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#db-상-패스워드-변경" class="sidebar-link">DB 상 패스워드 변경</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#워드프레스-퍼미션-관련" class="sidebar-link">워드프레스 퍼미션 관련</a></li><li class="sidebar-sub-header"><a href="/dev-log/wordpress.html#wp-admin-bar-customize" class="sidebar-link">wp-admin bar customize</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="wordpress-관련-기록"><a href="#wordpress-관련-기록" class="header-anchor">#</a> WordPress 관련 기록</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#wordpress" class="tag" data-v-77ca7535>wordpress</a><a href="/tags.html#redis" class="tag" data-v-77ca7535>redis</a><a href="/tags.html#docker" class="tag" data-v-77ca7535>docker</a><a href="/tags.html#docker-compose" class="tag" data-v-77ca7535>docker-compose</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#wordpress-containerize">Wordpress containerize</a><ul><li><a href="#_1-준비사항">1. 준비사항</a></li><li><a href="#_2-관련-디렉토리-생성">2. 관련 디렉토리 생성</a></li><li><a href="#_3-ssl-생성을-위한-certbot-nginx-conf-생성">3. ssl 생성을 위한 certbot nginx.conf 생성</a></li><li><a href="#_4-워드프레스-용-php-ini-설정">4. 워드프레스 용 php.ini 설정</a></li><li><a href="#_5-환경파일-생성-env">5. 환경파일 생성 (.env)</a></li><li><a href="#_6-php-도커-이미지-설정">6. php 도커 이미지 설정</a></li><li><a href="#_7-워드프레스-docker-compose-설정">7. 워드프레스 docker-compose 설정</a></li><li><a href="#_8-nginx-ssl-설정">8. nginx ssl 설정</a></li><li><a href="#_9-워드프레스-redis-캐시-설정">9. 워드프레스 redis 캐시 설정</a></li></ul></li><li><a href="#wordpress-플러그인-개발용-설정-macos-기준">wordpress 플러그인 개발용 설정 (macOS 기준)</a><ul><li><a href="#_1-localhost-인증서-추출">1. localhost 인증서 추출</a></li><li><a href="#_2-docker-compose-yml-수정">2. docker-compose.yml 수정</a></li></ul></li><li><a href="#tip">Tip</a><ul><li><a href="#plugin-deactivate">plugin deactivate</a></li><li><a href="#db-상-패스워드-변경">DB 상 패스워드 변경</a></li><li><a href="#워드프레스-퍼미션-관련">워드프레스 퍼미션 관련</a></li><li><a href="#wp-admin-bar-customize">wp-admin bar customize</a></li></ul></li></ul></div><p></p> <h2 id="wordpress-containerize"><a href="#wordpress-containerize" class="header-anchor">#</a> Wordpress containerize</h2> <p><strong>docker</strong> 및 <strong>docker-compose</strong> 이 설치되어 있다는 가정하에 시작</p> <p>구성환경</p> <ul><li>Wordpress</li> <li>Nginx</li> <li>MariaDB</li> <li>phpMyAdmin</li> <li>Redis</li> <li>Wordpress plugin: <a href="https://wordpress.org/plugins/w3-total-cache/" target="_blank" rel="noopener noreferrer">W3 Total Cache<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, <a href="https://wordpress.org/plugins/autoptimize/" target="_blank" rel="noopener noreferrer">Autoptimize<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <blockquote><p><a href="https://github.com/shockzinfinity/wordpress-redis" target="_blank" rel="noopener noreferrer">Repository<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <blockquote><p>참고사이트: <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose" target="_blank" rel="noopener noreferrer">How To Install WordPress With Docker Compose<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h3 id="_1-준비사항"><a href="#_1-준비사항" class="header-anchor">#</a> 1. 준비사항</h3> <ul><li>워드프레스를 구동하기 위한 도메인 - 여기서는 <strong>wordpress.shockz.io</strong> (DNS 설정완료) 로 구동</li> <li>certbot 을 통해 인증서 발급 및 자동갱신을 할 예정이므로 80, 443 port 를 오픈할 수 있는 여건이어야 함.</li></ul> <h3 id="_2-관련-디렉토리-생성"><a href="#_2-관련-디렉토리-생성" class="header-anchor">#</a> 2. 관련 디렉토리 생성</h3> <ul><li>작업 시작 디렉토리: 각 유저 홈 디렉토리 - 여기서는 <code>/home/shockz</code> 기준</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># wordpress redis 작업 기준 디렉토리</span>
+$ <span class="token function">mkdir</span> wordpress-redis <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> wordpress-redis
+<span class="token comment"># php 설정파일용</span>
+$ <span class="token function">mkdir</span> php
+<span class="token comment"># nginx 설정파일용</span>
+$ <span class="token function">mkdir</span> nginx-conf
+<span class="token comment"># ssl 인증서 관련 (certbot 이용)</span>
+$ <span class="token function">mkdir</span> certbot-etc
+<span class="token comment"># db 데이터저장용</span>
+$ <span class="token function">mkdir</span> dbdata
+<span class="token comment"># redis data 저장용</span>
+$ <span class="token function">mkdir</span> dataredis
+<span class="token comment"># wordpress 데이터 저장용, W3 Total Cache 가 권한이 필요한 경우가 많음</span>
+$ <span class="token function">mkdir</span> wordpress <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> <span class="token number">777</span> wordpress
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="_3-ssl-생성을-위한-certbot-nginx-conf-생성"><a href="#_3-ssl-생성을-위한-certbot-nginx-conf-생성" class="header-anchor">#</a> 3. ssl 생성을 위한 certbot nginx.conf 생성</h3> <ul><li><code>nginx-conf/nginx.conf</code> 생성 (certbot ssl 갱신용 설정)</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-bash"><code>server <span class="token punctuation">{</span>
+        listen <span class="token number">80</span><span class="token punctuation">;</span>
+        listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+
+        server_name wordpress.shockz.io<span class="token punctuation">;</span>
+
+        index index.php index.html index.htm<span class="token punctuation">;</span>
+
+        root /var/www/html<span class="token punctuation">;</span>
+
+        location ~ /.well-known/acme-challenge <span class="token punctuation">{</span>
+                allow all<span class="token punctuation">;</span>
+                root /var/www/html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location / <span class="token punctuation">{</span>
+                try_files <span class="token variable">$uri</span> <span class="token variable">$uri</span>/ /index.php<span class="token variable">$is_args</span><span class="token variable">$args</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location ~ .php$ <span class="token punctuation">{</span>
+                try_files <span class="token variable">$uri</span> <span class="token operator">=</span><span class="token number">404</span><span class="token punctuation">;</span>
+                fastcgi_split_path_info ^<span class="token punctuation">(</span>.+.php<span class="token punctuation">)</span><span class="token punctuation">(</span>/.+<span class="token punctuation">)</span>$<span class="token punctuation">;</span>
+                fastcgi_pass wordpress:9000<span class="token punctuation">;</span>
+                fastcgi_index index.php<span class="token punctuation">;</span>
+                include fastcgi_params<span class="token punctuation">;</span>
+                fastcgi_param SCRIPT_FILENAME <span class="token variable">$document_root</span><span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span>
+                fastcgi_param PATH_INFO <span class="token variable">$fastcgi_path_info</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location ~ /.ht <span class="token punctuation">{</span>
+                deny all<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location <span class="token operator">=</span> /favicon.ico <span class="token punctuation">{</span>
+                log_not_found off<span class="token punctuation">;</span> access_log off<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        location <span class="token operator">=</span> /robots.txt <span class="token punctuation">{</span>
+                log_not_found off<span class="token punctuation">;</span> access_log off<span class="token punctuation">;</span> allow all<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        location ~* .<span class="token punctuation">(</span>css<span class="token operator">|</span>gif<span class="token operator">|</span>ico<span class="token operator">|</span>jpeg<span class="token operator">|</span>jpg<span class="token operator">|</span>js<span class="token operator">|</span>png<span class="token punctuation">)</span>$ <span class="token punctuation">{</span>
+                expires max<span class="token punctuation">;</span>
+                log_not_found off<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br></div></div><h3 id="_4-워드프레스-용-php-ini-설정"><a href="#_4-워드프레스-용-php-ini-설정" class="header-anchor">#</a> 4. 워드프레스 용 php.ini 설정</h3> <ul><li><code>php/php.ini</code> 생성</li></ul> <div class="language-php line-numbers-mode"><pre class="language-php"><code>short_open_tag <span class="token operator">=</span> On
+memory_limit <span class="token operator">=</span> <span class="token number">256</span>M
+cgi<span class="token operator">.</span>fix_pathinfo <span class="token operator">=</span> <span class="token number">0</span>
+upload_max_filesize <span class="token operator">=</span> <span class="token number">100</span>M
+post_max_size <span class="token operator">=</span> <span class="token number">101</span>M
+max_execution_time <span class="token operator">=</span> <span class="token number">360</span>
+date<span class="token operator">.</span>timezone <span class="token operator">=</span> Asia<span class="token operator">/</span>Seoul
+expose_php <span class="token operator">=</span> off
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_5-환경파일-생성-env"><a href="#_5-환경파일-생성-env" class="header-anchor">#</a> 5. 환경파일 생성 (.env)</h3> <ul><li><code>wordpress-redis</code> 디렉토리에 <code>.env</code> 생성</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span>your_root_password
+<span class="token assign-left variable">MYSQL_USER</span><span class="token operator">=</span>your_wordpress_database_user
+<span class="token assign-left variable">MYSQL_PASSWORD</span><span class="token operator">=</span>your_wordpress_database_password
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li><code>.gitignore</code> 에 <code>.env</code> 등록하여 git repository 에 들어가지 않도록 설정</li></ul> <h3 id="_6-php-도커-이미지-설정"><a href="#_6-php-도커-이미지-설정" class="header-anchor">#</a> 6. php 도커 이미지 설정</h3> <ul><li>php 공식 이미지 사용
+<blockquote><p><a href="https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile" target="_blank" rel="noopener noreferrer">php7.4-fpm-alpine official image<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">wget</span> https://raw.githubusercontent.com/docker-library/wordpress/master/php7.4/fpm-alpine/Dockerfile
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>공식 이미지의 <code>Dockerfile</code> 에 redis 추가 (34, 35번 라인)</li></ul> <div class="language-docker line-numbers-mode"><pre class="language-docker"><code>pecl install imagick<span class="token punctuation">-</span>3.4.4 redis;
+docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>enable imagick redis;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>docker-entrypoint.sh</code> 파일 다운로드</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">wget</span> https://raw.githubusercontent.com/docker-library/wordpress/master/php7.4/fpm-alpine/docker-entrypoint.sh
+$ <span class="token function">chmod</span> +x docker-entrypoint.sh
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>build</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker build -t wordpress-fpm-alpine-redis:1.0 <span class="token builtin class-name">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_7-워드프레스-docker-compose-설정"><a href="#_7-워드프레스-docker-compose-설정" class="header-anchor">#</a> 7. 워드프레스 docker-compose 설정</h3> <ul><li><code>wordpress-redis/docker-compose.yml</code> 생성</li></ul> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-docker"><code>version<span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+services<span class="token punctuation">:</span>
+  db<span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> mariadb<span class="token punctuation">:</span>latest
+    container_name<span class="token punctuation">:</span> db
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    env_file<span class="token punctuation">:</span> .env
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> MYSQL_DATABASE=wordpress
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./dbdata<span class="token punctuation">:</span>/var/lib/mysql
+    networks<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
+
+  wordpress<span class="token punctuation">:</span>
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db
+    image<span class="token punctuation">:</span> wordpress<span class="token punctuation">-</span>fpm<span class="token punctuation">-</span>alpine<span class="token punctuation">-</span>redis<span class="token punctuation">:</span>1.0
+    container_name<span class="token punctuation">:</span> wordpress
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    env_file<span class="token punctuation">:</span> .env
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> WORDPRESS_DB_HOST=db<span class="token punctuation">:</span>3306
+      <span class="token punctuation">-</span> WORDPRESS_DB_USER=$MYSQL_USER
+      <span class="token punctuation">-</span> WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      <span class="token punctuation">-</span> WORDPRESS_DB_NAME=wordpress
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./wordpress<span class="token punctuation">:</span>/var/www/html
+      <span class="token punctuation">-</span> ./php/php.ini<span class="token punctuation">:</span>/usr/local/etc/php/php.ini
+    networks<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
+
+  redis<span class="token punctuation">:</span>
+    container_name<span class="token punctuation">:</span> redis
+    image<span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./dataredis<span class="token punctuation">:</span>/data
+    networks<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
+
+  webserver<span class="token punctuation">:</span>
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> wordpress
+    image<span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>alpine
+    container_name<span class="token punctuation">:</span> webserver
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;80:80&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;443:443&quot;</span>
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./wordpress<span class="token punctuation">:</span>/var/www/html
+      <span class="token punctuation">-</span> ./nginx<span class="token punctuation">-</span>conf<span class="token punctuation">:</span>/etc/nginx/conf.d
+      <span class="token punctuation">-</span> ./certbot<span class="token punctuation">-</span>etc<span class="token punctuation">:</span>/etc/letsencrypt
+    networks<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
+
+  certbot<span class="token punctuation">:</span>
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> webserver
+    image<span class="token punctuation">:</span> certbot/certbot
+    container_name<span class="token punctuation">:</span> certbot
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./certbot<span class="token punctuation">-</span>etc<span class="token punctuation">:</span>/etc/letsencrypt
+      <span class="token punctuation">-</span> ./wordpress<span class="token punctuation">:</span>/var/www/html
+    command<span class="token punctuation">:</span> certonly <span class="token punctuation">-</span><span class="token punctuation">-</span>webroot <span class="token punctuation">-</span><span class="token punctuation">-</span>webroot<span class="token punctuation">-</span>path=/var/www/html <span class="token punctuation">-</span><span class="token punctuation">-</span>email shockz@shockz.io <span class="token punctuation">-</span><span class="token punctuation">-</span>agree<span class="token punctuation">-</span>tos <span class="token punctuation">-</span><span class="token punctuation">-</span>no<span class="token punctuation">-</span>eff<span class="token punctuation">-</span>email <span class="token punctuation">-</span><span class="token punctuation">-</span>staging <span class="token punctuation">-</span>d wordpress.shockz.io
+
+  phpmyadmin<span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> phpmyadmin/phpmyadmin
+    container_name<span class="token punctuation">:</span> phpmyadmin
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8081:80&quot;</span>
+    environment<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> PMA_HOST=db
+    restart<span class="token punctuation">:</span> always
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db
+    networks<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
+
+volumes<span class="token punctuation">:</span>
+  certbot<span class="token punctuation">-</span>etc<span class="token punctuation">:</span>
+  wordpress<span class="token punctuation">:</span>
+  dbdata<span class="token punctuation">:</span>
+  nginx<span class="token punctuation">-</span>conf<span class="token punctuation">:</span>
+  dataredis<span class="token punctuation">:</span>
+
+networks<span class="token punctuation">:</span>
+  app<span class="token punctuation">-</span>network<span class="token punctuation">:</span>
+    driver<span class="token punctuation">:</span> bridge
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose up -d
+$ docker-compose <span class="token function">ps</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p><code>docker-compose ps</code> 로 확인할 때 certbot 은 Exit 0 나오는 이유는 certbot 을 통해 인증서 테스트만을 구동했기 때문</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose logs certbot
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>certbot-etc/live/wordpress.shockz.io 디렉토리에서 발급된 테스팅 인증서 확인 가능
+현재까진 --staging 으로 발급했기 때문에 테스트 통과된 인증서가 저장되어 있음</p></div> <ul><li>SSL 인증서 발급을 위한 <code>docker-compose.yml</code> 수정</li></ul> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <ol><li>보유하고 있는 Wildcard SSL 등을 사용하는 경우라면 <code>docker-compose.yml</code> 에서 certbot 서비스 제거하고 추후 <code>nginx.conf</code> 에서 ssl 인증서 관련 경로를 수정하면 됨</li> <li>이전 과정에서 <strong>--staging</strong> 부분을 <strong>--force-renewal</strong> 로 교체하여 실제 인증서 발급</li></ol></div> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br></div><pre class="language-docker"><code><span class="token punctuation">...</span>
+  certbot<span class="token punctuation">:</span>
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> webserver
+    image<span class="token punctuation">:</span> certbot/certbot
+    container_name<span class="token punctuation">:</span> certbot
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./certbot<span class="token punctuation">-</span>etc<span class="token punctuation">:</span>/etc/letsencrypt
+      <span class="token punctuation">-</span> ./wordpress<span class="token punctuation">:</span>/var/www/html
+    command<span class="token punctuation">:</span> certonly <span class="token punctuation">-</span><span class="token punctuation">-</span>webroot <span class="token punctuation">-</span><span class="token punctuation">-</span>webroot<span class="token punctuation">-</span>path=/var/www/html <span class="token punctuation">-</span><span class="token punctuation">-</span>email shockz@shockz.io <span class="token punctuation">-</span><span class="token punctuation">-</span>agree<span class="token punctuation">-</span>tos <span class="token punctuation">-</span><span class="token punctuation">-</span>no<span class="token punctuation">-</span>eff<span class="token punctuation">-</span>email <span class="token punctuation">-</span><span class="token punctuation">-</span>force<span class="token punctuation">-</span>renewal <span class="token punctuation">-</span>d wordpress.shockz.io
+<span class="token punctuation">...</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose up --force-recreate  --no-deps certbot
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_8-nginx-ssl-설정"><a href="#_8-nginx-ssl-설정" class="header-anchor">#</a> 8. nginx ssl 설정</h3> <ul><li>발급된 인증서를 사용하기 위해 <code>nginx-conf/nginx.conf</code> 수정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose stop webserver
+<span class="token comment"># ssl options 파일 다운로드</span>
+$ <span class="token function">curl</span> -sSLo nginx-conf/options-ssl-nginx.conf https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf
+<span class="token comment"># 기존 설정 삭제 후 nginx.conf 생성</span>
+$ <span class="token function">rm</span> nginx-conf/nginx.conf
+$ <span class="token function">touch</span> nginx-conf/nginx.conf
+$ <span class="token function">vi</span> nginx-conf/nginx.conf
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-bash"><code>server <span class="token punctuation">{</span>
+        listen <span class="token number">80</span><span class="token punctuation">;</span>
+        listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+
+        server_name wordpress.shockz.io<span class="token punctuation">;</span>
+
+        location ~ /.well-known/acme-challenge <span class="token punctuation">{</span>
+                allow all<span class="token punctuation">;</span>
+                root /var/www/html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location / <span class="token punctuation">{</span>
+                rewrite ^ https://<span class="token variable">$host</span><span class="token variable">$request_uri</span>? permanent<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>
+        listen <span class="token number">443</span> ssl http2<span class="token punctuation">;</span>
+        listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:443 ssl http2<span class="token punctuation">;</span>
+        server_name wordpress.shockz.io<span class="token punctuation">;</span>
+
+        index index.php index.html index.htm<span class="token punctuation">;</span>
+
+        root /var/www/html<span class="token punctuation">;</span>
+
+        server_tokens off<span class="token punctuation">;</span>
+        client_max_body_size 100M<span class="token punctuation">;</span>
+
+        ssl_certificate /etc/letsencrypt/live/wordpress.shockz.io/fullchain.pem<span class="token punctuation">;</span>
+        ssl_certificate_key /etc/letsencrypt/live/wordpress.shockz.io/privkey.pem<span class="token punctuation">;</span>
+        ssl_trusted_certificate /etc/letsencrypt/live/wordpress.shockz.io/chain.pem<span class="token punctuation">;</span>
+        include /etc/nginx/conf.d/options-ssl-nginx.conf<span class="token punctuation">;</span>
+
+        add_header X-Frame-Options <span class="token string">&quot;SAMEORIGIN&quot;</span> always<span class="token punctuation">;</span>
+        add_header X-XSS-Protection <span class="token string">&quot;1; mode=block&quot;</span> always<span class="token punctuation">;</span>
+        add_header X-Content-Type-Options <span class="token string">&quot;nosniff&quot;</span> always<span class="token punctuation">;</span>
+        add_header Referrer-Policy <span class="token string">&quot;no-referrer-when-downgrade&quot;</span> always<span class="token punctuation">;</span>
+        add_header Content-Security-Policy <span class="token string">&quot;default-src * data: 'unsafe-eval' 'unsafe-inline'&quot;</span> always<span class="token punctuation">;</span>
+        <span class="token comment"># add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains; preload&quot; always;</span>
+        <span class="token comment"># enable strict transport security only if you understand the implications</span>
+
+        location / <span class="token punctuation">{</span>
+                try_files <span class="token variable">$uri</span> <span class="token variable">$uri</span>/ /index.php<span class="token variable">$is_args</span><span class="token variable">$args</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location ~ .php$ <span class="token punctuation">{</span>
+                try_files <span class="token variable">$uri</span> <span class="token operator">=</span><span class="token number">404</span><span class="token punctuation">;</span>
+                fastcgi_split_path_info ^<span class="token punctuation">(</span>.+.php<span class="token punctuation">)</span><span class="token punctuation">(</span>/.+<span class="token punctuation">)</span>$<span class="token punctuation">;</span>
+                fastcgi_pass wordpress:9000<span class="token punctuation">;</span>
+                fastcgi_index index.php<span class="token punctuation">;</span>
+                include fastcgi_params<span class="token punctuation">;</span>
+                fastcgi_param SCRIPT_FILENAME <span class="token variable">$document_root</span><span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span>
+                fastcgi_param PATH_INFO <span class="token variable">$fastcgi_path_info</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location ~ /.ht <span class="token punctuation">{</span>
+                deny all<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location <span class="token operator">=</span> /favicon.ico <span class="token punctuation">{</span>
+                log_not_found off<span class="token punctuation">;</span> access_log off<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        location <span class="token operator">=</span> /robots.txt <span class="token punctuation">{</span>
+                log_not_found off<span class="token punctuation">;</span> access_log off<span class="token punctuation">;</span> allow all<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        location ~* .<span class="token punctuation">(</span>css<span class="token operator">|</span>gif<span class="token operator">|</span>ico<span class="token operator">|</span>jpeg<span class="token operator">|</span>jpg<span class="token operator">|</span>js<span class="token operator">|</span>png<span class="token punctuation">)</span>$ <span class="token punctuation">{</span>
+                expires max<span class="token punctuation">;</span>
+                log_not_found off<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br></div></div><div class="custom-block danger"><p class="custom-block-title">WARNING</p> <p>39번 라인의 HSTS(HTTP Strict Transport Security) 헤더 설정 부분은 충분히 테스트한 후 활성화 해야함. 한번 적용되면 해당 브라우저에서는 80포트로 접속이 안됨.</p></div> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose up -d --force-recreate --no-deps webserver
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li><p><code>https://wordpress.shockz.io</code> 에 접속하여 언어 및 아이디/비밀번호 설정 마무리
+<img src="/assets/img/wordpress.redis.9.6cbaaa7a.png" alt="wordpress.redis"></p></li> <li><p>SSL 인증서 갱신을 위한 <code>wordpress-redis/ssl_renew.sh</code> 생성</p></li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><div class="highlighted"> </div><br><br><br></div><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">COMPOSE</span><span class="token operator">=</span><span class="token string">&quot;/usr/local/bin/docker-compose --no-ansi&quot;</span>
+<span class="token assign-left variable">DOCKER</span><span class="token operator">=</span><span class="token string">&quot;/usr/bin/docker&quot;</span>
+
+<span class="token builtin class-name">cd</span> /home/shockz/wordpress-redis/
+<span class="token variable">$COMPOSE</span> run certbot renew --no-random-sleep-on-renew --dry-run <span class="token operator">&amp;&amp;</span> <span class="token variable">$COMPOSE</span> <span class="token function">kill</span> -s SIGHUP webserver
+<span class="token variable">$DOCKER</span> system prune -af
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">chmod</span> +x ssl_renew.sh
+$ <span class="token function">crontab</span> -e
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>* * * * * /home/shockz/wordpress-redis/ssl_renew.sh <span class="token operator">&gt;&gt;</span> /var/log/cron.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>cron 작업을 통해 재갱신 시도가 이뤄짐. log 확인</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">tail</span> -f /var/log/cron.log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>로그에서 재갱신 성공을 확인 후 crontab 을 수정하여 주기설정 (매일 12시 재갱신)</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">0</span> <span class="token number">12</span> * * * /home/shockz/wordpress-redis/ssl_renew.sh <span class="token operator">&gt;&gt;</span> /var/log/cron.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li><code>ssl_renew.sh</code> 는 다음과 같이 수정</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br></div><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">COMPOSE</span><span class="token operator">=</span><span class="token string">&quot;/usr/local/bin/docker-compose --no-ansi&quot;</span>
+<span class="token assign-left variable">DOCKER</span><span class="token operator">=</span><span class="token string">&quot;/usr/bin/docker&quot;</span>
+
+<span class="token builtin class-name">cd</span> /home/shockz/wordpress-redis/
+<span class="token variable">$COMPOSE</span> run certbot renew <span class="token operator">&amp;&amp;</span> <span class="token variable">$COMPOSE</span> <span class="token function">kill</span> -s SIGHUP webserver
+<span class="token variable">$DOCKER</span> system prune -af
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><ul><li>crontab 을 통해 주기적으로 재갱신 작업이 이뤄지기 때문에 <code>docker-compose.yml</code> 의 certbot 서비스의 <strong>--force-renewal</strong> 은 필요치 않고 <strong>docker-compose</strong> 재기동 시 <strong>renew</strong> 하는 것으로 수정</li></ul> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br></div><pre class="language-docker"><code><span class="token punctuation">...</span>
+  certbot<span class="token punctuation">:</span>
+    depends_on<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> webserver
+    image<span class="token punctuation">:</span> certbot/certbot
+    container_name<span class="token punctuation">:</span> certbot
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./certbot<span class="token punctuation">-</span>etc<span class="token punctuation">:</span>/etc/letsencrypt
+      <span class="token punctuation">-</span> ./wordpress<span class="token punctuation">:</span>/var/www/html
+    command<span class="token punctuation">:</span> renew
+<span class="token punctuation">...</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h3 id="_9-워드프레스-redis-캐시-설정"><a href="#_9-워드프레스-redis-캐시-설정" class="header-anchor">#</a> 9. 워드프레스 redis 캐시 설정</h3> <ul><li>W3 Total Cache 및 Autoptimizer 설치
+<blockquote><p>W3 Total Cache 의 Minify 기능은 Autoptimizer 로 대체하여 사용 (W3 Total Cache minify 가 문제가 많다고 함)</p></blockquote></li></ul> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>W3 Total Cache 메시지 중 웹서버 재시작 메시지 나오면 웹서버 재시작</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose up -d --force-recreate --no-deps webserver
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <ul><li>W3 Total Cache 의 Page Cache, Object Cache, Database Cache 활성화 및 redis 지정
+<img src="/assets/img/wordpress.redis.1.4c3fce4e.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.2.0322b33c.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.3.8d14862c.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.4.bd5fdcc0.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.5.4fce38ca.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.6.41c75209.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.7.715019d6.png" alt="wordpress.redis"> <img src="/assets/img/wordpress.redis.8.c1b7faf4.png" alt="wordpress.redis"></li></ul> <h2 id="wordpress-플러그인-개발용-설정-macos-기준"><a href="#wordpress-플러그인-개발용-설정-macos-기준" class="header-anchor">#</a> wordpress 플러그인 개발용 설정 (macOS 기준)</h2> <ul><li>localhost 에 wordpress-redis 를 이용하여 플러그인 개발 환경 설정</li> <li>certbot 을 사용하지 않고 localhost 인증서 사용 (재갱신 X)</li></ul> <h3 id="_1-localhost-인증서-추출"><a href="#_1-localhost-인증서-추출" class="header-anchor">#</a> 1. localhost 인증서 추출</h3> <ul><li><p><strong>키체인 접근</strong> 실행 후 <strong>localhost</strong> 인증서 확인
+<img src="/assets/img/wordpress.mac.1.54e5dd58.png" alt="wordpress.mac"><br> <img src="/assets/img/wordpress.mac.2.f3cdb548.png" alt="wordpress.mac"></p></li> <li><p>p12 로 추출 후 PEM 변환
+<img src="/assets/img/wordpress.mac.3.a5dfa5a9.png" alt="wordpress.mac"></p></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 편의상 기존 디렉토리 이용</span>
+$ <span class="token builtin class-name">cd</span> certbot-etc
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
+$ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># certificate in localhost.crt.pem</span>
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
+<span class="token comment"># private key in localhost.key.pem</span>
+$ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
+<span class="token comment"># certificate 와 private key 를 한 파일에 넣을 경우 (password 없이)</span>
+$ openssl pkcs12 -in localhost.p12 -out localhost.pem --nodes
+<span class="token comment"># password 있는 상태로 추출은</span>
+$ openssl pkcs12 -in localhost.p12 -out localhost.pem
+<span class="token comment"># command line 상에서 직접 입력할 경우</span>
+$ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys -passin <span class="token string">'pass:p@ssw0rd'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></div> <ul><li><code>nginx.conf</code> 수정</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br></div><pre class="language-bash"><code>server <span class="token punctuation">{</span>
+        listen <span class="token number">80</span><span class="token punctuation">;</span>
+        listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+
+        server_name localhost<span class="token punctuation">;</span>
+
+        location ~ /.well-known/acme-challenge <span class="token punctuation">{</span>
+                allow all<span class="token punctuation">;</span>
+                root /var/www/html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        location / <span class="token punctuation">{</span>
+                rewrite ^ https://<span class="token variable">$host</span><span class="token variable">$request_uri</span>? permanent<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>
+        listen <span class="token number">443</span> ssl http2<span class="token punctuation">;</span>
+        listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:443 ssl http2<span class="token punctuation">;</span>
+        server_name localhost<span class="token punctuation">;</span>
+
+        index index.php index.html index.htm<span class="token punctuation">;</span>
+
+        root /var/www/html<span class="token punctuation">;</span>
+
+        server_tokens off<span class="token punctuation">;</span>
+        client_max_body_size 100M<span class="token punctuation">;</span>
+
+        ssl_certificate /etc/letsencrypt/localhost/localhost.crt.pem<span class="token punctuation">;</span>
+        ssl_certificate_key /etc/letsencrypt/localhost/localhost.key.pem<span class="token punctuation">;</span>
+        <span class="token comment">#ssl_trusted_certificate /etc/letsencrypt/localhost/chain.pem;</span>
+        include /etc/nginx/conf.d/options-ssl-nginx.conf<span class="token punctuation">;</span>
+        <span class="token punctuation">..</span>.
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><h3 id="_2-docker-compose-yml-수정"><a href="#_2-docker-compose-yml-수정" class="header-anchor">#</a> 2. docker-compose.yml 수정</h3> <ul><li><code>docker-compose.yml</code> 의 services 하위의 <strong>certbot</strong> 구간 삭제</li> <li>build &amp; up</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker build -t wordpress-fpm-alpine-redis:1.0 <span class="token builtin class-name">.</span>
+$ docker-compose up -d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>https://localhost</code> 접속 후 설정 마무리</li></ul> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>이미 80, 443 포트가 사용중이어서 <code>docker-compose up -d</code> 실패하는 경우, 아래의 사항들 확인 필요</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 80 포트 사용중인 프로세스 확인</span>
+$ <span class="token function">lsof</span> -i :80
+<span class="token comment"># apache 가 기동 중일 경우</span>
+$ apachectl -k stop
+<span class="token comment"># or brew service 로 등록되어 있는 경우</span>
+$ <span class="token function">sudo</span> brew services stop httpd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <h2 id="tip"><a href="#tip" class="header-anchor">#</a> Tip</h2> <h3 id="plugin-deactivate"><a href="#plugin-deactivate" class="header-anchor">#</a> plugin deactivate</h3> <p><a href="https://kinsta.com/knowledgebase/disable-wordpress-plugins/" target="_blank" rel="noopener noreferrer">https://kinsta.com/knowledgebase/disable-wordpress-plugins/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="db-상-패스워드-변경"><a href="#db-상-패스워드-변경" class="header-anchor">#</a> DB 상 패스워드 변경</h3> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- admin id change</span>
+<span class="token keyword">UPDATE</span> wp_users 
+<span class="token keyword">SET</span> user_pass <span class="token operator">=</span> MD5<span class="token punctuation">(</span><span class="token string">'패스워드'</span><span class="token punctuation">)</span>
+<span class="token keyword">WHERE</span> ID <span class="token operator">=</span> <span class="token number">1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="워드프레스-퍼미션-관련"><a href="#워드프레스-퍼미션-관련" class="header-anchor">#</a> 워드프레스 퍼미션 관련</h3> <ul><li><a href="https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile" target="_blank" rel="noopener noreferrer">php7.4-fpm-alpine official image<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 이미지를 사용중이므로, www-data 에 대한 공식 uid/gid 가 <code>82</code> 로 맞춰줘야 할 경우가 있으므로, 권한 문제 발생시 <code>chown -R 82:82 wordpress</code> 를 통해 퍼미션 문제 해결</li></ul> <h3 id="wp-admin-bar-customize"><a href="#wp-admin-bar-customize" class="header-anchor">#</a> wp-admin bar customize</h3> <ul><li>wordpress 사이트를 개발용과 운영용으로 구분하면서 매번 주소 확인이 잘 안되서 실수하는 경우가 있다.</li> <li>실수를 줄이기 위해서 시각적인 효과를 고민하다가 top banner 를 admin bar 에 적용할까 하다가 단순한 방법으로 적용한다.</li></ul> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token comment">// 전역적으로 적용하기 위해 CSS 를 변경하기 위함</span>
+<span class="token comment">// Theme 에서 Additional CSS 로 적용하게 되면 front 쪽만 수정되고, back office 쪽은 적용이 안되므로, function.php 기능 추가 형태로 작업</span>
+<span class="token comment">// path: 사이트메인디렉토리/wp-includes/functions.php</span>
+
+<span class="token keyword">function</span> <span class="token function">style_tool_bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">echo</span> <span class="token string single-quoted-string">'
+		&lt;style type=&quot;text/css&quot;&gt;
+			#wpadminbar {
+				background: red;
+			}
+		&lt;/style&gt;'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">add_action</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'admin_head'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'style_tool_bar'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">add_action</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'wp_head'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'style_tool_bar'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><img src="/assets/img/wordpress.adminbar.1.4ad99d62.png" alt="wordpress.adminbar"></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/7.1a5c7d14.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

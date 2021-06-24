@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://shockzinfinity.github.io</id>
+    <title>ironpot devLog</title>
+    <updated>2021-06-24T01:38:44.996Z</updated>
+    <generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>
+    <link rel="alternate" href="https://shockzinfinity.github.io"/>
+    <link rel="self" href="https://shockzinfinity.github.io/feed.atom"/>
+    <subtitle>github.io 에 vuepress 를 이용한 Blog</subtitle>
+    <entry>
+        <title type="html"><![CDATA[AWS]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/aws.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/aws.html">
+        </link>
+        <updated>2021-06-24T01:38:44.992Z</updated>
+        <summary type="html"><![CDATA[aws 관련 내용]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/aws.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CentOS 8 설정]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/centos.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/centos.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[CentOS 8 설치 후 기본적인 설정을 포함합니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/centos.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Code Server]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/code-server.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/code-server.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Code Server 사용 및 관련 설정 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/code-server.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker 사용방법]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/docker.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/docker.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[docker 사용 및 관련 설정 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/docker.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[.net core]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/dotnetcore.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/dotnetcore.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[.net core 관련 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/dotnetcore.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ef core]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/efcore.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/efcore.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[EntityFrameworkCore 관련 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/efcore.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GitHub]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/github.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/github.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[github 사용 관련 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/github.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GitLab]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/gitlab.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/gitlab.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[gitlab 설치, 백업 및 복원에 대해 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/gitlab.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Jenkins]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/jenkins.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/jenkins.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Jenkins 관련 설정을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/jenkins.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Kubernetes]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/kubernetes.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/kubernetes.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Kubenetes 관련 내용을 포함합니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/kubernetes.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux 사용 일반]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/linux.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/linux.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Linux 사용에 대한 일반적인 내용을 담고 있습니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/linux.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mariaDB]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/maria.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/maria.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[mariaDB 설정 파일, 기타 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/maria.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mssql on docker]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/mssql.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/mssql.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[mssql on docker]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/mssql.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nginx]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/nginx.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/nginx.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Nginx 설정 파일, 기타 내용을 다룹니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/nginx.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[npm package]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/npm.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/npm.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[npm package 배포 관련]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/npm.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Podman]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/podman.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/podman.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[Podman on CentOS 8]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/podman.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PostgreSQL]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/postgresql.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/postgresql.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[PostgreSQL 관련 설정]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/postgresql.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python 관련]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/python.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/python.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[python 과 관련된 내용을 기록합니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/python.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[selenium on mac]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/selenium.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/selenium.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[selenium on mac]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/etc/selenium.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Datalust/Seq]]></title>
+        <id>https://shockzinfinity.github.io/dev-log/seq.html</id>
+        <link href="https://shockzinfinity.github.io/dev-log/seq.html">
+        </link>
+        <updated>2021-06-24T01:38:44.993Z</updated>
+        <summary type="html"><![CDATA[datalust seq 사용에 관한 내용입니다.]]></summary>
+        <author>
+            <name>shockz</name>
+            <email>shockzinfinity@gmail.com</email>
+            <uri>https://shockzinfinity.github.io/dev-log/seq.html</uri>
+        </author>
+    </entry>
+</feed>

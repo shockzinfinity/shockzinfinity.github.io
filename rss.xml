@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ironpot devLog</title>
+        <link>https://shockzinfinity.github.io</link>
+        <description>github.io 에 vuepress 를 이용한 Blog</description>
+        <lastBuildDate>Thu, 24 Jun 2021 01:38:44 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>
+        <atom:link href="https://shockzinfinity.github.io/feed.atom" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[AWS]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/aws.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/aws.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[aws 관련 내용]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[CentOS 8 설정]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/centos.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/centos.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[CentOS 8 설치 후 기본적인 설정을 포함합니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Code Server]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/code-server.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/code-server.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Code Server 사용 및 관련 설정 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Docker 사용방법]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/docker.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/docker.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[docker 사용 및 관련 설정 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[.net core]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/dotnetcore.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/dotnetcore.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[.net core 관련 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[ef core]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/efcore.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/efcore.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[EntityFrameworkCore 관련 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[GitHub]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/github.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/github.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[github 사용 관련 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[GitLab]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/gitlab.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/gitlab.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[gitlab 설치, 백업 및 복원에 대해 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Jenkins]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/jenkins.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/jenkins.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Jenkins 관련 설정을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Kubernetes]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/kubernetes.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/kubernetes.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Kubenetes 관련 내용을 포함합니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Linux 사용 일반]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/linux.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/linux.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Linux 사용에 대한 일반적인 내용을 담고 있습니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[mariaDB]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/maria.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/maria.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[mariaDB 설정 파일, 기타 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[mssql on docker]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/mssql.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/mssql.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[mssql on docker]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Nginx]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/nginx.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/nginx.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Nginx 설정 파일, 기타 내용을 다룹니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[npm package]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/npm.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/npm.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[npm package 배포 관련]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Podman]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/podman.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/podman.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[Podman on CentOS 8]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[PostgreSQL]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/postgresql.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/postgresql.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[PostgreSQL 관련 설정]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[python 관련]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/python.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/python.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[python 과 관련된 내용을 기록합니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[selenium on mac]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/selenium.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/selenium.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[selenium on mac]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/imgrkdown/logo.png">
+            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Datalust/Seq]]></title>
+            <link>https://shockzinfinity.github.io/dev-log/seq.html</link>
+            <guid>https://shockzinfinity.github.io/dev-log/seq.html</guid>
+            <pubDate>Thu, 24 Jun 2021 01:38:44 GMT</pubDate>
+            <description><![CDATA[datalust seq 사용에 관한 내용입니다.]]></description>
+            <author>shockzinfinity@gmail.com (shockz)</author>
+            <enclosure url="/public/img/logo.png">
+            </enclosure>
+        </item>
+    </channel>
+</rss>

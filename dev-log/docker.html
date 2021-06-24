@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker 사용방법 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="docker 사용 및 관련 설정 내용을 다룹니다.">
+    <meta name="keywords" content="docker in centos 8">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/44.1e1ca676.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Docker 사용방법</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/docker.html#installation-on-centos-8" class="sidebar-link">Installation on CentOS 8</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#network-설정-firewalld-관련" class="sidebar-link">network 설정 (firewalld 관련)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#nodetest-관련" class="sidebar-link">nodetest 관련</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#docker-image-export-import-save-load" class="sidebar-link">docker image export/import/save/load</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#reference" class="sidebar-link">Reference</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#docker-stats" class="sidebar-link">docker stats</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#apt-패키지-설치시-사용자-상호-작용-방지" class="sidebar-link">apt 패키지 설치시 사용자 상호 작용 방지</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#env-vs-arg" class="sidebar-link">ENV vs ARG</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#cmd-vs-entrypoint" class="sidebar-link">CMD vs ENTRYPOINT</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#add-vs-copy" class="sidebar-link">ADD vs COPY</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/docker.html#docker-재설치" class="sidebar-link">docker 재설치</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker"><a href="#docker" class="header-anchor">#</a> Docker</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#docker" class="tag" data-v-77ca7535>docker</a></div> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)</p></div> <p></p><div class="table-of-contents"><ul><li><a href="#installation-on-centos-8">Installation on CentOS 8</a></li><li><a href="#network-설정-firewalld-관련">network 설정 (firewalld 관련)</a></li><li><a href="#nodetest-관련">nodetest 관련</a></li><li><a href="#docker-image-export-import-save-load">docker image export/import/save/load</a></li><li><a href="#reference">Reference</a></li><li><a href="#docker-stats">docker stats</a></li><li><a href="#apt-패키지-설치시-사용자-상호-작용-방지">apt 패키지 설치시 사용자 상호 작용 방지</a></li><li><a href="#env-vs-arg">ENV vs ARG</a></li><li><a href="#cmd-vs-entrypoint">CMD vs ENTRYPOINT</a></li><li><a href="#add-vs-copy">ADD vs COPY</a></li><li><a href="#docker-재설치">docker 재설치</a></li></ul></div><p></p> <h2 id="installation-on-centos-8"><a href="#installation-on-centos-8" class="header-anchor">#</a> Installation on CentOS 8</h2> <blockquote><p>Podman 을 삭제하지 않고 진행</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 안전을 위해 sudo 로 진행</span>
+$ <span class="token function">sudo</span> dnf makecache
+$ <span class="token function">sudo</span> dnf <span class="token function">install</span> dnf-utils device-mapper-persistent-data lvm2 fuse-overlayfs <span class="token function">wget</span>
+$ <span class="token function">sudo</span> yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+$ <span class="token function">sudo</span> dnf makecache
+<span class="token comment"># CentOS 8은 docker 설치 시 containerd.io 패키지와 podman 패키지 사이의 라이브러리 충돌문제가 있음</span>
+<span class="token comment"># /tmp 디렉토리에서 작업</span>
+$ <span class="token builtin class-name">cd</span> /tmp
+<span class="token comment"># containerd.io-1.2.13-3.2.el7.x86_64.rpm 이 현재(20.8.24 기준) 버전</span>
+$ <span class="token function">wget</span> https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
+$ <span class="token function">sudo</span> dnf localinstall ./containerd.io-1.2.13-3.2.el7.x86_64.rpm <span class="token comment"># localinstall 은 deprecated 됨</span>
+$ <span class="token function">sudo</span> dnf <span class="token function">install</span> docker-ce docker-ce-cli
+$ <span class="token function">sudo</span> systemctl status docker
+$ <span class="token function">sudo</span> systemctl start docker
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> docker
+$ <span class="token function">sudo</span> systemctl status docker
+<span class="token comment"># docker 커맨드를 sudo 없이 사용하기 위해 그룹 조정</span>
+$ <span class="token function">sudo</span> <span class="token function">usermod</span> -aG docker <span class="token variable"><span class="token variable">$(</span><span class="token function">whoami</span><span class="token variable">)</span></span>
+$ <span class="token function">sudo</span> <span class="token function">reboot</span>
+<span class="token comment"># test</span>
+$ docker version
+$ docker run hello-world
+
+<span class="token comment"># docker-compose install (release 다운로드 위치: https://github.com/docker/compose/releases) 버전 확인해서 해당 버전으로 변경 후 다운로드</span>
+<span class="token comment"># global install</span>
+<span class="token comment"># /tmp 에서 작업</span>
+$ <span class="token function">curl</span> -L <span class="token string">&quot;https://github.com/docker/compose/releases/download/1.26.2/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>&quot;</span> -o docker-compose
+$ <span class="token function">sudo</span> <span class="token function">mv</span> docker-compose /usr/local/bin <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+
+<span class="token comment"># per-user installation</span>
+$ <span class="token function">sudo</span> dnf <span class="token function">install</span> python3-pip
+$ pip3.6 <span class="token function">install</span> docker-compose --user
+$ docker-compose -version
+
+<span class="token comment"># docker-compose 삭제</span>
+$ <span class="token function">sudo</span> <span class="token function">rm</span> /usr/local/bin/docker-compose
+<span class="token comment"># docker-compose 삭제 (pip 로 설치한 경우)</span>
+$ pip3.6 uninstall docker-compose
+
+<span class="token comment"># podman 삭제는 진행하지 않음</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><h2 id="network-설정-firewalld-관련"><a href="#network-설정-firewalld-관련" class="header-anchor">#</a> network 설정 (firewalld 관련)</h2> <blockquote><p>CentOS 8 상황에서 firewalld 로 인하여 네트워크 rule 추가가 필요함</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># open all IPs starts with &quot;172&quot; so that all the containers may communicate each other</span>
+$ firewall-cmd --permanent --zone<span class="token operator">=</span>public --add-rich-rule<span class="token operator">=</span><span class="token string">'rule family=ipv4 source address=172.0.0.0/8 accept'</span>
+<span class="token comment"># make out container able to visit the network outside</span>
+$ firewall-cmd --permanent --zone<span class="token operator">=</span>public --add-masquerade
+<span class="token comment"># apply the change</span>
+$ firewall-cmd --reload
+$ <span class="token function">cat</span> /etc/firewalld/zones/public.xml
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="nodetest-관련"><a href="#nodetest-관련" class="header-anchor">#</a> nodetest 관련</h2> <blockquote><p><a href="https://github.com/shockzinfinity/docker-test" target="_blank" rel="noopener noreferrer">docker testing<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 에서 소스 확인</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># docker-compose 와 nginx reverse proxy를 이용하여 container load balancing (round-robin)</span>
+<span class="token comment"># 테스트를 위한 port</span>
+$ <span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">4000</span>/tcp --permanent
+$ <span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">27017</span>/tcp --permanent <span class="token comment"># just for test</span>
+$ <span class="token function">sudo</span> firewall-cmd --reload
+
+<span class="token comment"># docker data volume</span>
+$ docker volume create --name mongodb_dev
+$ docker volume <span class="token function">ls</span>
+
+$ docker stop <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span>
+$ docker <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span>
+$ docker system prune -a
+
+$ docker run -d -p <span class="token number">27017</span>:27017 --rm --name mongodb -e <span class="token assign-left variable">MONGO_INITDB_ROOT_USERNAME</span><span class="token operator">=</span>root -e <span class="token assign-left variable">MONGO_INITDB_ROOT_PASSWORD</span><span class="token operator">=</span><span class="token number">1234</span> -v mongodb_dev:/data/db mongo
+
+<span class="token comment"># for test</span>
+$ docker run -it -p <span class="token number">3000</span>:3000 --rm --name node -v ~/nodetest:/usr/src/nodetest shockz/nodetest:0.2 <span class="token comment"># tty output</span>
+$ docker run -d -p <span class="token number">3000</span>:3000 --rm --name node -v ~/nodetest:/usr/src/nodetest shockz/nodetest:0.2 <span class="token comment"># background</span>
+
+<span class="token comment"># wait-for-it.sh 는 사전에 실행권한 부여</span>
+$ <span class="token function">chmod</span> +x wait-for-it.sh
+
+<span class="token comment"># 세부내용은 docker-compose.yaml 참고</span>
+$ docker-compose up --build
+$ docker-compose up -d <span class="token comment"># background run</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>현재 docker 컨테이너 중지 및 삭제</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker stop <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span>
+$ docker <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></div> <h2 id="docker-image-export-import-save-load"><a href="#docker-image-export-import-save-load" class="header-anchor">#</a> docker image export/import/save/load</h2> <ol><li>save / load</li></ol> <ul><li>docker 이미지를 tar 로 저장하고 로드</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker save -o nginx.tar nginx:latest
+$ docker load -i nginx.tar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ol start="2"><li>export / import</li></ol> <ul><li>container 를 tar 로 저장하고 로드</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker <span class="token builtin class-name">export</span> container_id <span class="token operator">&gt;</span> temp.tar
+$ docker impoort <span class="token operator">&lt;</span>temp.tar or url<span class="token operator">&gt;</span> - <span class="token punctuation">[</span>image name<span class="token punctuation">[</span>:tag name<span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>export / import 는 컨테이너 동작에 필요한 모든 파일을 포함, 루트 파일시스템 전체가 포함됨</li> <li>save / load 는 레이어 구조까지 포함한 형태로 압축</li></ul></div> <h2 id="reference"><a href="#reference" class="header-anchor">#</a> Reference</h2> <ul><li><a href="https://linuxhint.com/install_docker_ce_centos8/" target="_blank" rel="noopener noreferrer">Install Docker CE on CentOS 8<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://linuxconfig.org/how-to-install-docker-in-rhel-8" target="_blank" rel="noopener noreferrer">How to install Docker CE on RHEL 8 / CentOS 8<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="http://crunchtools.com/testing-with-podman-complete-uninstall-reinstall/" target="_blank" rel="noopener noreferrer">Testing with podman - Complete uninstall/reinstall<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="docker-stats"><a href="#docker-stats" class="header-anchor">#</a> docker stats</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker stats
+$ docker stats --no-stream
+$ docker stats --format <span class="token string">&quot;table {{.Container}}<span class="token entity" title="\t">\t</span>{{.CPUPerc}}<span class="token entity" title="\t">\t</span>{{.MemUsage}}&quot;</span>
+$ docker stats --format <span class="token string">&quot;table {{.Container}}:       {{.CPUPerc}}&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>사용 가능한 format string</li> <li>.Container, .Name, .ID, .CPUPerc, .MemUsage, .NetIO, .BlockIO, MemPerc, .PIDs</li></ul></div> <h2 id="apt-패키지-설치시-사용자-상호-작용-방지"><a href="#apt-패키지-설치시-사용자-상호-작용-방지" class="header-anchor">#</a> apt 패키지 설치시 사용자 상호 작용 방지</h2> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br><br><br><br></div><pre class="language-docker"><code><span class="token keyword">FROM</span> ubuntu<span class="token punctuation">:</span>latest
+
+<span class="token keyword">FROM</span> ubuntu
+<span class="token keyword">ARG</span> DEBIAN_FRONTEND=noninteractive
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get update &amp;&amp; \
+    apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y  bash git openssh<span class="token punctuation">-</span>server rsync augeas<span class="token punctuation">-</span>tools libdbd<span class="token punctuation">-</span>mysql<span class="token punctuation">-</span>perl python3
+<span class="token punctuation">...</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="env-vs-arg"><a href="#env-vs-arg" class="header-anchor">#</a> ENV vs ARG</h2> <ul><li>ENV
+<ul><li>환경변수 지정</li> <li>$변수 혹은 ${변수} 형태로 표현 가능</li> <li>또한, ${변수:-값}으로 값을 기본값으로 표현 가능</li> <li>${변수:+값}의 경우는 반대에 경우인데 사용할 일이 있을까 싶다.</li> <li>docker run 시에 --e 옵션을 활용하여 오버라이딩 할 수 있다.</li></ul></li> <li>ARG
+<ul><li>build 시점에만 사용되는 변수</li> <li>ARG 변수 혹은 ARG 변수=값 형태로 표현 가능</li> <li>ENV처럼 ${변수:+값}, ${변수:-값}으로도 표현 가능</li> <li>docker build 시에 --build-arg 옵션을 활용하여 오버라이딩 할 수 있다.</li></ul></li></ul> <h2 id="cmd-vs-entrypoint"><a href="#cmd-vs-entrypoint" class="header-anchor">#</a> CMD vs ENTRYPOINT</h2> <ul><li>CMD
+<ul><li>컨테이너가 시작될 때 실행</li> <li>Dockerfile에서 한번만 사용 가능</li> <li>마지막 CMD만 사용</li> <li>CMD [&quot;실행 파일&quot;, &quot;매개 변수&quot;, &quot;매개 변수 ...&quot;]</li> <li>docker run [IMAGE] [COMMAND]에서 COMMAND를 넣으면 CMD가 무시</li></ul></li> <li>ENTRYPOINT
+<ul><li>CMD와 동일하게 컨테이너가 시작될 때 실행</li> <li>CMD와 같이 있으면 ENTRYPOINT는 실행 파일, CMD는 매개변수 역할을 함</li> <li>docker run --entrypoint=&quot;[COMMAND] [IMAGE]&quot;를 사용하여 무시 가능</li></ul></li></ul> <h2 id="add-vs-copy"><a href="#add-vs-copy" class="header-anchor">#</a> ADD vs COPY</h2> <ul><li>ADD
+<ul><li>파일 복사</li> <li>압축 파일인 경우, 압축을 품</li> <li>단, URL로 가져온 파일은 압축만 해제하고 풀지는 않음</li> <li>OS에 따라서 압축 해제 여부가 있음</li> <li>파일은 소유 root:root과 기존 권한을 가짐</li> <li>URL은 소유 root:root과 600 권한을 가짐</li></ul></li> <li>COPY
+<ul><li>파일 복사</li> <li>ADD와 달리 파일 그대로 가져옴</li> <li>권한 그대로 설정</li> <li>공통적으로 .dockerignore에 명시된 영역은 제외</li></ul></li></ul> <h2 id="docker-재설치"><a href="#docker-재설치" class="header-anchor">#</a> docker 재설치</h2> <ul><li>container 중지 및 삭제</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker stop <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -q<span class="token variable">)</span></span>
+$ docker <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -q<span class="token variable">)</span></span>
+$ docker rmi <span class="token variable"><span class="token variable">$(</span>docker images -q<span class="token variable">)</span></span>
+$ <span class="token function">sudo</span> systemctl stop docker
+$ <span class="token function">sudo</span> systemctl stop containerd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li>docker 패키지 확인</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ yum list installed <span class="token operator">|</span> <span class="token function">grep</span> docker
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>이전 버전 제거</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> yum remove docker <span class="token punctuation">\</span>
+                  docker-client <span class="token punctuation">\</span>
+                  docker-client-latest <span class="token punctuation">\</span>
+                  docker-common <span class="token punctuation">\</span>
+                  docker-latest <span class="token punctuation">\</span>
+                  docker-latest-logrotate <span class="token punctuation">\</span>
+                  docker-logrotate <span class="token punctuation">\</span>
+                  docker-engine
+
+$ <span class="token function">sudo</span> yum erase containerd.io.x86_64
+$ <span class="token function">sudo</span> yum erase docker-ce.x86_64
+$ <span class="token function">sudo</span> yum erase docker-ce-cli.x86_64
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ul><li>관련 파일 삭제</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> /var/lib/docker
+<span class="token comment"># 주의!</span>
+$ <span class="token function">rm</span> -rf *
+
+$ <span class="token builtin class-name">cd</span> /var/run
+<span class="token comment"># 서비스가 중지됐다면 docker.pid 는 없음</span>
+$ <span class="token function">rm</span> docker.sock docker.pid
+<span class="token comment"># 주의!</span>
+$ <span class="token function">rm</span> -rf docker
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><ul><li>설치 시 종속성 관련 에러가 발생되는 경우가 있음</li> <li>기본 저장소에는 containerd 의 버전이 늦는 경우가 있음</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 확인</span>
+$ <span class="token function">sudo</span> yum list installed <span class="token operator">|</span> <span class="token function">grep</span> docker
+
+<span class="token comment"># 저장소 추가</span>
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> -y yum-utils
+$ <span class="token function">sudo</span> yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+<span class="token comment"># 특정 버전 설치시</span>
+$ <span class="token function">sudo</span> yum list docker-ce --showduplicates <span class="token operator">|</span> <span class="token function">sort</span> -r
+
+<span class="token comment"># docker-ce 설치</span>
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> docker-ce
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ul><li>서비스 시작 및 자동 시작 등록</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> docker
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> containerd
+$ <span class="token function">sudo</span> systemctl start docker
+$ <span class="token function">sudo</span> systemctl start containerd
+$ <span class="token function">sudo</span> systemctl status docker
+$ <span class="token function">sudo</span> systemctl status containerd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/44.1e1ca676.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

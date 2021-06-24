@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Windows 개발 환경 관련 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="Windows 개발 환경 구성 시 참고">
+    <meta name="keywords" content="windows, development, env">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/10.bdd0090a.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/43.158636c7.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Windows 개발 환경 관련</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/etc/windows.html#cmder-windows-terminal" class="sidebar-link">Cmder + Windows Terminal</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/windows.html#yarn-global-path-지정" class="sidebar-link">yarn global path 지정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/windows.html#윈도우-10-긴-파일-이름-길이-제한-해제-설정" class="sidebar-link">윈도우 10 긴 파일 이름 길이 제한 해제 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/windows.html#powershell-관리자-권한" class="sidebar-link">Powershell 관리자 권한</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/windows.html#wsl-터미널-설정" class="sidebar-link">WSL 터미널 설정</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/etc/windows.html#zsh-oh-my-zsh-설치" class="sidebar-link">zsh &amp; oh-my-zsh 설치</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#zsh-completions-zsh-syntax-highlighting-zsh-autosuggestions" class="sidebar-link">zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#powerlevel10k-theme" class="sidebar-link">powerlevel10k theme</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#neovim" class="sidebar-link">neovim</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#fzf-fasd-tig-jq-neofetch" class="sidebar-link">fzf, fasd, tig, jq, neofetch</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#nvm" class="sidebar-link">nvm</a></li><li class="sidebar-sub-header"><a href="/etc/windows.html#windows-terminal-settings" class="sidebar-link">Windows Terminal settings</a></li></ul></li><li><a href="/etc/windows.html#wsl-php-xdebug-vscode" class="sidebar-link">wsl, php, xdebug, vscode</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/etc/windows.html#ssl-적용" class="sidebar-link">SSL 적용</a></li></ul></li><li><a href="/etc/windows.html#ssh-key-를-통한-비밀번호-없이-접속" class="sidebar-link">ssh key 를 통한 비밀번호 없이 접속</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/windows.html#github-multiple-ssh-key" class="sidebar-link">github multiple ssh key</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="windows-개발-환경-구성"><a href="#windows-개발-환경-구성" class="header-anchor">#</a> Windows 개발 환경 구성</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#windows" class="tag" data-v-77ca7535>windows</a><a href="/tags.html#dev" class="tag" data-v-77ca7535>dev</a><a href="/tags.html#env" class="tag" data-v-77ca7535>env</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#cmder-windows-terminal">Cmder + Windows Terminal</a></li><li><a href="#yarn-global-path-지정">yarn global path 지정</a></li><li><a href="#윈도우-10-긴-파일-이름-길이-제한-해제-설정">윈도우 10 긴 파일 이름 길이 제한 해제 설정</a></li><li><a href="#powershell-관리자-권한">Powershell 관리자 권한</a></li><li><a href="#wsl-터미널-설정">WSL 터미널 설정</a><ul><li><a href="#zsh-oh-my-zsh-설치">zsh &amp; oh-my-zsh 설치</a></li><li><a href="#zsh-completions-zsh-syntax-highlighting-zsh-autosuggestions">zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions</a></li><li><a href="#powerlevel10k-theme">powerlevel10k theme</a></li><li><a href="#neovim">neovim</a></li><li><a href="#fzf-fasd-tig-jq-neofetch">fzf, fasd, tig, jq, neofetch</a></li><li><a href="#nvm">nvm</a></li><li><a href="#windows-terminal-settings">Windows Terminal settings</a></li></ul></li><li><a href="#wsl-php-xdebug-vscode">wsl, php, xdebug, vscode</a><ul><li><a href="#ssl-적용">SSL 적용</a></li></ul></li><li><a href="#ssh-key-를-통한-비밀번호-없이-접속">ssh key 를 통한 비밀번호 없이 접속</a></li><li><a href="#github-multiple-ssh-key">github multiple ssh key</a></li></ul></div><p></p> <h2 id="cmder-windows-terminal"><a href="#cmder-windows-terminal" class="header-anchor">#</a> Cmder + Windows Terminal</h2> <ul><li><p>Cmder 위치
+%APPDATA%\Cmder</p></li> <li><p>환경 변수 세팅
+CMDER_ROOT, CmdEmuDir</p></li> <li><p>UTF-8 세팅
+chcp utf-8</p></li> <li><p>기본 환경 설정</p></li> <li><p>Windows Terminal 연계
+default setting 변경</p></li> <li><p>Windows Terminal 세팅
+기타 설정
+<img src="data:image/png;base64,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" alt="windows.cmder"> <img src="data:image/png;base64,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" alt="windows.cmder"> <img src="/assets/img/windows.cmder.3.5a61db7a.png" alt="windows.cmder"></p></li></ul> <h2 id="yarn-global-path-지정"><a href="#yarn-global-path-지정" class="header-anchor">#</a> yarn global path 지정</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">yarn</span> global bin
+C:<span class="token punctuation">\</span>Users<span class="token punctuation">\</span>user<span class="token punctuation">\</span>AppData<span class="token punctuation">\</span>Local<span class="token punctuation">\</span>Yarn<span class="token punctuation">\</span>bin
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>해당 path를 windows path 변수에 등록
+<img src="/assets/img/windows.path.1.4619677c.png" alt="windows.path"></li></ul> <h2 id="윈도우-10-긴-파일-이름-길이-제한-해제-설정"><a href="#윈도우-10-긴-파일-이름-길이-제한-해제-설정" class="header-anchor">#</a> 윈도우 10 긴 파일 이름 길이 제한 해제 설정</h2> <ul><li>gpedit.msc 실행</li> <li><code>컴퓨터 구성 &gt; 관리 템플릿 &gt; 시스템 &gt; 파일 시스템</code> 에서 <code>Win32 긴 경로 사용</code> 에서 '사용' 체크</li> <li><code>gpupdate /force</code> 로 적용</li></ul> <h2 id="powershell-관리자-권한"><a href="#powershell-관리자-권한" class="header-anchor">#</a> Powershell 관리자 권한</h2> <ul><li>관리자 권한으로 터미널 실행</li></ul> <div class="language-powershell line-numbers-mode"><pre class="language-powershell"><code>&gt; ExecutionPolicy
+Restricted
+&gt; <span class="token function">Set-ExecutionPolicy</span> Unrestricted
+&gt; ExecutionPolicy
+Unrestricted
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="wsl-터미널-설정"><a href="#wsl-터미널-설정" class="header-anchor">#</a> WSL 터미널 설정</h2> <blockquote><p>WSL2 Ubuntu 기준</p></blockquote> <h3 id="zsh-oh-my-zsh-설치"><a href="#zsh-oh-my-zsh-설치" class="header-anchor">#</a> zsh &amp; oh-my-zsh 설치</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> upgrade
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span> <span class="token function">zsh</span>
+
+<span class="token comment"># chsh 수동 (필요한 경우)</span>
+$ <span class="token function">sudo</span> chsh -s <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">)</span></span>
+
+<span class="token comment"># oh-my-zsh 설치</span>
+$ <span class="token function">sh</span> -c <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/ohmyzsh/master/tools/install.sh<span class="token variable">)</span></span>&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="zsh-completions-zsh-syntax-highlighting-zsh-autosuggestions"><a href="#zsh-completions-zsh-syntax-highlighting-zsh-autosuggestions" class="header-anchor">#</a> zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> ~
+$ <span class="token function">git</span> clone https://github.com/zsh-users/zsh-completions <span class="token variable">${ZSH_CUSTOM<span class="token operator">:=</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-completions
+
+<span class="token comment"># .zshrc plugins 부분에 추가</span>
+plugins <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token punctuation">..</span>.
+  zsh-completions
+  <span class="token punctuation">..</span>.
+<span class="token punctuation">)</span>
+
+$ autoload -U compinit <span class="token operator">&amp;&amp;</span> compinit
+
+<span class="token comment"># zsh-syntax-highlighting</span>
+$ <span class="token function">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="token variable">${ZSH_CUSTOM<span class="token operator">:=</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-syntax-highlighting
+<span class="token comment"># zsh-autosuggestions</span>
+$ <span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="token variable">${ZSH_CUSTOM<span class="token operator">:=</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-autosuggestions
+
+<span class="token comment"># .zshrc plugins</span>
+<span class="token assign-left variable">plugins</span><span class="token operator">=</span><span class="token punctuation">(</span>
+  <span class="token punctuation">..</span>.
+  zsh-completions
+  zsh-highlighting
+  zsh-autosuggestions
+<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h3 id="powerlevel10k-theme"><a href="#powerlevel10k-theme" class="header-anchor">#</a> powerlevel10k theme</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> clone https://github.com/romkatv/powerlevel10k.git  <span class="token variable">$ZSH_CUSTOM</span>/themes/powerlevel10k
+
+<span class="token comment"># .zshrc theme</span>
+<span class="token assign-left variable">ZSH_THEME</span><span class="token operator">=</span><span class="token string">&quot;powerlevel10k/powerlevel10k&quot;</span>
+
+<span class="token comment"># NerdFonts</span>
+<span class="token comment"># https://github.com/romkatv/dotfiles-public/.local/share/fonts/NerdFonts</span>
+
+$ p10k configure
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="neovim"><a href="#neovim" class="header-anchor">#</a> neovim</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> neovim
+$ <span class="token function">curl</span> -sLf https://spacevim.org/install.sh <span class="token operator">|</span> <span class="token function">bash</span>
+
+<span class="token comment"># .zshrc alias</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vim</span><span class="token operator">=</span><span class="token string">&quot;nvim&quot;</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vi</span><span class="token operator">=</span><span class="token string">&quot;nvim&quot;</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vimdiff</span><span class="token operator">=</span><span class="token string">&quot;nvim -d&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">EDITOR</span><span class="token operator">=</span>/usr/bin/nvim
+
+$ <span class="token function">mkdir</span> ~/.SpaceVim.d/colors
+<span class="token comment"># ADD snazzy colorscheme download</span>
+
+<span class="token comment"># ~/.SpaceVim.d/init.toml 수정</span>
+<span class="token punctuation">[</span>options<span class="token punctuation">]</span>
+  colorscheme <span class="token operator">=</span> <span class="token string">&quot;snazzy-custom&quot;</span>
+  enable_guicolors <span class="token operator">=</span> <span class="token boolean">true</span>
+  statusline_separator <span class="token operator">=</span> <span class="token string">&quot;arraw&quot;</span>
+  enable_tabline_filetype_icon <span class="token operator">=</span> <span class="token boolean">true</span>
+  enable_statusline_mode <span class="token operator">=</span> <span class="token boolean">true</span>
+  statusline_unicode_symbols <span class="token operator">=</span> <span class="token boolean">true</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="fzf-fasd-tig-jq-neofetch"><a href="#fzf-fasd-tig-jq-neofetch" class="header-anchor">#</a> fzf, fasd, tig, jq, neofetch</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fzf fasd tig jq neofetch
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="nvm"><a href="#nvm" class="header-anchor">#</a> nvm</h3> <ul><li><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash</code></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ nvm --version
+$ nvm ls-remote
+$ nvm <span class="token function">install</span> v12.21.0
+$ <span class="token function">npm</span> use v12.21.0
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="windows-terminal-settings"><a href="#windows-terminal-settings" class="header-anchor">#</a> Windows Terminal settings</h3> <ul><li><code>...\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\sitecore-theme</code> 에 <code>Sitecore-Dark2.png</code>, <code>sitecore-icon.png</code> 복사</li> <li>참고: <a href="https://terminalsplash.com/" target="_blank" rel="noopener noreferrer">https://terminalsplash.com/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;defaultProfile&quot;</span><span class="token operator">:</span> <span class="token string">&quot;{2c4de342-38b7-51cf-b940-2309a097f518}&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;profiles&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;defaults&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Put settings here that you want to apply to all profiles.</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;list&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      ...<span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;guid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;{2c4de342-38b7-51cf-b940-2309a097f518}&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;hidden&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;fontFace&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MesloLGS NF&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;fontSize&quot;</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ubuntu&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;source&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Windows.Terminal.Wsl&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;backgroundImage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ms-appdata:///roaming/sitecore-theme/Sitecore-Dark2.png&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;backgroundImageOpacity&quot;</span><span class="token operator">:</span> <span class="token number">0.80000001192092896</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;backgroundImageStretchMode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;uniformToFill&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ms-appdata:///roaming/sitecore-theme/sitecore-icon.png&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;colorScheme&quot;</span><span class="token operator">:</span> <span class="token string">&quot;wsl&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      ...
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;schemes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Aurelia&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;background&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#1a1a1a&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;black&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;blue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#579BD5&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightBlack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#797979&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightBlue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#9CDCFE&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightCyan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#2BC4E2&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightGreen&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#1AD69C&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightPurple&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#975EAB&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightRed&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#EB2A88&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightWhite&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#EAEAEA&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightYellow&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#e9ad95&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cyan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#00B6D6&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#EA549F&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;green&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#4EC9B0&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;purple&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#714896&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;red&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#E92888&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;white&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#EAEAEA&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;yellow&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#CE9178&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;wsl&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;background&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#002B36&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;black&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#002B36&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;blue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#268BD2&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightBlack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#657B83&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightBlue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#839496&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightCyan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#D33682&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightGreen&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#B58900&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightPurple&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#EEE8D5&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightRed&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#CB4B16&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightWhite&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#FDF6E3&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;brightYellow&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#586E75&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cyan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#2AA198&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#93A1A1&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;green&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#859900&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;purple&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#6C71C4&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;red&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#DC322F&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;white&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#93A1A1&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;yellow&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#B58900&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br></div></div><h2 id="wsl-php-xdebug-vscode"><a href="#wsl-php-xdebug-vscode" class="header-anchor">#</a> wsl, php, xdebug, vscode</h2> <ul><li>TODO: WSL 설치</li> <li>TODO: VisualStudio Code Terminal 설정</li> <li>WSL 설정 (Ubuntu 20.04 기준)</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> upgrade
+$ <span class="token function">sudo</span> <span class="token function">apt-cache</span> policy nginx
+$ <span class="token function">sudo</span> <span class="token function">apt</span> update
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nginx
+$ nginx -v
+$ <span class="token function">sudo</span> <span class="token function">chown</span> -R www-data:ubuntu /var/www/
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> php7.4 php7.4-cli php7.4-fpm php7.4-bcmath php7.4-bz2 php7.4-common php7.4-curl php7.4-dba php7.4-gd php7.4-json php7.4-mbstring php7.4-opcache php7.$ <span class="token number">4</span>-readline php7.4-soap php7.4-xml php7.4-xmlrpc php7.4-zip php-redis php7.4-mysql php-imagick php7.4-intl php7.4-mysql php7.4-gmp php-geoip php7.4-dev -y
+$ php -v
+$ <span class="token function">sudo</span> nginx -t
+$ <span class="token function">sudo</span> systemctl reload nginx
+$ <span class="token function">sudo</span> <span class="token function">service</span> nginx restart
+$ <span class="token function">sudo</span> <span class="token function">service</span> php7.4-fpm start
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> mariadb-client-core-10.3
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><ul><li><code>/etc/php/7.4/fpm/php.ini</code> 설정</li></ul> <div class="language-ini line-numbers-mode"><pre class="language-ini"><code><span class="token constant">max_execution_time</span> <span class="token attr-value"><span class="token punctuation">=</span> 1800</span>
+<span class="token constant">max_input_vars</span> <span class="token attr-value"><span class="token punctuation">=</span> 10000</span>
+<span class="token constant">memory_limit</span> <span class="token attr-value"><span class="token punctuation">=</span> 256M</span>
+<span class="token constant">post_max_size</span> <span class="token attr-value"><span class="token punctuation">=</span> 200M</span>
+<span class="token constant">upload_max_filesize</span> <span class="token attr-value"><span class="token punctuation">=</span> 200M</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li><code>/etc/nginx/sites-available/default</code> 설정</li></ul> <div class="language-ini line-numbers-mode"><pre class="language-ini"><code>server {
+  root /var/www/html;
+  index index.php index.html index.htm index.nginx-debian.html;
+  server_name shockz-amd.test;
+  server_tokens off;
+  client_max_body_size 100M;
+  add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+  add_header X-XSS-Protection &quot;1; mode<span class="token attr-value"><span class="token punctuation">=</span>block&quot; always;</span>
+  add_header X-Content-Type-Options &quot;nosniff&quot; always;
+  add_header Referrer-Policy &quot;no-referrer-when-downgrade&quot; always;
+  add_header Content-Security-Policy &quot;default-src * data: 'unsafe-eval' 'unsafe-inline'&quot; always;
+
+<span class="token constant">  location</span> <span class="token attr-value"><span class="token punctuation">=</span> /robots.txt {</span>
+                add_header Content-Type text/plain;
+                return 200 &quot;User-agent: *\nDisallow: /\n&quot;;
+  }
+  location / {
+    try_files $uri $uri/ <span class="token attr-value"><span class="token punctuation">=</span>404;</span>
+    if (!-e $request_filename) {
+      rewrite ^.*$ /index.php last;
+    }
+  }
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_read_timeout 300;
+  }
+  location ~ /\.ht {
+    deny all;
+  }
+<span class="token constant">  location</span> <span class="token attr-value"><span class="token punctuation">=</span> /favicon.ico {</span>
+    log_not_found off; access_log off;
+  }
+  location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+    expires max;
+    log_not_found off;
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><ul><li><code>/var/www/html</code> 권한 조정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">chown</span> -R www-data:usergroup /var/www/html/
+$ <span class="token function">sudo</span> <span class="token function">chmod</span> -R <span class="token number">775</span> /var/www/html/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>/var/www/html/index.php</code> 작성</li></ul> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token delimiter important">?&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>xdebug 설치</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> php-pear php-dev
+$ <span class="token function">sudo</span> pecl <span class="token function">install</span> xdebug
+<span class="token punctuation">..</span>.
+Build complete.
+Don<span class="token string">'t forget to run '</span><span class="token function">make</span> <span class="token builtin class-name">test</span><span class="token string">'.
+
+running: make INSTALL_ROOT=&quot;/tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3&quot; install
+Makefile:228: warning: overriding recipe for target '</span><span class="token builtin class-name">test</span><span class="token string">'
+Makefile:132: warning: ignoring old recipe for target '</span><span class="token builtin class-name">test</span><span class="token string">'
+Installing shared extensions:     /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902/
+
+  +----------------------------------------------------------------------+
+  |                                                                      |
+  |   INSTALLATION INSTRUCTIONS                                          |
+  |   =========================                                          |
+  |                                                                      |
+  |   See https://xdebug.org/install.php#configure-php for instructions  |
+  |   on how to enable Xdebug for PHP.                                   |
+  |                                                                      |
+  |   Documentation is available online as well:                         |
+  |   - A list of all settings:  https://xdebug.org/docs-settings.php    |
+  |   - A list of all functions: https://xdebug.org/docs-functions.php   |
+  |   - Profiling instructions:  https://xdebug.org/docs-profiling2.php  |
+  |   - Remote debugging:        https://xdebug.org/docs-debugger.php    |
+  |                                                                      |
+  |                                                                      |
+  |   NOTE: Please disregard the message                                 |
+  |       You should add &quot;extension=xdebug.so&quot; to php.ini                |
+  |   that is emitted by the PECL installer. This does not work for      |
+  |   Xdebug.                                                            |
+  |                                                                      |
+  +----------------------------------------------------------------------+
+
+
+running: find &quot;/tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3&quot; | xargs ls -dils
+76224    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3
+76334    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr
+76335    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib
+76336    4 drwxr-xr-x 3 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php
+76337    4 drwxr-xr-x 2 root root    4096 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902
+76332 2396 -rwxr-xr-x 1 root root 2451512 Mar 21 17:19 /tmp/pear/temp/pear-build-rootaAavFR/install-xdebug-3.0.3/usr/lib/php/20190902/xdebug.so
+
+Build process completed successfully
+Installing '</span>/usr/lib/php/20190902/xdebug.so'
+<span class="token function">install</span> ok: channel://pecl.php.net/xdebug-3.0.3
+configuration option <span class="token string">&quot;php_ini&quot;</span> is not <span class="token builtin class-name">set</span> to php.ini location
+You should <span class="token function">add</span> <span class="token string">&quot;zend_extension=/usr/lib/php/20190902/xdebug.so&quot;</span> to php.ini
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><ul><li><code>/etc/php/7.4/fpm/php.ini</code> 끝에 xdebug 관련 설정 추가</li></ul> <div class="language-ini line-numbers-mode"><pre class="language-ini"><code>...
+<span class="token selector">[XDEBUG]</span>
+<span class="token constant">zend_extension</span><span class="token attr-value"><span class="token punctuation">=</span>/usr/lib/php/20190902/xdebug.so</span>
+<span class="token constant">xdebug.remote_enable</span> <span class="token attr-value"><span class="token punctuation">=</span> 1</span>
+<span class="token constant">xdebug.remote_autostart</span> <span class="token attr-value"><span class="token punctuation">=</span> 1</span>
+<span class="token constant">xdebug.remote_port</span> <span class="token attr-value"><span class="token punctuation">=</span> 9000</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">service</span> nginx restart
+$ <span class="token function">sudo</span> <span class="token function">service</span> php7.4-fpm restart
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><img src="/assets/img/windows.php.dev.1.d67f06a7.png" alt="windows.php.dev"></p> <ul><li>vscode debug 설정
+<img src="/assets/img/windows.php.dev.2.6a7fded2.png" alt="windows.php.dev"></li> <li><code>/var/www/html/.vscode/launch.json</code> 설정 추가</li></ul> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.</span>
+  <span class="token comment">// 기존 특성에 대한 설명을 보려면 가리킵니다.</span>
+  <span class="token comment">// 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.2.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Listen for XDebug&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;php&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;request&quot;</span><span class="token operator">:</span> <span class="token string">&quot;launch&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9000</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Launch currently open script&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;php&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;request&quot;</span><span class="token operator">:</span> <span class="token string">&quot;launch&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${file}&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cwd&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${fileDirname}&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9000</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="ssl-적용"><a href="#ssl-적용" class="header-anchor">#</a> SSL 적용</h3> <ul><li>자체 서명 인증서 생성하고 <code>/etc/ssl/certs/shockz-amd.test.crt</code> <code>/etc/ssl/private/shockz-amd.test.key</code> 로 복사</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ openssl req -x509 -newkey rsa:4096 -sha256 -days <span class="token number">3650</span> -nodes -keyout shockz-amd.test.key -out shockz-amd.test.crt -subj <span class="token string">&quot;/CN=shockz-amd.test&quot;</span> -addext <span class="token string">&quot;subjectAltName=DNS:shockz-amd.test&quot;</span>
+$ <span class="token function">sudo</span> <span class="token function">cp</span> shockz-amd.test.crt /etc/ssl/certs/shockz-amd.test.crt
+$ <span class="token function">sudo</span> <span class="token function">cp</span> shockz-amd.test.key /etc/ssl/private/shockz-amd.test.key
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li><code>/etc/nginx/sites-available/default</code> 에 적용</li></ul> <div class="language-ini line-numbers-mode"><pre class="language-ini"><code>server {
+  root /var/www/html;
+
+  index index.php index.html index.htm index.nginx-debian.html;
+
+  server_name shockz-amd.test;
+  server_tokens off;
+  client_max_body_size 100M;
+  add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+  add_header X-XSS-Protection &quot;1; mode<span class="token attr-value"><span class="token punctuation">=</span>block&quot; always;</span>
+  add_header X-Content-Type-Options &quot;nosniff&quot; always;
+  add_header Referrer-Policy &quot;no-referrer-when-downgrade&quot; always;
+  add_header Content-Security-Policy &quot;default-src * data: 'unsafe-eval' 'unsafe-inline'&quot; always;
+
+<span class="token constant">  location</span> <span class="token attr-value"><span class="token punctuation">=</span> /robots.txt {</span>
+    add_header Content-Type text/plain;
+    return 200 &quot;User-agent: *\nDisallow: /\n&quot;;
+  }
+
+  location / {
+    try_files $uri $uri/ <span class="token attr-value"><span class="token punctuation">=</span>404;</span>
+    if (!-e $request_filename) {
+      rewrite ^.*$ /index.php last;
+    }
+  }
+
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_read_timeout 300;
+  }
+
+  location ~ /\.ht {
+    deny all;
+  }
+
+<span class="token constant">  location</span> <span class="token attr-value"><span class="token punctuation">=</span> /favicon.ico {</span>
+    log_not_found off; access_log off;
+  }
+
+  location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+    expires max;
+    log_not_found off;
+  }
+
+  listen [::]:443 ssl ipv6only<span class="token attr-value"><span class="token punctuation">=</span>on;</span>
+  listen 443 ssl;
+  ssl_certificate /etc/ssl/certs/shockz-amd.test.crt;
+  ssl_certificate_key /etc/ssl/private/shockz-amd.test.key;
+}
+
+server {
+  if ($host <span class="token attr-value"><span class="token punctuation">=</span> shockz-amd.test) {</span>
+    return 301 https://$host$request_uri;
+  }
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name shockz-amd.test;
+  return 404;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div><h2 id="ssh-key-를-통한-비밀번호-없이-접속"><a href="#ssh-key-를-통한-비밀번호-없이-접속" class="header-anchor">#</a> ssh key 를 통한 비밀번호 없이 접속</h2> <ul><li>git bash 등이 설치가 되면 <code>ssh-keygen</code> 이 같이 설치됨</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ ssh-keygen -t rsa
+<span class="token comment"># 비밀번호 입력 필요</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>C:\Users\userid\.ssh</code> 에 <code>id_rsa</code>, <code>id_rsa.pub</code> 파일이 생성됨.</li> <li>id_rsa : private</li> <li>id_rsa.pu : public</li> <li>public 을 접속하고자 하는 ssh 에 복사하고, 연결하고자 하는 클라이언트에서 private 을 이용해 접속</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># WSL 환경 기준</span>
+$ <span class="token builtin class-name">cd</span> /mnt/c/Users/myid/.ssh
+$ ssh-copy-id -i ./id_rsa.pub userid@address -p <span class="token operator">&lt;</span>port<span class="token operator">&gt;</span>
+
+<span class="token comment"># 이후 접속부터는 아래를 통해 접속 가능</span>
+$ <span class="token function">ssh</span> -i /path/id_rsa userid@address -p <span class="token operator">&lt;</span>port<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="github-multiple-ssh-key"><a href="#github-multiple-ssh-key" class="header-anchor">#</a> github multiple ssh key</h2> <blockquote><p>개발 환경 구성 시 여러 github 계정을 사용할 경우
+각 github 계정 별 ssh key 등록이 필요하다.
+별도 설정 없이 ssh 키를 여러 곳에서 사용할 경우 'Key is already in use' 에러를 볼 수 있다.
+<img src="/assets/img/github.ssh.key.in.use.1.3d7e0e77.png" alt="github.ssh.key.in.use"></p></blockquote> <h4 id="_1-각-계정별-ssh-key-생성"><a href="#_1-각-계정별-ssh-key-생성" class="header-anchor">#</a> 1. 각 계정별 ssh key 생성</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token operator">&gt;</span> ssh-keygen -t rsa -b <span class="token number">4096</span> -C <span class="token string">&quot;github@login.email&quot;</span> -f id_rsa_name <span class="token comment"># 계정별로 생성</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>이메일 별로 <code>id_rsa_name</code>, <code>id_rsa_name.pub</code> 로 생성됨</p> <h4 id="_2-github-에-등록"><a href="#_2-github-에-등록" class="header-anchor">#</a> 2. github 에 등록</h4> <ul><li>[Settings] &gt; [SSH and GPG keys] &gt; SSH keys / New SSH key 로 등록 (각 계정별)</li> <li><code>.pub</code> 키를 등록
+<img src="/assets/img/github.ssh.key.in.use.2.0f57c109.png" alt="github.ssh.key.in.use"></li></ul> <h4 id="_3-ssh-config-설정"><a href="#_3-ssh-config-설정" class="header-anchor">#</a> 3. ~/.ssh/config 설정</h4> <ul><li><code>config</code> 파일이 없다면 생성하여 수정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># ironpot42.com - github</span>
+Host temp1-github.com
+  HostName github.com
+  User <span class="token function">git</span>
+  IdentityFile C:<span class="token punctuation">\</span><span class="token punctuation">\</span>Users<span class="token punctuation">\</span><span class="token punctuation">\</span>somebody<span class="token punctuation">\</span><span class="token punctuation">\</span>.ssh<span class="token punctuation">\</span><span class="token punctuation">\</span>id_rsa_temp1
+
+<span class="token comment"># temp2 - github</span>
+Host temp2-github.com
+  HostName github.com
+  User <span class="token function">git</span>
+  IdentityFile C:<span class="token punctuation">\</span><span class="token punctuation">\</span>Users<span class="token punctuation">\</span><span class="token punctuation">\</span>somebody<span class="token punctuation">\</span><span class="token punctuation">\</span>.ssh<span class="token punctuation">\</span><span class="token punctuation">\</span>id_rsa_temp2
+
+<span class="token comment"># tmep3 - github</span>
+Host temp3-github.com
+  HostName github.com
+  User <span class="token function">git</span>
+  IdentityFile C:<span class="token punctuation">\</span><span class="token punctuation">\</span>Users<span class="token punctuation">\</span><span class="token punctuation">\</span>somebody<span class="token punctuation">\</span><span class="token punctuation">\</span>.ssh<span class="token punctuation">\</span><span class="token punctuation">\</span>id_rsa_temp3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><ul><li><code>Host</code> : 임의의 이름</li> <li><code>HostName</code> : github.com 서버 대상이므로 고정</li> <li><code>User</code> : github ssh 는 <strong>git</strong> 으로 고정</li> <li>저장 후 연결 테스트</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">ssh</span> -T temp1-github.com
+Hi temp1<span class="token operator">!</span> You<span class="token string">'ve successfully authenticated, but GitHub does not provide shell access.
+
+&gt; ssh -T temp2-github.com
+Hi temp2! You'</span>ve successfully authenticated, but GitHub does not provide shell access.
+
+<span class="token operator">&gt;</span> <span class="token function">ssh</span> -T temp3-github.com
+Hi temp3<span class="token operator">!</span> You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h4 id="_4-gitconfig-설정"><a href="#_4-gitconfig-설정" class="header-anchor">#</a> 4. ~/.gitconfig 설정</h4> <ul><li><code>.gitconfig</code> 전역 파일 수정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>core<span class="token punctuation">]</span>
+        editor <span class="token operator">=</span> <span class="token punctuation">\</span>&quot;C:<span class="token punctuation">\</span><span class="token punctuation">\</span>Users<span class="token punctuation">\</span><span class="token punctuation">\</span>somebody<span class="token punctuation">\</span><span class="token punctuation">\</span>AppData<span class="token punctuation">\</span><span class="token punctuation">\</span>Local<span class="token punctuation">\</span><span class="token punctuation">\</span>Programs<span class="token punctuation">\</span><span class="token punctuation">\</span>Microsoft VS Code<span class="token punctuation">\</span><span class="token punctuation">\</span>Code.exe<span class="token punctuation">\</span>&quot; --wait
+<span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+        name <span class="token operator">=</span> Temp <span class="token number">1</span>
+        email <span class="token operator">=</span> github@login.email
+<span class="token punctuation">[</span>includeIf <span class="token string">&quot;gitdir:C:/temp2/&quot;</span><span class="token punctuation">]</span>
+        path <span class="token operator">=</span> .gitconfig-temp2
+<span class="token punctuation">[</span>includeIf <span class="token string">&quot;gitdir:C:/temp3/&quot;</span><span class="token punctuation">]</span>
+        path <span class="token operator">=</span> .gitconfig-temp3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><ul><li><strong>[includeIf &quot;gitdir:C:/temp2/&quot;]</strong> 는 <code>C:/temp2</code> 디렉토리 아래에서는 <code>.gitconfig-temp2</code> 가 적용됨을 뜻함.</li> <li>Windows 에서도 linux 스타일 path를 지정해야 동작</li> <li><code>.gitconfig-temp2</code>, <code>.gitconfig-temp3</code> 을 생성하여 내용 추가</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+        name <span class="token operator">=</span> temp2
+        email <span class="token operator">=</span> temp2.github@login.email
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li><code>C:/temp2</code> 아래에서 repository 를 생성하거나 클론하여 <code>git config --list</code> 로 확인</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">..</span>.
+user.email<span class="token operator">=</span>github@login.email
+user.name<span class="token operator">=</span>Temp <span class="token number">1</span>
+includeif.gitdir:C:/temp2/.path<span class="token operator">=</span>.gitconfig-temp2
+user.email<span class="token operator">=</span>temp2.github@login.email
+user.name<span class="token operator">=</span>temp2
+<span class="token punctuation">..</span>.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li><code>includeif.gitdir:C:/temp2/.path=.gitconfig-temp2</code> 가 적용되므로 <code>.gitconfig-temp2</code>를 불러와서 user.email, user.name 이 적용됨</li></ul> <h4 id="_5-private-repository"><a href="#_5-private-repository" class="header-anchor">#</a> 5. private repository</h4> <ul><li><code>.ssh/config</code> 에서 설정한 HostName 을 이용하여 clone</li> <li><code>git clone temp2-github.com:[계정명]/[repository]</code> 와 같은 형식으로 클론</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">git</span> clone temp2-github.com:temp2/repository.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="참고-ssh-agent-관련"><a href="#참고-ssh-agent-관련" class="header-anchor">#</a> 참고. ssh-agent 관련</h4> <ul><li>ssh-agent 에 여러 키를 등록하여 사용하고자 할 경우</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token operator">&gt;</span> ssh-add %<span class="token environment constant">HOME</span>%/.ssh/id_rsa_temp2
+unable to start ssh-agent service, error :1058
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>위의 에러시에는 <strong>OpenSSH Authentication Agent</strong> 서비스 동작을 확인
+<img src="/assets/img/github.ssh.key.in.use.3.765bbdc9.png" alt="github.ssh.key.in.use"></li> <li>여러 키를 사용하는 상황에서는 ssh 를 사용하지 않는 repository 에서 등록되지 않은 키를 잘못 사용하고 있다라고 하면서 접속이 되지 않는 경우가 있음.</li> <li>ssh-agent 에서 전부 삭제하여 ~/.ssh/config 를 사용하도록 설정하거나, 모든 키를 사전에 등록하여 사용</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 키 등록</span>
+<span class="token operator">&gt;</span> ssh-add %<span class="token environment constant">HOME</span>%/.ssh/id_rsa_temp2
+<span class="token comment"># 등록된 키 확인</span>
+<span class="token operator">&gt;</span> ssh-add -l
+<span class="token comment"># 등록된 키 모두 삭제</span>
+<span class="token operator">&gt;</span> ssh-add -D
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li>기존 repository 에서 ssh 키로 변경된 remote 로 변경 시 아래와 같이 변경</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token operator">&gt;</span>  <span class="token function">git</span> remote set-url origin git@temp2-github.com:temp2/address.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/10.bdd0090a.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>

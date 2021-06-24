@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AWS | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="aws 관련 내용">
+    <meta name="keywords" content="aws, redis, docker">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="d795a93480ccc9f079f6ce70e020202b3a7d0a72">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.ba3370c8.css" as="style"><link rel="preload" href="/assets/js/app.ac24e3cd.js" as="script"><link rel="preload" href="/assets/js/16.aaf8b347.js" as="script"><link rel="preload" href="/assets/js/2.553ec66f.js" as="script"><link rel="preload" href="/assets/js/43.158636c7.js" as="script"><link rel="preload" href="/assets/js/23.79fe1d4f.js" as="script"><link rel="preload" href="/assets/js/24.c7c28036.js" as="script"><link rel="prefetch" href="/assets/js/10.bdd0090a.js"><link rel="prefetch" href="/assets/js/11.b9a7e208.js"><link rel="prefetch" href="/assets/js/12.3e530334.js"><link rel="prefetch" href="/assets/js/13.41aa3e5d.js"><link rel="prefetch" href="/assets/js/14.e14db84f.js"><link rel="prefetch" href="/assets/js/15.483c7c28.js"><link rel="prefetch" href="/assets/js/17.24999d37.js"><link rel="prefetch" href="/assets/js/18.0be824a0.js"><link rel="prefetch" href="/assets/js/19.b8c0067c.js"><link rel="prefetch" href="/assets/js/20.65537b1d.js"><link rel="prefetch" href="/assets/js/21.5bf75f42.js"><link rel="prefetch" href="/assets/js/22.34483e42.js"><link rel="prefetch" href="/assets/js/25.b4a6f044.js"><link rel="prefetch" href="/assets/js/26.1dc25924.js"><link rel="prefetch" href="/assets/js/27.89d7e8f8.js"><link rel="prefetch" href="/assets/js/28.7d3dfe6a.js"><link rel="prefetch" href="/assets/js/29.995981a7.js"><link rel="prefetch" href="/assets/js/3.62bf976c.js"><link rel="prefetch" href="/assets/js/30.b655c188.js"><link rel="prefetch" href="/assets/js/31.f52ff912.js"><link rel="prefetch" href="/assets/js/32.f6cc8609.js"><link rel="prefetch" href="/assets/js/33.2938e863.js"><link rel="prefetch" href="/assets/js/34.077d254a.js"><link rel="prefetch" href="/assets/js/35.48549da4.js"><link rel="prefetch" href="/assets/js/36.5397ce28.js"><link rel="prefetch" href="/assets/js/37.08d8996b.js"><link rel="prefetch" href="/assets/js/38.49e82dd7.js"><link rel="prefetch" href="/assets/js/39.1422e96a.js"><link rel="prefetch" href="/assets/js/4.4e2e53e4.js"><link rel="prefetch" href="/assets/js/40.64bd7aee.js"><link rel="prefetch" href="/assets/js/41.c3205f3f.js"><link rel="prefetch" href="/assets/js/42.5a711358.js"><link rel="prefetch" href="/assets/js/44.1e1ca676.js"><link rel="prefetch" href="/assets/js/45.7d655194.js"><link rel="prefetch" href="/assets/js/46.5ce885af.js"><link rel="prefetch" href="/assets/js/47.71af1d82.js"><link rel="prefetch" href="/assets/js/48.c157c889.js"><link rel="prefetch" href="/assets/js/49.67f67a04.js"><link rel="prefetch" href="/assets/js/5.403c2ea6.js"><link rel="prefetch" href="/assets/js/50.bb5f9ad6.js"><link rel="prefetch" href="/assets/js/51.5a6c6c40.js"><link rel="prefetch" href="/assets/js/52.ddb97383.js"><link rel="prefetch" href="/assets/js/53.8913e7dd.js"><link rel="prefetch" href="/assets/js/54.cf121070.js"><link rel="prefetch" href="/assets/js/55.50bd17ee.js"><link rel="prefetch" href="/assets/js/56.469b2ebf.js"><link rel="prefetch" href="/assets/js/57.f941a5b2.js"><link rel="prefetch" href="/assets/js/58.e32dbb7d.js"><link rel="prefetch" href="/assets/js/59.3cfe4216.js"><link rel="prefetch" href="/assets/js/6.48793033.js"><link rel="prefetch" href="/assets/js/60.09aa91fa.js"><link rel="prefetch" href="/assets/js/61.5693ba3c.js"><link rel="prefetch" href="/assets/js/62.5211d85c.js"><link rel="prefetch" href="/assets/js/63.e173f78e.js"><link rel="prefetch" href="/assets/js/64.7a299812.js"><link rel="prefetch" href="/assets/js/65.ebaaa0d8.js"><link rel="prefetch" href="/assets/js/66.2be2b121.js"><link rel="prefetch" href="/assets/js/67.b4bc4357.js"><link rel="prefetch" href="/assets/js/68.2bf1bab8.js"><link rel="prefetch" href="/assets/js/7.1a5c7d14.js"><link rel="prefetch" href="/assets/js/8.72a4f10d.js"><link rel="prefetch" href="/assets/js/9.c598bee1.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ba3370c8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>AWS</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/aws.html#aws-ec2-linux-2-에-docker-설치" class="sidebar-link">AWS EC2 Linux 2 에 Docker 설치</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/aws.html#ssh-console-에서-s3-접근" class="sidebar-link">ssh console 에서 s3 접근</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/aws.html#aws-docker-test" class="sidebar-link">AWS docker test</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/aws.html#mosh-설치" class="sidebar-link">mosh 설치</a></li><li class="sidebar-sub-header"><a href="/dev-log/aws.html#jupyter-notebook-설치-웹콘솔을-위한" class="sidebar-link">jupyter notebook 설치 (웹콘솔을 위한...)</a></li><li class="sidebar-sub-header"><a href="/dev-log/aws.html#docker-설치" class="sidebar-link">docker 설치</a></li><li class="sidebar-sub-header"><a href="/dev-log/aws.html#apache-php5-6-docker" class="sidebar-link">apache + php5.6 docker</a></li><li class="sidebar-sub-header"><a href="/dev-log/aws.html#mysql" class="sidebar-link">mysql</a></li><li class="sidebar-sub-header"><a href="/dev-log/aws.html#php-mysql-연결" class="sidebar-link">php, mysql 연결</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="aws-관련-설정-및-팁"><a href="#aws-관련-설정-및-팁" class="header-anchor">#</a> AWS 관련 설정 및 팁</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#aws" class="tag" data-v-77ca7535>aws</a><a href="/tags.html#redis" class="tag" data-v-77ca7535>redis</a><a href="/tags.html#docker" class="tag" data-v-77ca7535>docker</a><a href="/tags.html#docker-compose" class="tag" data-v-77ca7535>docker-compose</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#aws-ec2-linux-2-에-docker-설치">AWS EC2 Linux 2 에 Docker 설치</a></li><li><a href="#ssh-console-에서-s3-접근">ssh console 에서 s3 접근</a></li><li><a href="#aws-docker-test">AWS docker test</a><ul><li><a href="#mosh-설치">mosh 설치</a></li><li><a href="#jupyter-notebook-설치-웹콘솔을-위한">jupyter notebook 설치 (웹콘솔을 위한...)</a></li><li><a href="#docker-설치">docker 설치</a></li><li><a href="#apache-php5-6-docker">apache + php5.6 docker</a></li><li><a href="#mysql">mysql</a></li><li><a href="#php-mysql-연결">php, mysql 연결</a></li></ul></li></ul></div><p></p> <h2 id="aws-ec2-linux-2-에-docker-설치"><a href="#aws-ec2-linux-2-에-docker-설치" class="header-anchor">#</a> AWS EC2 Linux 2 에 Docker 설치</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> yum update
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> docker
+$ <span class="token function">sudo</span> <span class="token function">curl</span> -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> -o /usr/local/bin/docker-compose
+$ <span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+$ <span class="token function">sudo</span> <span class="token function">service</span> docker start
+$ <span class="token function">sudo</span> <span class="token function">usermod</span> -aG docker <span class="token environment constant">$USER</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="ssh-console-에서-s3-접근"><a href="#ssh-console-에서-s3-접근" class="header-anchor">#</a> ssh console 에서 s3 접근</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ aws configure
+access key <span class="token builtin class-name">:</span> <span class="token operator">&lt;</span>액세스 키 입력<span class="token operator">&gt;</span>
+secret key <span class="token builtin class-name">:</span> <span class="token operator">&lt;</span>시크릿 키 입력<span class="token operator">&gt;</span>
+default region <span class="token builtin class-name">:</span> <span class="token operator">&lt;</span>리전 입력<span class="token operator">&gt;</span>
+
+$ aws s3 <span class="token function">cp</span> s3://주소/20201108_170001_bak.db.sql ./
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="aws-docker-test"><a href="#aws-docker-test" class="header-anchor">#</a> AWS docker test</h2> <ul><li>ubuntu 20.04 ami</li> <li>t2.micro instance</li> <li><code>ssh -i key.pem ubuntu@xxx.xxx.xxx.xxx</code></li></ul> <h3 id="mosh-설치"><a href="#mosh-설치" class="header-anchor">#</a> mosh 설치</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> mosh
+<span class="token comment"># 60000-61000/udp 보안그룹에 추가</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="jupyter-notebook-설치-웹콘솔을-위한"><a href="#jupyter-notebook-설치-웹콘솔을-위한" class="header-anchor">#</a> jupyter notebook 설치 (웹콘솔을 위한...)</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> update
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> python3-pip
+
+<span class="token comment"># jupyter notebook 설치</span>
+$ <span class="token function">sudo</span> pip3 <span class="token function">install</span> notebook
+
+<span class="token comment"># notebook password 설정</span>
+$ python3
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> from notebook.auth <span class="token function">import</span> <span class="token function">passwd</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># sudo 로 config 파일을 생성할 경우 root 디렉토리에 생성됨.</span>
+$ jupyter notebook --generate-config
+Writing default config to: /home/ubuntu/.jupyter/jupyter_notebook_config.py
+$ <span class="token function">vi</span> /home/ubuntu/.jupyter/jupyter_notebook_config.py
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><ul><li>notebook config 수정 (제일 아래에 작성)</li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code>c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">'생성된 패스워드'</span> <span class="token comment"># 위에서 생성한 패스워드</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'xxx.xxx.xxx.xxx'</span> <span class="token comment"># 현재 인스턴스 아이피</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>notebook_dir <span class="token operator">=</span> <span class="token string">'/'</span> <span class="token comment"># 최상위 디렉토리 지정</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ jupyter notebook --allow-root
+
+<span class="token comment"># Ctrl-Z 로 background</span>
+$ <span class="token function">bg</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter-notebook --allow-root
+$ disown -h <span class="token comment"># 소유권 릴리즈</span>
+
+<span class="token comment"># netstat, ifconfig 등이 없을 경우</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> net-tools
+
+$ <span class="token function">netstat</span> -nap <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">8888</span>
+<span class="token punctuation">(</span>Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.<span class="token punctuation">)</span>
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53741    ESTABLISHED <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53742    ESTABLISHED <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53740    ESTABLISHED <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53743    ESTABLISHED <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53739    ESTABLISHED <span class="token number">8799</span>/python3
+tcp        <span class="token number">0</span>      <span class="token number">0</span> xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53738    ESTABLISHED <span class="token number">8799</span>/python3
+
+<span class="token comment"># kill PID</span>
+$ <span class="token function">kill</span> -9 <span class="token number">8389</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><ul><li>ssl 적용</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 자체서명 인증서</span>
+$ <span class="token function">mkdir</span> ssl <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> ssl
+$ <span class="token function">sudo</span> openssl req -x509 -nodes -days <span class="token number">365</span> -newkey rsa:1024 -keyout <span class="token string">&quot;cert.key&quot;</span> -out <span class="token string">&quot;cert.pem&quot;</span> -batch
+Generating a RSA private key
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>.+++++
+<span class="token punctuation">..</span><span class="token punctuation">..</span>+++++
+writing new private key to <span class="token string">'cert.key'</span>
+-----
+
+$ <span class="token function">vi</span> ~/.jupyter/jupyter_notebook_config.py
+<span class="token punctuation">..</span>.
+c.NotebookApp.certfile <span class="token operator">=</span> u<span class="token string">'/home/ubuntu/ssl/cert.pem'</span>
+c.NotebookApp.keyfile <span class="token operator">=</span> u<span class="token string">'/home/ubuntu/ssl/cert.key'</span>
+<span class="token punctuation">..</span>.
+
+<span class="token comment"># 시스템 서비스로 만들기</span>
+$ <span class="token function">sudo</span> <span class="token function">vi</span> /etc/systemd/system/jupyter.service
+<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>Jupyter Notebook Server
+
+<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+<span class="token assign-left variable">Type</span><span class="token operator">=</span>simple
+<span class="token assign-left variable">User</span><span class="token operator">=</span>ubuntu
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/bin/sudo /usr/local/bin/jupyter notebook --allow-root --config /home/ubuntu/.jupyter/jupyter_notebook_config.py
+
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+
+$ <span class="token function">sudo</span> systemctl daemon-reload
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> jupyter
+$ <span class="token function">sudo</span> systemctl start jupyter
+$ <span class="token function">sudo</span> systemctl status jupyter
+$ <span class="token function">sudo</span> systemctl restart jupyter
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h3 id="docker-설치"><a href="#docker-설치" class="header-anchor">#</a> docker 설치</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">apt</span> update
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> apt-transport-https
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ca-certificates
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">curl</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> software-properties-common
+
+<span class="token comment"># docker 설치</span>
+$ <span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+$ <span class="token function">sudo</span> add-apt-repository <span class="token string">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable&quot;</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> update
+$ <span class="token function">apt-cache</span> policy docker-ce
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> docker-ce
+$ <span class="token function">sudo</span> systemctl status docker
+
+$ <span class="token function">sudo</span> <span class="token function">usermod</span> -aG docker <span class="token environment constant">$USER</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="apache-php5-6-docker"><a href="#apache-php5-6-docker" class="header-anchor">#</a> apache + php5.6 docker</h3> <div class="language-docker line-numbers-mode"><pre class="language-docker"><code><span class="token keyword">FROM</span> ubuntu<span class="token punctuation">:</span>18.04
+<span class="token keyword">MAINTAINER</span> temp &lt;temp@temp.io<span class="token punctuation">&gt;</span>
+
+<span class="token comment"># Avoiding user interation with tzdata</span>
+<span class="token keyword">ENV</span> DEBIAN_FRONTEND=noninteractive
+
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get update
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y apache2
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y software<span class="token punctuation">-</span>properties<span class="token punctuation">-</span>common
+<span class="token keyword">RUN</span> add<span class="token punctuation">-</span>apt<span class="token punctuation">-</span>repository ppa<span class="token punctuation">:</span>ondrej/php
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get update
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y php5.6
+
+<span class="token keyword">EXPOSE</span> 80
+
+<span class="token keyword">CMD</span> <span class="token punctuation">[</span><span class="token string">&quot;apachectl&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-D&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;FOREGROUND&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker run -p <span class="token number">80</span>:80 -v /home/ubuntu/example/html:/var/www/html example
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="mysql"><a href="#mysql" class="header-anchor">#</a> mysql</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker run -d -p <span class="token number">9876</span>:3306 -e <span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span>password mysql:5.6
+$ docker <span class="token builtin class-name">exec</span> -it 5bb05609cbe4 /bin/bash
+5bb05609cbe4$ mysql -uroot -ppassword
+mysql<span class="token operator">&gt;</span> CREATE DATABASE TEST<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> SHOW DATABASES<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> <span class="token punctuation">\</span>q
+5bb05609cbe4$ <span class="token builtin class-name">exit</span>
+
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> mysql-client-core-8.0
+<span class="token comment"># docker inspect 로 나오는 ip 혹은 로컬</span>
+$ mysql -uroot -p --host <span class="token number">172.17</span>.0.2 --port <span class="token number">3306</span>
+$ mysql -uroot -p --host <span class="token number">127.0</span>.0.1 --port <span class="token number">9876</span>
+
+<span class="token comment"># mysql 유저 생성</span>
+mysql<span class="token operator">&gt;</span> CREATE <span class="token environment constant">USER</span> <span class="token string">'test'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'password'</span><span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> GRANT ALL PRIVILEGES ON *.* TO <span class="token string">'test'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> FLUSH PRIVILEGES<span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+$ docker restart 5bb05609cbe4
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h3 id="php-mysql-연결"><a href="#php-mysql-연결" class="header-anchor">#</a> php, mysql 연결</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">vi</span> ~/example/Dockerfile
+<span class="token punctuation">..</span>.
+RUN <span class="token function">apt-get</span> <span class="token function">install</span> -y php5.6-mysql
+<span class="token punctuation">..</span>.
+
+$ docker build -t example <span class="token builtin class-name">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8분 전</span></div></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.ac24e3cd.js" defer></script><script src="/assets/js/16.aaf8b347.js" defer></script><script src="/assets/js/2.553ec66f.js" defer></script><script src="/assets/js/43.158636c7.js" defer></script><script src="/assets/js/23.79fe1d4f.js" defer></script><script src="/assets/js/24.c7c28036.js" defer></script>
+  </body>
+</html>
