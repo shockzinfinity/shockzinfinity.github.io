@@ -471,3 +471,11 @@ $ mkdir test; cd test; touch abc
 $ mkdir test(실패) && cd test && touch abc
 $ mkdir test3 && { cd test3; touch abc; echo 'success!!' } || echo 'There is no dir';
 ```
+
+## ubuntu zombie process kill
+
+> ` => There is 1 zombie process.` 
+```bash
+$ ps -elf --forest | grep -C5 '<[d]efunct>'
+$ sudo kill -9 <parent process number>
+```
