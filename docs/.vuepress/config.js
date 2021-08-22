@@ -32,7 +32,7 @@ module.exports = {
     ],
     [
       'meta',
-      { name: 'naver-site-verification', content: 'd795a93480ccc9f079f6ce70e020202b3a7d0a72' },
+      { name: 'naver-site-verification', content: 'cd32f721debd9633141e4a04c83fad98d36a5abc' },
     ],
     ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
