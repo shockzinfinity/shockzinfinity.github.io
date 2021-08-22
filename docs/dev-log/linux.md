@@ -479,3 +479,15 @@ $ mkdir test3 && { cd test3; touch abc; echo 'success!!' } || echo 'There is no 
 $ ps -elf --forest | grep -C5 '<[d]efunct>'
 $ sudo kill -9 <parent process number>
 ```
+
+
+## node_modules, bin, obj, packages, .vs 일괄 삭제
+
+```bash
+$ find . -name 'node_modules' -type d -prune
+$ find . -name 'node_modules' -type d -prune -exec rm -rf {} +
+$ find . -name 'bin' -type d -prune -exec rm -rf {} +
+$ find . -name 'obj' -type d -prune -exec rm -rf {} +
+$ find . -name 'packages' -type d -prune -exec rm -rf {} +
+$ find . -name '.vs' -type d -prune -exec rm -rf {} +
+```
