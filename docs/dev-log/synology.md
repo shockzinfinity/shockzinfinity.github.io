@@ -64,6 +64,9 @@ $ wget https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh
 $ chmod a+x acme.sh
 
 $ ./acme.sh --issue --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+# 2021-09-13 [추가] acme.sh 최근에서는 계정 등록한 이후 사용할 수 있도록 변경된 듯
+$ ./acme.sh --register-account -m your@email.com
+
 # Domain: 확인
 # TXT Value: 확인
 # DNS TXT 레코드 변경 후 확인
@@ -84,22 +87,8 @@ $ ./acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-m
 > ![6](./image/synology.ssl.6.png)  
 > ![7](./image/synology.ssl.7.png)  
 > ![8](./image/synology.ssl.8.png)  
-> 스크립트 내용
 
-```bash
-# 인증서 갱신
-/root/acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
-
-# 인증서 등록
-# 복사할 폴더 확인 cat /usr/syno/etc/certificate/_archive/DEFAULT
-cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/cert.pem
-cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/chain.pem
-cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/fullchain.pem
-cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/`cat /usr/syno/etc/certificate/_archive/DEFAULT`/privkey.pem
-
-# nginx 재시작
-/usr/syno/sbin/synoservicectl --reload nginx
-```
+> UI를 통한 인증서 갱신은 자동으로 역방향 프록시에 적용됨.
 
 ## Let's Encrypt SSL Reverse Proxy 적용
 
@@ -129,7 +118,10 @@ cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/_archive/
 for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk '{ print $9 }'`; do cp -f /root/.acme.sh/shockz.io/shockz.io.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/cert.pem; cp -f /root/.acme.sh/shockz.io/ca.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/chain.pem; cp -f /root/.acme.sh/shockz.io/fullchain.cer /usr/syno/etc/certificate/ReverseProxy/$reverse/fullchain.pem; cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/$reverse/privkey.pem; done
 
 # nginx 재시작
+# DSM 6.x
 /usr/syno/sbin/synoservicectl --reload nginx
+# DSM 7.0
+/usr/syno/bin/synosystemctl restart nginx
 ```
 
 ## 참고
