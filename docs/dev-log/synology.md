@@ -88,7 +88,7 @@ $ ./acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-m
 > ![6](./image/synology.ssl.6.png)  
 > ![7](./image/synology.ssl.7.png)  
 > ![8](./image/synology.ssl.8.png)  
-
+> 스크립트 내용은 아래 작업 스케줄러 최종 스크립트 참조
 > UI를 통한 인증서 갱신은 자동으로 역방향 프록시에 적용됨.
 
 ## Let's Encrypt SSL Reverse Proxy 적용
