@@ -148,3 +148,8 @@ for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk 
 $ showmount -e 192.168.0.99
 $ sudo mount 192.168.0.99:/volume1/archive nas-archive
 ```
+
+## 공유 링크 관리자
+
+![synology.share.link](./image/synology.share.link.1.png)
+![synology.share.link](./image/synology.share.link.2.png)
