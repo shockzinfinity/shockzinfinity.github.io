@@ -40,3 +40,7 @@ feed:
 - `보안 및 개인 정보 보호 탭 > 개인 정보 보호 > 전체 디스크 접근 권한`에서 Terminal, iTerm, vscode 등 필요한 앱에 권한 할당
 ![vscode.operation](./image/vscode.operationnotpermitted.1.png)
 ![vscode.operation](./image/vscode.operationnotpermitted.2.png)
+
+## .DS_STORE 파일 삭제
+
+![ds.store.file.delete](./image/ds.store.file.delete.1.png)

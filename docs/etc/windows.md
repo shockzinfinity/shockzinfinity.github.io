@@ -637,3 +637,7 @@ unable to start ssh-agent service, error :1058
 ```bash
 >  git remote set-url origin git@temp2-github.com:temp2/address.git
 ```
+
+## SMB/CIFS 연결 안될때 체크
+
+![windows.feature.on.off](./image/windows.feature.on.off.1.png)
