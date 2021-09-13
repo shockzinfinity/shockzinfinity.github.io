@@ -63,9 +63,10 @@ feed:
 $ wget https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh
 $ chmod a+x acme.sh
 
-$ ./acme.sh --issue --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
 # 2021-09-13 [추가] acme.sh 최근에서는 계정 등록한 이후 사용할 수 있도록 변경된 듯
 $ ./acme.sh --register-account -m your@email.com
+$ ./acme.sh --issue --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
+# TXT 레코드에 등록해야 할 코드가 출력됨 -> DNS TXT 레코드에 추가 혹은 갱신 필요
 
 # Domain: 확인
 # TXT Value: 확인
