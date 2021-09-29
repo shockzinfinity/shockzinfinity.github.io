@@ -197,4 +197,8 @@ jobs:
 - `docker push` 가 가능해짐
 ```bash
 $ cat -p ~/Desktop/GH_TOKEN.txt| docker login ghcr.io -u shockzinfinity --password-stdin
+
+# 윈도우즈의 경우는
+$ cat %HOME%/Desktop/{token.filename} | docker login ghcr.io -u shockzinfinity --password-stdin
 ```
+- 
