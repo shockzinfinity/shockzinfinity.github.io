@@ -414,6 +414,18 @@ username  ALL=(ALL) NOPASSWD:ALL
 - man 페이지에 나와있는 내용이었지만 애초에 man 페이지를 읽지 않았다...
 :::
 
+- `/etc/sudoers.d/{username}-sudoer 를 대신 이용
+```bash
+$ cd /etc/sudoers.d
+
+# 파일 이름은 임의로 생성해도 됨
+$ touch /etc/{username}-sudoer
+$ vi /etc/{username}-sudoer
+
+# username 이 test01 이라고 가정하고 아래의 라인을 추가 후 저장
+test01 ALL=(ALL) NOPASSWD:ALL
+```
+
 ## ubuntu docker.io
 
 ```bash
