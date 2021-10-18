@@ -83,7 +83,14 @@ $ sudo apt install git zsh
 $ sudo chsh -s $(which zsh)
 
 # oh-my-zsh 설치
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/master/tools/install.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### wsl LS_COLOR 조정
+
+```bash
+# .zshrc 에 아래 추가
+LS_COLORS="ow=01;36;40" && export LS_COLORS
 ```
 
 ### zsh-completions, zsh-syntax-highlighting, zsh-autosuggestions
@@ -110,7 +117,7 @@ $ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:=~/.oh
 plugins=(
   ...
   zsh-completions
-  zsh-highlighting
+  zsh-syntax-highlighting
   zsh-autosuggestions
 )
 ```
@@ -148,7 +155,7 @@ $ mkdir ~/.SpaceVim.d/colors
 [options]
   colorscheme = "snazzy-custom"
   enable_guicolors = true
-  statusline_separator = "arraw"
+  statusline_separator = "arrow"
   enable_tabline_filetype_icon = true
   enable_statusline_mode = true
   statusline_unicode_symbols = true
@@ -160,14 +167,27 @@ $ mkdir ~/.SpaceVim.d/colors
 $ sudo apt install fzf fasd tig jq neofetch
 ```
 
-### nvm
+### nvm in wsl
 
-- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+- [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+- `sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`
 ```bash
 $ nvm --version
 $ nvm ls-remote
 $ nvm install v12.21.0
-$ npm use v12.21.0
+$ nvm use v12.21.0
+```
+
+### nvm in windows command
+
+- [https://github.com/coreybutler/nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases)
+- `nvm use 12.22.7` 과 같이 실행할 경우는 cmd 를 관리자 권한으로 실행한 후 해당 커맨드를 실행해야 함 (2021.10.15 현재 nvm-windows 를 설치했을 경우 elevation.cmd 혹은 elevation.vbs 가 정상적으로 실행이 안되는 것을 보임)
+- `use` 의 경우만 관리자 권한에서 실행하면 되고, 그 후는 일반 cmd 권한에서도 동작함
+```cmd{4}
+> nvm --version
+> nvm list
+> nvm install 12
+> nmv use 12.22.7
 ```
 
 ### Windows Terminal settings
@@ -641,3 +661,34 @@ unable to start ssh-agent service, error :1058
 ## SMB/CIFS 연결 안될때 체크
 
 ![windows.feature.on.off](./image/windows.feature.on.off.1.png)
+
+## cmd 한글 깨지는 현상 (code page)
+
+- 한글 확장 완성형: 949
+- UTF-8: 65001
+- REGISTRY 등록: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Nls\CodePage
+  OEMCP 949 -> 65001
+
+```cmd
+> chcp
+> chcp 949
+> chcp 65001
+```
+
+## WSL 에서 Windows font 사용
+
+- `/etc/fonts/fonts.conf` 에 Windows Font 경로 추가
+```xml
+<!-- Font directory list -->
+  <dir>/usr/share/fonts</dir>
+  <dir>/usr/local/share/fonts</dir>
+  <dir prefix="xdg">fonts</dir>
+  <!-- the following element will be removed in the future -->
+  <dir>~/.fonts</dir>
+  <dir>/mn/c/Windows/Fonts</dir>
+```
+
+## windows batch script
+
+- [https://velog.io/@springkim/windows-batch-script](https://velog.io/@springkim/windows-batch-script)
+- [https://kukuta.tistory.com/232](https://kukuta.tistory.com/232)

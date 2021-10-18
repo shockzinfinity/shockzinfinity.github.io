@@ -419,8 +419,8 @@ username  ALL=(ALL) NOPASSWD:ALL
 $ cd /etc/sudoers.d
 
 # 파일 이름은 임의로 생성해도 됨
-$ touch /etc/{username}-sudoer
-$ vi /etc/{username}-sudoer
+$ touch {username}-sudoer
+$ vi {username}-sudoer
 
 # username 이 test01 이라고 가정하고 아래의 라인을 추가 후 저장
 test01 ALL=(ALL) NOPASSWD:ALL
@@ -496,7 +496,10 @@ $ sudo kill -9 <parent process number>
 ## node_modules, bin, obj, packages, .vs 일괄 삭제
 
 ```bash
+# 리스트 확인
 $ find . -name 'node_modules' -type d -prune
+
+# 삭제
 $ find . -name 'node_modules' -type d -prune -exec rm -rf {} +
 $ find . -name 'bin' -type d -prune -exec rm -rf {} +
 $ find . -name 'obj' -type d -prune -exec rm -rf {} +
