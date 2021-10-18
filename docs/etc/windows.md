@@ -177,6 +177,15 @@ plugins=(
 
 ```
 
+### bat 설치
+
+```bash
+$ sudo apt install bat
+
+# in .zshrc (ubuntu 에서는 batcat 으로 설치 됨, 맥은 bat)
+alias cat="batcat --paging=never"
+```
+
 ### nvm in wsl
 
 - [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
