@@ -106,7 +106,8 @@ plugins = (
   ...
 )
 
-$ autoload -U compinit && compinit
+# .zshrc 하단에 아래 구문 추가
+autoload -U compinit && compinit
 
 # zsh-syntax-highlighting
 $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -165,6 +166,15 @@ $ mkdir ~/.SpaceVim.d/colors
 
 ```bash
 $ sudo apt install fzf fasd tig jq neofetch
+
+# .zshrc plugins 에 추가
+plugins=(
+  ...
+  fzf
+  fasd
+  ...
+)
+
 ```
 
 ### nvm in wsl
