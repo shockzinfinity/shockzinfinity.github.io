@@ -276,6 +276,23 @@ $ nvm use v12.21.0
 }
 ```
 
+## WSL clipboard
+
+```bash{9}
+$ sudo apt install xclip
+
+# in .zshrc
+# xclip to pbcopy, pbpaste
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -o selection clipboard"
+
+$ cat .ssh/id_rsa.pub | pbcopy
+Error: Can't open display: (null)
+
+# 다른 방법
+$ cat .ssh/id_rsa.pub | clip.exe
+```
+
 ## wsl, php, xdebug, vscode
 
 - TODO: WSL 설치
