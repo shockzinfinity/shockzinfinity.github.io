@@ -728,3 +728,22 @@ unable to start ssh-agent service, error :1058
 
 - [https://velog.io/@springkim/windows-batch-script](https://velog.io/@springkim/windows-batch-script)
 - [https://kukuta.tistory.com/232](https://kukuta.tistory.com/232)
+
+
+## Oh-My-Posh
+
+- Font: MesloLGS NF
+```powershell
+> Install-Module posh-git -Scope CurrentUser
+> Install-Module oh-my-posh -Scope CurrentUser
+# PSReadLine: PowerShell 명령줄 편집 환경 사용자 지정
+> Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
+> notepad $PROFILE
+# 아래 모듈 추가
+Import-Module posh-git
+Import-Module oh-my-posh
+Set-PoshPrompt Paradox
+
+# 오류 발생 시
+> Set-ExecutionPolicy RemoteSigned
+```
