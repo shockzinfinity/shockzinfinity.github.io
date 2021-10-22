@@ -6,7 +6,7 @@ meta:
     content: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
   - name: keywords
     content: linux
-tags: ["linux"]
+tags: ['linux']
 sidebar: auto
 feed:
   enable: true
@@ -14,8 +14,7 @@ feed:
   description: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
       link: https://shockzinfinity.github.io/dev-log/linux.html
 ---
@@ -29,7 +28,8 @@ feed:
 ## 디스크 사용량 및 여유공간 확인
 
 - Disk Usage (du)
-   > -h 옵션은 용량을 보기 쉽게...
+  > -h 옵션은 용량을 보기 쉽게...
+
 ```bash
 # 현재 디렉토리 사용량
 $ du -sh
@@ -71,11 +71,11 @@ $ find . -name "*.c" -exec ls -l {} \;
 | 대상 디렉토리에 있는 파일 및 디렉토리 리스트 표시           | find [PATH]                                |
 | 현재 디렉토리 아래 모든 파일 및 하위 디렉토리에서 파일 검색 | find . -name [FILE]                        |
 | 전체 시스템(루트 디렉토리)에서 파일 검색                    | find / -name [FILE]                        |
-| 파일 이름이 특정 문자열로 시작하는 파일 검색                | find . -name "STR*"                        |
-| 파일 이름에 특정 문자열이 포함된 파일 검색                  | find . -name "*STR*"                       |
-| 파일 이름이 특정 문자열로 끝나는 파일 검색                  | find . -name "*STR"                        |
+| 파일 이름이 특정 문자열로 시작하는 파일 검색                | find . -name "STR\*"                       |
+| 파일 이름에 특정 문자열이 포함된 파일 검색                  | find . -name "_STR_"                       |
+| 파일 이름이 특정 문자열로 끝나는 파일 검색                  | find . -name "\*STR"                       |
 | 빈 디렉토리 또는 크기가 0인 파일 검색                       | find . -empty                              |
-| 특정 확장자를 가진 모든 파일 검색 후 삭제                   | find . -name "*.EXT" -delete               |
+| 특정 확장자를 가진 모든 파일 검색 후 삭제                   | find . -name "\*.EXT" -delete              |
 | 검색된 파일 리스트를 줄 바꿈 없이 이어서 출력하기           | find . -name [FILE] -print0                |
 | 파일 또는 디렉토리만 검색하기                               | find . -name [FILE] -type f                |
 | 파일 크기를 사용하여 파일 검색                              | find . -size +[N]c -and -size -[M]c        |
@@ -117,7 +117,7 @@ $ last
 # ssh 접속 실패
 $ last -f /var/log/btmp
 
-# 현재 로그인한 사용자 
+# 현재 로그인한 사용자
 $ user
 $ who
 $ who -auH
@@ -142,6 +142,7 @@ $ apt-get install fail2ban
 
 $ vi /etc/fail2ban/jail.conf
 ```
+
 ```bash
 [DEFAULT]
 
@@ -171,6 +172,7 @@ port = 22
 filter = sshd
 logpath = /var/log/auth.log
 ```
+
 ```bash
 $ service fail2ban restart
 
@@ -182,6 +184,7 @@ $ fail2ban-client set sshd unbanip 000.000.000.000
 ```
 
 ## ubuntu update
+
 > apt 는 apt-get 과 apt-cache 의 기능 중에서 잘 사용되지 않는 기능을 제외하고 만든 새로운 tool 이다.  
 > apt-get 은 패키지 설치를 담당하고, apt-cache 는 패키지 검색을 담당하는 tool 이다.  
 > apt-get 보다는 apt 사용이 권장된다.  
@@ -209,19 +212,24 @@ $ sudo apt dist-upgrade
 - [ubuntu image download](https://releases.ubuntu.com/20.04/) - 여기서는 desktop image 로 시작
 - iso -> img
 - .img.dmg 형태로 변환되어 저장되니, .dmg 를 삭제
+
 ```bash
 $ hdiutil convert -format UDRW -o ~/Downloads/ubuntu-20.04.1-desktop-amd64.img ~/Downloads/ubuntu-20.04.1-desktop-amd64.iso
 $ mv ~/Downloads/ubuntu-20.04.1-desktop-amd64.img.dmg ~/Downloads/ubuntu-20.04.1-desktop-amd64.img
 ```
+
 - disk number 확인
 - mount 되어 있다면 unmount 해야 만들수 있음.
+
 ```bash
 $ diskutil list
 $ diskutil unmountDisk /dev/disk2
 $ sudo dd if=~/Downloads/ubuntu-20.04.1-desktop-amd64.img of=/dev/disk2 bs=1m
 ```
+
 - 설치할 머신에서 해당 usb 로 부팅하여 설치 시작
 - desktop 버전은 설치된 이후 기본적으로 ssh 가 비활성화 되어 있기때문에 ssh 는 별도 설치가 필요함
+
 ```bash
 # on ubuntu machine
 $ sudo apt update
@@ -242,11 +250,15 @@ LoginGraceTime 30
 $ sudo systemctl enable ssh
 $ sudo systemctl start ssh
 ```
+
 ::: tip
+
 - ssh 키 복사 (대상: 192.168.10.1 일 경우)
+
 ```bash
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub temp@192.168.10.1
 ```
+
 :::
 
 ## ubuntu zsh install
@@ -264,20 +276,20 @@ $ chsh -s /usr/bin/zsh
 # (the files .zshenv, .zprofile, .zshrc, .zlogin in the directory
 # ~).  This function can help you with a few settings that should
 # make your use of the shell easier.
-# 
+#
 # You can:
-# 
+#
 # (q)  Quit and do nothing.  The function will be run again next time.
-# 
+#
 # (0)  Exit, creating the file ~/.zshrc containing just a comment.
 #      That will prevent this function being run again.
-# 
+#
 # (1)  Continue to the main menu.
-# 
+#
 # (2)  Populate your ~/.zshrc with the configuration recommended
 #      by the system administrator and exit (you will need to edit
 #      the file by hand, if so desired).
-# 
+#
 # --- Type one of the keys in parentheses ---
 # 2 번 선택
 
@@ -393,6 +405,7 @@ Filesystem            Size  Used Avail Use% Mounted on
 # crontab -e 를 통해 다음을 추가
 10 5 * * * find /var/log/ -mtime +10 -type f -ls -exec rm {} \;
 ```
+
 - 매일 5시 10분에 /var/log 에서 현재시각 기준 10일전 일반 파일들 검색하여 삭제
   > pmlogger 용량이 과도하게 늘어나는 상황때문에 추가함.
   > [crontab 시간 설정 참고](https://ponyozzang.tistory.com/402)
@@ -403,18 +416,22 @@ Filesystem            Size  Used Avail Use% Mounted on
 - 직접 접근하여 수정하는 것은 권장되지 않는다. (기본적으로 /etc/sudoers 는 440 으로 설정되어 있다.)
 - 무리해서 쓰기 권한을 부여하여 수정하면 안된다.
 - `sudo visudo` 를 통해 수정한다. (/tmp 에서 수정해서 적용하는 메커니즘)
+
 ```bash
 # 일반적으로는 이런 라인을 추가하여 sudo 사용 시 패스워드 없이 가능하도록 설정한다.
 username  ALL=(ALL) NOPASSWD:ALL
 ```
+
 ::: warning
+
 - 주의해야 하는 부분은 sudoers 파일은 위에서 아래로 해석되므로 해당 사용자/그룹이 적용되는 sudo 원칙은 제일 아래에 있는 설정이 최종 적용된다.
 - 특정 아이디에 패스워드 없이 sudo 권한 주겠다고 root 항목 밑에 삽입해서 적용해봤자 (~~본인의 경우~~)
 - 아래의 %wheel 설정이 적용된다는 뜻이다.(wheel 그룹에 대한 설정이 보통 root 아래에 있다.)
 - man 페이지에 나와있는 내용이었지만 애초에 man 페이지를 읽지 않았다...
-:::
+  :::
 
 - `/etc/sudoers.d/{username}-sudoer 를 대신 이용
+
 ```bash
 $ cd /etc/sudoers.d
 
@@ -476,6 +493,7 @@ Server:
 - ; : 앞의 명령어가 실패해도 다음 명령어가 실행
 - && : 앞의 명령어가 성공했을 때 다음 명령어가 실행
 - & : 앞의 명령어를 백그라운드로 돌리고 동시에 뒤의 명령어를 실행
+
 ```bash
 $ mkdir test;cd test
 $ mkdir test; cd test; touch abc
@@ -486,12 +504,12 @@ $ mkdir test3 && { cd test3; touch abc; echo 'success!!' } || echo 'There is no 
 
 ## ubuntu zombie process kill
 
-> ` => There is 1 zombie process.` 
+> ` => There is 1 zombie process.`
+
 ```bash
 $ ps -elf --forest | grep -C5 '<[d]efunct>'
 $ sudo kill -9 <parent process number>
 ```
-
 
 ## node_modules, bin, obj, packages, .vs 일괄 삭제
 
@@ -505,4 +523,45 @@ $ find . -name 'bin' -type d -prune -exec rm -rf {} +
 $ find . -name 'obj' -type d -prune -exec rm -rf {} +
 $ find . -name 'packages' -type d -prune -exec rm -rf {} +
 $ find . -name '.vs' -type d -prune -exec rm -rf {} +
+```
+
+## systemctl summary
+
+- `systemd-analyze`: 부팅에 걸린 시간 표시
+- `systemd-analyze blam`: 부팅시 서비스별 걸린 시간
+- `journalctl`: 부팅을 포함한 시스템 로그
+- `journalctl -b`: 마지막 부팅 이후 시스템 로그
+- `hostnamectl`: 호스트 이름 표시
+- `hostnamectl set-hostname [변경이름]`: 호스트 이름 변경
+
+```bash
+# 서비스 상태표시
+
+# 존재하는 전체 서비스 목록
+$ systemctl
+# 서비스 목록 (활성화 여부만 표시)
+$ systemctl list-unit-files
+# 부팅시 실행에 실패한 서비스목록
+$ systemctl --failed
+# 서비스 활성화 여부
+$ systemctl is-enabled [서비스명]
+# 서비스 현재 동작 여부
+$ systemctl is-active [서비스명]
+# 서비스의 자세한 상태 (해당 서비스의 로그도 표시)
+$ systemctl status -l [서비스명]
+
+# 서비스 제어
+
+# 서비스 활성화
+$ systemctl enable [서비스명]
+# 서비스 비활성화
+$ systemctl disable [서비스명]
+# 서비스 시작
+$ systemctl start [서비스명]
+# 서비스 종료
+$ systemctl stop [서비스명]
+# 서비스 재시작
+$ systemctl restart [서비스명]
+# 서비스 갱신
+$ systemctl reload [서비스명]
 ```
