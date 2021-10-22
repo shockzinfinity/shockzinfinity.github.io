@@ -6,7 +6,7 @@ meta:
     content: Synology NAS 에 대한 내용을 다룹니다.
   - name: keywords
     content: synology, NAS
-tags: ["nas", "synology"]
+tags: ['nas', 'synology']
 sidebar: auto
 feed:
   enable: true
@@ -14,8 +14,7 @@ feed:
   description: Synology NAS 에 대한 내용을 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
       link: https://shockzinfinity.github.io/dev-log/synology.html
 ---
@@ -95,6 +94,7 @@ $ ./acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-m
 
 - 인증서 갱신 이후 `/usr/syno/etc/certificate/_archive/DEFAULT` 에만 적용하게 되면 Synology Reverse Proxy 는 자동 적용되지 않음
 - 개별적으로 적용해야 함
+
 ```bash
 # 예시
 $ for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk '{ print $9 }'`; do
@@ -104,7 +104,9 @@ $ for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | aw
 > cp -f /root/.acme.sh/shockz.io/shockz.io.key /usr/syno/etc/certificate/ReverseProxy/$reverse/privkey.pem
 > done
 ```
+
 - Synology 작업 스케줄러 최종 스크립트
+
 ```bash
 # 인증서 갱신
 /root/acme.sh --renew --dns --force -d shockz.io -d *.shockz.io --yes-I-know-dns-manual-mode-enough-go-ahead-please
@@ -133,10 +135,11 @@ for reverse in `ls -l /usr/syno/etc/certificate/ReverseProxy/ | grep "^d" | awk 
 ## NFS 설정
 
 - NFS 사용 설정
-![synology.nfs](./image/synology.nfs.1.png)
+  ![synology.nfs](./image/synology.nfs.1.png)
 - 하위 폴더 접근 및 권한을 위해 해당 항목 체크
-![synology.nfs](./image/synology.nfs.2.png)
+  ![synology.nfs](./image/synology.nfs.2.png)
 - 접근하고자 하는 리눅스 서버 상에서 마운트
+
 ```bash
 $ showmount -e 192.168.0.99
 $ sudo mount 192.168.0.99:/volume1/archive nas-archive
@@ -146,3 +149,11 @@ $ sudo mount 192.168.0.99:/volume1/archive nas-archive
 
 ![synology.share.link](./image/synology.share.link.1.png)
 ![synology.share.link](./image/synology.share.link.2.png)
+
+## GitLab with synology docker [예정]
+
+- Model: DS718+
+- RAM: 10G
+- DSM 7.0 기준
+- docker 이미지 다운로드
+- reverse proxy settings
