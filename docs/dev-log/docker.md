@@ -6,7 +6,7 @@ meta:
     content: docker 사용 및 관련 설정 내용을 다룹니다.
   - name: keywords
     content: docker in centos 8
-tags: ["docker"]
+tags: ['docker']
 sidebar: auto
 feed:
   enable: true
@@ -14,8 +14,7 @@ feed:
   description: docker 사용 및 관련 설정 내용을 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
       link: https://shockzinfinity.github.io/dev-log/docker.html
 ---
@@ -126,30 +125,39 @@ $ docker-compose up -d # background run
 
 ::: tip
 현재 docker 컨테이너 중지 및 삭제
+
 ```bash
 $ docker stop $(docker ps -aq)
 $ docker rm $(docker ps -aq)
 ```
+
 :::
 
 ## docker image export/import/save/load
 
 1. save / load
-  - docker 이미지를 tar 로 저장하고 로드
-  ```bash
-  $ docker save -o nginx.tar nginx:latest
-  $ docker load -i nginx.tar
-  ```
+
+- docker 이미지를 tar 로 저장하고 로드
+
+```bash
+$ docker save -o nginx.tar nginx:latest
+$ docker load -i nginx.tar
+```
+
 2. export / import
-  - container 를 tar 로 저장하고 로드
-  ```bash
-  $ docker export container_id > temp.tar
-  $ docker impoort <temp.tar or url> - [image name[:tag name]]
-  ```
+
+- container 를 tar 로 저장하고 로드
+
+```bash
+$ docker export container_id > temp.tar
+$ docker impoort <temp.tar or url> - [image name[:tag name]]
+```
+
 ::: tip
+
 - export / import 는 컨테이너 동작에 필요한 모든 파일을 포함, 루트 파일시스템 전체가 포함됨
 - save / load 는 레이어 구조까지 포함한 형태로 압축
-:::
+  :::
 
 ## Reference
 
@@ -165,10 +173,12 @@ $ docker stats --no-stream
 $ docker stats --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 $ docker stats --format "table {{.Container}}:       {{.CPUPerc}}"
 ```
+
 ::: tip
+
 - 사용 가능한 format string
 - .Container, .Name, .ID, .CPUPerc, .MemUsage, .NetIO, .BlockIO, MemPerc, .PIDs
-:::
+  :::
 
 ## apt 패키지 설치시 사용자 상호 작용 방지
 
@@ -210,6 +220,7 @@ RUN apt-get update && \
   - docker run --entrypoint="[COMMAND] [IMAGE]"를 사용하여 무시 가능
 
 ## ADD vs COPY
+
 - ADD
   - 파일 복사
   - 압축 파일인 경우, 압축을 품
@@ -226,6 +237,7 @@ RUN apt-get update && \
 ## docker 재설치
 
 - container 중지 및 삭제
+
 ```bash
 $ docker stop $(docker ps -q)
 $ docker rm $(docker ps -q)
@@ -235,11 +247,13 @@ $ sudo systemctl stop containerd
 ```
 
 - docker 패키지 확인
+
 ```bash
 $ yum list installed | grep docker
 ```
 
 - 이전 버전 제거
+
 ```bash
 $ sudo yum remove docker \
                   docker-client \
@@ -256,6 +270,7 @@ $ sudo yum erase docker-ce-cli.x86_64
 ```
 
 - 관련 파일 삭제
+
 ```bash
 $ cd /var/lib/docker
 # 주의!
@@ -270,6 +285,7 @@ $ rm -rf docker
 
 - 설치 시 종속성 관련 에러가 발생되는 경우가 있음
 - 기본 저장소에는 containerd 의 버전이 늦는 경우가 있음
+
 ```bash
 # 확인
 $ sudo yum list installed | grep docker
@@ -286,6 +302,7 @@ $ sudo yum install docker-ce
 ```
 
 - 서비스 시작 및 자동 시작 등록
+
 ```bash
 $ sudo systemctl enable docker
 $ sudo systemctl enable containerd
@@ -293,4 +310,10 @@ $ sudo systemctl start docker
 $ sudo systemctl start containerd
 $ sudo systemctl status docker
 $ sudo systemctl status containerd
+```
+
+## docker tag
+
+```bash
+$ docker tag 0186e4019f7a ghcr.io/shockzinfinity/name:latest
 ```
