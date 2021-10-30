@@ -317,3 +317,15 @@ $ sudo systemctl status containerd
 ```bash
 $ docker tag 0186e4019f7a ghcr.io/shockzinfinity/name:latest
 ```
+
+## docker shared volume permission denied
+
+- `docker run` 사용 시 `--privileged` 옵션 혹은 `docker-compose.yml` 상에 `privileged: true` 사용
+
+```docker{5}
+services:
+  service_temp:
+    container_name: service_temp
+    image: service_temp:latest
+    privileged: true
+```

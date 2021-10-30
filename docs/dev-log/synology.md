@@ -150,6 +150,13 @@ $ sudo mount 192.168.0.99:/volume1/archive nas-archive
 ![synology.share.link](./image/synology.share.link.1.png)
 ![synology.share.link](./image/synology.share.link.2.png)
 
+## sudo 없이 docker 명령어 사용
+
+```bash
+$ sudo synogroup --add docker username
+$ sudo chown root:docker /var/run/docker.sock
+```
+
 ## GitLab with synology docker [예정]
 
 - Model: DS718+
