@@ -857,3 +857,35 @@ Set-PoshPrompt Paradox
 # 오류 발생 시
 > Set-ExecutionPolicy RemoteSigned
 ```
+
+## Cmder on VS Code
+
+- `settings.json`
+
+```json
+  "terminal.integrated.defaultProfile.windows": "Cmder",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Cmder": {
+      "path": "${env:windir}\\System32\\cmd.exe",
+      "args": [
+        "/k",
+        "C:\\Users\\shockz\\AppData\\Roaming\\cmder\\vendor\\bin\\vscode_init.cmd"
+      ]
+    }
+  },
+```
