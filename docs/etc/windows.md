@@ -149,6 +149,8 @@ $ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-
 plugins = (
   ...
   zsh-completions
+  zsh-syntax-highlighting
+  zsh-autosuggestions
   ...
 )
 
@@ -349,6 +351,7 @@ Error: Can't open display: (null)
 
 # 다른 방법
 $ cat .ssh/id_rsa.pub | clip.exe
+$ clip.exe < ~/.ssh/id_rsa.pub
 ```
 
 ## wsl, php, xdebug, vscode
