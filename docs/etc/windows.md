@@ -87,6 +87,25 @@ feed:
 }
 ```
 
+## git 사용자 설정
+
+```cmd
+git config --list
+git config --global --list
+
+# 편집 모드
+git config --global -e
+```
+
+```ini
+[core]
+	editor = \"C:\\Users\\temp\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code.cmd\" --wait
+	autocrlf = input
+[user]
+	name = temp
+	email = temp@temp.com
+```
+
 ## yarn global path 지정
 
 ```bash
