@@ -6,7 +6,7 @@ meta:
     content: Windows 개발 환경 구성 시 참고
   - name: keywords
     content: windows, development, env
-tags: ["windows", "dev", "env"]
+tags: ['windows', 'dev', 'env']
 sidebar: auto
 feed:
   enable: true
@@ -14,8 +14,7 @@ feed:
   description: Windows 개발 환경 구성 시 참고
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
       link: https://shockzinfinity.github.io/etc/windows.html
 ---
@@ -28,21 +27,65 @@ feed:
 
 ## Cmder + Windows Terminal
 
-- Cmder 위치
-    %APPDATA%\Cmder
-- 환경 변수 세팅
-    CMDER_ROOT, CmdEmuDir
-- UTF-8 세팅
-    chcp utf-8
-- 기본 환경 설정
+- Cmder 위치: `%APPDATA%\Cmder`
+- 환경 변수 세팅: `CMDER_ROOT`, `CmdEmuDir`
+- UTF-8 세팅: `chcp utf-8`
+  > cmder app 내의 setting 에서 설정
+- Windows Terminal 연계: `windows terminal` > `settings.json` 편집
+- Windows Terminal 세팅 예시
+  기타 설정
+  ![windows.cmder](./image/windows.cmder.1.png)
+  ![windows.cmder](./image/windows.cmder.2.png)
+  ![windows.cmder](./image/windows.cmder.3.png)
+- `settings.json` 예시
 
-- Windows Terminal 연계
-    default setting 변경
-- Windows Terminal 세팅
-    기타 설정
-![windows.cmder](./image/windows.cmder.1.png)
-![windows.cmder](./image/windows.cmder.2.png)
-![windows.cmder](./image/windows.cmder.3.png)
+```json{4-16,21-43}
+{
+  "profiles": {
+    "list": [
+      {
+        "colorScheme": "Monokai Cmder",
+        "commandline": "cmd.exe /k %CMDER_ROOT%\\vendor\\init.bat",
+        "font": {
+          "face": "D2Coding",
+          "size": 11
+        },
+        "guid": "{d1c99dfd-4235-44f7-a88f-2c5fa20c9787}",
+        "icon": "%CMDER_ROOT%\\icons\\cmder.ico",
+        "name": "Cmder",
+        "padding": "10",
+        "startingDirectory": "D:\\alm"
+      }
+    ]
+  },
+
+  "schemes": [
+    {
+      "background": "#002B36",
+      "black": "#002B36",
+      "blue": "#268BD2",
+      "brightBlack": "#657B83",
+      "brightBlue": "#839496",
+      "brightCyan": "#D33682",
+      "brightGreen": "#B58900",
+      "brightPurple": "#EEE8D5",
+      "brightRed": "#CB4B16",
+      "brightWhite": "#FDF6E3",
+      "brightYellow": "#586E75",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#2AA198",
+      "foreground": "#93A1A1",
+      "green": "#859900",
+      "name": "wsl",
+      "purple": "#6C71C4",
+      "red": "#DC322F",
+      "selectionBackground": "#FFFFFF",
+      "white": "#93A1A1",
+      "yellow": "#B58900"
+    }
+  ]
+}
+```
 
 ## yarn global path 지정
 
@@ -50,8 +93,9 @@ feed:
 $ yarn global bin
 C:\Users\user\AppData\Local\Yarn\bin
 ```
+
 - 해당 path를 windows path 변수에 등록
-![windows.path](./image/windows.path.1.png)
+  ![windows.path](./image/windows.path.1.png)
 
 ## 윈도우 10 긴 파일 이름 길이 제한 해제 설정
 
@@ -62,6 +106,7 @@ C:\Users\user\AppData\Local\Yarn\bin
 ## Powershell 관리자 권한
 
 - 관리자 권한으로 터미널 실행
+
 ```powershell
 > ExecutionPolicy
 Restricted
@@ -71,6 +116,7 @@ Unrestricted
 ```
 
 ## WSL 터미널 설정
+
 > WSL2 Ubuntu 기준
 
 ### zsh & oh-my-zsh 설치
@@ -190,6 +236,7 @@ alias cat="batcat --paging=never"
 
 - [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 - `sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`
+
 ```bash
 $ nvm --version
 $ nvm ls-remote
@@ -202,6 +249,7 @@ $ nvm use v12.21.0
 - [https://github.com/coreybutler/nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases)
 - `nvm use 12.22.7` 과 같이 실행할 경우는 cmd 를 관리자 권한으로 실행한 후 해당 커맨드를 실행해야 함 (2021.10.15 현재 nvm-windows 를 설치했을 경우 elevation.cmd 혹은 elevation.vbs 가 정상적으로 실행이 안되는 것을 보임)
 - `use` 의 경우만 관리자 권한에서 실행하면 되고, 그 후는 일반 cmd 권한에서도 동작함
+
 ```cmd{4}
 > nvm --version
 > nvm list
@@ -213,6 +261,7 @@ $ nvm use v12.21.0
 
 - `...\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\sitecore-theme` 에 `Sitecore-Dark2.png`, `sitecore-icon.png` 복사
 - 참고: [https://terminalsplash.com/](https://terminalsplash.com/)
+
 ```json
 {
   "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
@@ -307,6 +356,7 @@ $ cat .ssh/id_rsa.pub | clip.exe
 - TODO: WSL 설치
 - TODO: VisualStudio Code Terminal 설정
 - WSL 설정 (Ubuntu 20.04 기준)
+
 ```bash
 $ sudo apt update && sudo apt upgrade
 $ sudo apt-cache policy nginx
@@ -324,7 +374,9 @@ $ sudo service php7.4-fpm start
 $ sudo apt install mariadb-client-core-10.3
 
 ```
+
 - `/etc/php/7.4/fpm/php.ini` 설정
+
 ```ini
 max_execution_time = 1800
 max_input_vars = 10000
@@ -332,7 +384,9 @@ memory_limit = 256M
 post_max_size = 200M
 upload_max_filesize = 200M
 ```
+
 - `/etc/nginx/sites-available/default` 설정
+
 ```ini
 server {
   root /var/www/html;
@@ -375,16 +429,22 @@ server {
   }
 }
 ```
+
 - `/var/www/html` 권한 조정
+
 ```bash
 $ sudo chown -R www-data:usergroup /var/www/html/
 $ sudo chmod -R 775 /var/www/html/
 ```
+
 - `/var/www/html/index.php` 작성
+
 ```php
 <?php phpinfo(); ?>
 ```
+
 - xdebug 설치
+
 ```bash
 $ sudo apt install php-pear php-dev
 $ sudo pecl install xdebug
@@ -434,7 +494,9 @@ install ok: channel://pecl.php.net/xdebug-3.0.3
 configuration option "php_ini" is not set to php.ini location
 You should add "zend_extension=/usr/lib/php/20190902/xdebug.so" to php.ini
 ```
+
 - `/etc/php/7.4/fpm/php.ini` 끝에 xdebug 관련 설정 추가
+
 ```ini
 ...
 [XDEBUG]
@@ -443,14 +505,18 @@ xdebug.remote_enable = 1
 xdebug.remote_autostart = 1
 xdebug.remote_port = 9000
 ```
+
 ```bash
 $ sudo service nginx restart
 $ sudo service php7.4-fpm restart
 ```
+
 ![windows.php.dev](./image/windows.php.dev.1.png)
+
 - vscode debug 설정
-![windows.php.dev](./image/windows.php.dev.2.png)
+  ![windows.php.dev](./image/windows.php.dev.2.png)
 - `/var/www/html/.vscode/launch.json` 설정 추가
+
 ```json
 {
   // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
@@ -479,12 +545,15 @@ $ sudo service php7.4-fpm restart
 ### SSL 적용
 
 - 자체 서명 인증서 생성하고 `/etc/ssl/certs/shockz-amd.test.crt` `/etc/ssl/private/shockz-amd.test.key` 로 복사
+
 ```bash
 $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout shockz-amd.test.key -out shockz-amd.test.crt -subj "/CN=shockz-amd.test" -addext "subjectAltName=DNS:shockz-amd.test"
 $ sudo cp shockz-amd.test.crt /etc/ssl/certs/shockz-amd.test.crt
 $ sudo cp shockz-amd.test.key /etc/ssl/private/shockz-amd.test.key
 ```
+
 - `/etc/nginx/sites-available/default` 에 적용
+
 ```ini
 server {
   root /var/www/html;
@@ -553,14 +622,17 @@ server {
 ## ssh key 를 통한 비밀번호 없이 접속
 
 - git bash 등이 설치가 되면 `ssh-keygen` 이 같이 설치됨
+
 ```bash
 $ ssh-keygen -t rsa
 # 비밀번호 입력 필요
 ```
+
 - `C:\Users\userid\.ssh` 에 `id_rsa`, `id_rsa.pub` 파일이 생성됨.
 - id_rsa : private
 - id_rsa.pu : public
 - public 을 접속하고자 하는 ssh 에 복사하고, 연결하고자 하는 클라이언트에서 private 을 이용해 접속
+
 ```bash
 # WSL 환경 기준
 $ cd /mnt/c/Users/myid/.ssh
@@ -575,24 +647,26 @@ $ ssh -i /path/id_rsa userid@address -p <port>
 > 개발 환경 구성 시 여러 github 계정을 사용할 경우
 > 각 github 계정 별 ssh key 등록이 필요하다.
 > 별도 설정 없이 ssh 키를 여러 곳에서 사용할 경우 'Key is already in use' 에러를 볼 수 있다.
-![github.ssh.key.in.use](./image/github.ssh.key.in.use.1.png)
+> ![github.ssh.key.in.use](./image/github.ssh.key.in.use.1.png)
 
 #### 1. 각 계정별 ssh key 생성
 
 ```bash
 > ssh-keygen -t rsa -b 4096 -C "github@login.email" -f id_rsa_name # 계정별로 생성
 ```
-  이메일 별로 `id_rsa_name`, `id_rsa_name.pub` 로 생성됨
+
+이메일 별로 `id_rsa_name`, `id_rsa_name.pub` 로 생성됨
 
 #### 2. github 에 등록
 
 - [Settings] > [SSH and GPG keys] > SSH keys / New SSH key 로 등록 (각 계정별)
 - `.pub` 키를 등록
-![github.ssh.key.in.use](./image/github.ssh.key.in.use.2.png)
+  ![github.ssh.key.in.use](./image/github.ssh.key.in.use.2.png)
 
 #### 3. ~/.ssh/config 설정
 
 - `config` 파일이 없다면 생성하여 수정
+
 ```bash
 # ironpot42.com - github
 Host temp1-github.com
@@ -612,10 +686,12 @@ Host temp3-github.com
   User git
   IdentityFile C:\\Users\\somebody\\.ssh\\id_rsa_temp3
 ```
+
 - `Host` : 임의의 이름
 - `HostName` : github.com 서버 대상이므로 고정
 - `User` : github ssh 는 **git** 으로 고정
 - 저장 후 연결 테스트
+
 ```bash
 > ssh -T temp1-github.com
 Hi temp1! You've successfully authenticated, but GitHub does not provide shell access.
@@ -630,6 +706,7 @@ Hi temp3! You've successfully authenticated, but GitHub does not provide shell a
 #### 4. ~/.gitconfig 설정
 
 - `.gitconfig` 전역 파일 수정
+
 ```bash
 [core]
         editor = \"C:\\Users\\somebody\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" --wait
@@ -641,15 +718,19 @@ Hi temp3! You've successfully authenticated, but GitHub does not provide shell a
 [includeIf "gitdir:C:/temp3/"]
         path = .gitconfig-temp3
 ```
+
 - **[includeIf "gitdir:C:/temp2/"]** 는 `C:/temp2` 디렉토리 아래에서는 `.gitconfig-temp2` 가 적용됨을 뜻함.
 - Windows 에서도 linux 스타일 path를 지정해야 동작
 - `.gitconfig-temp2`, `.gitconfig-temp3` 을 생성하여 내용 추가
+
 ```bash
 [user]
         name = temp2
         email = temp2.github@login.email
 ```
+
 - `C:/temp2` 아래에서 repository 를 생성하거나 클론하여 `git config --list` 로 확인
+
 ```bash
 ...
 user.email=github@login.email
@@ -659,12 +740,14 @@ user.email=temp2.github@login.email
 user.name=temp2
 ...
 ```
+
 - `includeif.gitdir:C:/temp2/.path=.gitconfig-temp2` 가 적용되므로 `.gitconfig-temp2`를 불러와서 user.email, user.name 이 적용됨
 
 #### 5. private repository
 
 - `.ssh/config` 에서 설정한 HostName 을 이용하여 clone
 - `git clone temp2-github.com:[계정명]/[repository]` 와 같은 형식으로 클론
+
 ```bash
 > git clone temp2-github.com:temp2/repository.git
 ```
@@ -672,14 +755,17 @@ user.name=temp2
 #### 참고. ssh-agent 관련
 
 - ssh-agent 에 여러 키를 등록하여 사용하고자 할 경우
+
 ```bash
 > ssh-add %HOME%/.ssh/id_rsa_temp2
 unable to start ssh-agent service, error :1058
 ```
+
 - 위의 에러시에는 **OpenSSH Authentication Agent** 서비스 동작을 확인
-![github.ssh.key.in.use](./image/github.ssh.key.in.use.3.png)
+  ![github.ssh.key.in.use](./image/github.ssh.key.in.use.3.png)
 - 여러 키를 사용하는 상황에서는 ssh 를 사용하지 않는 repository 에서 등록되지 않은 키를 잘못 사용하고 있다라고 하면서 접속이 되지 않는 경우가 있음.
 - ssh-agent 에서 전부 삭제하여 ~/.ssh/config 를 사용하도록 설정하거나, 모든 키를 사전에 등록하여 사용
+
 ```bash
 # 키 등록
 > ssh-add %HOME%/.ssh/id_rsa_temp2
@@ -690,6 +776,7 @@ unable to start ssh-agent service, error :1058
 ```
 
 - 기존 repository 에서 ssh 키로 변경된 remote 로 변경 시 아래와 같이 변경
+
 ```bash
 >  git remote set-url origin git@temp2-github.com:temp2/address.git
 ```
@@ -714,6 +801,7 @@ unable to start ssh-agent service, error :1058
 ## WSL 에서 Windows font 사용
 
 - `/etc/fonts/fonts.conf` 에 Windows Font 경로 추가
+
 ```xml
 <!-- Font directory list -->
   <dir>/usr/share/fonts</dir>
@@ -729,10 +817,10 @@ unable to start ssh-agent service, error :1058
 - [https://velog.io/@springkim/windows-batch-script](https://velog.io/@springkim/windows-batch-script)
 - [https://kukuta.tistory.com/232](https://kukuta.tistory.com/232)
 
-
 ## Oh-My-Posh
 
 - Font: MesloLGS NF
+
 ```powershell
 > Install-Module posh-git -Scope CurrentUser
 > Install-Module oh-my-posh -Scope CurrentUser
