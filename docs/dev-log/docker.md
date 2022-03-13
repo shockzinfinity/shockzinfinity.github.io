@@ -329,3 +329,23 @@ services:
     image: service_temp:latest
     privileged: true
 ```
+
+## docker command ref
+
+```bash
+$ docker run -d --hostname swn-rabbit --name swn-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+$ docker build -t aspnetapp .
+$ docker run -d -p 8080:80 --name myapp aspnetapp
+$ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
+
+# List all containers (only IDs)
+$ docker ps -aq
+# Stop all running containers
+$ docker stop $(docker ps -aq)
+# Remove all containers
+$ docker rm $(docker ps -aq)
+# Remove all images
+$ docker rmi $(docker images -q)
+# Remove all none images
+$ docker system prune
+```
