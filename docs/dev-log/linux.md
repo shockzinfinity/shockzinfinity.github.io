@@ -332,8 +332,9 @@ export EDITOR=/usr/local/bin/nvim
 $ source ~/.zshrc
 
 # spacevim 설치
-$ curl -sLf https://spacevim.org/install.sh | bash
-$ mkdir ~/.SpaceVim.d/colors
+#$ curl -sLf https://spacevim.org/install.sh | bash
+$ bash < (curl -fsSL https://raw.githubusercontent.com/liuchengxu/space-vim/master/install.sh)  
+$ mkdir -p ~/.SpaceVim.d/colors
 $ curl https://gist.githubusercontent.com/subicura/91696d2da58ad28b5e8b2877193015e1/raw/6fb5928c9bda2040b3c9561d1e928231dbcc9184/snazzy-custom.vim -o ~/.SpaceVim.d/colors/snazzy-custom.vim
 $ vi ~/.SpaceVim.d/init.toml
 ...
@@ -367,8 +368,11 @@ $ docker ps -a
 $ docker run hello-world
 $ docker ps -a
 # docker-compose for all user
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-$ sudo chmod +x /usr/local/bin/docker-compose
+#$ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#$ sudo chmod +x /usr/local/bin/docker-compose
+$ mkdir -p ~/.docker/cli-plugins/
+$ curl -SL https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+$ chmod +x ~/.docker/cli-plugins/docker-compose
 ```
 
 ## 대상 서버에 ssh key 로 접속
