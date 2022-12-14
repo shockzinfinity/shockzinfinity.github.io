@@ -42,6 +42,6 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_REPO: shockzinfinity/shockz-vue-press
-          TARGET_BRANCH: master
+          TARGET_BRANCH: gh-pages
           BUILD_SCRIPT: yarn && yarn build
           BUILD_DIR: docs/.vuepress/dist
