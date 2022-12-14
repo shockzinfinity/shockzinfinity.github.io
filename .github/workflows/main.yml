@@ -18,21 +18,30 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@master
 
-      - name: install and build
-        run: |
-          npm install
-          npm run build
+      # - name: install and build
+      #   run: |
+      #     npm install
+      #     npm run build
 
-      - name: deploy build files
+      # - name: deploy build files
+      #   env:
+      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #   run: |
+      #     cd docs/.vuepress/dist
+      #     git config --global user.email "shockzinfinity@gmail.com"
+      #     git config --global user.name "Jun Yu"
+      #     git init
+      #     git add -A
+      #     git commit -m 'deploy with vuepress'
+      #     git push -f https://${ACCESS_TOKEN}@github.com/shockzinfinity/shockzinfinity.github.io.git master
+      - name: vuepress-deploy
+        uses: jenkey2011/vuepress-deploy@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          cd docs/.vuepress/dist
-          git config --global user.email "shockzinfinity@gmail.com"
-          git config --global user.name "Jun Yu"
-          git init
-          git add -A
-          git commit -m 'deploy with vuepress'
-          git push -f https://${ACCESS_TOKEN}@github.com/shockzinfinity/shockzinfinity.github.io.git master
+          TARGET_REPO: shockzinfinity/shockzinfinity.github.io.git
+          TARGET_BRANCH: master
+          BUILD_SCRIPT: yarn && yarn build
+          BUILD_DIR: docs/.vuepress/dist
