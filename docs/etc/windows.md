@@ -497,7 +497,7 @@ plugins=(
 $ sudo apt install bat
 
 # in .zshrc (ubuntu 에서는 batcat 으로 설치 됨, 맥은 bat)
-alias cat="batcat --paging=never"
+alias cat="batcat --paging=never -p"
 ```
 
 ### nvm in wsl
