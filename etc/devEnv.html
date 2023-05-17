@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>맥 개발환경 설정 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="맥북프로의 개발환경 구성에 대해 다룹니다.">
+    <meta name="keywords" content="mac, development, env">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/9.e4c3adb9.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>맥 개발환경 설정</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/etc/devEnv.html#맥-터미널에서-vscode-실행" class="sidebar-link">맥 터미널에서 VSCode 실행</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#net-core-sdk-on-mac" class="sidebar-link">.net core sdk on mac</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#cmder" class="sidebar-link">cmder</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#전반적인-설정" class="sidebar-link">전반적인 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#zsh-autosuggestion-color" class="sidebar-link">zsh-autosuggestion color</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#visual-studio-for-mac" class="sidebar-link">Visual Studio for Mac</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#brew-업데이트" class="sidebar-link">brew 업데이트</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#php-개발환경-설정" class="sidebar-link">php 개발환경 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#php-on-vs-code" class="sidebar-link">PHP on VS Code</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#visualstudio-2019-community" class="sidebar-link">VisualStudio 2019 Community</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#mac-에서-윈도우용-키보드-사용-시" class="sidebar-link">mac 에서 윈도우용 키보드 사용 시</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#jdk-설치" class="sidebar-link">jdk 설치</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#pyenv-python-anaconda-python-개발환경과-비교-필요" class="sidebar-link">pyenv, python, anaconda (python 개발환경과 비교 필요)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/etc/devEnv.html#redis" class="sidebar-link">Redis</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="development-settings-on-mac"><a href="#development-settings-on-mac" class="header-anchor">#</a> Development Settings on Mac</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#mac" class="tag" data-v-77ca7535>mac</a><a href="/tags.html#dev" class="tag" data-v-77ca7535>dev</a><a href="/tags.html#env" class="tag" data-v-77ca7535>env</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#맥-터미널에서-vscode-실행">맥 터미널에서 VSCode 실행</a></li><li><a href="#net-core-sdk-on-mac">.net core sdk on mac</a></li><li><a href="#cmder">cmder</a></li><li><a href="#전반적인-설정">전반적인 설정</a></li><li><a href="#zsh-autosuggestion-color">zsh-autosuggestion color</a></li><li><a href="#visual-studio-for-mac">Visual Studio for Mac</a></li><li><a href="#brew-업데이트">brew 업데이트</a></li><li><a href="#php-개발환경-설정">php 개발환경 설정</a></li><li><a href="#php-on-vs-code">PHP on VS Code</a></li><li><a href="#visualstudio-2019-community">VisualStudio 2019 Community</a></li><li><a href="#mac-에서-윈도우용-키보드-사용-시">mac 에서 윈도우용 키보드 사용 시</a></li><li><a href="#jdk-설치">jdk 설치</a></li><li><a href="#pyenv-python-anaconda-python-개발환경-dev-log-python-과-비교-필요">pyenv, python, anaconda (python 개발환경과 비교 필요)</a></li><li><a href="#redis">Redis</a></li></ul></div><p></p> <h2 id="맥-터미널에서-vscode-실행"><a href="#맥-터미널에서-vscode-실행" class="header-anchor">#</a> 맥 터미널에서 VSCode 실행</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">vi</span> ~/.zshrc
+
+<span class="token comment"># ~/.zshrc</span>
+<span class="token function-name function">code</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> VOCODE_CWD <span class="token operator">=</span><span class="token string">&quot;<span class="token environment constant">$PWD</span>&quot;</span> <span class="token function">open</span> -n -b <span class="token string">&quot;com.microsoft.VSCode&quot;</span> --args <span class="token variable">$*</span> <span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+$ <span class="token builtin class-name">source</span> ~/.zshrc
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="net-core-sdk-on-mac"><a href="#net-core-sdk-on-mac" class="header-anchor">#</a> .net core sdk on mac</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew cask <span class="token function">install</span> dotnet-sdk
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="cmder"><a href="#cmder" class="header-anchor">#</a> cmder</h2> <p><img src="/assets/img/cmder.1.ee25e99c.png" alt="cmder"> <img src="/assets/img/cmder.4.9cbdcca5.png" alt="cmder"> <img src="/assets/img/cmder.2.ad05f890.png" alt="cmder"> <img src="/assets/img/cmder.3.60e8caef.png" alt="cmder"></p> <h2 id="전반적인-설정"><a href="#전반적인-설정" class="header-anchor">#</a> 전반적인 설정</h2> <blockquote><p><a href="https://subicura.com/2017/11/22/mac-os-development-environment-setup.html" target="_blank" rel="noopener noreferrer">원문<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><img src="/assets/img/mac.dev.settings.1.e8cf0dad.jpg" alt="개발환경설정"></p> <h2 id="zsh-autosuggestion-color"><a href="#zsh-autosuggestion-color" class="header-anchor">#</a> zsh-autosuggestion color</h2> <ul><li><code>.zshrc</code> 에 다음 라인 추가</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># zsh-autosuggestion suggest color</span>
+<span class="token assign-left variable">ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE</span><span class="token operator">=</span><span class="token string">'fg=23'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="visual-studio-for-mac"><a href="#visual-studio-for-mac" class="header-anchor">#</a> Visual Studio for Mac</h2> <p><a href="https://visualstudio.microsoft.com/ko/vs/mac/#vs_mac_table" target="_blank" rel="noopener noreferrer">PC 및 Mac용 Visual Studio 비교<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="brew-업데이트"><a href="#brew-업데이트" class="header-anchor">#</a> brew 업데이트</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew update
+$ brew upgrade
+$ brew cleanup
+$ brew doctor
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="php-개발환경-설정"><a href="#php-개발환경-설정" class="header-anchor">#</a> php 개발환경 설정</h2> <ul><li><p><a href="https://getgrav.org/blog/macos-catalina-apache-multiple-php-versions" target="_blank" rel="noopener noreferrer">참고사이트<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>php.ini 위치</p></li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><div class="highlighted"> </div><br></div><pre class="language-bash"><code>/usr/local/etc/php/5.6/php.ini
+/usr/local/etc/php/7.0/php.ini
+/usr/local/etc/php/7.1/php.ini
+/usr/local/etc/php/7.2/php.ini
+/usr/local/etc/php/7.3/php.ini
+/usr/local/etc/php/7.4/php.ini
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li><code>php.ini</code> 타임존 설정</li></ul> <div class="language-php line-numbers-mode"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br></div><pre class="language-php"><code><span class="token punctuation">[</span>Date<span class="token punctuation">]</span>
+<span class="token punctuation">;</span> Defines the <span class="token keyword">default</span> timezone used by the date functions
+<span class="token punctuation">;</span> http<span class="token punctuation">:</span><span class="token comment">//php.net/date.timezone</span>
+date<span class="token punctuation">.</span>timezone <span class="token operator">=</span> Asia<span class="token operator">/</span>Seoul
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li>php 설치 후 설정과정 중, 403 Forbidden 현상 발생 시 <code>httpd.conf</code> 변경 필요</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br></div><pre class="language-bash"><code><span class="token comment">#</span>
+<span class="token comment"># DirectoryIndex: sets the file that Apache will serve if a directory</span>
+<span class="token comment"># is requested.</span>
+<span class="token comment">#</span>
+<span class="token operator">&lt;</span>IfModule dir_module<span class="token operator">&gt;</span>
+    DirectoryIndex index.php index.html
+<span class="token operator">&lt;</span>/IfModule<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>FilesMatch <span class="token punctuation">\</span>.php$<span class="token operator">&gt;</span>
+    SetHandler application/x-httpd-php
+<span class="token operator">&lt;</span>/FilesMatch<span class="token operator">&gt;</span>
+
+<span class="token comment">#</span>
+<span class="token comment"># The following lines prevent .htaccess and .htpasswd files from being </span>
+<span class="token comment"># viewed by Web clients. </span>
+<span class="token comment">#</span>
+<span class="token operator">&lt;</span>FilesMatch <span class="token string">&quot;.ht*&quot;</span><span class="token operator">&gt;</span>
+    <span class="token comment"># Require all denied</span>
+    Require all granted
+<span class="token operator">&lt;</span>/FilesMatch<span class="token operator">&gt;</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><ul><li>$ curl -L https://gist.githubusercontent.com/rhukster/f4c04f1bf59e0b74e335ee5d186a98e2/raw &gt; /usr/local/bin/sphp
+$ chmod +x /usr/local/bin/sphp</li></ul> <h2 id="php-on-vs-code"><a href="#php-on-vs-code" class="header-anchor">#</a> PHP on VS Code</h2> <blockquote><p>참고사이트: <a href="http://blog.naver.com/PostView.nhn?blogId=haruby511&amp;logNo=221455944336" target="_blank" rel="noopener noreferrer">php on vscode<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="visualstudio-2019-community"><a href="#visualstudio-2019-community" class="header-anchor">#</a> VisualStudio 2019 Community</h2> <p>인코딩 문제 발생 시
+<img src="/assets/img/vs2019.encoding.1.3133face.png" alt="vs2019.encoding"> <img src="data:image/png;base64,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" alt="vs2019.encoding"> <img src="/assets/img/vs2019.encoding.3.80d9bba4.png" alt="vs2019.encoding"></p> <h2 id="mac-에서-윈도우용-키보드-사용-시"><a href="#mac-에서-윈도우용-키보드-사용-시" class="header-anchor">#</a> mac 에서 윈도우용 키보드 사용 시</h2> <blockquote><p>시스템 환경설정 &gt; 키보드
+<img src="/assets/img/mac.keyboard.1.ff656f9a.png" alt="mac.keyboard"> <img src="/assets/img/mac.keyboard.2.10c38d32.png" alt="mac.keyboard"> <img src="/assets/img/mac.keyboard.3.6a622437.png" alt="mac.keyboard"></p></blockquote> <h2 id="jdk-설치"><a href="#jdk-설치" class="header-anchor">#</a> jdk 설치</h2> <ul><li>openjdk 저장소 추가</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew tap AdoptOpenJDK/openjdk
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li><p>설치할 자바 버전 확인</p> <table><thead><tr><th style="text-align:left;">Java version</th> <th style="text-align:left;">JDK</th> <th style="text-align:left;">JRE</th></tr></thead> <tbody><tr><td style="text-align:left;">OpenJDK8 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk8</td> <td style="text-align:left;">adoptopenjdk8-jre</td></tr> <tr><td style="text-align:left;">OpenJDK8 with OpenJ9 JVM</td> <td style="text-align:left;">adoptopenjdk8-openj9</td> <td style="text-align:left;">adoptopenjdk8-openj9-jre</td></tr> <tr><td style="text-align:left;">OpenJDK8 with OpenJ9 JVM, large heap*</td> <td style="text-align:left;">adoptopenjdk8-openj9-large</td> <td style="text-align:left;">adoptopenjdk8-openj9-jre-large</td></tr> <tr><td style="text-align:left;">OpenJDK9 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk9</td> <td style="text-align:left;">n/a</td></tr> <tr><td style="text-align:left;">OpenJDK10 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk10</td> <td style="text-align:left;">n/a</td></tr> <tr><td style="text-align:left;">OpenJDK11 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk11</td> <td style="text-align:left;">adoptopenjdk11-jre</td></tr> <tr><td style="text-align:left;">OpenJDK11 with OpenJ9 JVM</td> <td style="text-align:left;">adoptopenjdk11-openj9</td> <td style="text-align:left;">adoptopenjdk11-openj9-jre</td></tr> <tr><td style="text-align:left;">OpenJDK11 with OpenJ9 JVM, large heap*</td> <td style="text-align:left;">adoptopenjdk11-openj9-large</td> <td style="text-align:left;">adoptopenjdk11-openj9-jre-large</td></tr> <tr><td style="text-align:left;">OpenJDK12 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk12</td> <td style="text-align:left;">adoptopenjdk12-jre</td></tr> <tr><td style="text-align:left;">OpenJDK12 with OpenJ9 JVM</td> <td style="text-align:left;">adoptopenjdk12-openj9</td> <td style="text-align:left;">adoptopenjdk12-openj9-jre</td></tr> <tr><td style="text-align:left;">OpenJDK12 with OpenJ9 JVM, large heap*</td> <td style="text-align:left;">adoptopenjdk12-openj9-large</td> <td style="text-align:left;">adoptopenjdk12-openj9-jre-large</td></tr> <tr><td style="text-align:left;">OpenJDK13 with Hotsopt JVM</td> <td style="text-align:left;">adoptopenjdk13</td> <td style="text-align:left;">adoptopenjdk13-jre</td></tr> <tr><td style="text-align:left;">OpenJDK13 with OpenJ9 JVM</td> <td style="text-align:left;">adoptopenjdk13-openj9</td> <td style="text-align:left;">adoptopenjdk13-openj9-jre</td></tr> <tr><td style="text-align:left;">OpenJDK13 with OpenJ9 JVM, large heap*</td> <td style="text-align:left;">adoptopenjdk13-openj9-large</td> <td style="text-align:left;">adoptopenjdk13-openj9-jre-large</td></tr></tbody></table></li> <li><p>brew cask install version</p></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew cask <span class="token function">install</span> adoptopenjdk8
+$ java -version
+openjdk version <span class="token string">&quot;1.8.0_265&quot;</span>
+OpenJDK Runtime Environment <span class="token punctuation">(</span>AdoptOpenJDK<span class="token punctuation">)</span><span class="token punctuation">(</span>build <span class="token number">1.8</span>.0_265-b01<span class="token punctuation">)</span>
+OpenJDK <span class="token number">64</span>-Bit Server VM <span class="token punctuation">(</span>AdoptOpenJDK<span class="token punctuation">)</span><span class="token punctuation">(</span>build <span class="token number">25.265</span>-b01, mixed mode<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="pyenv-python-anaconda-python-개발환경과-비교-필요"><a href="#pyenv-python-anaconda-python-개발환경과-비교-필요" class="header-anchor">#</a> pyenv, python, anaconda (<a href="../dev-log/python">python 개발환경</a>과 비교 필요)</h2> <ul><li>(BigSur 기준) pyenv 로 python 3.8.6 과 anaconda3-5.3.1 설치 기준</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew <span class="token function">install</span> pyenv
+or
+$ brew upgrade pyenv
+
+<span class="token comment"># zlib, bzip2 관련 warning 오류 시 (.zshrc 설정은 아래로)</span>
+$ brew <span class="token function">install</span> zlib <span class="token function">bzip2</span>
+
+$ pyenv <span class="token function">install</span> --list <span class="token comment"># 설치 가능한 python 패키지 리스트</span>
+<span class="token comment"># anaconda3-5.3.1</span>
+$ pyenv <span class="token function">install</span> anaconda3-5.3.1
+<span class="token comment"># python 3.8.6</span>
+$ pyenv <span class="token function">install</span> <span class="token number">3.8</span>.6
+
+$ pyenv versions <span class="token comment"># 현재 설치된 패키지 확인</span>
+<span class="token comment"># 기본으로 anaconda3-5.3.1 을 설정</span>
+$ pyenv global anaconda3-5.3.1
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># .zshrc 내의 pyenv 부분</span>
+<span class="token comment"># for pyenv</span>
+<span class="token comment">#CFLAGS=&quot;-I$(brew --prefix openssl)/include&quot;</span>
+<span class="token comment">#LDFLAGS=&quot;-L$(brew --prefix openssl)/lib&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LDFLAGS</span><span class="token operator">=</span><span class="token string">&quot;-L<span class="token variable"><span class="token variable">$(</span>brew --prefix zlib<span class="token variable">)</span></span>/lib -L<span class="token variable"><span class="token variable">$(</span>brew --prefix <span class="token function">bzip2</span><span class="token variable">)</span></span>/lib&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPPFLAGS</span><span class="token operator">=</span><span class="token string">&quot;-I<span class="token variable"><span class="token variable">$(</span>brew --prefix zlib<span class="token variable">)</span></span>/include -I<span class="token variable"><span class="token variable">$(</span>brew --prefix <span class="token function">bzip2</span><span class="token variable">)</span></span>/include&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">&quot;<span class="token environment constant">$HOME</span>/.pyenv/bin:<span class="token environment constant">$PATH</span>&quot;</span>
+<span class="token keyword">if</span> <span class="token builtin class-name">command</span> -v pyenv <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token builtin class-name">eval</span> <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span>pyenv init -<span class="token variable">)</span></span>&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>참고 사이트
+<a href="https://opensource.com/article/19/5/python-3-default-mac" target="_blank" rel="noopener noreferrer">The right and wrong way to set Python 3 as default on a Mac<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://github.com/pyenv/pyenv/wiki/Common-build-problems" target="_blank" rel="noopener noreferrer">pyenv wiki<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <h2 id="redis"><a href="#redis" class="header-anchor">#</a> Redis</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew <span class="token function">install</span> redis
+$ redis-server --version
+Redis server <span class="token assign-left variable">v</span><span class="token operator">=</span><span class="token number">6.0</span>.10 <span class="token assign-left variable">sha</span><span class="token operator">=</span>00000000:0 <span class="token assign-left variable">malloc</span><span class="token operator">=</span>libc <span class="token assign-left variable">bits</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">build</span><span class="token operator">=</span>5e44a839a3d17a99
+
+<span class="token comment"># installation location : /usr/local/Cellar/redis/...</span>
+<span class="token comment"># 설정 파일 : /usr/local/etc/redis.conf</span>
+
+<span class="token comment"># Starting/Stopping the Redis server as a background service</span>
+$ brew services start redis
+$ brew services stop redis
+
+<span class="token comment"># check</span>
+$ redis-cli <span class="token function">ping</span>
+PONG
+
+$ redis-cli monitor
+
+<span class="token comment"># connect to a different redis server or port </span>
+$ redis-cli -h <span class="token operator">&lt;</span>address<span class="token operator">&gt;</span> -p <span class="token operator">&lt;</span>port<span class="token operator">&gt;</span>
+<span class="token comment"># List users</span>
+$ redis-cli ACL LIST
+<span class="token comment"># Continous stat</span>
+$ redis-cli --stat
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><ul><li>test</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 실행</span>
+$ redis-server
+
+<span class="token comment"># 클라이언트로 접속</span>
+$ redis-cli
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> <span class="token builtin class-name">set</span> shockz https://shockzinfinity.github.io
+OK
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> get shockz
+<span class="token string">&quot;https://shockzinfinity.github.io&quot;</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> keys *
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">&quot;shockz&quot;</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> quit
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/9.e4c3adb9.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

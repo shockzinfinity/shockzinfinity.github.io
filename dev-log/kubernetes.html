@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kubernetes | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="Kubenetes 관련 내용을 포함합니다.">
+    <meta name="keywords" content="kubernetes">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/47.06e3f17f.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Kubernetes</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/kubernetes.html#k8s-환경을-위한-kvm-설치-on-ubuntu-20-04" class="sidebar-link">k8s 환경을 위한 kvm 설치 (on Ubuntu 20.04)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/kubernetes.html#ssh-를-통한-virt-manager-실행을-위한-작업" class="sidebar-link">ssh 를 통한 virt-manager 실행을 위한 작업</a></li><li class="sidebar-sub-header"><a href="/dev-log/kubernetes.html#docker-kubernetes-설치-버전-확인" class="sidebar-link">docker, kubernetes 설치 버전 확인</a></li><li class="sidebar-sub-header"><a href="/dev-log/kubernetes.html#docker-kubernetes-의-cgroup-변경" class="sidebar-link">docker, kubernetes 의 cgroup 변경</a></li><li class="sidebar-sub-header"><a href="/dev-log/kubernetes.html#metrics-server-설치" class="sidebar-link">metrics-server 설치</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="kubernetes-k8s"><a href="#kubernetes-k8s" class="header-anchor">#</a> Kubernetes (k8s)</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#kubernetes" class="tag" data-v-77ca7535>kubernetes</a><a href="/tags.html#k8s" class="tag" data-v-77ca7535>k8s</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#k8s-환경을-위한-kvm-설치-on-ubuntu-20-04">k8s 환경을 위한 kvm 설치 (on Ubuntu 20.04)</a><ul><li><a href="#ssh-를-통한-virt-manager-실행을-위한-작업">ssh 를 통한 virt-manager 실행을 위한 작업</a></li><li><a href="#docker-kubernetes-설치-버전-확인">docker, kubernetes 설치 버전 확인</a></li><li><a href="#docker-kubernetes-의-cgroup-변경">docker, kubernetes 의 cgroup 변경</a></li><li><a href="#metrics-server-설치">metrics-server 설치</a></li></ul></li></ul></div><p></p> <h2 id="k8s-환경을-위한-kvm-설치-on-ubuntu-20-04"><a href="#k8s-환경을-위한-kvm-설치-on-ubuntu-20-04" class="header-anchor">#</a> k8s 환경을 위한 kvm 설치 (on Ubuntu 20.04)</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 리눅스 배포판 확인</span>
+$ <span class="token function">cat</span> /etc/*-release <span class="token operator">|</span> <span class="token function">uniq</span>
+<span class="token assign-left variable">DISTRIB_ID</span><span class="token operator">=</span>Ubuntu
+<span class="token assign-left variable">DISTRIB_RELEASE</span><span class="token operator">=</span><span class="token number">20.04</span>
+<span class="token assign-left variable">DISTRIB_CODENAME</span><span class="token operator">=</span>focal
+<span class="token assign-left variable">DISTRIB_DESCRIPTION</span><span class="token operator">=</span><span class="token string">&quot;Ubuntu 20.04.1 LTS&quot;</span>
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">&quot;Ubuntu&quot;</span>
+<span class="token assign-left variable">VERSION</span><span class="token operator">=</span><span class="token string">&quot;20.04.1 LTS (Focal Fossa)&quot;</span>
+<span class="token punctuation">..</span>.
+
+<span class="token comment"># 가상화 가능 여부 체크</span>
+$ <span class="token function">egrep</span> -c <span class="token string">'(vmx|svm)'</span> /proc/cpuinfo
+<span class="token number">8</span> <span class="token comment"># 1 이상이 나와야 함 (보통 cpu 코어 수가 나옴)</span>
+
+<span class="token comment"># 아래의 명령을 실행해봤을때 실행이 안된다면</span>
+$ <span class="token function">sudo</span> kvm-ok
+<span class="token comment"># cpu-checker 를 설치</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> cpu-checker
+
+<span class="token comment"># kvm 관련 패키지 설치</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
+$ <span class="token function">sudo</span> kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+$ <span class="token function">sudo</span> systemctl status libvirtd
+● libvirtd.service - Virtualization daemon
+     Loaded: loaded <span class="token punctuation">(</span>/lib/systemd/system/libvirtd.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
+     Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Mon <span class="token number">2021</span>-01-04 <span class="token number">18</span>:09:08 KST<span class="token punctuation">;</span> 2s ago
+TriggeredBy: ● libvirtd.socket
+             ● libvirtd-admin.socket
+             ● libvirtd-ro.socket
+       Docs: man:libvirtd<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+             https://libvirt.org
+   Main PID: <span class="token number">7232</span> <span class="token punctuation">(</span>libvirtd<span class="token punctuation">)</span>
+      Tasks: <span class="token number">19</span> <span class="token punctuation">(</span>limit: <span class="token number">32768</span><span class="token punctuation">)</span>
+     Memory: <span class="token number">335</span>.7M
+     CGroup: /system.slice/libvirtd.service
+             ├─1026 /usr/sbin/dnsmasq --conf-file<span class="token operator">=</span>/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script<span class="token operator">=</span>/usr/lib/libvirt/libvirt_lease<span class="token operator">&gt;</span>
+             ├─1027 /usr/sbin/dnsmasq --conf-file<span class="token operator">=</span>/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script<span class="token operator">=</span>/usr/lib/libvirt/libvirt_lease<span class="token operator">&gt;</span>
+             └─7232 /usr/sbin/libvirtd
+
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> --now libvirtd
+
+<span class="token comment"># 재부팅이 필요함</span>
+
+$ lsmod <span class="token operator">|</span> <span class="token function">grep</span> -i kvm
+kvm_intel             <span class="token number">282624</span>  <span class="token number">0</span>
+kvm                   <span class="token number">663552</span>  <span class="token number">1</span> kvm_intel
+
+$ <span class="token function">sudo</span> adduser <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -un<span class="token variable">)</span></span> libvirt
+$ <span class="token function">sudo</span> adduser <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -un<span class="token variable">)</span></span> kvm
+
+<span class="token comment"># iso 링크가 동작하지 않거나, size 가 너무 작다면 제대로 받아지지 않은것이므로</span>
+<span class="token comment"># http://isoredirect.centos.org/centos/7/isos/x86_64/ 에서 링크 다시 확인</span>
+$ <span class="token function">curl</span> -O http://mirror.kakao.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
+$ <span class="token function">sudo</span> <span class="token function">mv</span> CentOS-7-x86_64-Minimal-2009.iso /var/lib/libvirt/images
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li><code>virt-manager</code> 구동 시 다음과 같은 에러가 나오는 경우,</li></ul> <div class="language-bash line-numbers-mode"><div class="highlight-lines"><br><div class="highlighted"> </div><div class="highlighted"> </div><br></div><pre class="language-bash"><code>$ virt-manager
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li>swrast 드라이버가 없는 경우이기 때문에 관련 드라이버를 설치해줘야 함.</li> <li><code>apt install mesa-utils libgl1-mesa-glx</code></li> <li>관련 URL: <a href="https://github.com/openai/gym/issues/509" target="_blank" rel="noopener noreferrer">https://github.com/openai/gym/issues/509<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <h3 id="ssh-를-통한-virt-manager-실행을-위한-작업"><a href="#ssh-를-통한-virt-manager-실행을-위한-작업" class="header-anchor">#</a> ssh 를 통한 virt-manager 실행을 위한 작업</h3> <blockquote><p>ssh 를 통한 virt-manager 접속은 속도가 많이 느림</p></blockquote> <ul><li><a href="https://www.xquartz.org" target="_blank" rel="noopener noreferrer">https://www.xquartz.org<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 에서 XQuartz 다운로드</li> <li><code>ssh -X host.domain.name -p port-number</code> 와 같이 접속하며 <code>virt-manager</code> 를 실행하면 xquartz 를 통해 GUI 가 실행된다.</li></ul> <h3 id="docker-kubernetes-설치-버전-확인"><a href="#docker-kubernetes-설치-버전-확인" class="header-anchor">#</a> docker, kubernetes 설치 버전 확인</h3> <ul><li>CentOS 기준</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ yum list docker-ce.x86-64 --showduplicates
+$ yum list kubernetes.x86-64 --showduplicates
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="docker-kubernetes-의-cgroup-변경"><a href="#docker-kubernetes-의-cgroup-변경" class="header-anchor">#</a> docker, kubernetes 의 cgroup 변경</h3> <blockquote><p>kubernetes 에서 권고하는 cgroup driver 를 systemd 로 변경하기 위한 방법
+kubelet 과 docker 는 cgroupfs 를 사용하고, 나머지 프로세스는 systemd 를 사용하도록 설정된 경우, 리소스가 부족해질때 불안정해지는 현상이 발생될 수 있다. 이로 인한 시스템 리소스 부족 현상이 발생할 수 있으므로 리눅스 init 시스템이 사용하는 cgroups 드라이버와 docker, kubelet 의 드라이버를 맞춰주는 것이 효율적이다.</p></blockquote> <ul><li>docker 의 cgroup 확인</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker info
+Client:
+ Context:    default
+ Debug Mode: <span class="token boolean">false</span>
+ Plugins:
+  app: Docker App <span class="token punctuation">(</span>Docker Inc., v0.9.1-beta3<span class="token punctuation">)</span>
+  buildx: Build with BuildKit <span class="token punctuation">(</span>Docker Inc., v0.5.1-docker<span class="token punctuation">)</span>
+
+Server:
+ Containers: <span class="token number">1</span>
+  Running: <span class="token number">1</span>
+  Paused: <span class="token number">0</span>
+  Stopped: <span class="token number">0</span>
+ Images: <span class="token number">1</span>
+ Server Version: <span class="token number">20.10</span>.3
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: <span class="token boolean">true</span>
+  Native Overlay Diff: <span class="token boolean">true</span>
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: <span class="token number">1</span>
+ Plugins:
+  Volume: <span class="token builtin class-name">local</span>
+  Network: bridge <span class="token function">host</span> ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file <span class="token builtin class-name">local</span> logentries splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 269548fa27e0089a8b8278fc4fc781d7f65a939b
+ runc version: ff819c7e9184c13b7c2607fe6c30ae19403a7aff
+ init version: de40ad0
+ Security Options:
+  apparmor
+  seccomp
+   Profile: default
+ Kernel Version: <span class="token number">5.8</span>.0-41-generic
+ Operating System: Ubuntu <span class="token number">20.04</span>.2 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: <span class="token number">8</span>
+ Total Memory: <span class="token number">7</span>.637GiB
+ Name: pulseLinux
+ ID: U7YY:IBZG:EEGT:U525:O2RL:R6OR:PFD5:FMRN:PXC6:VHLZ:O6FB:6KRA
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: <span class="token boolean">false</span>
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: <span class="token boolean">false</span>
+ Insecure Registries:
+  <span class="token number">127.0</span>.0.0/8
+ Live Restore Enabled: <span class="token boolean">false</span>
+
+$ docker info <span class="token operator">|</span> <span class="token function">grep</span> -i cgroup
+ Cgroup Driver: cgroupfs
+ Cgroup Version: <span class="token number">1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br></div></div><blockquote><p>kubernetes 에서는 systemd 를 권고함.</p></blockquote> <ul><li>docker cgroup driver 수정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">cat</span> <span class="token operator">&gt;</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+{
+  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;100m&quot;
+  },
+  &quot;storage-driver&quot;: &quot;overlay2&quot;,
+  &quot;dns&quot;: [&quot;8.8.8.8&quot;, &quot;8.8.4.4&quot;]
+}
+EOF</span>
+
+$ systemctl daemon-reload
+$ systemctl restart docker
+$ docker info
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="metrics-server-설치"><a href="#metrics-server-설치" class="header-anchor">#</a> metrics-server 설치</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">wget</span> https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
+
+<span class="token comment"># metrics-server container 의 args 조정</span>
+$ <span class="token function">vi</span> components.yaml
+<span class="token punctuation">..</span>.
+      containers:
+      - name: metrics-server
+      <span class="token punctuation">..</span>.
+        args:
+        - --cert-dir<span class="token operator">=</span>/tmp
+        - --secure-port<span class="token operator">=</span><span class="token number">4443</span>
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types<span class="token operator">=</span>InternalIP,ExternalIP,Hostname
+
+$ k apply -f components.yaml
+<span class="token comment"># 확인</span>
+$ k -n kube-system get deploy,svc
+$ k <span class="token function">top</span> node
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/47.06e3f17f.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

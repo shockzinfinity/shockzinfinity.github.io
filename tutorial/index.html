@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="github.io 에 vuepress 를 이용한 Blog">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/64.7aeb8381.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/23.63853b93.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tutorial"><a href="#tutorial" class="header-anchor">#</a> Tutorial</h1> <h2 id="todo-app-backend-frontend"><a href="#todo-app-backend-frontend" class="header-anchor">#</a> Todo App (backend + frontend)</h2> <blockquote><p>부제: Todo App 을 만드는 <strong>꽤</strong> 복잡한 방법</p></blockquote> <p>Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과정에 대한 Tutorial 입니다.</p> <h3 id="_1-todo-app-introduction"><a href="#_1-todo-app-introduction" class="header-anchor">#</a> <a href="./todoapp.1">#1. Todo App - Introduction</a></h3> <blockquote><p>소개</p></blockquote> <h3 id="_2-todo-app-backend"><a href="#_2-todo-app-backend" class="header-anchor">#</a> <a href="./todoapp.2">#2. Todo App - Backend</a></h3> <blockquote><p>Backend 부분</p></blockquote> <h3 id="_3-todo-app-frontend"><a href="#_3-todo-app-frontend" class="header-anchor">#</a> <a href="./todoapp.3">#3. Todo App - Frontend</a></h3> <blockquote><p>Frontend 부분</p></blockquote> <h3 id="_4-todo-app-refactoring"><a href="#_4-todo-app-refactoring" class="header-anchor">#</a> <a href="./todoapp.4">#4. Todo App - Refactoring</a></h3> <blockquote><p>비즈니스 요구사항 변경 및 리팩터링</p></blockquote> <h2 id="authentication-authorization-in-net-core"><a href="#authentication-authorization-in-net-core" class="header-anchor">#</a> <a href="./auth">Authentication &amp; Authorization in .net core</a></h2> <blockquote><p>.net core 를 이용한 인증 api</p></blockquote> <h2 id="exif-geolocation"><a href="#exif-geolocation" class="header-anchor">#</a> <a href="./geolocation">EXIF - GeoLocation</a></h2> <blockquote><p>python 을 이용한 EXIF 태그 중 위도/경도 추출</p></blockquote> <h2 id="node-js-sample-app"><a href="#node-js-sample-app" class="header-anchor">#</a> <a href="./nodejs.sample.app">node.js Sample App</a></h2> <blockquote><p>node.js 를 이용한 sample app 생성</p></blockquote></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/64.7aeb8381.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

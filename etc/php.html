@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PHP 개발환경 설정 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="PHP 개발환경 구성에 대해 다룹니다.">
+    <meta name="keywords" content="mac, development, env">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/19.ae612c6e.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>PHP 개발환경 설정</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/etc/php.html#참고-url" class="sidebar-link">참고 URL</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/etc/php.html#설정-파일-위치" class="sidebar-link">설정 파일 위치</a></li><li class="sidebar-sub-header"><a href="/etc/php.html#httpd-conf" class="sidebar-link">httpd.conf</a></li><li class="sidebar-sub-header"><a href="/etc/php.html#맥-기본-php-삭제를-위한-방법" class="sidebar-link">맥 기본 php 삭제를 위한 방법</a></li><li class="sidebar-sub-header"><a href="/etc/php.html#xdebug-추가-설정" class="sidebar-link">XDebug 추가 설정</a></li><li class="sidebar-sub-header"><a href="/etc/php.html#composer-설치" class="sidebar-link">composer 설치</a></li><li class="sidebar-sub-header"><a href="/etc/php.html#wordpress-개발을-위한-coding-standard-설치" class="sidebar-link">wordpress 개발을 위한 coding standard 설치</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="php-development-settings-on-mac"><a href="#php-development-settings-on-mac" class="header-anchor">#</a> PHP Development Settings on Mac</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#mac" class="tag" data-v-77ca7535>mac</a><a href="/tags.html#dev" class="tag" data-v-77ca7535>dev</a><a href="/tags.html#env" class="tag" data-v-77ca7535>env</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#참고-url">참고 URL</a><ul><li><a href="#설정-파일-위치">설정 파일 위치</a></li><li><a href="#httpd-conf">httpd.conf</a></li><li><a href="#맥-기본-php-삭제를-위한-방법">맥 기본 php 삭제를 위한 방법</a></li><li><a href="#xdebug-추가-설정">XDebug 추가 설정</a></li><li><a href="#composer-설치">composer 설치</a></li><li><a href="#wordpress-개발을-위한-coding-standard-설치">wordpress 개발을 위한 coding standard 설치</a></li></ul></li></ul></div><p></p> <h2 id="참고-url"><a href="#참고-url" class="header-anchor">#</a> 참고 URL</h2> <ul><li>macOS 11.0 Big Sur Apache Setup
+<ol><li><a href="https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions" target="_blank" rel="noopener noreferrer">Part 1: Multiple PHP Versions<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://getgrav.org/blog/macos-bigsur-apache-mysql-vhost-apc" target="_blank" rel="noopener noreferrer">Part 2: MySQL, Xdebug &amp; More...<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://getgrav.org/blog/macos-bigsur-apache-ssl" target="_blank" rel="noopener noreferrer">Part 3: LetsEncrypt SSL<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ol></li></ul> <h3 id="설정-파일-위치"><a href="#설정-파일-위치" class="header-anchor">#</a> 설정 파일 위치</h3> <ul><li>/usr/local/etc/httpd/httpd.conf</li> <li>/usr/local/etc/httpd/extra/httpd-vhosts.conf</li> <li>/usr/local/etc/dnsmasq.conf</li> <li>/usr/local/etc/php/7.2/php.ini</li> <li>/usr/local/etc/php/7.2/conf.d/ext-apcu.ini</li> <li>/usr/local/etc/php/7.2/conf.d/ext-yaml.ini</li> <li>/usr/local/etc/php/7.2/conf.d/ext-xdebug.ini</li> <li>/usr/local/etc/php/7.4/php.ini</li> <li>/usr/local/etc/php/7.4/conf.d/ext-apcu.ini</li> <li>/usr/local/etc/php/7.4/conf.d/ext-yaml.ini</li> <li>/usr/local/etc/php/7.4/conf.d/ext-xdebug.ini</li> <li>/usr/local/etc/php/8.0/php.ini</li> <li>/usr/local/etc/php/8.0/conf.d/ext-apcu.ini</li> <li>/usr/local/etc/php/8.0/conf.d/ext-yaml.ini</li> <li>/usr/local/etc/php/8.0/conf.d/ext-xdebug.ini</li> <li>~/.config/letsencrypt/cli.ini</li></ul> <h3 id="httpd-conf"><a href="#httpd-conf" class="header-anchor">#</a> httpd.conf</h3> <blockquote><p>위의 tutorial 진행 시 오류 부분만 기록
+connection refused 관련 오류 시 참고 : <a href="https://serverfault.com/questions/801325/authz-core-keeps-denying-access" target="_blank" rel="noopener noreferrer">https://serverfault.com/questions/801325/authz-core-keeps-denying-access<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <div class="language-apacheconf line-numbers-mode"><pre class="language-apacheconf"><code>...
+<span class="token directive-inline property">Listen</span> 0.0.0.0:80
+<span class="token directive-inline property">User</span> username
+<span class="token directive-inline property">Group</span> staff
+<span class="token directive-inline property">ServerName</span> localhost
+<span class="token directive-inline property">DocumentRoot</span> /Users/shockz/Sites
+<span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;</span>Directory</span><span class="token directive-block-parameter attr-value"> /Users/shockz/Sites</span><span class="token punctuation">&gt;</span></span>
+    <span class="token directive-inline property">AllowOverride</span> All
+    <span class="token directive-inline property">Require</span> all granted
+<span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;/</span>Directory</span><span class="token punctuation">&gt;</span></span>
+<span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;</span>Location</span><span class="token directive-block-parameter attr-value"> /</span><span class="token punctuation">&gt;</span></span>
+    <span class="token directive-inline property">require</span> all granted
+<span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;/</span>Location</span><span class="token punctuation">&gt;</span></span>
+...
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="맥-기본-php-삭제를-위한-방법"><a href="#맥-기본-php-삭제를-위한-방법" class="header-anchor">#</a> 맥 기본 php 삭제를 위한 방법</h3> <ul><li>/usr/bin/ 내의 php 삭제를 위해서는 별도의 작업이 필요함</li> <li>SIP (System Integrity Protection) 를 비활성화 하고,
+<img src="/assets/img/mac.systemfile.delete.1.15455ec0.png" alt="mac.systemfile.delete"></li> <li><code>sudo mount -o nobrowse -t apfs /dev/disk1s1 ./</code> 로 별도 디렉토리에 마운트하여 삭제해야 함
+<img src="/assets/img/mac.systemfile.delete.2.0e242490.png" alt="mac.systemfile.delete"></li></ul> <h3 id="xdebug-추가-설정"><a href="#xdebug-추가-설정" class="header-anchor">#</a> XDebug 추가 설정</h3> <ul><li><code>xdebug.start_with_request=yes</code></li> <li><code>xdebug.client_port=9000</code></li> <li><code>xdebug.client_host=localhost</code></li> <li>edge 용 Xdebug helper 확장 설치 (옵션)</li> <li>vscode php 위치 설정 필요 (&quot;php.validate.executablePath&quot;: &quot;/usr/local/bin/php&quot;)
+<img src="/assets/img/php.executable.path.1.f31bca87.png" alt="php.executable.path"></li> <li>vscode launch.json 설정</li></ul> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.</span>
+  <span class="token comment">// 기존 특성에 대한 설명을 보려면 가리킵니다.</span>
+  <span class="token comment">// 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.2.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Listen for XDebug&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;php&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;request&quot;</span><span class="token operator">:</span> <span class="token string">&quot;launch&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9003</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Launch currently open script&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;php&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;request&quot;</span><span class="token operator">:</span> <span class="token string">&quot;launch&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${file}&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cwd&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${fileDirname}&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9003</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="composer-설치"><a href="#composer-설치" class="header-anchor">#</a> composer 설치</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ brew <span class="token function">install</span> <span class="token function">composer</span>
+$ brew uninsall <span class="token function">composer</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>수동 설치 했다가 다시 삭제하기 위해서는 <a href="https://stackoverflow.com/questions/30396451/remove-composer" target="_blank" rel="noopener noreferrer">https://stackoverflow.com/questions/30396451/remove-composer<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 를 참고한다.</li> <li>수동 설치 및 사용 방법은 다음을 참고 : <a href="https://www.lesstif.com/php-and-laravel/php-composer-23757293.html" target="_blank" rel="noopener noreferrer">https://www.lesstif.com/php-and-laravel/php-composer-23757293.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="wordpress-개발을-위한-coding-standard-설치"><a href="#wordpress-개발을-위한-coding-standard-설치" class="header-anchor">#</a> wordpress 개발을 위한 coding standard 설치</h3> <ul><li><a href="https://sridharkatakam.com/linting-and-formatting-in-visual-studio-code-for-wordpress/" target="_blank" rel="noopener noreferrer">https://sridharkatakam.com/linting-and-formatting-in-visual-studio-code-for-wordpress/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/19.ae612c6e.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

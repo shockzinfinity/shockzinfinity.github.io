@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GitLab | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="gitlab 설치, 백업 및 복원에 대해 다룹니다.">
+    <meta name="keywords" content="gitlab">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/6.926baa87.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>GitLab</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/gitlab.html#docker-run" class="sidebar-link">docker run</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#nas-역방향-프록시-설정" class="sidebar-link">NAS 역방향 프록시 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#백업-복원" class="sidebar-link">백업 &amp; 복원</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#기타-설정" class="sidebar-link">기타 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#gitlab-mass-upload" class="sidebar-link">gitlab mass upload</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#gitlab-repository-mirroring-to-github" class="sidebar-link">gitlab repository mirroring to github</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#git-원격-브랜치-삭제" class="sidebar-link">git 원격 브랜치 삭제</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#gitignore-가-제대로-동작하지-않을때" class="sidebar-link">.gitignore 가 제대로 동작하지 않을때</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#git-자주-사용하는-명령어" class="sidebar-link">git 자주 사용하는 명령어</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#bitbucket-연결시-ssh-상에서-비밀번호-캐시-저장" class="sidebar-link">bitbucket 연결시 ssh 상에서 비밀번호 캐시 저장</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#git-계정-정보-저장-on-linux" class="sidebar-link">git 계정 정보 저장 (on linux)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/gitlab.html#gitlab-project-이동" class="sidebar-link">gitlab project 이동</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="gitlab"><a href="#gitlab" class="header-anchor">#</a> GitLab</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#git" class="tag" data-v-77ca7535>git</a><a href="/tags.html#gitlab" class="tag" data-v-77ca7535>gitlab</a><a href="/tags.html#docker" class="tag" data-v-77ca7535>docker</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#docker-run">docker run</a></li><li><a href="#nas-역방향-프록시-설정">NAS 역방향 프록시 설정</a></li><li><a href="#백업-복원">백업 &amp; 복원</a></li><li><a href="#기타-설정">기타 설정</a></li><li><a href="#gitlab-mass-upload">gitlab mass upload</a></li><li><a href="#gitlab-repository-mirroring-to-github">gitlab repository mirroring to github</a></li><li><a href="#git-원격-브랜치-삭제">git 원격 브랜치 삭제</a></li><li><a href="#gitignore-가-제대로-동작하지-않을때">.gitignore 가 제대로 동작하지 않을때</a></li><li><a href="#git-자주-사용하는-명령어">git 자주 사용하는 명령어</a></li><li><a href="#bitbucket-연결시-ssh-상에서-비밀번호-캐시-저장">bitbucket 연결시 ssh 상에서 비밀번호 캐시 저장</a></li><li><a href="#git-계정-정보-저장-on-linux">git 계정 정보 저장 (on linux)</a></li><li><a href="#gitlab-project-이동">gitlab project 이동</a></li></ul></div><p></p> <h2 id="docker-run"><a href="#docker-run" class="header-anchor">#</a> docker run</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker run --detach --publish <span class="token number">8001</span>:80 --publish <span class="token number">8002</span>:443 --publish <span class="token number">8003</span>:22 --name gitlab --restart always --volume /home/shockz/docker/gitlab/config:/etc/gitlab --volume /home/shockz/docker/gitlab/logs:/var/log/gitlab --volume /home/shockz/docker/gitlab/data:/var/opt/gitlab gitlab/gitlab-ee:latest
+
+<span class="token comment"># 참고 cer =&gt; crt</span>
+$ openssl x509 -in shockz.io.cer -out shockz.io.crt
+
+<span class="token comment"># 시간대 변경</span>
+$ docker <span class="token builtin class-name">exec</span> -it -u <span class="token number">0</span> xwiki <span class="token function">bash</span>
+$ unlink /etc/localtime <span class="token operator">&amp;&amp;</span> <span class="token function">ln</span> -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime <span class="token comment"># in xwiki shell</span>
+$ <span class="token function">date</span>
+
+<span class="token comment"># gitlab.rb 설정</span>
+<span class="token comment"># 사전에 다운로드 받은 ca.cer, shockz.io.cer, shockz.io.key 파일들을 ssl 디렉토리로 복사</span>
+external_url <span class="token string">'https://git.shockz.io'</span>
+nginx<span class="token punctuation">[</span><span class="token string">'redirect_http_to_https'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+nginx<span class="token punctuation">[</span><span class="token string">'redirect_http_to_https_port'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">80</span>
+nginx<span class="token punctuation">[</span><span class="token string">'ssl_client_certificate'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;/etc/gitlab/ssl/ca.cer&quot;</span>
+nginx<span class="token punctuation">[</span><span class="token string">'ssl_certificate'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;/etc/gitlab/ssl/shockz.io.cer&quot;</span>
+nginx<span class="token punctuation">[</span><span class="token string">'ssl_certificate_key'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;/etc/gitlab/ssl/shockz.io.key&quot;</span>
+
+<span class="token comment"># 시간대 설정</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'time_zone'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Asia/Seoul'</span>
+
+<span class="token comment"># smtp 설정</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_enable'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_address'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;smtp.daum.net&quot;</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_port'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">465</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_user_name'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;shockz99&quot;</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_password'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;패스워드&quot;</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_domain'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;shockz.io&quot;</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_authentication'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;login&quot;</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_enable_starttls_auto'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'smtp_tls'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+
+<span class="token comment"># ldap 관련 설정</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'ldap_enabled'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+gitlab_rails<span class="token punctuation">[</span><span class="token string">'ldap_servers'</span><span class="token punctuation">]</span> <span class="token operator">=</span> YAML.load <span class="token operator">&lt;&lt;-</span><span class="token string">'EOS'
+  main: # 'main' is the GitLab 'provider ID' of this LDAP server
+    label: 'LDAP'
+    host: '192.168.0.99' # NAS 주소
+    port: 389
+    uid: 'uid'
+    bind_dn: 'uid=root,cn=users,dc=ldap,dc=com'
+    password: 'Directory Server 패스워드'
+    encryption: 'plain' # &quot;start_tls&quot; or &quot;simple_tls&quot; or &quot;plain&quot;
+    verify_certificates: true
+    smartcard_auth: false
+    active_directory: false
+    allow_username_or_email_login: false
+    lowercase_usernames: false
+    block_auto_created_users: false
+    base: 'dc=shockz,dc=io'
+    user_filter: ''
+EOS</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><h2 id="nas-역방향-프록시-설정"><a href="#nas-역방향-프록시-설정" class="header-anchor">#</a> NAS 역방향 프록시 설정</h2> <p><img src="/assets/img/gitlab.reverse.proxy.c6fe3ee9.png" alt="reverse proxy"></p> <h2 id="백업-복원"><a href="#백업-복원" class="header-anchor">#</a> 백업 &amp; 복원</h2> <ul><li>docker 볼륨 연결 위치 (--volume /home/shockz/docker/gitlab/data:/var/opt/gitlab)</li> <li>backup 관련 설정 파일 위치 : vi /home/shockz/docker/gitlab/data/gitlab-rails/etc/gitlab.yml</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>backup:
+  keep_time: <span class="token number">604800</span> <span class="token comment"># 1 week (second 단위)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><blockquote><p>백업위치 : /home/shockz/docker/gitlab/data/backups</p></blockquote> <ul><li><p>NAS rsync 활성화<br> <img src="/assets/img/synology.rsync.1.3f2acbf5.png" alt="rsync 1"><br> <img src="/assets/img/synology.rsync.2.a814ebb1.png" alt="rsync 2"><br> <img src="/assets/img/synology.rsync.3.c407604c.png" alt="rsync 3"></p></li> <li><p>rsync 를 위한 자동 로그인 설정</p></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># on synology</span>
+$ <span class="token builtin class-name">cd</span> /var/services/homes/shockz
+$ <span class="token function">mkdir</span> .ssh
+
+<span class="token comment"># on linux machine</span>
+$ ssh-keygen -t rsa
+$ <span class="token function">chmod</span> <span class="token number">700</span> ~/.ssh <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/*
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <span class="token operator">&lt;</span>synology <span class="token function">ssh</span> port<span class="token operator">&gt;</span> id@synology.address
+$ <span class="token function">ssh</span> -p <span class="token operator">&lt;</span>synology <span class="token function">ssh</span> port<span class="token operator">&gt;</span> id@synology.address <span class="token comment"># synology 접속</span>
+$ <span class="token function">chmod</span> <span class="token number">700</span> ~/.ssh <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/*
+$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rwx,g<span class="token operator">=</span>rx,o<span class="token operator">=</span>rx /volume1/homes/shockz
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><ul><li>crontab 설정</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># /etc/crontab</span>
+<span class="token comment"># gitlab backup</span>
+<span class="token number">0</span> <span class="token number">2</span> * * <span class="token number">7</span> root  docker <span class="token builtin class-name">exec</span> -d gitlab gitlab-rake gitlab:backup:create
+<span class="token comment"># rsync</span>
+<span class="token number">30</span> <span class="token number">2</span> * * <span class="token number">7</span> root <span class="token function">rsync</span> -avzO -e <span class="token string">'ssh -i /home/shockz/.ssh/id_rsa -p 2299'</span> /home/shockz/docker/gitlab/data/backups/ id@synology.address:/volume1/gitlabBackup/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li>복원
+<blockquote><p><a href="https://lunightstory.tistory.com/7" target="_blank" rel="noopener noreferrer">참고<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote></li></ul> <div class="custom-block warning"><p class="custom-block-title">테스트 안됨</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker <span class="token builtin class-name">exec</span> -d gitlab gitlab-ctl stop unicorn
+$ docker <span class="token builtin class-name">exec</span> -d gitlab gitlab-ctl stop sidekig
+$ docker <span class="token builtin class-name">exec</span> -it gitlab gitlab-ctl status
+$ docker <span class="token builtin class-name">exec</span> -d gitlab gitlab-rake gitlab:backup:restore <span class="token assign-left variable">BACKUP</span><span class="token operator">=</span><span class="token operator">&lt;</span>Timestamp<span class="token operator">&gt;</span>_<span class="token operator">&lt;</span>backup_date<span class="token operator">&gt;</span>_<span class="token operator">&lt;</span>GitLab_version<span class="token operator">&gt;</span>
+<span class="token comment"># git 을 이용한 복원 (in docker container 에서 실행)</span>
+$ <span class="token function">sudo</span> -u <span class="token function">git</span> -H bundle <span class="token builtin class-name">exec</span> rake <span class="token assign-left variable">RAILS_ENV</span><span class="token operator">=</span>production gitlab:backup:restore
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <h2 id="기타-설정"><a href="#기타-설정" class="header-anchor">#</a> 기타 설정</h2> <ul><li><p>Admin Area &gt; Visibility and access control &gt; default project visibility : internal</p></li> <li><p>Enabled Git Access protocols : Only HTTP(s)</p></li> <li><p>Sign-up enabled off</p></li> <li><p>각 프로젝트 &gt; Settings &gt; integrations &gt; External Wiki : https://wiki.shockz.io</p></li> <li><p>각 프로젝트 &gt; Settings – Visibility, project features, permissions &gt; Wiki : off</p></li> <li><p>기본 그룹</p> <ul><li>shockz.io – 전사 공통. 회사 인프라. 사내 업무관련</li> <li>team – 팀별 그룹. 하위에 sub group으로 각 팀이 있습니다.</li> <li>study – pet project. study project. forked, cloned.</li> <li>project – 회사에서 진행하는 모든 프로덕트 프로젝트가 있으며, 각 프로젝트 별로 sub group이 있습니다.</li></ul></li> <li><p>개인별 task 프로젝트 기본 생성 원칙</p></li> <li><p>External Wiki<br> <img src="/assets/img/gitlab.wiki.3.83d5eccd.png" alt="default wiki off"><br> <img src="data:image/png;base64,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" alt="default wiki off"><br> <img src="/assets/img/gitlab.wiki.1.a3a5f024.png" alt="external wiki on"><br> <img src="/assets/img/gitlab.wiki.2.cecf712d.png" alt="external wiki on"></p></li> <li><p>Slack notification<br> <img src="/assets/img/gitlab.slack.3.1b0764c1.png" alt="incoming webhook add"><br> <img src="/assets/img/gitlab.slack.4.c5eccdc9.png" alt="incoming webhook add"><br> <img src="/assets/img/gitlab.slack.1.ac6236f5.png" alt="gitlab slack notification"><br> <img src="/assets/img/gitlab.slack.2.14583b44.png" alt="gitlab slack notification"></p></li></ul> <h2 id="gitlab-mass-upload"><a href="#gitlab-mass-upload" class="header-anchor">#</a> gitlab mass upload</h2> <ul><li>gitlab REST API 이용</li> <li><a href="https://github.com/shockzinfinity/gitlab-mass-upload" target="_blank" rel="noopener noreferrer">gitlab mass upload temp project<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>각 폴더별 git repository 생성</li></ul> <h2 id="gitlab-repository-mirroring-to-github"><a href="#gitlab-repository-mirroring-to-github" class="header-anchor">#</a> gitlab repository mirroring to github</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># gitlab repo의 bare clone 생성</span>
+$ <span class="token function">git</span> clone --bare https://gitlab/user/gitlab-repository.git
+$ <span class="token builtin class-name">cd</span> gitlab-repository.git
+<span class="token comment"># github 로 미러링</span>
+$ <span class="token function">git</span> push --mirror https://github.com/user/github-repository.git
+<span class="token comment"># bare 클론 저장소는 삭제해도 됨</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li>100 MB 이상의 파일이 repo 에 존재하는 경우 (github 에서 100 MB 이상은 오류 발생)</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># gitlab repo 클론</span>
+$ <span class="token function">git</span> clone --mirror https://gitlab/user/gitlab-repository.git
+$ <span class="token function">git</span> filter-branch --tree-filter <span class="token string">'git lfs track &quot;*.{zip}&quot;'</span> -- --all
+<span class="token comment"># BFG 이용하여 git lfs 로 변경 (java runtime 이 설치되어 있어야 하는 안타까운 현실)</span>
+$ java -jar ~/usr/bfg-repo-cleaner/bfg-1.13.0.jar --convert-to-git-lfs <span class="token string">'*.zip'</span>
+$ <span class="token builtin class-name">cd</span> git-repository.git
+$ <span class="token function">git</span> push --mirror https://github.com/user/github-repository.git
+<span class="token comment"># gitlab-repository.git 삭제</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><ul><li>위의 방법 말고도 Gitlab 서버상에서 Mirror Repository 를 통해서도 가능함.<br> <img src="/assets/img/gitlab.mirror.1.007eed0d.png" alt="gitlab.mirror"> <blockquote><ul><li>repository url: github repository clone.git</li> <li>password 부분은 github 에서 Personal Access Token 을 발급받을때 <code>pulic_repo</code> 권한을 부여한 상태로 토큰을 생성하고 그 토큰을 넣어줘야 함</li></ul></blockquote></li></ul> <h2 id="git-원격-브랜치-삭제"><a href="#git-원격-브랜치-삭제" class="header-anchor">#</a> git 원격 브랜치 삭제</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> push origin --delete feature/toDELETEbranch
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="gitignore-가-제대로-동작하지-않을때"><a href="#gitignore-가-제대로-동작하지-않을때" class="header-anchor">#</a> .gitignore 가 제대로 동작하지 않을때</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> <span class="token function">rm</span> -r --cached <span class="token builtin class-name">.</span>
+$ <span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+$ <span class="token function">git</span> commit -m <span class="token string">&quot;fixed untracked files&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="git-자주-사용하는-명령어"><a href="#git-자주-사용하는-명령어" class="header-anchor">#</a> git 자주 사용하는 명령어</h2> <ul><li>git init : git 생성하기</li> <li>git clone git_path : 코드가져오기</li> <li>git checkout branch_name : 브랜치 선택하기</li> <li>git checkout -t remote_path/branch_name : 원격 브랜치 선택하기</li> <li>git branch branch_name : 브랜치 생성하기</li> <li>git branch -r : 원격 브랜치 목록보기</li> <li>git branch -a : 로컬 브랜치 목록보기</li> <li>git branch -m branch_name change_branch_name : 브랜치 이름 바꾸기</li> <li>git branch -d branch_name : 브랜치 삭제하기</li> <li>git push remote_name — delete branch_name : 원격 브랜치 삭제하기 ( git push origin — delete gh-pages )</li> <li>git add file_path : 수정한 코드 선택하기 ( git add * )</li> <li>git commit -m “commit_description” : 선택한 코드 설명 적기 ( git commit -m “내용”)</li> <li>git push romote_name branch_name : add하고 commit한 코드 git server에 보내기 (git push origin master)</li> <li>git pull : git서버에서 최신 코드 받아와 merge 하기</li> <li>git fetch : git서버에서 최신 코드 받아오기</li> <li>git reset — hard HEAD^ : commit한 이전 코드 취소하기</li> <li>git reset — soft HEAD^ : 코드는 살리고 commit만 취소하기</li> <li>git reset — merge : merge 취소하기</li> <li>git reset — hard HEAD &amp;&amp; git pull : git 코드 강제로 모두 받아오기</li> <li>git config — global user.name “user_name ” : git 계정Name 변경하기</li> <li>git config — global user.email “user_email” : git 계정Mail변경하기</li> <li>git stash / git stash save “description” : 작업코드 임시저장하고 브랜치 바꾸기</li> <li>git stash pop : 마지막으로 임시저장한 작업코드 가져오기</li> <li>git branch — set-upstream-to=remote_path/branch_name : git pull no tracking info 에러해결</li></ul> <h2 id="bitbucket-연결시-ssh-상에서-비밀번호-캐시-저장"><a href="#bitbucket-연결시-ssh-상에서-비밀번호-캐시-저장" class="header-anchor">#</a> bitbucket 연결시 ssh 상에서 비밀번호 캐시 저장</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> config --global credential.helper <span class="token string">'cache --timeout 3600'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="git-계정-정보-저장-on-linux"><a href="#git-계정-정보-저장-on-linux" class="header-anchor">#</a> git 계정 정보 저장 (on linux)</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> config --global credential.helper store
+$ <span class="token function">git</span> config --global -l
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="gitlab-project-이동"><a href="#gitlab-project-이동" class="header-anchor">#</a> gitlab project 이동</h2> <blockquote><p>단순하게 repository 이동만을 위한 방법 (GitLab API 의 import/export project 는 좀 과해서...)</p></blockquote> <p><code>config.json</code></p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;targetAddr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://targetgit.shockz.io/api/v4&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;targetToken&quot;</span><span class="token operator">:</span> <span class="token string">&quot;**********&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origAddr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://origgit.shockz.io/api/v4&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origToken&quot;</span><span class="token operator">:</span> <span class="token string">&quot;**********&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><code>gitlab_move_repo.py</code></p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> csv
+<span class="token keyword">import</span> os
+
+failFilename <span class="token operator">=</span> <span class="token string">&quot;failProject.csv&quot;</span>
+f <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>failFilename<span class="token punctuation">,</span> <span class="token string">&quot;w&quot;</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">&quot;utf-8-sig&quot;</span><span class="token punctuation">,</span> newline<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+writer <span class="token operator">=</span> csv<span class="token punctuation">.</span>writer<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;config.json&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    config <span class="token operator">=</span> json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+
+targetHeaders <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'PRIVATE-TOKEN'</span><span class="token punctuation">:</span> config<span class="token punctuation">[</span><span class="token string">&quot;targetToken&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+origHeaders <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'Authorization'</span><span class="token punctuation">:</span> <span class="token string">'Bearer '</span> <span class="token operator">+</span> config<span class="token punctuation">[</span><span class="token string">&quot;origToken&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+repoListFile <span class="token operator">=</span> <span class="token string">&quot;repo_list.json&quot;</span>
+res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>config<span class="token punctuation">[</span><span class="token string">&quot;origAddr&quot;</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">&quot;/projects?per_page=100&quot;</span><span class="token punctuation">,</span> headers<span class="token operator">=</span>origHeaders<span class="token punctuation">)</span>
+res<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+cloneAddrs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+totalProjects <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;X-Total&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+totalPages <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;X-Total-Pages&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> page <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>totalPages<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> page <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>config<span class="token punctuation">[</span><span class="token string">&quot;origAddr&quot;</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">&quot;/projects?per_page=100&amp;&amp;page=&quot;</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>page <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> headers<span class="token operator">=</span>origHeaders<span class="token punctuation">)</span>
+        res<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    temps <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> temp <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>temps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        data <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;http_url_to_repo&quot;</span><span class="token punctuation">:</span> temp<span class="token punctuation">[</span><span class="token string">&quot;http_url_to_repo&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;name&quot;</span><span class="token punctuation">:</span> temp<span class="token punctuation">[</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;path&quot;</span><span class="token punctuation">:</span> temp<span class="token punctuation">[</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+        cloneAddrs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> addr <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>cloneAddrs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;git clone &quot;</span> <span class="token operator">+</span> addr<span class="token punctuation">[</span><span class="token string">&quot;http_url_to_repo&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span>addr<span class="token punctuation">[</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;git remote remove origin&quot;</span><span class="token punctuation">)</span>
+
+        res2 <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>config<span class="token punctuation">[</span><span class="token string">&quot;targetAddr&quot;</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">&quot;/projects?visibility=public&amp;name=&quot;</span> <span class="token operator">+</span>
+                             addr<span class="token punctuation">[</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> headers<span class="token operator">=</span>targetHeaders<span class="token punctuation">)</span>
+        res2<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        retClone <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>res2<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;git remote add origin &quot;</span> <span class="token operator">+</span> retClone<span class="token punctuation">[</span><span class="token string">&quot;http_url_to_repo&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;git push -u origin master&quot;</span><span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span><span class="token string">&quot;..&quot;</span><span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;rm -rf ./&quot;</span> <span class="token operator">+</span> addr<span class="token punctuation">[</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        writer<span class="token punctuation">.</span>writerow<span class="token punctuation">(</span>addr<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">continue</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/6.926baa87.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

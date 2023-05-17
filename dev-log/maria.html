@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mariaDB | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="mariaDB 설정 파일, 기타 내용을 다룹니다.">
+    <meta name="keywords" content="mariaDB">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/49.916b51ba.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/18.9a0640a0.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>mariaDB</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/maria.html#general" class="sidebar-link">General</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#워드프레스-가입자-체크-월별" class="sidebar-link">워드프레스 가입자 체크 (월별)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#restore-시-에러" class="sidebar-link">restore 시 에러</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#쿼리-실행-결과를-csv-로" class="sidebar-link">쿼리 실행 결과를 csv 로...</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#mysqldump" class="sidebar-link">mysqldump</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#배포용-my-cnf-설정" class="sidebar-link">배포용 my.cnf 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#query-log-설정" class="sidebar-link">query log 설정</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/maria.html#various-command" class="sidebar-link">various command</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mariadb"><a href="#mariadb" class="header-anchor">#</a> mariaDB</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#mariaDB" class="tag" data-v-77ca7535>mariaDB</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#general">General</a></li><li><a href="#워드프레스-가입자-체크-월별">워드프레스 가입자 체크 (월별)</a></li><li><a href="#restore-시-에러">restore 시 에러</a></li><li><a href="#쿼리-실행-결과를-csv-로">쿼리 실행 결과를 csv 로...</a></li><li><a href="#mysqldump">mysqldump</a></li><li><a href="#배포용-my-cnf-설정">배포용 my.cnf 설정</a></li><li><a href="#query-log-설정">query log 설정</a></li><li><a href="#various-command">various command</a></li></ul></div><p></p> <h2 id="general"><a href="#general" class="header-anchor">#</a> General</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># aws s3 를 이용하여 이동 - aws configure 를 통해 미리 인증정보 등록되어 있다고 가정</span>
+$ aws s3 <span class="token function">cp</span> s3://버킷주소/backup.db.sql ./
+<span class="token comment"># 업로드는</span>
+$ aws s3 <span class="token function">cp</span> backup.db.sql s3://버킷주소/backup.db.sql
+
+<span class="token comment"># 디비 백업</span>
+$ mysqldump -h DB주소 -uwordpress -p --databases 디비명 <span class="token operator">&gt;</span> backup.db.sql
+
+<span class="token comment"># 디비 복원 시</span>
+MariaDB <span class="token operator">&gt;</span> CREATE DATABASE database_name<span class="token punctuation">;</span>
+MariaDB <span class="token operator">&gt;</span> grant all privileges on database_name.* to <span class="token string">'wordpress'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+MariaDB <span class="token operator">&gt;</span> flush privileges<span class="token punctuation">;</span>
+
+<span class="token comment"># 디비 복원</span>
+$ mysql -uwordpress -p database_name <span class="token operator">&lt;</span> ./backup.db.sql
+
+<span class="token comment"># 디비 접속 확인</span>
+$ mysql -uwordpress -p
+
+<span class="token comment"># 디비 리스트</span>
+MariaDB <span class="token operator">&gt;</span> show databases<span class="token punctuation">;</span>
+
+<span class="token comment"># 디비 사용자 리스트</span>
+MariaDB <span class="token operator">&gt;</span> use mysql<span class="token punctuation">;</span>
+MariaDB <span class="token operator">&gt;</span> <span class="token keyword">select</span> host, user, password from user<span class="token punctuation">;</span>
+
+<span class="token comment"># 원격접속 가능토록...</span>
+MariaDB <span class="token operator">&gt;</span> grant all privileges on *.* to <span class="token string">'wordpress'</span>@<span class="token string">'%'</span> identified by <span class="token string">'password'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 외부에서 maria db 찾지 못할때 확인</span>
+$ <span class="token function">cat</span> /etc/mysql/my.cnf
+<span class="token comment"># bind-address = 127.0.0.1 부분이 있으면 주석처리 후 mysql 재시작</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h2 id="워드프레스-가입자-체크-월별"><a href="#워드프레스-가입자-체크-월별" class="header-anchor">#</a> 워드프레스 가입자 체크 (월별)</h2> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span>user_registered<span class="token punctuation">,</span> <span class="token string">'%Y%m'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token keyword">date</span><span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> wp_users wu
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> DATE_FORMAT<span class="token punctuation">(</span>user_registered<span class="token punctuation">,</span> <span class="token string">'%Y%m'</span><span class="token punctuation">)</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">date</span> <span class="token keyword">DESC</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="restore-시-에러"><a href="#restore-시-에러" class="header-anchor">#</a> restore 시 에러</h2> <ul><li><strong>ERROR 1227 (42000) at line 3825: Access denied; you need (at least one of) the SUPER, SET USER privilege(s) for this operation</strong></li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 위와 같이 나오면서 복원이 안되는 경우는</span>
+<span class="token comment"># 오류가 난 파일을 살펴보니 프로시저를 정의할때 프로시저명 앞에 DEFINER가 정의가 되어 있었음.</span>
+<span class="token comment"># 이 DEFINER의 권한으로 DB접속을 해서 import를 하든지, 혹은 import하는 파일 내용중에서 DEFINER부분을 삭제하면 됨.</span>
+
+$ <span class="token function">sed</span> -i <span class="token string">'s/DEFINER=[^*]*\*/\*/g'</span> backup.db.sql
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="쿼리-실행-결과를-csv-로"><a href="#쿼리-실행-결과를-csv-로" class="header-anchor">#</a> 쿼리 실행 결과를 csv 로...</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">db</span><span class="token operator">=</span>dbname
+<span class="token assign-left variable">user</span><span class="token operator">=</span>username
+<span class="token assign-left variable">pass</span><span class="token operator">=</span>password
+<span class="token assign-left variable">query</span><span class="token operator">=</span><span class="token string">&quot;&quot;</span>
+
+<span class="token assign-left variable">filename</span><span class="token operator">=</span>users.csv
+<span class="token assign-left variable">host</span><span class="token operator">=</span>koreatraveleasy-v2.cwwm9hfs6ga5.ap-southeast-1.rds.amazonaws.com
+<span class="token assign-left variable">db</span><span class="token operator">=</span>koreatraveleasy
+<span class="token assign-left variable">user</span><span class="token operator">=</span>wpuser
+<span class="token assign-left variable">pass</span><span class="token operator">=</span>wpuser1234
+<span class="token assign-left variable">query</span><span class="token operator">=</span><span class="token string">&quot;SELECT wp_users.user_login, wp_users.user_email, firstmeta.meta_value as first_name, lastmeta.meta_value as last_name, rolemeta.meta_value as role FROM wp_users INNER JOIN wp_usermeta wu2 ON wp_users.ID = wu2.user_id left join wp_usermeta as firstmeta on wp_users.ID = firstmeta.user_id and firstmeta.meta_key = 'first_name' left join wp_usermeta as lastmeta on wp_users.ID = lastmeta.user_id and lastmeta.meta_key = 'last_name' left join wp_usermeta as rolemeta on wp_users.ID = rolemeta.user_id and rolemeta.meta_key = 'wp_capabilities' WHERE wu2.meta_key = 'account_status' AND wu2.meta_value = 'approved' AND rolemeta.meta_value='a:1:\{s:8:<span class="token entity" title="\&quot;">\&quot;</span>customer<span class="token entity" title="\&quot;">\&quot;</span>;b:1;\}' AND wp_users.user_email &lt;&gt; ''&quot;</span>
+
+mysql -h <span class="token variable">$host</span> -u<span class="token variable">$user</span> -p<span class="token variable">$pass</span> <span class="token variable">$db</span> -e <span class="token variable">$query</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/<span class="token entity" title="\t">\t</span>/&quot;,&quot;/g;s/^/&quot;/;s/$/&quot;/;'</span> <span class="token operator">&gt;</span> <span class="token variable">$filename</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="mysqldump"><a href="#mysqldump" class="header-anchor">#</a> mysqldump</h2> <ul><li>backup 시 에러 대처</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ mysqldump -uwordpress -p --databases dbname <span class="token operator">&gt;</span> /var/lib/mysql/backup.db.sql
+mysqldump: Got error: <span class="token number">1045</span>: <span class="token string">&quot;Access denied for user 'wordpress'@'%' (using password: YES)&quot;</span> when using LOCK TABLES
+
+$ mysql -uwordpress -p
+MariaDB <span class="token operator">&gt;</span> GRANT SELECT, LOCK TABLES ON dbname.* TO <span class="token string">'wordpress'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+MariaDB <span class="token operator">&gt;</span> FLUSH PRIVILEGES<span class="token punctuation">;</span>
+
+<span class="token comment"># 그래도 동일한 에러가 날 경우</span>
+$ mysqldump -h db -uwordpress -p --single-transaction --databases dbname <span class="token operator">&gt;</span> /var/lib/mysql/backup.db.sql
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="배포용-my-cnf-설정"><a href="#배포용-my-cnf-설정" class="header-anchor">#</a> 배포용 my.cnf 설정</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># my.cnf</span>
+<span class="token comment"># MariaDB-specific config file.</span>
+<span class="token comment"># Read by /etc/mysql/my.cnf</span>
+<span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+<span class="token comment"># Default is Latin1, if you need UTF-8 set this (also in server section)</span>
+<span class="token comment"># emoji 저장 및 표현하기 위해서는 utf8mb4 인코딩을 써야 함</span>
+<span class="token comment">#default-character-set = utf8</span>
+default-character-set <span class="token operator">=</span> utf8mb4
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
+default-character-set <span class="token operator">=</span> utf8mb4
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+<span class="token comment">#</span>
+<span class="token comment"># * Character sets</span>
+<span class="token comment">#</span>
+<span class="token comment"># Default is Latin1, if you need UTF-8 set all this (also in client section)</span>
+<span class="token comment">#</span>
+<span class="token comment">#character-set-server = utf8</span>
+<span class="token comment">#collation-server = utf8_general_ci</span>
+<span class="token comment">#character_set_server = utf8</span>
+<span class="token comment">#collation_server = utf8_general_ci</span>
+<span class="token comment"># Import all .cnf files from configuration directory</span>
+character-set-client-handshake <span class="token operator">=</span> FALSE
+character-set-server <span class="token operator">=</span> utf8mb4
+collation-server <span class="token operator">=</span> utf8mb4_unicode_ci
+<span class="token operator">!</span>includedir /etc/mysql/mariadb.conf.d/
+<span class="token comment"># 테이블명을 일괄 소문자로 하기 위한 설정</span>
+lower_case_table_names <span class="token operator">=</span> <span class="token number">1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h2 id="query-log-설정"><a href="#query-log-설정" class="header-anchor">#</a> query log 설정</h2> <ul><li>my.cnf 에 추가</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+general_log <span class="token operator">=</span> <span class="token number">1</span>
+general_log_file <span class="token operator">=</span> /data/general.log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="various-command"><a href="#various-command" class="header-anchor">#</a> various command</h2> <ul><li>DB접속: <code>mariadb -h localhost -u [유저명] -p</code></li> <li>DB접속종료: <code>quit</code></li> <li>DATABASE 조회: <code>SHOW DATABASES;</code></li> <li>DATABASE 사용: <code>USE MYSQL;</code></li> <li>USER 정보 조회: <code>SELECT HOST, USER, PASSWORD FROM USER;</code></li> <li>DB생성: <code>CREATE DATABASE 'DB명';</code></li> <li>DB삭제: <code>DELETE DATABASE 'DB명';</code></li> <li>USER 생성: <code>CREATE USER '유저명'@'호스트' IDENTIFIED BY '비밀번호';</code>, <code>CREATE USER '유저명'@'%' IDENTIFIED BY '비밀번호';</code></li> <li>USER 삭제: <code>DROP USER '유저명'@'호스트'</code></li> <li>변경사항 적용: <code>FLUSH PRIVILEGES;</code></li> <li>권한부여(USER 추가 가능): <code>GRANT USAGE ON *.* TO '유저명'@'호스트' IDENTIFIED BY '비밀번호';</code></li> <li>권한삭제: <code>REVOKE USAGE ON *.* FROM '유저명'@'호스트';</code></li> <li>권한 확인: <code>SHOW GRANTS FOR '유저명'@'호스트';</code></li> <li>모든 권한 부여: <code>GRANT ALL PRIVILEGES ON *.* TO '유저명'@'호스트' IDENTIFIED BY '비밀번호' WITH GRANT OPTION;</code></li> <li>해당DATABASE 모든 권한 부여: <code>GRANT ALL PRIVILEGES ON DB명.* TO '유저명'@'호스트' IDENTIFIED BY '비밀번호';</code></li> <li>모든 테이블에 SELECT, INSERT 권한 부여: <code>GRANT SELECT, INSERT ON DB명.* TO '유저명'@'호스트' IDENTIFIED BY '비밀번호';</code></li> <li>특정 테이블의 특정 컬럼에만 UPDATE 권한 부여: <code>GRANT UPDATE(컬럼1,컬럼2,컬럼3) ON DB명.테이블명 TO '유저명'@'호스트' IDENTIFIED BY '비밀번호';</code></li> <li>모든 호스트에서 접속가능하고 SELECT 권한만 갖는 유저 추가: <code>GRANT SELECT ON DBNAME.* TO '유저명'@'%' IDENTIFIED BY '비밀번호';</code></li> <li>IP주소가 192.168.0.으로 시작하는 컴퓨터에서 접속가능한 유저 추가: <code>GRANT ALL PRIVILEGES ON *.* TO '유저명'@'192.168.0.%' IDENTIFIED BY '비밀번호';</code></li> <li>모든 권한 삭제: <code>REVOKE ALL PRIVILEGES ON *.* FROM '유저명'@'호스트';</code></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/49.916b51ba.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>

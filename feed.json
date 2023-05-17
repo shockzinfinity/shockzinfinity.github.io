@@ -1,0 +1,249 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "ironpot devLog",
+    "home_page_url": "https://shockzinfinity.github.io",
+    "feed_url": "https://shockzinfinity.github.io/feed.json",
+    "description": "github.io 에 vuepress 를 이용한 Blog",
+    "items": [
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/aws.html",
+            "url": "https://shockzinfinity.github.io/dev-log/aws.html",
+            "title": "AWS",
+            "summary": "aws 관련 내용",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/aws.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/centos.html",
+            "url": "https://shockzinfinity.github.io/dev-log/centos.html",
+            "title": "CentOS 8 설정",
+            "summary": "CentOS 8 설치 후 기본적인 설정을 포함합니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/centos.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/code-server.html",
+            "url": "https://shockzinfinity.github.io/dev-log/code-server.html",
+            "title": "Code Server",
+            "summary": "Code Server 사용 및 관련 설정 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/code-server.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/docker.html",
+            "url": "https://shockzinfinity.github.io/dev-log/docker.html",
+            "title": "Docker 사용방법",
+            "summary": "docker 사용 및 관련 설정 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/docker.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/dotnetcore.html",
+            "url": "https://shockzinfinity.github.io/dev-log/dotnetcore.html",
+            "title": ".net core",
+            "summary": ".net core 관련 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/dotnetcore.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/efcore.html",
+            "url": "https://shockzinfinity.github.io/dev-log/efcore.html",
+            "title": "ef core",
+            "summary": "EntityFrameworkCore 관련 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/efcore.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/github.html",
+            "url": "https://shockzinfinity.github.io/dev-log/github.html",
+            "title": "GitHub",
+            "summary": "github 사용 관련 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/github.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/gitlab.html",
+            "url": "https://shockzinfinity.github.io/dev-log/gitlab.html",
+            "title": "GitLab",
+            "summary": "gitlab 설치, 백업 및 복원에 대해 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.905Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/gitlab.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/jenkins.html",
+            "url": "https://shockzinfinity.github.io/dev-log/jenkins.html",
+            "title": "Jenkins",
+            "summary": "Jenkins 관련 설정을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/jenkins.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/kubernetes.html",
+            "url": "https://shockzinfinity.github.io/dev-log/kubernetes.html",
+            "title": "Kubernetes",
+            "summary": "Kubenetes 관련 내용을 포함합니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/kubernetes.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/linux.html",
+            "url": "https://shockzinfinity.github.io/dev-log/linux.html",
+            "title": "Linux 사용 일반",
+            "summary": "Linux 사용에 대한 일반적인 내용을 담고 있습니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/linux.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/maria.html",
+            "url": "https://shockzinfinity.github.io/dev-log/maria.html",
+            "title": "mariaDB",
+            "summary": "mariaDB 설정 파일, 기타 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/maria.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/mssql.html",
+            "url": "https://shockzinfinity.github.io/dev-log/mssql.html",
+            "title": "mssql on docker",
+            "summary": "mssql on docker",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/mssql.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/nginx.html",
+            "url": "https://shockzinfinity.github.io/dev-log/nginx.html",
+            "title": "Nginx",
+            "summary": "Nginx 설정 파일, 기타 내용을 다룹니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/nginx.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/npm.html",
+            "url": "https://shockzinfinity.github.io/dev-log/npm.html",
+            "title": "npm package",
+            "summary": "npm package 배포 관련",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/npm.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/podman.html",
+            "url": "https://shockzinfinity.github.io/dev-log/podman.html",
+            "title": "Podman",
+            "summary": "Podman on CentOS 8",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/podman.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/postgresql.html",
+            "url": "https://shockzinfinity.github.io/dev-log/postgresql.html",
+            "title": "PostgreSQL",
+            "summary": "PostgreSQL 관련 설정",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/postgresql.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/python.html",
+            "url": "https://shockzinfinity.github.io/dev-log/python.html",
+            "title": "python 관련",
+            "summary": "python 과 관련된 내용을 기록합니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/python.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/selenium.html",
+            "url": "https://shockzinfinity.github.io/dev-log/selenium.html",
+            "title": "selenium on mac",
+            "summary": "selenium on mac",
+            "image": "/public/imgrkdown/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/etc/selenium.html"
+            }
+        },
+        {
+            "id": "https://shockzinfinity.github.io/dev-log/seq.html",
+            "url": "https://shockzinfinity.github.io/dev-log/seq.html",
+            "title": "Datalust/Seq",
+            "summary": "datalust seq 사용에 관한 내용입니다.",
+            "image": "/public/img/logo.png",
+            "date_modified": "2023-05-17T01:12:16.906Z",
+            "author": {
+                "name": "shockz",
+                "url": "https://shockzinfinity.github.io/dev-log/seq.html"
+            }
+        }
+    ]
+}

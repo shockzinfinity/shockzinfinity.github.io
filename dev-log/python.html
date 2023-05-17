@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>python 관련 | ironpot devLog</title>
+    <meta name="generator" content="VuePress 1.8.1">
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MM4TDVZJ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MM4TDVZJ85');
+    </script>
+    <link rel="alternate" type="application/rss+xml" href="https://shockzinfinity.github.io/rss.xml" title="ironpot devLog RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://shockzinfinity.github.io/feed.atom" title="ironpot devLog Atom Feed">
+    <link rel="alternate" type="application/json" href="https://shockzinfinity.github.io/feed.json" title="ironpot devLog JSON Feed">
+    <meta name="description" content="python 과 관련된 내용을 기록합니다.">
+    <meta name="keywords" content="python">
+    <meta name="google-site-verification" content="hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA">
+    <meta name="naver-site-verification" content="cd32f721debd9633141e4a04c83fad98d36a5abc">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ironPot">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="ironPot42 dev log site">
+    <meta name="og:description" content="Development log for ironPot42">
+    <meta name="og:url" content="https://shockzinfinity.github.io">
+    <meta name="og:image" content="/img/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.cf942b68.css" as="style"><link rel="preload" href="/assets/js/app.7241b23d.js" as="script"><link rel="preload" href="/assets/js/16.9bbf30ce.js" as="script"><link rel="preload" href="/assets/js/2.fa64d90e.js" as="script"><link rel="preload" href="/assets/js/18.9a0640a0.js" as="script"><link rel="preload" href="/assets/js/23.63853b93.js" as="script"><link rel="preload" href="/assets/js/24.33670beb.js" as="script"><link rel="prefetch" href="/assets/js/10.48f0416c.js"><link rel="prefetch" href="/assets/js/11.3d254adf.js"><link rel="prefetch" href="/assets/js/12.efde46f4.js"><link rel="prefetch" href="/assets/js/13.e306d46b.js"><link rel="prefetch" href="/assets/js/14.b4444652.js"><link rel="prefetch" href="/assets/js/15.7872e73c.js"><link rel="prefetch" href="/assets/js/17.776dbdaa.js"><link rel="prefetch" href="/assets/js/19.ae612c6e.js"><link rel="prefetch" href="/assets/js/20.6311e222.js"><link rel="prefetch" href="/assets/js/21.bf26263d.js"><link rel="prefetch" href="/assets/js/22.48756f94.js"><link rel="prefetch" href="/assets/js/25.36b5dacd.js"><link rel="prefetch" href="/assets/js/26.ad2b4aa7.js"><link rel="prefetch" href="/assets/js/27.ab33d99b.js"><link rel="prefetch" href="/assets/js/28.27b5dad8.js"><link rel="prefetch" href="/assets/js/29.7c07d90e.js"><link rel="prefetch" href="/assets/js/3.1aee2a87.js"><link rel="prefetch" href="/assets/js/30.6aaf8085.js"><link rel="prefetch" href="/assets/js/31.f11b6d6c.js"><link rel="prefetch" href="/assets/js/32.5fe729a7.js"><link rel="prefetch" href="/assets/js/33.2e3ebf11.js"><link rel="prefetch" href="/assets/js/34.80b5ca0b.js"><link rel="prefetch" href="/assets/js/35.2b8d6471.js"><link rel="prefetch" href="/assets/js/36.2f4d5af3.js"><link rel="prefetch" href="/assets/js/37.d78bd7fe.js"><link rel="prefetch" href="/assets/js/38.382c0ae6.js"><link rel="prefetch" href="/assets/js/39.9728ee8d.js"><link rel="prefetch" href="/assets/js/4.1f885a07.js"><link rel="prefetch" href="/assets/js/40.27c5907c.js"><link rel="prefetch" href="/assets/js/41.8baf5869.js"><link rel="prefetch" href="/assets/js/42.7e66e31d.js"><link rel="prefetch" href="/assets/js/43.b8f3b619.js"><link rel="prefetch" href="/assets/js/44.9cb351bf.js"><link rel="prefetch" href="/assets/js/45.aeebcb42.js"><link rel="prefetch" href="/assets/js/46.87605899.js"><link rel="prefetch" href="/assets/js/47.06e3f17f.js"><link rel="prefetch" href="/assets/js/48.0f7bf86e.js"><link rel="prefetch" href="/assets/js/49.916b51ba.js"><link rel="prefetch" href="/assets/js/5.a8f5a63a.js"><link rel="prefetch" href="/assets/js/50.cfc4e344.js"><link rel="prefetch" href="/assets/js/51.665f332a.js"><link rel="prefetch" href="/assets/js/52.a88f8dae.js"><link rel="prefetch" href="/assets/js/53.0a4d28e2.js"><link rel="prefetch" href="/assets/js/54.d4eaa62f.js"><link rel="prefetch" href="/assets/js/55.25a36e46.js"><link rel="prefetch" href="/assets/js/56.94d52f4e.js"><link rel="prefetch" href="/assets/js/57.bf44b8b1.js"><link rel="prefetch" href="/assets/js/58.f5e88ea1.js"><link rel="prefetch" href="/assets/js/59.7b269059.js"><link rel="prefetch" href="/assets/js/6.926baa87.js"><link rel="prefetch" href="/assets/js/60.8344aee6.js"><link rel="prefetch" href="/assets/js/61.ed07175c.js"><link rel="prefetch" href="/assets/js/62.b6eb2e7e.js"><link rel="prefetch" href="/assets/js/63.a0661686.js"><link rel="prefetch" href="/assets/js/64.7aeb8381.js"><link rel="prefetch" href="/assets/js/65.bb641138.js"><link rel="prefetch" href="/assets/js/66.67d1f660.js"><link rel="prefetch" href="/assets/js/67.ad2b0acc.js"><link rel="prefetch" href="/assets/js/68.062e13ab.js"><link rel="prefetch" href="/assets/js/7.0aed6ff0.js"><link rel="prefetch" href="/assets/js/8.66bc2f1b.js"><link rel="prefetch" href="/assets/js/9.e4c3adb9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cf942b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9cf26668><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ironpot devLog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/tags.html" class="nav-link">
+  tags
+</a></div><div class="nav-item"><a href="/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Developement Log" class="dropdown-title"><span class="title">devLog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Developement Log" class="mobile-dropdown-title"><span class="title">devLog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dev-log/centos.html" class="nav-link">
+  CentOS 8
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/podman.html" class="nav-link">
+  Podman
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/docker.html" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/xwiki.html" class="nav-link">
+  Xwiki
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/synology.html" class="nav-link">
+  Synology NAS
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/gitlab.html" class="nav-link">
+  GitLab
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/github.html" class="nav-link">
+  GitHub
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/ssl.html" class="nav-link">
+  SSL
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/dotnetcore.html" class="nav-link">
+  .net core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/konva.html" class="nav-link">
+  Konva Test
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuepress.html" class="nav-link">
+  VuePress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/vuejs.html" class="nav-link">
+  Vue.js
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/mssql.html" class="nav-link">
+  mssql
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/maria.html" class="nav-link">
+  mariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/efcore.html" class="nav-link">
+  EF core
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/wordpress.html" class="nav-link">
+  WordPress
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/npm.html" class="nav-link">
+  NPM
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/jenkins.html" class="nav-link">
+  Jenkins
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/code-server.html" class="nav-link">
+  code-server
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/aws.html" class="nav-link">
+  aws
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/linux.html" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/selenium.html" class="nav-link">
+  selenium
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/python.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/dev-log/kubernetes.html" class="nav-link">
+  kubernetes
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="etc" class="dropdown-title"><span class="title">etc</span> <span class="arrow down"></span></button> <button type="button" aria-label="etc" class="mobile-dropdown-title"><span class="title">etc</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/etc/devEnv.html" class="nav-link">
+  개발환경설정
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode-debugging.html" class="nav-link">
+  vscode-debugging
+</a></li><li class="dropdown-item"><!----> <a href="/etc/vscode.html" class="nav-link">
+  VS Code 관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/mac-etc.html" class="nav-link">
+  mac 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/iPad.html" class="nav-link">
+  iPad 사용관련
+</a></li><li class="dropdown-item"><!----> <a href="/etc/markdown.html" class="nav-link">
+  markdown
+</a></li><li class="dropdown-item"><!----> <a href="/etc/windows.html" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/etc/php.html" class="nav-link">
+  PHP
+</a></li><li class="dropdown-item"><!----> <a href="/etc/tools.html" class="nav-link">
+  Tools
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>python 관련</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dev-log/python.html#python-배우기-좋은-사이트" class="sidebar-link">Python 배우기 좋은 사이트</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/python.html#python-on-ubuntu" class="sidebar-link">Python (on ubuntu)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dev-log/python.html#general" class="sidebar-link">general</a></li><li class="sidebar-sub-header"><a href="/dev-log/python.html#pyenv" class="sidebar-link">pyenv</a></li><li class="sidebar-sub-header"><a href="/dev-log/python.html#virtualenv" class="sidebar-link">virtualenv</a></li><li class="sidebar-sub-header"><a href="/dev-log/python.html#autoenv" class="sidebar-link">autoenv</a></li></ul></li><li><a href="/dev-log/python.html#tip" class="sidebar-link">Tip</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/python.html#jupyter-lab-docker-compose" class="sidebar-link">jupyter lab docker-compose</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dev-log/python.html#jupyter-lab-docker-image-에-dotnet-interactive-추가하기" class="sidebar-link">jupyter lab docker image 에 dotnet interactive 추가하기</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="python"><a href="#python" class="header-anchor">#</a> Python</h1> <div class="tags" data-v-77ca7535>Tags: <a href="/tags.html#python" class="tag" data-v-77ca7535>python</a></div> <p></p><div class="table-of-contents"><ul><li><a href="#python-배우기-좋은-사이트">Python 배우기 좋은 사이트</a></li><li><a href="#python-on-ubuntu">Python (on ubuntu)</a><ul><li><a href="#general">general</a></li><li><a href="#pyenv">pyenv</a></li><li><a href="#virtualenv">virtualenv</a></li><li><a href="#autoenv">autoenv</a></li></ul></li><li><a href="#tip">Tip</a></li><li><a href="#jupyter-lab-docker-compose">jupyter lab docker-compose</a></li><li><a href="#jupyter-lab-docker-image-에-dotnet-interactive-추가하기">jupyter lab docker image 에 dotnet interactive 추가하기</a></li></ul></div><p></p> <h2 id="python-배우기-좋은-사이트"><a href="#python-배우기-좋은-사이트" class="header-anchor">#</a> Python 배우기 좋은 사이트</h2> <ul><li><a href="https://www.w3schools.com/python/" target="_blank" rel="noopener noreferrer">w3schools.com<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="python-on-ubuntu"><a href="#python-on-ubuntu" class="header-anchor">#</a> Python (on ubuntu)</h2> <blockquote><p>pyenv, virtualenv, autoenv</p></blockquote> <h3 id="general"><a href="#general" class="header-anchor">#</a> general</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># python 설치 시 발생하는 문제를 해결하기 위해 사전 패키지 설치</span>
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y <span class="token function">make</span> build-essential libssl-dev zlib1g-dev libbz2-dev <span class="token punctuation">\</span>
+libreadline-dev libsqlite3-dev <span class="token function">wget</span> <span class="token function">curl</span> llvm libncurses5-dev libncursesw5-dev <span class="token punctuation">\</span>
+xz-utils tk-dev
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="pyenv"><a href="#pyenv" class="header-anchor">#</a> pyenv</h3> <blockquote><p>python version management</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> clone https://github.com/pyenv/pyenv.git ~/.pyenv
+$ <span class="token builtin class-name">echo</span> <span class="token string">'export PYENV_ROOT=&quot;<span class="token environment constant">$HOME</span>/.pyenv&quot;'</span> <span class="token operator">&gt;&gt;</span> ~/.bash_profile
+$ <span class="token builtin class-name">echo</span> <span class="token string">'export PATH=&quot;<span class="token variable">$PYENV_ROOT</span>/bin:<span class="token environment constant">$PATH</span>&quot;'</span> <span class="token operator">&gt;&gt;</span> ~/.bash_profile
+$ <span class="token builtin class-name">echo</span> <span class="token string">'eval &quot;<span class="token variable"><span class="token variable">$(</span>pyenv init -<span class="token variable">)</span></span>&quot;'</span> <span class="token operator">&gt;&gt;</span> ~/.bash_profile
+$ <span class="token builtin class-name">source</span> ~/.bash_profile
+$ pyenv versions
+
+<span class="token comment"># 필요한 버전 설치</span>
+$ pyenv <span class="token function">install</span> --list
+$ pyenv <span class="token function">install</span> <span class="token number">3.9</span>.0
+$ pyenv shell <span class="token number">3.9</span>.0
+$ python -V
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="virtualenv"><a href="#virtualenv" class="header-anchor">#</a> virtualenv</h3> <blockquote><p>설정 파일 및 환경 변수를 pyenv 와 함께 관리하기 위해...</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+$ <span class="token builtin class-name">echo</span> <span class="token string">'eval &quot;<span class="token variable"><span class="token variable">$(</span>pyenv virtualenv-init -<span class="token variable">)</span></span>&quot;'</span> <span class="token operator">&gt;&gt;</span> ~/.bash_profile
+$ <span class="token builtin class-name">source</span> ~/.bash_profile
+
+<span class="token comment"># 테스트 환경 만들기</span>
+$ pyenv virtualenv <span class="token number">3.9</span>.0 test-env
+$ pyenv versions
+$ pyenv activate test-env
+$ pyenv deactivate
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="autoenv"><a href="#autoenv" class="header-anchor">#</a> autoenv</h3> <blockquote><p>특정 디렉토리로 들어가면 자동을 개발환경 전환 되도록...</p></blockquote> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token function">git</span> clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+$ <span class="token builtin class-name">echo</span> <span class="token string">'source ~/.autoenv/activate.sh'</span> <span class="token operator">&gt;&gt;</span> ~/.bash_profile
+$ <span class="token builtin class-name">source</span> ~/.bash_profile
+$ <span class="token function">mkdir</span> test-dir <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> test-dir
+$ <span class="token function">touch</span> .env
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;pyenv activate test-env&quot;</span> <span class="token operator">&gt;</span> .env
+
+$ <span class="token builtin class-name">cd</span> test-dir
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li><code>cd ~</code>과 같이 홈 디렉토리에 진입할 경우 가상환경을 해제하기 위해서는 홈 디렉토리에 <code>.env</code> 파일을 만들고 아래와 같이 해서 홈 디렉토리로 가면 해제되도록 한다.</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;pyenv deactivate&quot;</span> <span class="token operator">&gt;&gt;</span> .env
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <h2 id="tip"><a href="#tip" class="header-anchor">#</a> Tip</h2> <ul><li>작업디렉토리 변경 및 이동
+<ul><li>realpath() : 심볼릭 링크등의 실제경로</li> <li>abspath() : 절대경로</li></ul></li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">import</span> os
+
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>realpath<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span><span class="token string">&quot;workspace&quot;</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">&quot;git clone https://temp.shockz.io/shockz/temp.git&quot;</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><ul><li>jupyter notebook 확장 설치</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ pip <span class="token function">install</span> jupyter_contrib_nbextensions <span class="token comment"># nbextensions 설치</span>
+$ jupyter contrib nbextension <span class="token function">install</span> --user <span class="token comment"># 사용 설정</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><blockquote><p>2020-12-05 기준 설치한 확장<br>
+Code prettify, Codefolding, contrib_nbextensions_help_item, ExecuteTime, Hide input all, jupyter-js-widgets/extension, Nbextensions dashboard tab, Nbextensions edit menu item, Python Markdown, Variable Inspector</p></blockquote> <h2 id="jupyter-lab-docker-compose"><a href="#jupyter-lab-docker-compose" class="header-anchor">#</a> jupyter lab docker-compose</h2> <ul><li><code>docker-compose.yml</code> without config file path</li></ul> <div class="language-docker line-numbers-mode"><pre class="language-docker"><code>version<span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+services<span class="token punctuation">:</span>
+  jupyter<span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> ufoym/deepo<span class="token punctuation">:</span>all<span class="token punctuation">-</span>cpu
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/data<span class="token punctuation">:</span>/data
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/config<span class="token punctuation">:</span>/config
+    ipc<span class="token punctuation">:</span> host
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8888:8888&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;6006-6015:6006-6015&quot;</span>
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    entrypoint<span class="token punctuation">:</span> sh <span class="token punctuation">-</span>c <span class="token string">'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><ul><li>config file generation</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose <span class="token builtin class-name">exec</span> jupyter <span class="token function">bash</span>
+jupyter$ jupyter lab --generate-config
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>jupyter password generation</li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
+passwd<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">,</span> <span class="token string">'sha1'</span><span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li><code>jupyter_notebook_config.py</code></li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code>c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">'hashed password'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>docker-compose.yml</code> with config file path</li></ul> <div class="language-docker line-numbers-mode"><pre class="language-docker"><code>version<span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+services<span class="token punctuation">:</span>
+  jupyter<span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> ufoym/deepo<span class="token punctuation">:</span>all<span class="token punctuation">-</span>cpu
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/data<span class="token punctuation">:</span>/data
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/config<span class="token punctuation">:</span>/config
+    ipc<span class="token punctuation">:</span> host
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8888:8888&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;6006-6015:6006-6015&quot;</span>
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    entrypoint<span class="token punctuation">:</span> sh <span class="token punctuation">-</span>c <span class="token string">'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><ul><li>jupyterlab synology nas reverse proxy 설정 시 웹소켓 관련 헤더 추가가 필요함
+<img src="/assets/img/jupyterlab.reverse.nas.1.7828f2c0.png" alt="jupyterlab.reverse.nas"></li></ul> <h2 id="jupyter-lab-docker-image-에-dotnet-interactive-추가하기"><a href="#jupyter-lab-docker-image-에-dotnet-interactive-추가하기" class="header-anchor">#</a> jupyter lab docker image 에 dotnet interactive 추가하기</h2> <blockquote><p><a href="https://github.com/shockzinfinity/docker-build.git" target="_blank" rel="noopener noreferrer">참고 repository<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <ul><li>jupyter 커널에 .net 추가를 위해 .net interactive 설치 방법</li> <li>docker file 수정</li></ul> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><div class="highlighted"> </div><br><div class="highlighted"> </div><br></div><pre class="language-docker"><code><span class="token keyword">FROM</span> ufoym/deepo<span class="token punctuation">:</span>all<span class="token punctuation">-</span>cpu
+<span class="token keyword">ARG</span> DEBIAN_FRONTEND=noninteractive
+<span class="token keyword">RUN</span> wget https<span class="token punctuation">:</span>//packages.microsoft.com/config/ubuntu/18.04/packages<span class="token punctuation">-</span>microsoft<span class="token punctuation">-</span>prod.deb <span class="token punctuation">-</span>O packages<span class="token punctuation">-</span>microsoft<span class="token punctuation">-</span>prod.deb &amp;&amp; \
+    dpkg <span class="token punctuation">-</span>i packages<span class="token punctuation">-</span>microsoft<span class="token punctuation">-</span>prod.deb &amp;&amp; \
+    apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y apt<span class="token punctuation">-</span>transport<span class="token punctuation">-</span>https &amp;&amp; \
+    apt<span class="token punctuation">-</span>get update &amp;&amp; \
+    apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y dotnet<span class="token punctuation">-</span>sdk<span class="token punctuation">-</span>5.0 &amp;&amp; \
+    apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span>y aspnetcore<span class="token punctuation">-</span>runtime<span class="token punctuation">-</span>5.0 &amp;&amp; \
+    dotnet tool install <span class="token punctuation">-</span>g Microsoft.dotnet<span class="token punctuation">-</span>interactive
+
+<span class="token keyword">ENV</span> PATH <span class="token string">&quot;~/.dotnet/tools:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;</span>
+
+<span class="token keyword">RUN</span> dotnet interactive jupyter install
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ul><li><code>docker build -t ghcr.io/shockzinfinity/deepo -f Dockerfile .</code> 를 이용하여 빌드 후 테스트</li> <li>ufoym/deepo:all-cpu 를 컨테이너 화 해서 dotnet interactive 를 설치하더라도 경로 문제로 인해 jupyter kernel restart 가 되지 않기 때문에 별도의 Dockerfile 을 만들어서 빌드</li> <li>jupyter lab 컨테이너를 올릴 서버에서는 docker-compose.yml 로 컨테이너 화</li></ul> <div class="language-docker line-numbers-mode"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br></div><pre class="language-docker"><code>version<span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+services<span class="token punctuation">:</span>
+  jupyter<span class="token punctuation">:</span>
+    image<span class="token punctuation">:</span> ghcr.io/shockzinfinity/deepo<span class="token punctuation">:</span>latest
+    volumes<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/data<span class="token punctuation">:</span>/data
+      <span class="token punctuation">-</span> /home/shockz/docker/deepo/config<span class="token punctuation">:</span>/config
+    ipc<span class="token punctuation">:</span> host
+    ports<span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8888:8888&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;6006-6015:6006-6015&quot;</span>
+    restart<span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    entrypoint<span class="token punctuation">:</span> sh <span class="token punctuation">-</span>c <span class="token string">'jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir /data --config /config/jupyter_notebook_config.py'</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><ul><li>kernel list 확인</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>$ docker-compose up -d
+$ docker-compose <span class="token builtin class-name">exec</span> jupyter <span class="token function">bash</span>
+
+<span class="token comment"># in container</span>
+$ jupyter kernelspec list
+Available kernels:
+  .net-csharp        /root/.local/share/jupyter/kernels/.net-csharp
+  .net-fsharp        /root/.local/share/jupyter/kernels/.net-fsharp
+  .net-powershell    /root/.local/share/jupyter/kernels/.net-powershell
+  python3            /usr/local/share/jupyter/kernels/python3
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><img src="/assets/img/jupyterlab.net.kernel.2.7ea93db5.png" alt="jupyterlab.net.kernel"> <img src="/assets/img/jupyterlab.net.kernel.1.a75c6397.png" alt="jupyterlab.net.kernel"></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.7241b23d.js" defer></script><script src="/assets/js/16.9bbf30ce.js" defer></script><script src="/assets/js/2.fa64d90e.js" defer></script><script src="/assets/js/18.9a0640a0.js" defer></script><script src="/assets/js/23.63853b93.js" defer></script><script src="/assets/js/24.33670beb.js" defer></script>
+  </body>
+</html>
