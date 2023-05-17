@@ -1136,3 +1136,40 @@ Set-PoshPrompt Paradox
     }
   },
 ```
+
+## Python on Windows (/w virtualenv)
+
+- [www.python.org/downloads](https://www.python.org/downloads/)
+- `Add Python x.x to PATH` 체크
+- `Install for all users` 체크
+- 추후 쉬운 관리를 위해 경로 변경 `C:\Python\Python311`
+
+```bash
+# python version 확인
+$ python -V
+
+# pip upgrade
+$ python -m pip install --upgrade pip
+$ pip -V
+
+# 가상환경 모듈 설치
+$ pip install virtualenv virtualenvwrapper-win
+
+# 시스템 환경변수에 가상환경 저장경로 설정
+$ setx WORKON_HOME 'C:\.virtualenv' -m
+
+# 가상환경 생성
+$ mkvirtualenv test
+
+# 가상환경 리스트
+$ workon
+
+# 가상환경 사용
+$ workon test
+
+# 가상환경 종료
+$ deactivate
+
+# 가상환경 삭제
+$ rmvirtualenv test
+```
