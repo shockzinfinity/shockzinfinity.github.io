@@ -43,3 +43,5 @@ sidebar: false
 ## [mariaDB](./maria)
 
 ## [python](./python)
+
+## [PathPolisher](./path-polisher)
