@@ -135,6 +135,7 @@ module.exports = {
           { text: 'selenium', link: '/dev-log/selenium' },
           { text: 'python', link: '/dev-log/python' },
           { text: 'kubernetes', link: '/dev-log/kubernetes' },
+          { text: 'PathPolisher', link: '/dev-log/path-polisher' }
         ],
       },
       {
@@ -217,7 +218,7 @@ function getSidebarArray() {
   var sidebarArr = [];
   var homeFileList = [];
   var fileList = fs.readdirSync(docsPath);
-  fileList.forEach(function(file) {
+  fileList.forEach(function (file) {
     if (file === '.vuepress') return;
 
     var stat = fs.lstatSync(docsPath + '/' + file);
@@ -243,7 +244,7 @@ function makeSidebarObject(folder, mdFileList) {
   mdFileList = aheadOfReadme(mdFileList);
   var tmp = [];
   // remove .md, add path
-  mdFileList.forEach(function(mdFile) {
+  mdFileList.forEach(function (mdFile) {
     if (mdFile.substr(-3) === '.md') {
       mdFile = mdFile.slice(0, -3) === 'README' ? '' : mdFile.slice(0, -3);
       tmp.push(path + mdFile);
