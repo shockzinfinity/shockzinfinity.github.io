@@ -43,5 +43,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_REPO: shockzinfinity/shockzinfinity.github.io
           TARGET_BRANCH: gh-pages
-          BUILD_SCRIPT: yarn && yarn build
+          BUILD_SCRIPT: yarn cache clean && yarn && yarn build
           BUILD_DIR: docs/.vuepress/dist
