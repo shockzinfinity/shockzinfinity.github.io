@@ -5,8 +5,19 @@ meta:
   - name: description
     content: 한글 자모분리현상 해결을 위한 utility
   - name: keywords
-    content: path polisher dotnet cli command-line unicode nfc nfd
-tags: ['path-polisher', 'PathPolisher', 'dotnet', 'command-line', 'cli', 'unicode', 'nfc', 'nfd']
+    content: path polisher dotnet cli command-line unicode nfc nfd 한글자모분리
+tags:
+  [
+    'path-polisher',
+    'PathPolisher',
+    'dotnet',
+    'command-line',
+    'cli',
+    'unicode',
+    'nfc',
+    'nfd',
+    '한글자모분리리',
+  ]
 sidebar: auto
 feed:
   enable: true
