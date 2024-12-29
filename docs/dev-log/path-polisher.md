@@ -23,17 +23,20 @@ feed:
 
 <TagLinks />
 
+![한글자모분리현상](./image/path-polisher.1.png)
+
 ## Cause
 
 - 맥 OS는 Unicode NFD(Normalization Form D) 로 파일명 저장
 - 윈도우즈는 Unicode NFC(Normalization Form C) 로 파일명 저장
 
 > NFC(Normalization Form C): 한글 음절을 하나의 문자로 합친 형태.
+
 > NFD(Normalization Form D): 한글 음절을 초성, 중성, 종성으로 분리된 형태.
 
 ## Repository
 
-- [source](https://github.com/shockzinfinity/PathPolisher.git)
+- [Github repository](https://github.com/shockzinfinity/PathPolisher.git)
 
 ## Usage
 
