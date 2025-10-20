@@ -7,6 +7,12 @@ const vitePressOptions = {
   lang: 'ko-KR',
   description: "shockz Blog with vitePress",
   srcDir: 'src',
+  ignoreDeadLinks: [
+    // localhost 링크 무시 (개발/데모용)
+    /^https?:\/\/localhost/,
+    // 상대 경로 링크 무시 (일부 레거시 링크)
+    /^\.\.?\//,
+  ],
   head: [
     ['link', { rel: 'icon', href: '/img/icons/favicon.ico' }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],

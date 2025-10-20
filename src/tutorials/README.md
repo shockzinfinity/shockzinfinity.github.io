@@ -10,30 +10,30 @@ sidebar: false
 
 Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과정에 대한 Tutorial 입니다.
 
-### [#1. Todo App - Introduction](./todoapp.1)
+### [#1. Todo App - Introduction](./todo/todoapp.1.md)
 
 > 소개
 
-### [#2. Todo App - Backend](./todoapp.2)
+### [#2. Todo App - Backend](./todo/todoapp.2.md)
 
 > Backend 부분
 
-### [#3. Todo App - Frontend](./todoapp.3)
+### [#3. Todo App - Frontend](./todo/todoapp.3.md)
 
 > Frontend 부분
 
-### [#4. Todo App - Refactoring](./todoapp.4)
+### [#4. Todo App - Refactoring](./todo/todoapp.4.md)
 
 > 비즈니스 요구사항 변경 및 리팩터링
 
-## [Authentication & Authorization in .net core](./auth)
+## [Authentication & Authorization in .net core](./auth/auth.md)
 
 > .net core 를 이용한 인증 api
 
-## [EXIF - GeoLocation](./geolocation)
+## [EXIF - GeoLocation](./geolocation/geolocation.md)
 
 > python 을 이용한 EXIF 태그 중 위도/경도 추출
 
-## [node.js Sample App](./nodejs.sample.app)
+## [node.js Sample App](./nodejs.sample.app/nodejs.sample.app.md)
 
 > node.js 를 이용한 sample app 생성
