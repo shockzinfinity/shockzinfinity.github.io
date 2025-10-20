@@ -31,8 +31,10 @@ updated: '2025-10-20'
 ## Nginx + Vue.js 배포를 위한 설정
 
 ### Step 1. 기본 위치 설정
+
 - target server: linux (centos 8)
 - 배포 방식: docker-compose 를 이용한 nginx container
+
 ```bash
 # 배포 디렉토리
 $ mkdir dist
@@ -41,6 +43,7 @@ $ mkdir certbot-etc
 # nginx config
 $ mkdir nginx-conf
 ```
+
 - `dist` : vue app 빌드한 결과를 여기에 넣고 호스팅하기 위한 디렉토리
 - `certbot-etc` : letsencrypt 인증서 저장 디렉토리
 - `nginx-conf` : nginx config 디렉토리
@@ -48,6 +51,7 @@ $ mkdir nginx-conf
 ### Step 2. certbot 을 통한 인증서 생성
 
 - 인증서 생성만을 위한 `nginx.conf` 작성
+
 ```bash{5}
 server {
 	listen 80;
@@ -84,7 +88,9 @@ server {
 	}
 }
 ```
+
 - `docker-compose.yml` 를 통해 인증서 생성 시작
+
 ```yml{11}
 version: '3'
 
@@ -120,10 +126,12 @@ networks:
     app-network:
         driver: bridge
 ```
+
 ::: tip
 certbot 의 --staging 은 테스트 한다는 의미  
 email, domain 은 적절하게 수정
 :::
+
 ```bash{4}
 $ docker-compose up -d
    Name                 Command               State                     Ports
@@ -131,10 +139,13 @@ $ docker-compose up -d
 certbot      certbot certonly --webroot ...   Exit 0
 webserver    /docker-entrypoint.sh ngin ...   Up       0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp
 ```
+
 ::: tip
 certbot 은 Exit 0 가 되는 것이 맞음. 인증서 생성이 되면 ./certbot-etc 에 가면 확인할 수 있음
 :::
+
 - `docker-compose.yml` 의 certbot command 수정
+
 ```bash{9}
 ...
     certbot:
@@ -147,6 +158,7 @@ certbot 은 Exit 0 가 되는 것이 맞음. 인증서 생성이 되면 ./certbo
         command: certonly --webroot --webroot-path=/var/www/html --email temp@gmail.com --agree-tos --no-eff-email --force-renewal -d temp.temp.io
 ...
 ```
+
 ```bash
 $ docker-compose up --force-recreate --no-deps certbot
 ```
@@ -154,11 +166,13 @@ $ docker-compose up --force-recreate --no-deps certbot
 ### Step 3. ssl 적용
 
 - ssl 관련 설정 다운로드
+
 ```bash
 $ curl -sSLo nginx-conf/options-ssl-nginx.conf https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf
 ```
 
 - nginx 설정 수정
+
 ```bash
 server {
 	listen 80;
@@ -208,12 +222,14 @@ server {
 	}
 }
 ```
+
 ```bash
 $ docker-compose up -d --force-recreate --no-deps webserver
 ```
 
 - 인증서 자동 갱신을 위한 스크립트 작성 후 crontab 에 등록
 - `ssl_renew.sh`
+
 ```bash{5}
 #!/bin/bash
 COMPOSE="/usr/local/bin/docker-compose --no-ansi"
@@ -223,13 +239,16 @@ cd /home/temp/vuejsapp/
 $COMPOSE run certbot renew && $COMPOSE kill -s SIGHUP webserver
 $DOCKER system prune -af
 ```
+
 ```bash
 $ chmod +x ssl_renew.sh
 $ sudo crontab -e
 
 0 12 * * * /home/temp/vuejsapp/ssl_renew.sh >> /var/log/cron.log 2>&1
 ```
+
 - `docker-compose.yml` 의 certbot command 수정
+
 ```bash{9}
 ...
     certbot:
@@ -242,6 +261,7 @@ $ sudo crontab -e
         command: renew
 ...
 ```
+
 ```bash
 $ docker-compose up --force-recreate --no-deps certbot
 ```
@@ -256,6 +276,7 @@ $ docker-compose up --force-recreate --no-deps certbot
 - docker 를 통한 reverse proxy 설정은 [다음](https://shockzinfinity.github.io/dev-log/nginx.html#nginx-reverse-proxy-containerizing)을 참고합니다.
 - 참조: [Dockrize Vue.js App](https://kr.vuejs.org/v2/cookbook/dockerize-vuejs-app.html#Real-World-Example)
 - 해당 앱 디렉토리에 `nginx.conf` 를 추가합니다. (vue router history mode 관련 설정을 추가합니다.)
+
 ```nginx{7}
 server {
   listen 8080;
@@ -269,6 +290,7 @@ server {
 ```
 
 - `Dockerfile`
+
 ```docker{13}
 # build stage
 FROM node:lts-alpine as build-stage
@@ -285,18 +307,22 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 ```
+
 ::: tip
 
 - docker build 를 통해 이미지 생성 후 ghcr.io 에 배포는 다음과 같이 진행했습니다.
 - ghcr.io 로그인은 [다음](https://shockzinfinity.github.io/dev-log/github.html#github-container-registry-%E1%84%8B%E1%85%A6-%E1%84%8B%E1%85%A5%E1%86%B8%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%8C%E1%85%AE%E1%86%AB%E1%84%87%E1%85%B5)을 참고합니다.
+
 ```bash
 $ docker build -t ghcr.io/shockzinfinity/vuejs-app:latest .
 # ghcr.io 에 로그인 되어있다고 가정
 $ docker push ghcr.io/shockzinfinity/vuejs-app:latest
 ```
+
 :::
 
 - `docker-compose.yml`
+
 ```yml{9,16}
 version: '3'
 
@@ -317,6 +343,7 @@ networks:
 ```
 
 - 결과 확인
+
 ```bash
 $ docker-compose up -d
 $ docker-compose ps
@@ -324,3 +351,5 @@ $ docker-compose ps
 ---------------------------------------------------------------------
 vuejs-app   /docker-entrypoint.sh ngin ...   Up      80/tcp, 8080/tcp
 ```
+
+- 테스트
