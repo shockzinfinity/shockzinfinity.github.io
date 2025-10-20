@@ -43,7 +43,9 @@ yarn.lock
 *.swo
 
 # Private content (비공개 콘텐츠)
-src/excludes/
+# 폴더는 추적, 내부 파일들만 무시
+src/excludes/*
+!src/excludes/README.md
 
 # Temp files
 run
