@@ -1,22 +1,8 @@
 ---
 title: python 관련
-lang: ko-KR
-meta:
-  - name: description
-    content: python 과 관련된 내용을 기록합니다.
-  - name: keywords
-    content: python
+description: python 과 관련된 내용을 기록합니다.
 tags:
   - python
-feed:
-  enable: true
-  title: python 관련
-  description: python 과 관련된 내용을 기록합니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/python.html'
 created: '2020-11-22'
 updated: '2025-10-20'
 ---

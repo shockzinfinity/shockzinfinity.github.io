@@ -1,24 +1,10 @@
 ---
 title: .net core
-lang: ko-KR
-meta:
-  - name: description
-    content: .net core 관련 내용을 다룹니다.
-  - name: keywords
-    content: .net core
+description: .net core 관련 내용을 다룹니다.
 tags:
   - .net core
   - centos8
   - docker
-feed:
-  enable: true
-  title: .net core
-  description: .net core 관련 내용을 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/dotnetcore.html'
 created: '2020-09-06'
 updated: '2025-10-20'
 ---

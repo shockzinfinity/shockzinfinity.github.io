@@ -1,11 +1,6 @@
 ---
 title: Todo App tutorial
-lang: ko-KR
-meta:
-  - name: description
-    content: Todo App 을 만드는 꽤 복잡한 방법
-  - name: keywords
-    content: todoapp
+description: Todo App 을 만드는 꽤 복잡한 방법
 tags:
   - todoapp
   - .net core
@@ -18,17 +13,6 @@ tags:
   - serilog
   - docker-compose
   - cqrs / es
-
-disqus: 'yes'
-feed:
-  enable: true
-  title: Todo App tutorial
-  description: Todo App 을 만드는 꽤 복잡한 방법
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/tutorial/todoapp.3.html'
 created: '2020-09-29'
 updated: '2025-10-20'
 ---

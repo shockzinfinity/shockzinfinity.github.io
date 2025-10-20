@@ -1,23 +1,9 @@
 ---
 title: iPad 사용관련
-lang: ko-KR
-meta:
-  - name: description
-    content: iPad 사용관련 내용입니다.
-  - name: keywords
-    content: 'mac, development, env'
+description: iPad 사용관련 내용입니다.
 tags:
   - ipad
   - env
-feed:
-  enable: true
-  title: iPad 사용관련
-  description: iPad 사용관련 내용입니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/iPad.html'
 created: '2020-10-31'
 updated: '2025-10-20'
 ---

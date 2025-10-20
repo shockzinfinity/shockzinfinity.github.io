@@ -1,24 +1,10 @@
 ---
 title: 맥 개발환경 설정
-lang: ko-KR
-meta:
-  - name: description
-    content: 맥북프로의 개발환경 구성에 대해 다룹니다.
-  - name: keywords
-    content: 'mac, development, env'
+description: 맥북프로의 개발환경 구성에 대해 다룹니다.
 tags:
   - mac
   - dev
   - env
-feed:
-  enable: true
-  title: 맥 개발환경 설정
-  description: 맥북프로의 개발환경 구성에 대해 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/devEnv.html'
 created: '2020-09-06'
 updated: '2025-10-20'
 ---

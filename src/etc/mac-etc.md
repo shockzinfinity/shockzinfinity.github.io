@@ -1,24 +1,10 @@
 ---
 title: 맥 사용상 문제해결
-lang: ko-KR
-meta:
-  - name: description
-    content: 맥북프로 사용 시 참고할 만한 문제해결 방법
-  - name: keywords
-    content: 'mac, development, env'
+description: 맥북프로 사용 시 참고할 만한 문제해결 방법
 tags:
   - mac
   - dev
   - env
-feed:
-  enable: true
-  title: 맥 사용상 문제해결
-  description: 맥북프로 사용 시 참고할 만한 문제해결 방법
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/mac-etc.html'
 created: '2020-10-24'
 updated: '2025-10-20'
 ---

@@ -1,25 +1,11 @@
 ---
 title: WordPress
-lang: ko-KR
-meta:
-  - name: description
-    content: WordPress 관련 설정
-  - name: keywords
-    content: 'wordpress, redis, docker'
+description: WordPress 관련 설정
 tags:
   - wordpress
   - redis
   - docker
   - docker-compose
-feed:
-  enable: true
-  title: WordPress
-  description: WordPress 관련 설정
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/wordpress.html'
 created: '2020-09-19'
 updated: '2025-10-20'
 ---

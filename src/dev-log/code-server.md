@@ -1,22 +1,8 @@
 ---
 title: Code Server
-lang: ko-KR
-meta:
-  - name: description
-    content: Code Server 사용 및 관련 설정 내용을 다룹니다.
-  - name: keywords
-    content: code-server
+description: Code Server 사용 및 관련 설정 내용을 다룹니다.
 tags:
   - code-server
-feed:
-  enable: true
-  title: Code Server
-  description: Code Server 사용 및 관련 설정 내용을 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/code-server.html'
 created: '2020-11-01'
 updated: '2025-10-20'
 ---

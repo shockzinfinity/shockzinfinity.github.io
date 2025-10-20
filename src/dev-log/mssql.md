@@ -1,23 +1,9 @@
 ---
 title: mssql on docker
-lang: ko-KR
-meta:
-  - name: description
-    content: mssql on docker
-  - name: keywords
-    content: mssql
+description: mssql on docker
 tags:
   - mssql
   - docker
-feed:
-  enable: true
-  title: mssql on docker
-  description: mssql on docker
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/mssql.html'
 created: '2020-09-09'
 updated: '2025-10-20'
 ---

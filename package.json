@@ -37,6 +37,7 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "update-dates": "node scripts/update-frontmatter-dates.js",
+    "migrate-frontmatter": "node scripts/migrate-frontmatter.js",
     "prepare": "husky"
   },
   "dependencies": {

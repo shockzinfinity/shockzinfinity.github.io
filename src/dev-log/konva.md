@@ -1,11 +1,6 @@
 ---
 title: Konva
-lang: ko-KR
-meta:
-  - name: description
-    content: Konva test
-  - name: keywords
-    content: konva
+description: Konva test
 tags:
   - konva
 created: '2020-09-07'

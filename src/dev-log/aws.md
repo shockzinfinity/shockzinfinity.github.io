@@ -1,25 +1,11 @@
 ---
 title: AWS
-lang: ko-KR
-meta:
-  - name: description
-    content: aws 관련 내용
-  - name: keywords
-    content: 'aws, redis, docker'
+description: aws 관련 내용
 tags:
   - aws
   - redis
   - docker
   - docker-compose
-feed:
-  enable: true
-  title: AWS
-  description: aws 관련 내용
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/aws.html'
 created: '2020-11-10'
 updated: '2025-10-20'
 ---

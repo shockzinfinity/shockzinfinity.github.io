@@ -1,23 +1,9 @@
 ---
 title: Tool 설치 및 구성 관련
-lang: ko-KR
-meta:
-  - name: description
-    content: 각종 개발 툴 설치 및 구성에 관련된 내용입니다.
-  - name: keywords
-    content: 'development, env'
+description: 각종 개발 툴 설치 및 구성에 관련된 내용입니다.
 tags:
   - dev
   - env
-feed:
-  enable: true
-  title: Tool 설치 및 구성 관련
-  description: 각종 개발 툴 설치 및 구성에 관련된 내용입니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/tools.html'
 created: '2021-02-08'
 updated: '2025-10-20'
 ---

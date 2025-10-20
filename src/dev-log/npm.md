@@ -1,22 +1,8 @@
 ---
 title: npm package
-lang: ko-KR
-meta:
-  - name: description
-    content: npm package 배포 관련
-  - name: keywords
-    content: npm
+description: npm package 배포 관련
 tags:
   - npm
-feed:
-  enable: true
-  title: npm package
-  description: npm package 배포 관련
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/npm.html'
 created: '2020-09-27'
 updated: '2025-10-20'
 ---

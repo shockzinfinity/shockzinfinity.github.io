@@ -1,22 +1,8 @@
 ---
 title: markdown 사용 관련
-lang: ko-KR
-meta:
-  - name: description
-    content: markdown 사용과 관련된 팁
-  - name: keywords
-    content: markdown
+description: markdown 사용과 관련된 팁
 tags:
   - markdown
-feed:
-  enable: true
-  title: markdown 사용 관련
-  description: markdown 사용과 관련된 팁
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/markdown.html'
 created: '2020-11-20'
 updated: '2025-10-20'
 ---

@@ -1,24 +1,10 @@
 ---
 title: SSL
-lang: ko-KR
-meta:
-  - name: description
-    content: SSL 과 관련된 설정에 대해 다룹니다.
-  - name: keywords
-    content: ssl
+description: SSL 과 관련된 설정에 대해 다룹니다.
 tags:
   - ssl
   - x509
   - certificate
-feed:
-  enable: true
-  title: SSL
-  description: SSL 과 관련된 설정에 대해 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/ssl.html'
 created: '2020-09-06'
 updated: '2025-10-20'
 ---

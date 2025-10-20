@@ -1,24 +1,10 @@
 ---
 title: PHP 개발환경 설정
-lang: ko-KR
-meta:
-  - name: description
-    content: PHP 개발환경 구성에 대해 다룹니다.
-  - name: keywords
-    content: 'mac, development, env'
+description: PHP 개발환경 구성에 대해 다룹니다.
 tags:
   - mac
   - dev
   - env
-feed:
-  enable: true
-  title: PHP 개발환경 설정
-  description: PHP 개발환경 구성에 대해 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/php.html'
 created: '2021-01-16'
 updated: '2025-10-20'
 ---

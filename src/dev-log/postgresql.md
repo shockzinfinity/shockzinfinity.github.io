@@ -1,23 +1,9 @@
 ---
 title: PostgreSQL
-lang: ko-KR
-meta:
-  - name: description
-    content: PostgreSQL 관련 설정
-  - name: keywords
-    content: 'postgresql, docker'
+description: PostgreSQL 관련 설정
 tags:
   - postgresql
   - docker
-feed:
-  enable: true
-  title: PostgreSQL
-  description: PostgreSQL 관련 설정
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/postgresql.html'
 created: '2020-09-30'
 updated: '2025-10-20'
 ---

@@ -1,22 +1,8 @@
 ---
 title: Docker 사용방법
-lang: ko-KR
-meta:
-  - name: description
-    content: docker 사용 및 관련 설정 내용을 다룹니다.
-  - name: keywords
-    content: docker in centos 8
+description: docker 사용 및 관련 설정 내용을 다룹니다.
 tags:
   - docker
-feed:
-  enable: true
-  title: Docker 사용방법
-  description: docker 사용 및 관련 설정 내용을 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/docker.html'
 created: '2020-08-24'
 updated: '2025-10-20'
 ---

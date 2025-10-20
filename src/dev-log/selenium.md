@@ -1,22 +1,8 @@
 ---
 title: selenium on mac
-lang: ko-KR
-meta:
-  - name: description
-    content: selenium on mac
-  - name: keywords
-    content: selenium
+description: selenium on mac
 tags:
   - selenium
-feed:
-  enable: true
-  title: selenium on mac
-  description: selenium on mac
-  image: /public/imgrkdown/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/selenium.html'
 created: '2020-11-21'
 updated: '2025-10-20'
 ---

@@ -1,23 +1,8 @@
 ---
 title: VuePress
-lang: ko-KR
-meta:
-  - name: description
-    content: VuePress 관련 설정
-  - name: keywords
-    content: vuepress
+description: VuePress 관련 설정
 tags:
   - vuepress
-
-feed:
-  enable: true
-  title: VuePress 설정
-  description: VuePress 관련 설정
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/vuepress.html'
 created: '2020-09-08'
 updated: '2025-10-20'
 ---

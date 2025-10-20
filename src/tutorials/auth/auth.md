@@ -1,30 +1,12 @@
 ---
 title: Auth API tutorial
-lang: ko-KR
-meta:
-  - name: description
-    content: >-
-      (.net core) Email sign up, Verification email, Authentication and Forgot
-      password
-  - name: keywords
-    content: auth
+description: >-
+  (.net core) Email sign up, Verification email, Authentication and Forgot
+  password
 tags:
   - authentication
   - .net core
   - swagger
-
-disqus: 'yes'
-feed:
-  enable: true
-  title: Auth API tutorial
-  description: >-
-    (.net core) Email sign up, Verification email, Authentication and Forgot
-    password
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/tutorial/auth.html'
 created: '2020-10-11'
 updated: '2025-10-20'
 ---

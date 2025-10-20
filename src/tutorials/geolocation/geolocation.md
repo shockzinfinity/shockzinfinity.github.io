@@ -1,27 +1,11 @@
 ---
 title: Image geo location
-lang: ko-KR
-meta:
-  - name: description
-    content: 사진에서 위도 경도를 추출하는 방법
-  - name: keywords
-    content: geolocation
+description: 사진에서 위도 경도를 추출하는 방법
 tags:
   - gps
   - python
   - image
   - geolocation
-
-disqus: 'yes'
-feed:
-  enable: true
-  title: Image geo location
-  description: 사진에서 위도 경도를 추출하는 방법
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/tutorial/geolocation.html'
 created: '2020-12-13'
 updated: '2025-10-20'
 ---

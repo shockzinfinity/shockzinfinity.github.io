@@ -1,8 +1,8 @@
 {
-  "name": "Blog | ironPot",
-  "short_name": "ironPot",
+  "name": "shockz Blog",
+  "short_name": "shockz",
   "lang": "ko",
-  "description": "ironPot devBlog",
+  "description": "shockz Blog",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",

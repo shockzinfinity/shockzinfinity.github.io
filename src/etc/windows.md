@@ -1,24 +1,10 @@
 ---
 title: Windows 개발 환경 관련
-lang: ko-KR
-meta:
-  - name: description
-    content: Windows 개발 환경 구성 시 참고
-  - name: keywords
-    content: 'windows, development, env'
+description: Windows 개발 환경 구성 시 참고
 tags:
   - windows
   - dev
   - env
-feed:
-  enable: true
-  title: Windows 개발 환경 관련
-  description: Windows 개발 환경 구성 시 참고
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/windows.html'
 created: '2020-12-16'
 updated: '2025-10-20'
 ---

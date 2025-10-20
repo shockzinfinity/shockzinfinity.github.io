@@ -1,22 +1,8 @@
 ---
 title: Linux 사용 일반
-lang: ko-KR
-meta:
-  - name: description
-    content: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
-  - name: keywords
-    content: linux
+description: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
 tags:
   - linux
-feed:
-  enable: true
-  title: Linux 사용 일반
-  description: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/linux.html'
 created: '2020-11-14'
 updated: '2025-10-20'
 ---

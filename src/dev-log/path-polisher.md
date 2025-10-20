@@ -1,11 +1,6 @@
 ---
 title: Path Polisher
-lang: ko-KR
-meta:
-  - name: description
-    content: 한글 자모분리현상 해결을 위한 utility
-  - name: keywords
-    content: path polisher dotnet cli command-line unicode nfc nfd 한글자모분리
+description: 한글 자모분리현상 해결을 위한 utility
 tags:
   - path-polisher
   - PathPolisher
@@ -16,15 +11,6 @@ tags:
   - nfc
   - nfd
   - 한글자모분리리
-feed:
-  enable: true
-  title: Path Polisher
-  description: 한글 자모분리현상 해결을 위한 utility
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/path-polisher.html'
 created: '2024-12-29'
 updated: '2025-10-20'
 ---

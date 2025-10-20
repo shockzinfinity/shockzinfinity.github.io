@@ -1,24 +1,10 @@
 ---
 title: VSCode debugging
-lang: ko-KR
-meta:
-  - name: description
-    content: VisualStudio Code 디버깅
-  - name: keywords
-    content: 'debugging, vscode'
+description: VisualStudio Code 디버깅
 tags:
   - vscode
   - debugging
   - edge
-feed:
-  enable: true
-  title: VSCode debugging
-  description: VisualStudio Code 디버깅
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/etc/vscode-debugging.html'
 created: '2020-08-09'
 updated: '2025-10-20'
 ---

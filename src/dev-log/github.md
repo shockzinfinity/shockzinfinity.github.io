@@ -1,11 +1,6 @@
 ---
 title: GitHub
-lang: ko-KR
-meta:
-  - name: description
-    content: github 사용 관련 내용을 다룹니다.
-  - name: keywords
-    content: github
+description: github 사용 관련 내용을 다룹니다.
 tags:
   - git
   - github
@@ -13,15 +8,6 @@ tags:
   - ghcr.io
   - actions
   - workflow
-feed:
-  enable: true
-  title: GitHub
-  description: github 사용 관련 내용을 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/github.html'
 created: '2020-12-19'
 updated: '2025-10-20'
 ---

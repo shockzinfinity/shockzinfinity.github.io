@@ -1,22 +1,8 @@
 ---
 title: mariaDB
-lang: ko-KR
-meta:
-  - name: description
-    content: 'mariaDB 설정 파일, 기타 내용을 다룹니다.'
-  - name: keywords
-    content: mariaDB
+description: 'mariaDB 설정 파일, 기타 내용을 다룹니다.'
 tags:
   - mariaDB
-feed:
-  enable: true
-  title: mariaDB
-  description: 'mariaDB 설정 파일, 기타 내용을 다룹니다.'
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/maria.html'
 created: '2020-11-13'
 updated: '2025-10-20'
 ---

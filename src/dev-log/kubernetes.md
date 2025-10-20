@@ -1,23 +1,9 @@
 ---
 title: Kubernetes
-lang: ko-KR
-meta:
-  - name: description
-    content: Kubenetes 관련 내용을 포함합니다.
-  - name: keywords
-    content: kubernetes
+description: Kubenetes 관련 내용을 포함합니다.
 tags:
   - kubernetes
   - k8s
-feed:
-  enable: true
-  title: Kubernetes
-  description: Kubenetes 관련 내용을 포함합니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/kubernetes.html'
 created: '2021-01-04'
 updated: '2025-10-20'
 ---

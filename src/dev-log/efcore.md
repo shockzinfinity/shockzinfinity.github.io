@@ -1,22 +1,8 @@
 ---
 title: ef core
-lang: ko-KR
-meta:
-  - name: description
-    content: EntityFrameworkCore 관련
-  - name: keywords
-    content: ef core
+description: EntityFrameworkCore 관련
 tags:
   - ef core
-feed:
-  enable: true
-  title: ef core
-  description: EntityFrameworkCore 관련 내용을 다룹니다.
-  image: /public/img/logo.png
-  author:
-    - name: shockz
-      email: shockzinfinity@gmail.com
-      link: 'https://shockzinfinity.github.io/dev-log/efcore.html'
 created: '2020-09-09'
 updated: '2025-10-20'
 ---
