@@ -1,6 +1,7 @@
 {
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
+    "@types/node": "^24.8.1",
     "vitepress": "2.0.0-alpha.12",
     "vitepress-plugin-google-analytics": "^1.0.2",
     "vitepress-sidebar": "^1.33.0"

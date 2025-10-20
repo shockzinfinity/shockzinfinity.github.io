@@ -1,19 +1,55 @@
-pids
+# Logs
 logs
-node_modules
-npm-debug.log
-coverage/
-run
-.DS_Store
-.nyc_output
-.basement
-config.local.js
-basement_dist
-node_modules
-package-lock.json
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+pids
+
+# Build output
 dist/
-yarn-error.log
+.vitepress/dist
+.vitepress/cache
+basement_dist
+
+# Coverage
+coverage/
+.nyc_output
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+config.local.js
+
+# OS files
+.DS_Store
+Thumbs.db
 *.rdb
 
-.vitepress/cache
-.vitepress/dist
+# Lock files
+package-lock.json
+yarn.lock
+# Keep pnpm-lock.yaml (pnpm을 사용하므로)
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Private/Draft content (비공개 콘텐츠)
+src/drafts/
+src/_private/
+src/**/*draft*.md
+src/**/*wip*.md
+
+# Temp files
+run
+.basement
+*.tmp
+*.temp

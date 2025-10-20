@@ -13,6 +13,18 @@ const vitePressOptions = {
     // 상대 경로 링크 무시 (일부 레거시 링크)
     /^\.\.?\//,
   ],
+  // Draft 페이지 필터링 (프로덕션 빌드에서 제외)
+  transformPageData(pageData) {
+    const isDraft = pageData.frontmatter?.draft === true;
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    if (isDraft && isProduction) {
+      // draft 페이지는 404로 리다이렉트
+      pageData.frontmatter.layout = 'page';
+      pageData.title = '404 - Page Not Found';
+      pageData.description = 'This page is not available.';
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/img/icons/favicon.ico' }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
