@@ -8,7 +8,6 @@ meta:
     content: linux
 tags:
   - linux
-sidebar: auto
 feed:
   enable: true
   title: Linux 사용 일반
@@ -336,7 +335,7 @@ $ source ~/.zshrc
 
 # spacevim 설치
 #$ curl -sLf https://spacevim.org/install.sh | bash
-$ bash < (curl -fsSL https://raw.githubusercontent.com/liuchengxu/space-vim/master/install.sh)  
+$ bash < (curl -fsSL https://raw.githubusercontent.com/liuchengxu/space-vim/master/install.sh)
 $ mkdir -p ~/.SpaceVim.d/colors
 $ curl https://gist.githubusercontent.com/subicura/91696d2da58ad28b5e8b2877193015e1/raw/6fb5928c9bda2040b3c9561d1e928231dbcc9184/snazzy-custom.vim -o ~/.SpaceVim.d/colors/snazzy-custom.vim
 $ vi ~/.SpaceVim.d/init.toml

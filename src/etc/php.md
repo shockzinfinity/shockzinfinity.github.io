@@ -10,7 +10,6 @@ tags:
   - mac
   - dev
   - env
-sidebar: auto
 feed:
   enable: true
   title: PHP 개발환경 설정

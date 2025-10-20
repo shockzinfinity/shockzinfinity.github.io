@@ -8,7 +8,6 @@ meta:
     content: mariaDB
 tags:
   - mariaDB
-sidebar: auto
 feed:
   enable: true
   title: mariaDB

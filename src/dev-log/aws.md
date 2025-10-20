@@ -11,7 +11,6 @@ tags:
   - redis
   - docker
   - docker-compose
-sidebar: auto
 feed:
   enable: true
   title: AWS
@@ -89,12 +88,14 @@ $ vi /home/ubuntu/.jupyter/jupyter_notebook_config.py
 ```
 
 - notebook config 수정 (제일 아래에 작성)
+
 ```python
 c = get_config()
 c.NotebookApp.password = '생성된 패스워드' # 위에서 생성한 패스워드
 c.NotebookApp.ip = 'xxx.xxx.xxx.xxx' # 현재 인스턴스 아이피
 c.NotebookApp.notebook_dir = '/' # 최상위 디렉토리 지정
 ```
+
 ```bash
 $ jupyter notebook --allow-root
 
@@ -120,7 +121,9 @@ tcp        0      0 xxx.xxx.xxx.xxx:8888       xxx.xxx.xxx.xxx:53738    ESTABLIS
 # kill PID
 $ kill -9 8389
 ```
+
 - ssl 적용
+
 ```bash
 # 자체서명 인증서
 $ mkdir ssl && cd ssl
@@ -197,6 +200,7 @@ EXPOSE 80
 
 CMD ["apachectl", "-D", "FOREGROUND"]
 ```
+
 ```bash
 $ docker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example
 ```

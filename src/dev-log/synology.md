@@ -9,7 +9,6 @@ meta:
 tags:
   - nas
   - synology
-sidebar: auto
 feed:
   enable: true
   title: Synology NAS

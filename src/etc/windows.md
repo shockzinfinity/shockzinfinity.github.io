@@ -10,7 +10,6 @@ tags:
   - windows
   - dev
   - env
-sidebar: auto
 feed:
   enable: true
   title: Windows 개발 환경 관련

@@ -10,7 +10,6 @@ tags:
   - vscode
   - debugging
   - edge
-sidebar: auto
 feed:
   enable: true
   title: VSCode debugging
@@ -39,7 +38,7 @@ updated: '2025-10-20'
 ```javascript
 module.exports = {
   configureWebpack: {
-    devtool: "source-map",
+    devtool: 'source-map',
   },
 };
 ```

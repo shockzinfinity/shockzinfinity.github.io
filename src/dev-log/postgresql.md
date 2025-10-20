@@ -9,7 +9,6 @@ meta:
 tags:
   - postgresql
   - docker
-sidebar: auto
 feed:
   enable: true
   title: PostgreSQL
@@ -35,6 +34,6 @@ updated: '2025-10-20'
 $ docker pull postgres:latest
 $ docker run --name pgsql -d -p 5432:5432 -e POSTGRES_PASSWORD=postgresql postgres
 ```
-- [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 로 연결 테스트  
-![postgresql](./image/postgresql.1.png)
 
+- [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 로 연결 테스트  
+  ![postgresql](./image/postgresql.1.png)

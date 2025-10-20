@@ -8,7 +8,6 @@ meta:
     content: npm
 tags:
   - npm
-sidebar: auto
 feed:
   enable: true
   title: npm package

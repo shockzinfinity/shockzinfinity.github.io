@@ -9,7 +9,6 @@ meta:
 tags:
   - jenkins
   - docker
-sidebar: auto
 feed:
   enable: true
   title: Jenkins

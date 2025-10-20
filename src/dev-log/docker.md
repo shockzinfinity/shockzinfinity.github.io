@@ -8,7 +8,6 @@ meta:
     content: docker in centos 8
 tags:
   - docker
-sidebar: auto
 feed:
   enable: true
   title: Docker 사용방법

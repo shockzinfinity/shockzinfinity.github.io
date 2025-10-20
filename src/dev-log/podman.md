@@ -9,7 +9,6 @@ meta:
 tags:
   - podman
   - centos8
-sidebar: auto
 feed:
   enable: true
   title: Podman

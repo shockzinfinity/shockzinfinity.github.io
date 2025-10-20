@@ -9,7 +9,6 @@ meta:
 tags:
   - nginx
   - reverse proxy
-sidebar: auto
 feed:
   enable: true
   title: Nginx
@@ -100,6 +99,7 @@ http {
 ## Vue.js 배포시 설정 추가
 
 - Vue-Router 를 사용하기 위해 `nginx-conf` 혹은 `sites-available`의 설정에 다음을 추가한다.
+
 ```bash
 location / {
     try_files $uri $uri/ @rewrites;
@@ -119,6 +119,7 @@ location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
 ## https custom port redirection
 
 - e.g. http://todo.shockz.io:8080 -> https://todo.shockz.io:4443 으로 redirection `/etc/nginx/site-available/xxx.xxx.xxx` 상에서 조정
+
 ```bash{11,16,50}
 server {
     listen       8080;
@@ -180,7 +181,9 @@ server {
 	}
 }
 ```
-> 참고:  
+
+> 참고:
+>
 > - [https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/](https://ma.ttias.be/force-redirect-http-https-custom-port-nginx/)
 > - [https://k2boys.tistory.com/34](https://k2boys.tistory.com/34)
 > - [https://www.kurien.net/post/view/34](https://www.kurien.net/post/view/34)
@@ -202,13 +205,17 @@ $ mkdir certs config html log proxy vhost.d
 $ cd proxy
 $ touch docker-compose.yml
 ```
+
 - `docker-compose.yml` 를 다음과 같이 작성
-::: tip
-해당 호스트에서 외부에 서비스 하기 위함이므로, 사전에 docker network 생성이 필요함
+  ::: tip
+  해당 호스트에서 외부에 서비스 하기 위함이므로, 사전에 docker network 생성이 필요함
+
 ```bash
 $ docker network create nginx-proxy
 ```
+
 :::
+
 ```yml
 version: '3'
 
@@ -247,6 +254,7 @@ networks:
     external:
       name: nginx-proxy
 ```
+
 ```bash
 $ docker-compose up -d
 $ docker-compose ps
@@ -255,20 +263,24 @@ $ docker-compose ps
 leten-nginx-proxy   /bin/bash /app/entrypoint. ...   Up
 nginx-proxy         /app/docker-entrypoint.sh  ...   Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp
 ```
+
 ::: tip
+
 - certs : letsencrypt 를 통해 생성된 인증서들의 저장 위치
 - config : reverse proxy 를 통해 추가될때 자동 generation 되는 reverse proxy 의 default.conf 저장 위치
-:::
+  :::
 
 ### sample app container 를 reverse proxy 에 붙이기
 
 - sample app 이미지 생성은 [https://shockzinfinity.github.io/tutorial/nodejs.sample.app.html](https://shockzinfinity.github.io/tutorial/nodejs.sample.app.html) 참조하여 생성했습니다.
 - 해당 이미지 (ghcr.io/shockzinfinity/node-sample-app:latest) 를 containerization
+
 ```bash
 # 원하는 위치에 docker-compose.yml 파일 생성 (여기서는 /your/path/sample)
 $ cd /you/path/sample
 $ touch docker-compose.yml
 ```
+
 ```yml
 version: '3'
 
@@ -287,11 +299,14 @@ networks:
     external:
       name: nginx-proxy
 ```
+
 ::: warning
+
 - reverse proxy 의 네트워크상에 같이 위치해야 하므로 networks 는 nginx-proxy 를 이용합니다.
 - `VIRTUAL_HOST`, `VIRTUAL_PORT`, `LETSENCRYPT_HOST`, `LETSCRYPT_EMAIL` 는 proxy 할 환경에 맞게 수정이 필요합니다.
 - 위의 4가지 환경변수는 추후 reverse proxy 추가할때마다 적절하게 수정이 필요합니다.
-:::
+  :::
+
 ```bash
 $ docker-compose up -d
 $ docker-compose ps
@@ -346,9 +361,11 @@ server {
 }
 ...
 ```
+
 ::: tip
+
 - 컨테이너를 올리고 나서 인증서 갱신 때문에 약간의 지연시간이 발생할 수 있습니다.
-:::
+  :::
 
 ### phpmyadmin reverse proxy
 
@@ -359,6 +376,7 @@ $ mkdir phpmyadmin
 $ cd phpmyadmin
 $ touch docker-compose.yml
 ```
+
 ```docker
 version: '2'
 
@@ -382,7 +400,9 @@ networks:
     external:
       name: nginx-proxy
 ```
+
 ::: tip
+
 - [phpmyadmin environment 참고](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 
 | env              | Description                                                                                    |
@@ -395,4 +415,5 @@ networks:
 | PMA_USER         | 서버에 접속할 사용자 계정을 특정합니다. (로그인 화면에서 사용자 계정을 입력할 수 없음)         |
 | PMA_PASSWORD     | 서버에 접속할 사용자 비밀번호를 특정합니다. (로그인 화면에서 사용자 비밀번호를 입력할 수 없음) |
 | PMA_ABSOLUTE_URI |                                                                                                |
+
 :::

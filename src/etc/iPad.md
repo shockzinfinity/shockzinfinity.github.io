@@ -9,7 +9,6 @@ meta:
 tags:
   - ipad
   - env
-sidebar: auto
 feed:
   enable: true
   title: iPad 사용관련

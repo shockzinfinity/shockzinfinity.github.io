@@ -10,7 +10,6 @@ tags:
   - mac
   - dev
   - env
-sidebar: auto
 feed:
   enable: true
   title: 맥 개발환경 설정
@@ -63,6 +62,7 @@ $ brew cask install dotnet-sdk
 ## zsh-autosuggestion color
 
 - `.zshrc` 에 다음 라인 추가
+
 ```bash
 # zsh-autosuggestion suggest color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
@@ -86,6 +86,7 @@ $ brew doctor
 - [참고사이트](https://getgrav.org/blog/macos-catalina-apache-multiple-php-versions)
 
 - php.ini 위치
+
 ```bash{6}
 /usr/local/etc/php/5.6/php.ini
 /usr/local/etc/php/7.0/php.ini
@@ -94,14 +95,18 @@ $ brew doctor
 /usr/local/etc/php/7.3/php.ini
 /usr/local/etc/php/7.4/php.ini
 ```
+
 - `php.ini` 타임존 설정
+
 ```php{4}
 [Date]
 ; Defines the default timezone used by the date functions
 ; http://php.net/date.timezone
 date.timezone = Asia/Seoul
 ```
+
 - php 설치 후 설정과정 중, 403 Forbidden 현상 발생 시 `httpd.conf` 변경 필요
+
 ```bash{19}
 #
 # DirectoryIndex: sets the file that Apache will serve if a directory
@@ -116,16 +121,17 @@ date.timezone = Asia/Seoul
 </FilesMatch>
 
 #
-# The following lines prevent .htaccess and .htpasswd files from being 
-# viewed by Web clients. 
+# The following lines prevent .htaccess and .htpasswd files from being
+# viewed by Web clients.
 #
 <FilesMatch ".ht*">
     # Require all denied
     Require all granted
 </FilesMatch>
 ```
+
 - $ curl -L https://gist.githubusercontent.com/rhukster/f4c04f1bf59e0b74e335ee5d186a98e2/raw > /usr/local/bin/sphp
-$ chmod +x /usr/local/bin/sphp
+  $ chmod +x /usr/local/bin/sphp
 
 ## PHP on VS Code
 
@@ -141,36 +147,39 @@ $ chmod +x /usr/local/bin/sphp
 ## mac 에서 윈도우용 키보드 사용 시
 
 > 시스템 환경설정 > 키보드
-![mac.keyboard](./image/mac.keyboard.1.png)
-![mac.keyboard](./image/mac.keyboard.2.png)
-![mac.keyboard](./image/mac.keyboard.3.png)
+> ![mac.keyboard](./image/mac.keyboard.1.png)
+> ![mac.keyboard](./image/mac.keyboard.2.png)
+> ![mac.keyboard](./image/mac.keyboard.3.png)
 
 ## jdk 설치
 
 - openjdk 저장소 추가
+
 ```bash
 $ brew tap AdoptOpenJDK/openjdk
 ```
+
 - 설치할 자바 버전 확인
 
-  | Java version                           | JDK                         | JRE                             |
-  | :------------------------------------- | :-------------------------- | :------------------------------ |
-  | OpenJDK8 with Hotsopt JVM              | adoptopenjdk8               | adoptopenjdk8-jre               |
-  | OpenJDK8 with OpenJ9 JVM               | adoptopenjdk8-openj9        | adoptopenjdk8-openj9-jre        |
-  | OpenJDK8 with OpenJ9 JVM, large heap*  | adoptopenjdk8-openj9-large  | adoptopenjdk8-openj9-jre-large  |
-  | OpenJDK9 with Hotsopt JVM              | adoptopenjdk9               | n/a                             |
-  | OpenJDK10 with Hotsopt JVM             | adoptopenjdk10              | n/a                             |
-  | OpenJDK11 with Hotsopt JVM             | adoptopenjdk11              | adoptopenjdk11-jre              |
-  | OpenJDK11 with OpenJ9 JVM              | adoptopenjdk11-openj9       | adoptopenjdk11-openj9-jre       |
-  | OpenJDK11 with OpenJ9 JVM, large heap* | adoptopenjdk11-openj9-large | adoptopenjdk11-openj9-jre-large |
-  | OpenJDK12 with Hotsopt JVM             | adoptopenjdk12              | adoptopenjdk12-jre              |
-  | OpenJDK12 with OpenJ9 JVM              | adoptopenjdk12-openj9       | adoptopenjdk12-openj9-jre       |
-  | OpenJDK12 with OpenJ9 JVM, large heap* | adoptopenjdk12-openj9-large | adoptopenjdk12-openj9-jre-large |
-  | OpenJDK13 with Hotsopt JVM             | adoptopenjdk13              | adoptopenjdk13-jre              |
-  | OpenJDK13 with OpenJ9 JVM              | adoptopenjdk13-openj9       | adoptopenjdk13-openj9-jre       |
-  | OpenJDK13 with OpenJ9 JVM, large heap* | adoptopenjdk13-openj9-large | adoptopenjdk13-openj9-jre-large |
+  | Java version                            | JDK                         | JRE                             |
+  | :-------------------------------------- | :-------------------------- | :------------------------------ |
+  | OpenJDK8 with Hotsopt JVM               | adoptopenjdk8               | adoptopenjdk8-jre               |
+  | OpenJDK8 with OpenJ9 JVM                | adoptopenjdk8-openj9        | adoptopenjdk8-openj9-jre        |
+  | OpenJDK8 with OpenJ9 JVM, large heap\*  | adoptopenjdk8-openj9-large  | adoptopenjdk8-openj9-jre-large  |
+  | OpenJDK9 with Hotsopt JVM               | adoptopenjdk9               | n/a                             |
+  | OpenJDK10 with Hotsopt JVM              | adoptopenjdk10              | n/a                             |
+  | OpenJDK11 with Hotsopt JVM              | adoptopenjdk11              | adoptopenjdk11-jre              |
+  | OpenJDK11 with OpenJ9 JVM               | adoptopenjdk11-openj9       | adoptopenjdk11-openj9-jre       |
+  | OpenJDK11 with OpenJ9 JVM, large heap\* | adoptopenjdk11-openj9-large | adoptopenjdk11-openj9-jre-large |
+  | OpenJDK12 with Hotsopt JVM              | adoptopenjdk12              | adoptopenjdk12-jre              |
+  | OpenJDK12 with OpenJ9 JVM               | adoptopenjdk12-openj9       | adoptopenjdk12-openj9-jre       |
+  | OpenJDK12 with OpenJ9 JVM, large heap\* | adoptopenjdk12-openj9-large | adoptopenjdk12-openj9-jre-large |
+  | OpenJDK13 with Hotsopt JVM              | adoptopenjdk13              | adoptopenjdk13-jre              |
+  | OpenJDK13 with OpenJ9 JVM               | adoptopenjdk13-openj9       | adoptopenjdk13-openj9-jre       |
+  | OpenJDK13 with OpenJ9 JVM, large heap\* | adoptopenjdk13-openj9-large | adoptopenjdk13-openj9-jre-large |
 
 - brew cask install version
+
 ```bash
 $ brew cask install adoptopenjdk8
 $ java -version
@@ -182,6 +191,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.265-b01, mixed mode)
 ## pyenv, python, anaconda ([python 개발환경](../dev-log/python)과 비교 필요)
 
 - (BigSur 기준) pyenv 로 python 3.8.6 과 anaconda3-5.3.1 설치 기준
+
 ```bash
 $ brew install pyenv
 or
@@ -200,6 +210,7 @@ $ pyenv versions # 현재 설치된 패키지 확인
 # 기본으로 anaconda3-5.3.1 을 설정
 $ pyenv global anaconda3-5.3.1
 ```
+
 ```bash
 # .zshrc 내의 pyenv 부분
 # for pyenv
@@ -212,11 +223,13 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 ```
+
 ::: tip
+
 - 참고 사이트
-   [The right and wrong way to set Python 3 as default on a Mac](https://opensource.com/article/19/5/python-3-default-mac)
-   [pyenv wiki](https://github.com/pyenv/pyenv/wiki/Common-build-problems)
-:::
+  [The right and wrong way to set Python 3 as default on a Mac](https://opensource.com/article/19/5/python-3-default-mac)
+  [pyenv wiki](https://github.com/pyenv/pyenv/wiki/Common-build-problems)
+  :::
 
 ## Redis
 
@@ -238,7 +251,7 @@ PONG
 
 $ redis-cli monitor
 
-# connect to a different redis server or port 
+# connect to a different redis server or port
 $ redis-cli -h <address> -p <port>
 # List users
 $ redis-cli ACL LIST
@@ -247,6 +260,7 @@ $ redis-cli --stat
 ```
 
 - test
+
 ```bash
 # 실행
 $ redis-server

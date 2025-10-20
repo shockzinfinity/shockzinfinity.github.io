@@ -12,7 +12,7 @@ tags:
   - authentication
   - .net core
   - swagger
-sidebar: auto
+
 disqus: 'yes'
 feed:
   enable: true

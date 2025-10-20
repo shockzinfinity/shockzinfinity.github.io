@@ -8,7 +8,6 @@ meta:
     content: seq
 tags:
   - seq
-sidebar: auto
 feed:
   enable: true
   title: Datalust/Seq
@@ -33,6 +32,7 @@ updated: '2025-10-20'
 - 구동환경: nginx reverse proxy 를 통해 구동
 - reverse proxy 는 jwilder/nginx-proxy 를 이용
 - `docker-compose.yml`
+
 ```docker
 version: "3.7"
 
@@ -61,12 +61,14 @@ networks:
     external:
       name: nginx-proxy
 ```
+
 - ingestion port 는 http 전송
 
 ## netcore 에서 Seq 사용
 
 - netcore 코드 상에서 Serilog 등을 이용하여 ingestion port 로 전송
 - logger configuration 을 조정하여 `Program.cs` 혹은 `Startup.cs` 에 등록하여 사용
+
 ```csharp
 var seqUri = Configuration.GetValue<string>("SeqConfiguration:Uri");
 var apiKey = Configuration.GetValue<string>("SeqConfiguration:ApiKey");
@@ -82,4 +84,5 @@ Log.Logger = new LoggerConfiguration()
             .WriteTo.Seq(seqUri, apiKey: apiKey)
             .CreateLogger();
 ```
+
 ![seq.ingestion](./image/seq.ingestion.1.png)

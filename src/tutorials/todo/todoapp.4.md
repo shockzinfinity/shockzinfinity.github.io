@@ -18,7 +18,7 @@ tags:
   - serilog
   - docker-compose
   - cqrs / es
-sidebar: auto
+
 disqus: 'yes'
 feed:
   enable: true

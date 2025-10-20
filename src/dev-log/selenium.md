@@ -8,7 +8,6 @@ meta:
     content: selenium
 tags:
   - selenium
-sidebar: auto
 feed:
   enable: true
   title: selenium on mac
@@ -31,6 +30,7 @@ updated: '2025-10-20'
 ## selenium capabilities 관련 오류 발생 시
 
 - Edge on Mac
+
 ```python
 from selenium import webdriver
 
@@ -43,6 +43,7 @@ edge_options = {
 
 browser = webdriver.Edge(**edge_options)
 ```
+
 ::: tip
 [https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234](https://gist.github.com/fliedonion/86bb8f60def00d1f531e92c1ff148234)
 :::

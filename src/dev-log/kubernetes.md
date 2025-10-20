@@ -9,7 +9,6 @@ meta:
 tags:
   - kubernetes
   - k8s
-sidebar: auto
 feed:
   enable: true
   title: Kubernetes
@@ -90,19 +89,24 @@ $ sudo adduser $(id -un) kvm
 $ curl -O http://mirror.kakao.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
 $ sudo mv CentOS-7-x86_64-Minimal-2009.iso /var/lib/libvirt/images
 ```
+
 ::: tip
+
 - `virt-manager` 구동 시 다음과 같은 에러가 나오는 경우,
+
 ```bash{2-3}
 $ virt-manager
 libGL error: No matching fbConfigs or visuals found
 libGL error: failed to load driver: swrast
 ```
+
 - swrast 드라이버가 없는 경우이기 때문에 관련 드라이버를 설치해줘야 함.
 - `apt install mesa-utils libgl1-mesa-glx`
 - 관련 URL: [https://github.com/openai/gym/issues/509](https://github.com/openai/gym/issues/509)
-:::
+  :::
 
 ### ssh 를 통한 virt-manager 실행을 위한 작업
+
 > ssh 를 통한 virt-manager 접속은 속도가 많이 느림
 
 - [https://www.xquartz.org](https://www.xquartz.org) 에서 XQuartz 다운로드
@@ -111,16 +115,19 @@ libGL error: failed to load driver: swrast
 ### docker, kubernetes 설치 버전 확인
 
 - CentOS 기준
+
 ```bash
 $ yum list docker-ce.x86-64 --showduplicates
 $ yum list kubernetes.x86-64 --showduplicates
 ```
 
 ### docker, kubernetes 의 cgroup 변경
+
 > kubernetes 에서 권고하는 cgroup driver 를 systemd 로 변경하기 위한 방법
 > kubelet 과 docker 는 cgroupfs 를 사용하고, 나머지 프로세스는 systemd 를 사용하도록 설정된 경우, 리소스가 부족해질때 불안정해지는 현상이 발생될 수 있다. 이로 인한 시스템 리소스 부족 현상이 발생할 수 있으므로 리눅스 init 시스템이 사용하는 cgroups 드라이버와 docker, kubelet 의 드라이버를 맞춰주는 것이 효율적이다.
 
 - docker 의 cgroup 확인
+
 ```bash
 $ docker info
 Client:
@@ -180,9 +187,11 @@ $ docker info | grep -i cgroup
  Cgroup Driver: cgroupfs
  Cgroup Version: 1
 ```
+
 > kubernetes 에서는 systemd 를 권고함.
 
 - docker cgroup driver 수정
+
 ```bash
 $ cat > /etc/docker/daemon.json << EOF
 {

@@ -8,7 +8,7 @@ meta:
     content: vuepress
 tags:
   - vuepress
-sidebar: auto
+
 feed:
   enable: true
   title: VuePress 설정
@@ -46,13 +46,15 @@ module.exports = {
 ```
 
 ## Google Analytics 변경사항
+
 > GA4 로 변경되면서 새롭게 적용해보려고 시도한 작업 기록
 
 - `docs/.vuepress/config.js` 의 내용 수정 필요
 - `@vuepress/plugin-google-analytics` 플러그인이 더이상 동작하지 않게되는 것을 인지 (2021-02-14 기준)
 - `yarn remove @vuepress/plugin-google-analytics` 를 통해 기존 플러그인 삭제 후
 - Global site tag (gtag.js) 관련 설정 작업 이후 데이터가 수집되는 것을 확인
-![google.analytics](./image/google.analytics.2.png)
+  ![google.analytics](./image/google.analytics.2.png)
+
 ```js
 module.exports = {
   ...,
@@ -98,8 +100,7 @@ meta:
     content: 검색 엔진 최적화 SEO를 알아보고 VuePress에 적용해봅니다.
   - name: keywords
     content: SEO 검색 엔진 최적화
-tags: ["SEO", "검색 엔진 최적화", "VuePress"]
-sidebar: auto
+tags: ['SEO', '검색 엔진 최적화', 'VuePress']
 ---
 ```
 
@@ -124,6 +125,7 @@ module.exports = {
 
 ![vuepress.github.actions](./image/vuepress.github.actions.1.png)
 ![vuepress.github.actions](./image/vuepress.github.actions.2.png)
+
 ```docker{31-32,41}
 # This is a basic workflow to help you get started with Actions
 
@@ -167,29 +169,32 @@ jobs:
           # 토큰정보를 바탕으로 gh-pages 브랜치에 push
           git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
 ```
+
 [Github Actions](https://docs.github.com/en/actions)에 Workflow 를 생성한 후 위의 Workflow를 등록합니다.
 
 ::: warning
+
 - 위의 actions 의 32번 라인의  
-ACCESS_TOKEN 은 해당 repository > Settings > Secrets 에 등록되는 환경 변수를 읽어오는 부분으로서  
+  ACCESS_TOKEN 은 해당 repository > Settings > Secrets 에 등록되는 환경 변수를 읽어오는 부분으로서  
    ![vuepress.github.actions](./image/vuepress.github.actions.3.png)
 
-- 여기서는 **Personal Access Token** 을 발급해서 등록하여 읽어올 수 있다.  
+- 여기서는 **Personal Access Token** 을 발급해서 등록하여 읽어올 수 있다.
 - 41번 라인의 workflow 의 `${GITHUB_REPOSITORY}` 는 기본 환경변수.
-:::
-::: tip Github Personal Access Token 발급방법
-![vuepress.github.actions](./image/vuepress.github.actions.6.png)
-![vuepress.github.actions](./image/vuepress.github.actions.4.png)
-![vuepress.github.actions](./image/vuepress.github.actions.5.png)
+  :::
+  ::: tip Github Personal Access Token 발급방법
+  ![vuepress.github.actions](./image/vuepress.github.actions.6.png)
+  ![vuepress.github.actions](./image/vuepress.github.actions.4.png)
+  ![vuepress.github.actions](./image/vuepress.github.actions.5.png)
 - 토큰 권한은 아래를 체크해준다.  
    ![vuepress.github.actions](./image/vuepress.github.actions.7.png)
-:::
+  :::
 
 ## sitemap 플러그인 적용
 
 ```bash
 $ yarn add -D vuepress-plugin-sitemap
 ```
+
 ```js{5}
 module.exports = {
   ...,
@@ -200,6 +205,7 @@ module.exports = {
   ...
 };
 ```
+
 - vuepress 사이트 배포 후 sitemap.xml 파일 생성확인 후
 - [Google Search Console](https://search.google.com/search-console) 에 sitemap 파일 등록
 - ![sitemap](./image/vuepress.search.sitemap.1.png)
@@ -209,6 +215,7 @@ module.exports = {
 ```bash
 $ yarn add -D vuepress-plugin-feed
 ```
+
 ```js{1,7}
 const feed_options = { canonical_base: 'https://shockzinfinity.github.io' };
 
@@ -221,7 +228,9 @@ module.exports = {
   ...
 }
 ```
+
 - 각 페이지의 frontmatter 부분에 feed 관련 설정 추가 (e.g. centos.md 페이지)
+
 ```md{3-12}
 ---
 ...
@@ -237,7 +246,8 @@ feed:
       link: https://shockzinfinity.github.io/dev-log/centos.html
 ---
 ```
+
 - 배포 후에 생성된 파일들 확인
-   ![rss](./image/vuepress.rss.1.jpg)
+  ![rss](./image/vuepress.rss.1.jpg)
 - [네이버 웹마스터 도구](https://searchadvisor.naver.com/)에서는 rss 를 등록할 수 있음
-   ![rss](./image/vuepress.rss.2.png)
+  ![rss](./image/vuepress.rss.2.png)

@@ -10,7 +10,6 @@ tags:
   - .net core
   - centos8
   - docker
-sidebar: auto
 feed:
   enable: true
   title: .net core

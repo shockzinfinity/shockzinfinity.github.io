@@ -9,7 +9,6 @@ meta:
 tags:
   - dev
   - env
-sidebar: auto
 feed:
   enable: true
   title: Tool 설치 및 구성 관련
@@ -30,6 +29,7 @@ updated: '2025-10-20'
 [[toc]]
 
 ## Medis
+
 > Redis client GUI (free)
 
 > git: [https://github.com/luin/medis](https://github.com/luin/medis.git)
@@ -41,11 +41,14 @@ $ npm install
 # compile assets
 $ npm run pack
 ```
+
 ::: tip
+
 - 컴파일 하게 되면 Webpack Bundle Analyzer 가 구동된다. (Ctrl-C 해서 구동 중단해도 상관없음)
-![tools.medis](./image/tools.medis.1.png)
-![tools.medis](./image/tools.medis.2.png)
-:::
+  ![tools.medis](./image/tools.medis.1.png)
+  ![tools.medis](./image/tools.medis.2.png)
+  :::
+
 ```bash
 # 실행 방법
 $ npm start
@@ -56,9 +59,11 @@ $ cd dist/out/Medis-mas-x64
 
 # Medis.app 실행
 ```
+
 ![tools.medis](./image/tools.medis.3.png)
 ::: tip
+
 - `node bin/pack.js` 를 실행하게 되면 signing 관련 에러를 만나게 됨.
 - 단독 사용이므로 무시해도 관계 없음
-![tools.medis](./image/tools.medis.4.png)
-:::
+  ![tools.medis](./image/tools.medis.4.png)
+  :::

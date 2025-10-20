@@ -8,7 +8,6 @@ meta:
     content: markdown
 tags:
   - markdown
-sidebar: auto
 feed:
   enable: true
   title: markdown 사용 관련
@@ -41,7 +40,7 @@ updated: '2025-10-20'
 |   '    |   \&\#39;   |           | single quote             |
 |   (    |   \&\#40;   |           | opening parenthesis      |
 |   )    |   \&\#41;   |           | closing parenthesis      |
-|   *    |   \&\#42;   |           | asterisk                 |
+|   \*   |   \&\#42;   |           | asterisk                 |
 |   +    |   \&\#43;   |           | plus sign                |
 |   ,    |   \&\#44;   |           | comma                    |
 |   -    |   \&\#45;   |           | minus sign - hyphen      |
@@ -58,7 +57,7 @@ updated: '2025-10-20'
 |   \\   |   \&\#92;   |           | back slash               |
 |   ]    |   \&\#93;   |           | closing bracket          |
 |   ^    |   \&\#94;   |           | caret - circumflex       |
-|   _    |   \&\#95;   |           | underscore               |
+|   \_   |   \&\#95;   |           | underscore               |
 |   `    |   \&\#96;   |           | grave accent             |
 |   {    |  \&\#123;   |           | opening brace            |
 |   \|   |  \&\#124;   |           | vertical bar - pipe      |

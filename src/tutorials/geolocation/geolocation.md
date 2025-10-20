@@ -11,7 +11,7 @@ tags:
   - python
   - image
   - geolocation
-sidebar: auto
+
 disqus: 'yes'
 feed:
   enable: true

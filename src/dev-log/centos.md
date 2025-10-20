@@ -9,7 +9,6 @@ meta:
 tags:
   - linux
   - centos8
-sidebar: auto
 feed:
   enable: true
   title: CentOS 8 설정
@@ -410,15 +409,15 @@ $ npm i express # 테스트를 위한 익스프레스 서버
 ##### server.js
 
 ```javascript
-var express = require("express");
+var express = require('express');
 var app = express();
 
-app.get("/", function(req, res) {
-  res.send("hi there");
+app.get('/', function (req, res) {
+  res.send('hi there');
 });
 
-app.listen(3000, function() {
-  console.log("running on 3000 port");
+app.listen(3000, function () {
+  console.log('running on 3000 port');
 });
 ```
 
@@ -540,6 +539,7 @@ $ systemctl restart cockpit
 ## XRDP 설치
 
 - 윈도우의 원격데스크탑을 통해 CentOS 8의 GUI 에 연결하기 위한 패키지 설치
+
 ```bash
 $ sudo dnf info epel-release
 $ sudo dnf update epel-release
@@ -552,11 +552,13 @@ $ sudo firewall-cmd --reload
 $ sudo systemctl start xrdp
 $ sudo systemctl status xrdp
 ```
+
 ![centos8.xrdp](./image/centos8.xrdp.1.png)
 ![centos8.xrdp](./image/centos8.xrdp.2.png)
 ![centos8.xrdp](./image/centos8.xrdp.3.png)
 
 - (선택) 포트 변경
+
 ```bash{4}
 # /etc/xrdp/xrdp.ini
 [Globals]

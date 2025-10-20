@@ -8,7 +8,6 @@ meta:
     content: ef core
 tags:
   - ef core
-sidebar: auto
 feed:
   enable: true
   title: ef core
@@ -29,6 +28,7 @@ updated: '2025-10-20'
 [[toc]]
 
 ## ef core tool 설치
+
 > docker 로 .net core app 을 실행 시에 ef core migration 이 필요한 경우가 있음  
 > csproj에 ef core tool 을 포함시킬 경우는
 
@@ -48,6 +48,7 @@ $ dotnet ef database update --project coreTodoApi.csproj
 ```
 
 > scaffolding
+
 ```bash
 $ dotnet ef dbcontext scaffold "Server=localhost;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;" Microsoft.EntityFrameworkCore.SqlServer -o Models
 $ dotnet ef dbcontext scaffold "Server=localhost;Database=todos;Integrated Security=false;User ID=sa;Password=y0urStrong!Password;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t TodoItems -t 테이블명 --context-dir Models -c TodoContext --context-namespace Todo.Api
@@ -75,11 +76,13 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 ```
 
 ## ef core 로 sql server 연결 시 오류
+
 > A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
 
 ### 현상
 
 - .net core 앱을 dockerizing 할 경우, 보통 다음과 같이 `Dockerfile` 을 작성한다.
+
 ```docker
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
@@ -105,11 +108,13 @@ ENV ASPNETCORE_URLS http://*:5001
 
 ENTRYPOINT ["dotnet", "sample.api.dll"]
 ```
+
 - base 및 build 이미지를 .net standard 5.0 은 `mcr.microsoft.com/dotnet/aspnet:5.0`, .net core 3.1 은 `mcr.microsoft.com/dotnet/aspnet:3.1` 등으로 사용하여 dockerizing 하게 되는데,
 - 기본 태그의 이미지는 container 의 size 를 줄이기 위해 buster 나 buster-slim 이다. ([dotnet tag](https://hub.docker.com/_/microsoft-dotnet-sdk?tab=description))
-![dotnet.docker.tag](./image/dotnet.docker.tag.1.png)
+  ![dotnet.docker.tag](./image/dotnet.docker.tag.1.png)
 - 해당 태그는 Ubuntu 20.04 등을 사용하여 빌드된 이미지 이다.
 - Ubuntu 20.04 가 되면서 기본 openssl security level 변경되어 다음과 같은 에러가 발생할 수 있다.
+
 ```bash
 System.Data.SqlClient.SqlException (0x80131904): A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 31 - Encryption(ssl/tls) handshake failed)
 ```
@@ -120,6 +125,7 @@ System.Data.SqlClient.SqlException (0x80131904): A connection was successfully e
 - [https://itectec.com/ubuntu/ubuntu-ubuntu-20-04-how-to-set-lower-ssl-security-level/#](https://itectec.com/ubuntu/ubuntu-ubuntu-20-04-how-to-set-lower-ssl-security-level/#)
 - [https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level](https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level)
 - 그래서 다음과 같이 조치하도록 한다.
+
 ```docker{5}
 ...
 WORKDIR /app
@@ -128,14 +134,16 @@ ENV ASPNETCORE_URLS http://*:5001
 RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
 ENTRYPOINT ["dotnet", "sample.api.dll"]
 ```
+
 - openssl 의 SECLEVEL 을 조정함으로서 SSL 관련 오류를 우회한다.
-::: tip
+  ::: tip
 - 관련 정보
   - [Ubuntu 20.04 openssl의 key길이 문제(SECLEVEL)](https://ivorycirrus.github.io/TIL/openssl-seclevel/)
   - [디피 헬만 키 (Diffie-Hellman Key) 를 2048 bit 로 바꿔야 하는 이유](https://rsec.kr/?p=242)
-:::
+    :::
 
 ## Reference
+
 - [package management console](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/powershell)
 - [cli](https://docs.microsoft.com/ko-kr/ef/core/miscellaneous/cli/dotnet)
 - [리버스엔지니어링](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/scaffolding?tabs=dotnet-core-cli)

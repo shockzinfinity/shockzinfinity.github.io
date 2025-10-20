@@ -8,7 +8,6 @@ meta:
     content: xwiki
 tags:
   - xwiki
-sidebar: auto
 feed:
   enable: true
   title: XWiki

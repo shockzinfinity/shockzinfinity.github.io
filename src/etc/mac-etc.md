@@ -10,7 +10,6 @@ tags:
   - mac
   - dev
   - env
-sidebar: auto
 feed:
   enable: true
   title: 맥 사용상 문제해결

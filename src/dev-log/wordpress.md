@@ -11,7 +11,6 @@ tags:
   - redis
   - docker
   - docker-compose
-sidebar: auto
 feed:
   enable: true
   title: WordPress
@@ -36,12 +35,13 @@ updated: '2025-10-20'
 **docker** 및 **docker-compose** 이 설치되어 있다는 가정하에 시작
 
 구성환경
-  - Wordpress
-  - Nginx
-  - MariaDB
-  - phpMyAdmin
-  - Redis
-  - Wordpress plugin: [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/), [Autoptimize](https://wordpress.org/plugins/autoptimize/)
+
+- Wordpress
+- Nginx
+- MariaDB
+- phpMyAdmin
+- Redis
+- Wordpress plugin: [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/), [Autoptimize](https://wordpress.org/plugins/autoptimize/)
 
 > [Repository](https://github.com/shockzinfinity/wordpress-redis)
 
@@ -55,6 +55,7 @@ updated: '2025-10-20'
 ### 2. 관련 디렉토리 생성
 
 - 작업 시작 디렉토리: 각 유저 홈 디렉토리 - 여기서는 `/home/shockz` 기준
+
 ```bash
 # wordpress redis 작업 기준 디렉토리
 $ mkdir wordpress-redis && cd wordpress-redis
@@ -75,6 +76,7 @@ $ mkdir wordpress && chmod 777 wordpress
 ### 3. ssl 생성을 위한 certbot nginx.conf 생성
 
 - `nginx-conf/nginx.conf` 생성 (certbot ssl 갱신용 설정)
+
 ```bash{5}
 server {
         listen 80;
@@ -125,7 +127,8 @@ server {
 ### 4. 워드프레스 용 php.ini 설정
 
 - `php/php.ini` 생성
-```php  
+
+```php
 short_open_tag = On
 memory_limit = 256M
 cgi.fix_pathinfo = 0
@@ -139,6 +142,7 @@ expose_php = off
 ### 5. 환경파일 생성 (.env)
 
 - `wordpress-redis` 디렉토리에 `.env` 생성
+
 ```bash
 MYSQL_ROOT_PASSWORD=your_root_password
 MYSQL_USER=your_wordpress_database_user
@@ -150,24 +154,28 @@ MYSQL_PASSWORD=your_wordpress_database_password
 ### 6. php 도커 이미지 설정
 
 - php 공식 이미지 사용
-   > [php7.4-fpm-alpine official image](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile)
+  > [php7.4-fpm-alpine official image](https://github.com/docker-library/wordpress/blob/master/php7.4/fpm-alpine/Dockerfile)
+
 ```bash
 $ wget https://raw.githubusercontent.com/docker-library/wordpress/master/php7.4/fpm-alpine/Dockerfile
 ```
 
 - 공식 이미지의 `Dockerfile` 에 redis 추가 (34, 35번 라인)
+
 ```docker
 pecl install imagick-3.4.4 redis;
 docker-php-ext-enable imagick redis;
 ```
 
 - `docker-entrypoint.sh` 파일 다운로드
+
 ```bash
 $ wget https://raw.githubusercontent.com/docker-library/wordpress/master/php7.4/fpm-alpine/docker-entrypoint.sh
 $ chmod +x docker-entrypoint.sh
 ```
 
 - build
+
 ```bash
 $ docker build -t wordpress-fpm-alpine-redis:1.0 .
 ```
@@ -175,6 +183,7 @@ $ docker build -t wordpress-fpm-alpine-redis:1.0 .
 ### 7. 워드프레스 docker-compose 설정
 
 - `wordpress-redis/docker-compose.yml` 생성
+
 ```docker{19,67}
 version: '3'
 
@@ -268,24 +277,30 @@ networks:
   app-network:
     driver: bridge
 ```
+
 ```bash
 $ docker-compose up -d
 $ docker-compose ps
 ```
+
 ::: tip
 `docker-compose ps` 로 확인할 때 certbot 은 Exit 0 나오는 이유는 certbot 을 통해 인증서 테스트만을 구동했기 때문
+
 ```bash
 $ docker-compose logs certbot
 ```
+
 certbot-etc/live/wordpress.shockz.io 디렉토리에서 발급된 테스팅 인증서 확인 가능
 현재까진 --staging 으로 발급했기 때문에 테스트 통과된 인증서가 저장되어 있음
 :::
 
 - SSL 인증서 발급을 위한 `docker-compose.yml` 수정
-::: warning
+  ::: warning
+
 1. 보유하고 있는 Wildcard SSL 등을 사용하는 경우라면 `docker-compose.yml` 에서 certbot 서비스 제거하고 추후 `nginx.conf` 에서 ssl 인증서 관련 경로를 수정하면 됨
 2. 이전 과정에서 **--staging** 부분을 **--force-renewal** 로 교체하여 실제 인증서 발급
-:::
+   :::
+
 ```docker{10}
 ...
   certbot:
@@ -299,6 +314,7 @@ certbot-etc/live/wordpress.shockz.io 디렉토리에서 발급된 테스팅 인�
     command: certonly --webroot --webroot-path=/var/www/html --email shockz@shockz.io --agree-tos --no-eff-email --force-renewal -d wordpress.shockz.io
 ...
 ```
+
 ```bash
 $ docker-compose up --force-recreate  --no-deps certbot
 ```
@@ -306,6 +322,7 @@ $ docker-compose up --force-recreate  --no-deps certbot
 ### 8. nginx ssl 설정
 
 - 발급된 인증서를 사용하기 위해 `nginx-conf/nginx.conf` 수정
+
 ```bash
 $ docker-compose stop webserver
 # ssl options 파일 다운로드
@@ -315,6 +332,7 @@ $ rm nginx-conf/nginx.conf
 $ touch nginx-conf/nginx.conf
 $ vi nginx-conf/nginx.conf
 ```
+
 ```bash{5,20,29-31,39-40}
 server {
         listen 80;
@@ -387,17 +405,20 @@ server {
         }
 }
 ```
+
 ::: danger
 39번 라인의 HSTS(HTTP Strict Transport Security) 헤더 설정 부분은 충분히 테스트한 후 활성화 해야함. 한번 적용되면 해당 브라우저에서는 80포트로 접속이 안됨.
 :::
+
 ```bash
 $ docker-compose up -d --force-recreate --no-deps webserver
 ```
 
 - `https://wordpress.shockz.io` 에 접속하여 언어 및 아이디/비밀번호 설정 마무리
-![wordpress.redis](./image/wordpress.redis.9.png)
+  ![wordpress.redis](./image/wordpress.redis.9.png)
 
 - SSL 인증서 갱신을 위한 `wordpress-redis/ssl_renew.sh` 생성
+
 ```bash{6}
 #!/bin/bash
 
@@ -408,24 +429,30 @@ cd /home/shockz/wordpress-redis/
 $COMPOSE run certbot renew --no-random-sleep-on-renew --dry-run && $COMPOSE kill -s SIGHUP webserver
 $DOCKER system prune -af
 ```
+
 ```bash
 $ chmod +x ssl_renew.sh
 $ crontab -e
 ```
+
 ```bash
 * * * * * /home/shockz/wordpress-redis/ssl_renew.sh >> /var/log/cron.log 2>&1
 ```
+
 - cron 작업을 통해 재갱신 시도가 이뤄짐. log 확인
+
 ```bash
 $ tail -f /var/log/cron.log
 ```
 
 - 로그에서 재갱신 성공을 확인 후 crontab 을 수정하여 주기설정 (매일 12시 재갱신)
+
 ```bash
 0 12 * * * /home/shockz/wordpress-redis/ssl_renew.sh >> /var/log/cron.log 2>&1
 ```
 
 - `ssl_renew.sh` 는 다음과 같이 수정
+
 ```bash{6,7}
 #!/bin/bash
 
@@ -438,6 +465,7 @@ $DOCKER system prune -af
 ```
 
 - crontab 을 통해 주기적으로 재갱신 작업이 이뤄지기 때문에 `docker-compose.yml` 의 certbot 서비스의 **--force-renewal** 은 필요치 않고 **docker-compose** 재기동 시 **renew** 하는 것으로 수정
+
 ```docker{10}
 ...
   certbot:
@@ -455,23 +483,25 @@ $DOCKER system prune -af
 ### 9. 워드프레스 redis 캐시 설정
 
 - W3 Total Cache 및 Autoptimizer 설치
-   > W3 Total Cache 의 Minify 기능은 Autoptimizer 로 대체하여 사용 (W3 Total Cache minify 가 문제가 많다고 함)
-::: warning
-W3 Total Cache 메시지 중 웹서버 재시작 메시지 나오면 웹서버 재시작
+  > W3 Total Cache 의 Minify 기능은 Autoptimizer 로 대체하여 사용 (W3 Total Cache minify 가 문제가 많다고 함)
+  > ::: warning
+  > W3 Total Cache 메시지 중 웹서버 재시작 메시지 나오면 웹서버 재시작
+
 ```bash
 $ docker-compose up -d --force-recreate --no-deps webserver
 ```
+
 :::
 
 - W3 Total Cache 의 Page Cache, Object Cache, Database Cache 활성화 및 redis 지정
-![wordpress.redis](./image/wordpress.redis.1.png)
-![wordpress.redis](./image/wordpress.redis.2.png)
-![wordpress.redis](./image/wordpress.redis.3.png)
-![wordpress.redis](./image/wordpress.redis.4.png)
-![wordpress.redis](./image/wordpress.redis.5.png)
-![wordpress.redis](./image/wordpress.redis.6.png)
-![wordpress.redis](./image/wordpress.redis.7.png)
-![wordpress.redis](./image/wordpress.redis.8.png)
+  ![wordpress.redis](./image/wordpress.redis.1.png)
+  ![wordpress.redis](./image/wordpress.redis.2.png)
+  ![wordpress.redis](./image/wordpress.redis.3.png)
+  ![wordpress.redis](./image/wordpress.redis.4.png)
+  ![wordpress.redis](./image/wordpress.redis.5.png)
+  ![wordpress.redis](./image/wordpress.redis.6.png)
+  ![wordpress.redis](./image/wordpress.redis.7.png)
+  ![wordpress.redis](./image/wordpress.redis.8.png)
 
 ## wordpress 플러그인 개발용 설정 (macOS 기준)
 
@@ -481,18 +511,21 @@ $ docker-compose up -d --force-recreate --no-deps webserver
 ### 1. localhost 인증서 추출
 
 - **키체인 접근** 실행 후 **localhost** 인증서 확인
-   ![wordpress.mac](./image/wordpress.mac.1.png)  
+  ![wordpress.mac](./image/wordpress.mac.1.png)  
    ![wordpress.mac](./image/wordpress.mac.2.png)
 
 - p12 로 추출 후 PEM 변환
-   ![wordpress.mac](./image/wordpress.mac.3.png)
+  ![wordpress.mac](./image/wordpress.mac.3.png)
+
 ```bash
 # 편의상 기존 디렉토리 이용
 $ cd certbot-etc
 $ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
 $ openssl pkcs12 -in localhost.p12 -out localhost.key.pem -nocerts -nodes
 ```
+
 ::: tip
+
 ```bash
 # certificate in localhost.crt.pem
 $ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys
@@ -505,9 +538,11 @@ $ openssl pkcs12 -in localhost.p12 -out localhost.pem
 # command line 상에서 직접 입력할 경우
 $ openssl pkcs12 -in localhost.p12 -out localhost.crt.pem -clcerts -nokeys -passin 'pass:p@ssw0rd'
 ```
+
 :::
 
 - `nginx.conf` 수정
+
 ```bash{5,20,29-31}
 server {
         listen 80;
@@ -549,14 +584,18 @@ server {
 
 - `docker-compose.yml` 의 services 하위의 **certbot** 구간 삭제
 - build & up
+
 ```bash
 $ docker build -t wordpress-fpm-alpine-redis:1.0 .
 $ docker-compose up -d
 ```
+
 - `https://localhost` 접속 후 설정 마무리
 
 ::: tip
+
 - 이미 80, 443 포트가 사용중이어서 `docker-compose up -d` 실패하는 경우, 아래의 사항들 확인 필요
+
 ```bash
 # 80 포트 사용중인 프로세스 확인
 $ lsof -i :80
@@ -565,6 +604,7 @@ $ apachectl -k stop
 # or brew service 로 등록되어 있는 경우
 $ sudo brew services stop httpd
 ```
+
 :::
 
 ## Tip
@@ -573,12 +613,11 @@ $ sudo brew services stop httpd
 
 [https://kinsta.com/knowledgebase/disable-wordpress-plugins/](https://kinsta.com/knowledgebase/disable-wordpress-plugins/)
 
-
 ### DB 상 패스워드 변경
 
 ```sql
 -- admin id change
-UPDATE wp_users 
+UPDATE wp_users
 SET user_pass = MD5('패스워드')
 WHERE ID = 1
 ```
@@ -609,4 +648,5 @@ function style_tool_bar() {
 add_action( 'admin_head', 'style_tool_bar' );
 add_action( 'wp_head', 'style_tool_bar' );
 ```
+
 ![wordpress.adminbar](./image/wordpress.adminbar.1.png)

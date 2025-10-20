@@ -9,7 +9,6 @@ meta:
 tags:
   - mssql
   - docker
-sidebar: auto
 feed:
   enable: true
   title: mssql on docker
@@ -73,6 +72,7 @@ $ docker cp AdventureWorks2019.bak sql1:/var/opt/mssql/backup/AdventureWorks2019
 $ docker exec -it sql1 rm /var/opt/mssql/backup/AdventureWorks2019.bak
 $ docker exec -it -u root sql1 rm /var/opt/mssql/backup/AdventureWorks2019.bak
 ```
+
 ```sql
 -- 백업파일 확인
 RESTORE FILELISTONLY FROM DISK = N'/var/opt/mssql/backup/AdventureWorks2019.bak'
@@ -90,6 +90,7 @@ SELECT Name FROM sys.Databases
 BACKUP DATABASE [AdventureWorks2019] TO DISK = N'/var/opt/mssql/backup/AdventureWorks2019_2.bak'
 WITH NOFORMAT, NOINIT, NAME = 'AdventureWorks2019-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10
 ```
+
 > sqlcmd 이용
 
 ```bash
@@ -120,6 +121,7 @@ $ docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "y0urSt
 ## mssql 을 container 로 docker run 할 경우, volume permission 문제
 
 - 참고: [microsoft/mssql-docker](https://github.com/microsoft/mssql-docker/issues/615)
+
 ```bash
 $ docker logs mssql
 SQL Server 2019 will run as non-root by default.
@@ -136,6 +138,6 @@ $ sudo chown 10001 ./sql-data
 - [https://docs.microsoft.com/ko-kr/sql/linux/tutorial-restore-backup-in-sql-server-container?view=sql-server-ver15](https://docs.microsoft.com/ko-kr/sql/linux/tutorial-restore-backup-in-sql-server-container?view=sql-server-ver15)
 - [https://www.c-sharpcorner.com/article/using-docker-volumes-for-sql-server-in-linux/](https://www.c-sharpcorner.com/article/using-docker-volumes-for-sql-server-in-linux/)
 - [https://www.sqlservercentral.com/blogs/docker-containers-and-persistent-data](https://www.sqlservercentral.com/blogs/docker-containers-and-persistent-data)
-- [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)  
+- [docker 이미지 버전 참조](https://hub.docker.com/_/microsoft-mssql-server)
 - [MSDN](https://docs.microsoft.com/ko-kr/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
 - [microsoft/mssql-docker](https://github.com/microsoft/mssql-docker/issues/615)

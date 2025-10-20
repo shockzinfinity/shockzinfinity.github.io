@@ -18,7 +18,7 @@ tags:
   - serilog
   - docker-compose
   - cqrs / es
-sidebar: auto
+
 disqus: 'yes'
 feed:
   enable: true
@@ -40,9 +40,10 @@ updated: '2025-10-20'
 ---
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법  
-> 참고 Repository:  
-  - Backend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
-  - Frontend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated-trello-copy)
+> 참고 Repository:
+
+- Backend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated)
+- Frontend: [Github Repository](https://github.com/shockzinfinity/todo-app-complicated-trello-copy)
 
 [[toc]]
 
@@ -54,12 +55,13 @@ updated: '2025-10-20'
 
 ::: warning
 현재까지 버그 및 필요사항
+
 1. input blur 이벤트 버블링에 문제가 있음. 원인 파악중
 2. Flow 간 TodoItem 이동 시 FlowId 변경이 안되는 현상
    - Backend API 에서 JsonPatch 적용 필요
 3. Category 추가 시 기본 Flow 생성하여 DB 저장 필요
 4. 테스트 서버 배포
-:::
+   :::
 
 ### 요구사항 분석 (기본, 추가)
 

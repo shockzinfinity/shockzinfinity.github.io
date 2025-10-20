@@ -8,7 +8,6 @@ meta:
     content: vuejs
 tags:
   - vuejs
-sidebar: auto
 feed:
   enable: true
   title: Vue.js 관련

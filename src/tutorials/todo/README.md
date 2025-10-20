@@ -25,17 +25,3 @@ Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과�
 > Frontend 부분
 
 ### [#4. Todo App - Refactoring](./todo/todoapp.4.md)
-
-> 비즈니스 요구사항 변경 및 리팩터링
-
-## [Authentication & Authorization in .net core](./auth/auth.md)
-
-> .net core 를 이용한 인증 api
-
-## [EXIF - GeoLocation](./geolocation/geolocation.md)
-
-> python 을 이용한 EXIF 태그 중 위도/경도 추출
-
-## [node.js Sample App](./nodejs.sample.app/nodejs.sample.app.md)
-
-> node.js 를 이용한 sample app 생성

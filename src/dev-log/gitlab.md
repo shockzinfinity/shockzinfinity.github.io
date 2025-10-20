@@ -10,7 +10,6 @@ tags:
   - git
   - gitlab
   - docker
-sidebar: auto
 feed:
   enable: true
   title: GitLab
@@ -96,10 +95,12 @@ EOS
 
 - docker 볼륨 연결 위치 (--volume /home/shockz/docker/gitlab/data:/var/opt/gitlab)
 - backup 관련 설정 파일 위치 : vi /home/shockz/docker/gitlab/data/gitlab-rails/etc/gitlab.yml
+
 ```bash
 backup:
   keep_time: 604800 # 1 week (second 단위)
 ```
+
 > 백업위치 : /home/shockz/docker/gitlab/data/backups
 
 - NAS rsync 활성화  
@@ -108,6 +109,7 @@ backup:
    ![rsync 3](./image/synology.rsync.3.png)
 
 - rsync 를 위한 자동 로그인 설정
+
 ```bash
 # on synology
 $ cd /var/services/homes/shockz
@@ -121,7 +123,9 @@ $ ssh -p <synology ssh port> id@synology.address # synology 접속
 $ chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
 $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 ```
+
 - crontab 설정
+
 ```bash
 # /etc/crontab
 # gitlab backup
@@ -129,10 +133,12 @@ $ chmod u=rwx,g=rx,o=rx /volume1/homes/shockz
 # rsync
 30 2 * * 7 root rsync -avzO -e 'ssh -i /home/shockz/.ssh/id_rsa -p 2299' /home/shockz/docker/gitlab/data/backups/ id@synology.address:/volume1/gitlabBackup/
 ```
+
 - 복원
   > [참고](https://lunightstory.tistory.com/7)
 
 ::: warning 테스트 안됨
+
 ```bash
 $ docker exec -d gitlab gitlab-ctl stop unicorn
 $ docker exec -d gitlab gitlab-ctl stop sidekig
@@ -141,6 +147,7 @@ $ docker exec -d gitlab gitlab-rake gitlab:backup:restore BACKUP=<Timestamp>_<ba
 # git 을 이용한 복원 (in docker container 에서 실행)
 $ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
 ```
+
 :::
 
 ## 기타 설정
@@ -170,8 +177,8 @@ $ sudo -u git -H bundle exec rake RAILS_ENV=production gitlab:backup:restore
 
 ## gitlab mass upload
 
-- gitlab REST API 이용  
-- [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)  
+- gitlab REST API 이용
+- [gitlab mass upload temp project](https://github.com/shockzinfinity/gitlab-mass-upload)
 - 각 폴더별 git repository 생성
 
 ## gitlab repository mirroring to github
@@ -184,7 +191,9 @@ $ cd gitlab-repository.git
 $ git push --mirror https://github.com/user/github-repository.git
 # bare 클론 저장소는 삭제해도 됨
 ```
+
 - 100 MB 이상의 파일이 repo 에 존재하는 경우 (github 에서 100 MB 이상은 오류 발생)
+
 ```bash
 # gitlab repo 클론
 $ git clone --mirror https://gitlab/user/gitlab-repository.git
@@ -195,10 +204,11 @@ $ cd git-repository.git
 $ git push --mirror https://github.com/user/github-repository.git
 # gitlab-repository.git 삭제
 ```
+
 - 위의 방법 말고도 Gitlab 서버상에서 Mirror Repository 를 통해서도 가능함.  
    ![gitlab.mirror](./image/gitlab.mirror.1.png)
-   > - repository url: github repository clone.git  
-   > - password 부분은 github 에서 Personal Access Token 을 발급받을때 `pulic_repo` 권한을 부여한 상태로 토큰을 생성하고 그 토큰을 넣어줘야 함
+  > - repository url: github repository clone.git
+  > - password 부분은 github 에서 Personal Access Token 을 발급받을때 `pulic_repo` 권한을 부여한 상태로 토큰을 생성하고 그 토큰을 넣어줘야 함
 
 ## git 원격 브랜치 삭제
 
@@ -226,7 +236,7 @@ $ git commit -m "fixed untracked files"
 - git branch -m branch_name change_branch_name : 브랜치 이름 바꾸기
 - git branch -d branch_name : 브랜치 삭제하기
 - git push remote_name — delete branch_name : 원격 브랜치 삭제하기 ( git push origin — delete gh-pages )
-- git add file_path : 수정한 코드 선택하기 ( git add * )
+- git add file_path : 수정한 코드 선택하기 ( git add \* )
 - git commit -m “commit_description” : 선택한 코드 설명 적기 ( git commit -m “내용”)
 - git push romote_name branch_name : add하고 commit한 코드 git server에 보내기 (git push origin master)
 - git pull : git서버에서 최신 코드 받아와 merge 하기
@@ -255,18 +265,22 @@ $ git config --global -l
 ```
 
 ## gitlab project 이동
+
 > 단순하게 repository 이동만을 위한 방법 (GitLab API 의 import/export project 는 좀 과해서...)
 
 `config.json`
+
 ```json
 {
-    "targetAddr": "https://targetgit.shockz.io/api/v4",
-    "targetToken": "**********",
-    "origAddr": "https://origgit.shockz.io/api/v4",
-    "origToken": "**********"
+  "targetAddr": "https://targetgit.shockz.io/api/v4",
+  "targetToken": "**********",
+  "origAddr": "https://origgit.shockz.io/api/v4",
+  "origToken": "**********"
 }
 ```
+
 `gitlab_move_repo.py`
+
 ```python
 import requests
 import json

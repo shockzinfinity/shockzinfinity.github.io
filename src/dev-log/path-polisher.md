@@ -16,7 +16,6 @@ tags:
   - nfc
   - nfd
   - 한글자모분리리
-sidebar: auto
 feed:
   enable: true
   title: Path Polisher

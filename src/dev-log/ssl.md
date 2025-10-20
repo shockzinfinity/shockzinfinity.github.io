@@ -10,7 +10,6 @@ tags:
   - ssl
   - x509
   - certificate
-sidebar: auto
 feed:
   enable: true
   title: SSL
@@ -136,4 +135,3 @@ Set-ExecutionPolicy RemoteSigned
 
 - [Develop Locally with HTTPS, Self-Signed Certificates and ASP.NET Core](https://www.humankode.com/asp-net-core/develop-locally-with-https-self-signed-certificates-and-asp-net-core)
 - [thecarlo/https-with-asp-net-core](https://github.com/thecarlo/https-with-asp-net-core)
-
