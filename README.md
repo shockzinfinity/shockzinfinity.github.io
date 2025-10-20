@@ -17,7 +17,6 @@
 - **[Vue 3](https://vuejs.org/)** - Composition API
 - **[TypeScript](https://www.typescriptlang.org/)** - 타입 안정성
 - **[pnpm](https://pnpm.io/)** - 빠른 패키지 매니저
-- **[Konva.js](https://konvajs.org/)** - Canvas 그래픽
 - **GitHub Actions** - 자동 배포
 
 ## 📦 설치
@@ -80,16 +79,28 @@ shockzinfinity.github.io/
 │   │   │   ├── TagLinks.vue
 │   │   │   ├── KonvaTest.vue
 │   │   │   └── ...
-│   │   └── data/
-│   │       └── tags.data.ts    # 태그 데이터 로더
-│   └── cache/                  # 빌드 캐시
+│   │   ├── data/
+│   │   │   ├── tags.data.ts        # 태그 데이터 로더
+│   │   │   └── recentPosts.data.ts # 최신 글 데이터 로더
+│   │   └── utils/
+│   │       └── filters.ts          # 공통 필터링 로직
+│   └── cache/                      # 빌드 캐시
+├── .husky/
+│   └── pre-commit              # Git pre-commit hook
+├── scripts/
+│   ├── update-frontmatter-dates.js # Git 기반 날짜 초기화
+│   └── update-modified-dates.js    # 커밋 시 날짜 갱신 (pre-commit)
 ├── src/
 │   ├── index.md                # 홈페이지
 │   ├── playground.md           # 컴포넌트 데모
+│   ├── tags.md                 # 태그 목록 페이지
+│   ├── 404.md                  # 커스텀 404 페이지
 │   ├── public/                 # 정적 파일
 │   │   ├── img/
 │   │   ├── manifest.json
 │   │   └── robots.txt
+│   ├── example/                # 예제 (사이드바 제외, 검색엔진 노출)
+│   ├── excludes/               # 비공개 (모든 곳에서 제외, Git 제외)
 │   ├── dev-log/                # 개발 로그
 │   ├── tutorials/              # 튜토리얼
 │   └── etc/                    # 기타
@@ -105,11 +116,20 @@ shockzinfinity.github.io/
 
 ### 사용 가능한 컴포넌트
 
-- `<TagList />` - 모든 태그와 페이지 목록
+- `<TagList />` - 모든 태그와 페이지 목록 (접기/펼치기 지원)
 - `<TagLinks />` - 현재 페이지의 태그
+- `<RecentPosts />` - 최신 글 6개 표시 (홈페이지용)
+- `<DateDisplay />` - 글 작성/수정 날짜 표시 (자동 통합)
 - `<KonvaTest />` - Canvas 그래픽 데모
 - `<KonvaTest2 />` - 고급 Canvas 데모
 - `<DemoComponent />` - 데모 컴포넌트
+
+### 자동 통합 컴포넌트
+
+다음 컴포넌트는 모든 페이지에 자동으로 추가됩니다:
+
+- **`DateDisplay`** - 각 글 상단에 작성/수정 날짜 표시
+- **`Disqus`** - 각 글 하단에 댓글 시스템
 
 ### 예시
 
@@ -117,13 +137,19 @@ shockzinfinity.github.io/
 ---
 title: 내 포스트
 tags: [vue, vitepress]
+created: 2025-01-15
+updated: 2025-01-20
 ---
 
 # 내 포스트
 
+<!-- DateDisplay 자동 표시 -->
+
 <TagLinks />
 
 ## 내용...
+
+<!-- Disqus 자동 표시 -->
 ```
 
 자세한 사용법은 [Playground](/playground) 페이지 참고
@@ -137,8 +163,21 @@ tags: [vue, vitepress]
 title: 페이지 제목
 description: 페이지 설명
 tags: [tag1, tag2, tag3]
+created: 2025-01-15 # 작성 날짜 (Git 기록에서 자동 생성)
+updated: 2025-01-20 # 수정 날짜 (커밋 시 자동 갱신)
 disqus: false # Disqus 댓글 비활성화
 ---
+```
+
+### 날짜 자동 관리
+
+- **`created`**: Git 히스토리에서 파일의 최초 커밋 날짜 사용
+- **`updated`**: 커밋 시마다 자동으로 오늘 날짜로 갱신 (pre-commit hook)
+- **수동 관리 불필요**: 스크립트와 Git hook이 자동으로 처리
+
+```bash
+# 모든 파일의 날짜 초기화/업데이트
+pnpm run update-dates
 ```
 
 ## 🚀 배포
@@ -196,53 +235,43 @@ export default {
 
 ## 🔒 Repository 공개 설정
 
-### Public vs Private Repository
-
-| 항목             | Public (현재) | Private (GitHub Pro 필요) |
-| ---------------- | ------------- | ------------------------- |
-| **비용**         | ✅ 무료       | 💰 $4/월                  |
-| **GitHub Pages** | ✅ 지원       | ✅ 지원                   |
-| **포트폴리오**   | ✅ 표시됨     | ❌ 표시 안됨              |
-| **오픈소스**     | ✅ 기여 인정  | ❌ 비공개                 |
-| **코드 공개**    | ⚠️ 공개됨     | ✅ 비공개                 |
-
-### 권장: Public Repository 유지
-
-대부분의 개인 블로그/포트폴리오는 Public으로 충분합니다.
-
-**장점:**
-
-- ✅ 무료로 GitHub Pages 사용
-- ✅ 개발자 포트폴리오로 활용
-- ✅ GitHub 프로필에 표시
-- ✅ 다른 개발자에게 참고 자료 제공
-
 ### 민감한 정보 관리
 
 Public repository에서도 비공개 콘텐츠를 안전하게 관리할 수 있습니다:
 
-#### 1. Draft 기능 사용
+#### 1. `excludes/` 폴더 사용 (권장)
 
-작성 중인 글은 frontmatter에 `draft: true` 추가:
+완전 비공개 문서는 `src/excludes/` 폴더에 저장:
 
-```markdown
----
-title: 작성 중인 글
-draft: true # 프로덕션 빌드에서 제외
----
+```bash
+# 비공개 메모 작성
+echo "# 개인 메모" > src/excludes/note.md
 ```
 
-#### 2. `.gitignore`에 비공개 파일 추가
+**특징:**
 
-```gitignore
-# 비공개 초안
-src/drafts/
-src/_private/
+- ✅ 사이드바 제외
+- ✅ 최신글 제외
+- ✅ 태그 제외
+- ✅ 사이트맵 제외 (검색엔진 차단)
+- ✅ **Git 제외** (저장소에 커밋 안 됨)
 
-# 환경 변수
-.env.local
-.env.production.local
+#### 2. `example/` 폴더 사용
+
+공개 예제/튜토리얼은 `src/example/` 폴더에 저장:
+
+```bash
+# 예제 문서 작성
+echo "# 데모" > src/example/demo.md
 ```
+
+**특징:**
+
+- ✅ 사이드바 제외 (네비게이션 깔끔)
+- ✅ 최신글 제외
+- ✅ 태그 제외
+- ✅ **사이트맵 포함** (검색엔진 노출)
+- ✅ **Git 포함** (저장소에 커밋됨)
 
 #### 3. 환경 변수로 민감한 데이터 관리
 
@@ -281,58 +310,86 @@ tags: [vitepress, vue, blog]
 VitePress는 Vue 기반의 정적 사이트 생성기입니다...
 ```
 
-## 📑 사이드바 제외
+## 📑 콘텐츠 분류 전략
 
-사이드바에서 특정 페이지를 제외하는 방법이 3가지 있습니다.
+프로젝트는 **2가지 제외 규칙**으로 콘텐츠를 관리합니다.
 
-### 방법 1: Frontmatter로 제외 (개별 페이지)
+### 제외 규칙 (단 2가지)
 
-```markdown
----
-title: 사이드바에 표시 안됨
-exclude: true
----
+| 폴더            | 용도        | 사이드바 | 최신글 | 태그 | 사이트맵 | Git     |
+| --------------- | ----------- | -------- | ------ | ---- | -------- | ------- |
+| **`example/`**  | 공개 예제   | ❌       | ❌     | ❌   | ✅ 포함  | ✅ 커밋 |
+| **`excludes/`** | 완전 비공개 | ❌       | ❌     | ❌   | ❌       | ❌ 제외 |
 
-# 비공개 페이지
+### `example/` - 공개 예제
+
+**용도:**
+
+- VitePress 기본 예제 파일
+- 공개 튜토리얼
+- 데모 문서
+
+**특징:**
+
+- 사이드바를 깔끔하게 유지
+- 검색엔진 노출 가능 (SEO)
+- Git 저장소에 포함
+
+**예시:**
+
+```bash
+src/example/
+├── markdown-examples.md
+├── api-examples.md
+└── demo.md
 ```
 
-### 방법 2: Glob 패턴으로 제외 (여러 파일/폴더)
+### `excludes/` - 완전 비공개
 
-`.vitepress/config.mts`에서 설정:
+**용도:**
+
+- 개인 메모
+- 작성 중인 초안
+- 절대 공개하면 안 되는 문서
+
+**특징:**
+
+- 어디에도 노출 안 됨
+- 검색엔진 차단
+- **Git 저장소에서 제외** (`.gitignore`)
+
+**예시:**
+
+```bash
+src/excludes/
+├── personal-note.md
+├── draft-post.md
+└── private-memo.md
+```
+
+### 구현 (`.vitepress/config.mts`)
 
 ```typescript
 const vitePressSidebarOptions = {
   excludePattern: [
-    'example/**', // example 폴더 전체 제외
-    '**/drafts/**', // 모든 drafts 폴더 제외
-    '**/*draft*.md', // draft가 포함된 파일 제외
-    '**/*wip*.md', // wip가 포함된 파일 제외
-    '**/temp.md', // temp.md 파일 제외
-    '404.md', // 404 페이지 제외
-    'tags.md', // 태그 페이지 제외 (네비게이션에서 접근)
-    'playground.md', // playground 제외 (네비게이션에서 접근)
+    'example/**', // 예제 폴더
+    'excludes/**', // 비공개 폴더
+    'public/**', // 정적 파일
+    '404.md', // 특수 페이지
+    'tags.md',
+    'playground.md',
   ],
 };
 ```
 
-### 제외 패턴 예시
+### 특수 페이지
 
-| 패턴            | 설명              | 제외되는 파일                      |
-| --------------- | ----------------- | ---------------------------------- |
-| `example/**`    | example 폴더 전체 | `src/example/` 모든 파일           |
-| `**/drafts/**`  | 모든 drafts 폴더  | 어디든 `drafts/` 폴더              |
-| `**/*draft*.md` | draft 포함 파일   | `post-draft.md`, `draft-new.md` 등 |
-| `**/temp.md`    | 특정 파일명       | 모든 경로의 `temp.md`              |
-| `404.md`        | 루트 특정 파일    | 루트의 `404.md`                    |
+다음 페이지들은 네비게이션/자동으로 접근:
 
-### 특수 페이지 제외
-
-다음 페이지들은 사이드바에 표시하지 않고 다른 방식으로 접근합니다:
-
-- **`tags.md`** - TagList 컴포넌트로 동적 태그 목록 표시
-- **`playground.md`** - 상단 네비게이션에서 접근
+- **`tags.md`** - 네비게이션 링크 (`/tags`)
+- **`playground.md`** - 네비게이션 링크 (`/playground`)
 - **`404.md`** - 404 오류 시 자동 표시
-- **`index.md`** - 홈페이지 (별도 처리)
+- **`index.md`** - 홈페이지
 
 ## 🔍 검색
 
@@ -387,11 +444,3 @@ MIT License
 
 - GitHub: [@shockzinfinity](https://github.com/shockzinfinity)
 - Email: shockzinfinity@gmail.com
-
-## 🔄 마이그레이션
-
-VuePress에서 VitePress로 마이그레이션했습니다. 자세한 내용은 [MIGRATION.md](./MIGRATION.md) 참고
-
----
-
-⭐ 이 프로젝트가 도움이 되었다면 Star를 눌러주세요!

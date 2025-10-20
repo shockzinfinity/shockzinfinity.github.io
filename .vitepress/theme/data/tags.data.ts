@@ -1,4 +1,5 @@
 import { createContentLoader } from 'vitepress';
+import { shouldExcludePage } from '../utils/filters';
 
 export interface TagData {
   [tag: string]: {
@@ -15,6 +16,11 @@ export default createContentLoader('**/*.md', {
     const tags: TagData = {};
 
     for (const page of rawData) {
+      // 제외할 페이지 필터링
+      if (shouldExcludePage(page.url, page.frontmatter)) {
+        continue;
+      }
+
       const pageTags = page.frontmatter?.tags;
 
       if (Array.isArray(pageTags)) {

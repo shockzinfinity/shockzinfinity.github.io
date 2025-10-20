@@ -1,4 +1,5 @@
 import { createContentLoader } from 'vitepress';
+import { shouldIncludeInRecentPosts } from '../utils/filters';
 
 export interface Post {
   title: string;
@@ -16,18 +17,7 @@ export default createContentLoader('**/*.md', {
   excerpt: true,
   transform(rawData): Post[] {
     return rawData
-      .filter(page => {
-        // index, 404, tags, playground 등 특수 페이지 제외
-        const url = page.url.toLowerCase();
-        return !url.includes('/index') &&
-          !url.includes('/404') &&
-          !url.includes('/tags') &&
-          !url.includes('/playground') &&
-          !url.includes('/example/') &&
-          page.frontmatter?.created && // created가 있는 글만
-          !page.frontmatter?.draft && // draft가 아닌 것만
-          !page.frontmatter?.exclude; // exclude가 아닌 것만
-      })
+      .filter(page => shouldIncludeInRecentPosts(page.url, page.frontmatter))
       .map(page => {
         // HTML 태그 제거 함수
         const stripHtml = (html: string): string => {

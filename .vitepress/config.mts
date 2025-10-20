@@ -69,8 +69,8 @@ const vitePressOptions = {
     ['meta', { name: 'msapplication-TileColor', content: '#2196f3' }],
     ['meta', { name: 'msapplication-TileImage', content: '/img/icons/ms-icon-144x144.png' }],
     ['meta', { name: 'og:type', content: 'website' }],
-    ['meta', { name: 'og:title', content: 'ironPot42 dev log site' }],
-    ['meta', { name: 'og:description', content: 'Development log for ironPot42' }],
+    ['meta', { name: 'og:title', content: 'shockz dev log site' }],
+    ['meta', { name: 'og:description', content: 'Development log for shockz' }],
     ['meta', { name: 'og:url', content: 'https://shockzinfinity.github.io' }],
     ['meta', { name: 'og:image', content: '/img/logo.png' }],
     // SEO
@@ -106,12 +106,10 @@ const vitePressOptions = {
   sitemap: {
     hostname: 'https://shockzinfinity.github.io',
     transformItems(items) {
-      // draft 페이지 및 비공개 페이지 제외
+      // 비공개 페이지 제외
       return items.filter(item => {
         const url = item.url.toLowerCase();
-        return !url.includes('draft') &&
-          !url.includes('_private') &&
-          !url.includes('wip');
+        return !url.includes('excludes/');
       });
     }
   }
@@ -123,18 +121,13 @@ const vitePressSidebarOptions = {
   capitalizeFirst: true,
   // Glob 패턴으로 파일/폴더 제외
   excludePattern: [
-    'example/**',           // example 폴더 전체 제외
-    '**/drafts/**',         // 모든 drafts 폴더 제외
-    '**/*draft*.md',        // draft가 포함된 파일 제외
-    '**/*wip*.md',          // wip가 포함된 파일 제외
-    '**/temp.md',           // temp.md 파일 제외
-    'public/**',            // public 폴더 제외 (정적 파일)
-    '404.md',               // 404 페이지 제외 (오류 발생 시 자동 표시)
-    'tags.md',              // tags 페이지 제외 (TagList 컴포넌트로 동적 생성)
-    'playground.md',        // playground 페이지 제외 (상단 네비게이션에서 접근)
+    'example/**',           // 예제 폴더 제외
+    'excludes/**',          // 비공개 폴더 제외 (Git에도 제외)
+    'public/**',            // 정적 파일 폴더
+    '404.md',               // 404 페이지
+    'tags.md',              // 태그 페이지
+    'playground.md',        // Playground 페이지
   ],
-  // Frontmatter로 제외 (exclude: true인 페이지)
-  excludeFilesByFrontmatterFieldName: "exclude",
   useFolderLinkFromSameNameSubFile: true,
 };
 
