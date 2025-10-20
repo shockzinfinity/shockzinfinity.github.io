@@ -5,8 +5,11 @@ meta:
   - name: description
     content: 맥북프로 사용 시 참고할 만한 문제해결 방법
   - name: keywords
-    content: mac, development, env
-tags: ['mac', 'dev', 'env']
+    content: 'mac, development, env'
+tags:
+  - mac
+  - dev
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +19,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/mac-etc.html
+      link: 'https://shockzinfinity.github.io/etc/mac-etc.html'
+created: '2020-10-24'
+updated: '2025-10-20'
 ---
 
 # mac 사용상 문제해결

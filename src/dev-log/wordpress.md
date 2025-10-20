@@ -5,8 +5,12 @@ meta:
   - name: description
     content: WordPress 관련 설정
   - name: keywords
-    content: wordpress, redis, docker
-tags: ["wordpress", "redis", "docker", "docker-compose"]
+    content: 'wordpress, redis, docker'
+tags:
+  - wordpress
+  - redis
+  - docker
+  - docker-compose
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +18,11 @@ feed:
   description: WordPress 관련 설정
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/wordpress.html
+      link: 'https://shockzinfinity.github.io/dev-log/wordpress.html'
+created: '2020-09-19'
+updated: '2025-10-20'
 ---
 
 # WordPress 관련 기록

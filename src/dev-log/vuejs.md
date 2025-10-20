@@ -6,7 +6,8 @@ meta:
     content: Vue.js 관련을 다룹니다.
   - name: keywords
     content: vuejs
-tags: ["vuejs"]
+tags:
+  - vuejs
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: Vue.js 관련을 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/vuejs.html
+      link: 'https://shockzinfinity.github.io/dev-log/vuejs.html'
+created: '2020-12-21'
+updated: '2025-10-20'
 ---
 
 # Vue.js

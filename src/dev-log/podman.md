@@ -6,7 +6,9 @@ meta:
     content: Podman on CentOS 8
   - name: keywords
     content: podman
-tags: ["podman", "centos8"]
+tags:
+  - podman
+  - centos8
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: Podman on CentOS 8
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/podman.html
+      link: 'https://shockzinfinity.github.io/dev-log/podman.html'
+created: '2020-08-18'
+updated: '2025-10-20'
 ---
 
 # Podman

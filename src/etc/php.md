@@ -5,8 +5,11 @@ meta:
   - name: description
     content: PHP 개발환경 구성에 대해 다룹니다.
   - name: keywords
-    content: mac, development, env
-tags: ['mac', 'dev', 'env']
+    content: 'mac, development, env'
+tags:
+  - mac
+  - dev
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +19,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/php.html
+      link: 'https://shockzinfinity.github.io/etc/php.html'
+created: '2021-01-16'
+updated: '2025-10-20'
 ---
 
 # PHP Development Settings on Mac

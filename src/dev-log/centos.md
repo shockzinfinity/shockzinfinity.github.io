@@ -6,7 +6,9 @@ meta:
     content: CentOS 8 설치 후 기본적인 설정을 포함합니다.
   - name: keywords
     content: centos8 settings
-tags: ["linux", "centos8"]
+tags:
+  - linux
+  - centos8
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: CentOS 8 설치 후 기본적인 설정을 포함합니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/centos.html
+      link: 'https://shockzinfinity.github.io/dev-log/centos.html'
+created: '2020-08-09'
+updated: '2025-10-20'
 ---
 
 # CentOS 8 설정

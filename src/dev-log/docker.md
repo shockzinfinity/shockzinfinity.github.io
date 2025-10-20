@@ -6,7 +6,8 @@ meta:
     content: docker 사용 및 관련 설정 내용을 다룹니다.
   - name: keywords
     content: docker in centos 8
-tags: ['docker']
+tags:
+  - docker
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +17,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/docker.html
+      link: 'https://shockzinfinity.github.io/dev-log/docker.html'
+created: '2020-08-24'
+updated: '2025-10-20'
 ---
 
 # Docker

@@ -5,8 +5,11 @@ meta:
   - name: description
     content: 맥북프로의 개발환경 구성에 대해 다룹니다.
   - name: keywords
-    content: mac, development, env
-tags: ["mac", "dev", "env"]
+    content: 'mac, development, env'
+tags:
+  - mac
+  - dev
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +17,11 @@ feed:
   description: 맥북프로의 개발환경 구성에 대해 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/devEnv.html
+      link: 'https://shockzinfinity.github.io/etc/devEnv.html'
+created: '2020-09-06'
+updated: '2025-10-20'
 ---
 
 # Development Settings on Mac

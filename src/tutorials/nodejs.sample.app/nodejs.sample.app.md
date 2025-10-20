@@ -1,6 +1,5 @@
 ---
 exclude: true
-
 title: node.js sample app
 lang: ko-KR
 meta:
@@ -8,9 +7,12 @@ meta:
     content: node.js 테스트용도 샘플 앱 만들기
   - name: keywords
     content: nodejs.sample.app
-tags: ['nodejs', 'sampleapp', 'fastify']
+tags:
+  - nodejs
+  - sampleapp
+  - fastify
 sidebar: auto
-disqus: yes
+disqus: 'yes'
 feed:
   enable: true
   title: node.js sample app
@@ -19,7 +21,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/tutorial/nodejs.sample.app.html
+      link: 'https://shockzinfinity.github.io/tutorial/nodejs.sample.app.html'
+created: '2020-12-30'
+updated: '2025-10-20'
 ---
 
 # node.js sample app for test

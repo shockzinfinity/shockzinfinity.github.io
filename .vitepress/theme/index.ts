@@ -14,6 +14,8 @@ import VueKonva from 'vue-konva';
 import Disqus from './components/Disqus.vue';
 import TagList from './components/TagList.vue';
 import TagLinks from './components/TagLinks.vue';
+import RecentPosts from './components/RecentPosts.vue';
+import DateDisplay from './components/DateDisplay.vue';
 import DemoComponent from './components/demo-component.vue';
 import OtherComponent from './components/OtherComponent.vue';
 import FooBar from './components/Foo/Bar.vue';
@@ -25,6 +27,7 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      'doc-before': () => h(DateDisplay),
       'doc-after': () => h(Disqus)
     })
   },
@@ -38,6 +41,8 @@ export default {
     ctx.app.component('vImageViewer', vImageViewer);
     ctx.app.component('TagList', TagList);
     ctx.app.component('TagLinks', TagLinks);
+    ctx.app.component('RecentPosts', RecentPosts);
+    ctx.app.component('DateDisplay', DateDisplay);
     ctx.app.component('DemoComponent', DemoComponent);
     ctx.app.component('demo-component', DemoComponent);
     ctx.app.component('OtherComponent', OtherComponent);

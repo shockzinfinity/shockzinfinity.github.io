@@ -1,3 +1,7 @@
+---
+created: '2025-10-20'
+updated: '2025-10-20'
+---
 # Markdown Extension Examples
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.

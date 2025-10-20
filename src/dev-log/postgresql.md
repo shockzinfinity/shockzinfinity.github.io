@@ -5,8 +5,10 @@ meta:
   - name: description
     content: PostgreSQL 관련 설정
   - name: keywords
-    content: postgresql, docker
-tags: ["postgresql", "docker"]
+    content: 'postgresql, docker'
+tags:
+  - postgresql
+  - docker
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: PostgreSQL 관련 설정
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/postgresql.html
+      link: 'https://shockzinfinity.github.io/dev-log/postgresql.html'
+created: '2020-09-30'
+updated: '2025-10-20'
 ---
 
 # PostgreSQL 관련

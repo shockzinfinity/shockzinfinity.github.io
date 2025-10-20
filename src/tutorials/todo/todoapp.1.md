@@ -1,24 +1,36 @@
 ---
-title: Todo App tutorial #1
+title: Todo App tutorial
 lang: ko-KR
 meta:
   - name: description
     content: Todo App 을 만드는 꽤 복잡한 방법
   - name: keywords
     content: todoapp
-tags: ["todoapp", ".net core", "nginx", "mssql", "docker", "ssl", "swagger", "seq", "serilog", "docker-compose", "cqrs / es"]
+tags:
+  - todoapp
+  - .net core
+  - nginx
+  - mssql
+  - docker
+  - ssl
+  - swagger
+  - seq
+  - serilog
+  - docker-compose
+  - cqrs / es
 sidebar: auto
-disqus: yes
+disqus: 'yes'
 feed:
   enable: true
-  title: Todo App tutorial #1
+  title: Todo App tutorial
   description: Todo App 을 만드는 꽤 복잡한 방법
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/tutorial/todoapp.1.html
+      link: 'https://shockzinfinity.github.io/tutorial/todoapp.1.html'
+created: '2020-09-29'
+updated: '2025-10-20'
 ---
 
 # Todo App Tutorial #1 - Introduction

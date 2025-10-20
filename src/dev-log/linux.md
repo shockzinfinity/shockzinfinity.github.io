@@ -6,7 +6,8 @@ meta:
     content: Linux 사용에 대한 일반적인 내용을 담고 있습니다.
   - name: keywords
     content: linux
-tags: ['linux']
+tags:
+  - linux
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +17,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/linux.html
+      link: 'https://shockzinfinity.github.io/dev-log/linux.html'
+created: '2020-11-14'
+updated: '2025-10-20'
 ---
 
 # Linux General

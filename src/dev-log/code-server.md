@@ -6,7 +6,8 @@ meta:
     content: Code Server 사용 및 관련 설정 내용을 다룹니다.
   - name: keywords
     content: code-server
-tags: ["code-server"]
+tags:
+  - code-server
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: Code Server 사용 및 관련 설정 내용을 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/code-server.html
+      link: 'https://shockzinfinity.github.io/dev-log/code-server.html'
+created: '2020-11-01'
+updated: '2025-10-20'
 ---
 
 # code-server

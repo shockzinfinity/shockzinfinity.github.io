@@ -6,7 +6,8 @@ meta:
     content: selenium on mac
   - name: keywords
     content: selenium
-tags: ["selenium"]
+tags:
+  - selenium
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: selenium on mac
   image: /public/imgrkdown/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/selenium.html
+      link: 'https://shockzinfinity.github.io/etc/selenium.html'
+created: '2020-11-21'
+updated: '2025-10-20'
 ---
 
 # SSL tip

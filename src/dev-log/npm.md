@@ -6,7 +6,8 @@ meta:
     content: npm package 배포 관련
   - name: keywords
     content: npm
-tags: ["npm"]
+tags:
+  - npm
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: npm package 배포 관련
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/npm.html
+      link: 'https://shockzinfinity.github.io/dev-log/npm.html'
+created: '2020-09-27'
+updated: '2025-10-20'
 ---
 
 # npm 배포를 위한 임시 작업 공간

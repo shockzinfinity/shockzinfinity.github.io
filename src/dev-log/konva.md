@@ -6,8 +6,11 @@ meta:
     content: Konva test
   - name: keywords
     content: konva
-tags: ["konva"]
+tags:
+  - konva
 sidebar: auto
+created: '2020-09-07'
+updated: '2025-10-20'
 ---
 
 # Konva Test Page

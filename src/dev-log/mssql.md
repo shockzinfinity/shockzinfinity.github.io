@@ -6,7 +6,9 @@ meta:
     content: mssql on docker
   - name: keywords
     content: mssql
-tags: ["mssql", "docker"]
+tags:
+  - mssql
+  - docker
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: mssql on docker
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/mssql.html
+      link: 'https://shockzinfinity.github.io/dev-log/mssql.html'
+created: '2020-09-09'
+updated: '2025-10-20'
 ---
 
 # mssql on docker

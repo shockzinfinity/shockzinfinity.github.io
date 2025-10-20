@@ -6,7 +6,8 @@ meta:
     content: datalust seq 사용에 관한 내용입니다.
   - name: keywords
     content: seq
-tags: ["seq"]
+tags:
+  - seq
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: datalust seq 사용에 관한 내용입니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/seq.html
+      link: 'https://shockzinfinity.github.io/dev-log/seq.html'
+created: '2021-03-18'
+updated: '2025-10-20'
 ---
 
 # Seq

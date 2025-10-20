@@ -6,7 +6,8 @@ meta:
     content: markdown 사용과 관련된 팁
   - name: keywords
     content: markdown
-tags: ["markdown"]
+tags:
+  - markdown
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: markdown 사용과 관련된 팁
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/markdown.html
+      link: 'https://shockzinfinity.github.io/etc/markdown.html'
+created: '2020-11-20'
+updated: '2025-10-20'
 ---
 
 # markdown 관련

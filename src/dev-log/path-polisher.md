@@ -7,17 +7,15 @@ meta:
   - name: keywords
     content: path polisher dotnet cli command-line unicode nfc nfd 한글자모분리
 tags:
-  [
-    'path-polisher',
-    'PathPolisher',
-    'dotnet',
-    'command-line',
-    'cli',
-    'unicode',
-    'nfc',
-    'nfd',
-    '한글자모분리리',
-  ]
+  - path-polisher
+  - PathPolisher
+  - dotnet
+  - command-line
+  - cli
+  - unicode
+  - nfc
+  - nfd
+  - 한글자모분리리
 sidebar: auto
 feed:
   enable: true
@@ -27,7 +25,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/path-polisher.html
+      link: 'https://shockzinfinity.github.io/dev-log/path-polisher.html'
+created: '2024-12-29'
+updated: '2025-10-20'
 ---
 
 # Path Polisher

@@ -6,7 +6,9 @@ meta:
     content: Kubenetes 관련 내용을 포함합니다.
   - name: keywords
     content: kubernetes
-tags: ["kubernetes", "k8s"]
+tags:
+  - kubernetes
+  - k8s
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: Kubenetes 관련 내용을 포함합니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/kubernetes.html
+      link: 'https://shockzinfinity.github.io/dev-log/kubernetes.html'
+created: '2021-01-04'
+updated: '2025-10-20'
 ---
 
 # Kubernetes (k8s)

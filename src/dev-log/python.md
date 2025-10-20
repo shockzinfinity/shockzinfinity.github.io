@@ -6,7 +6,8 @@ meta:
     content: python 과 관련된 내용을 기록합니다.
   - name: keywords
     content: python
-tags: ["python"]
+tags:
+  - python
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: python 과 관련된 내용을 기록합니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/python.html
+      link: 'https://shockzinfinity.github.io/dev-log/python.html'
+created: '2020-11-22'
+updated: '2025-10-20'
 ---
 
 # Python

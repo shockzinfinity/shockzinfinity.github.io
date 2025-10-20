@@ -3,23 +3,16 @@
 layout: home
 
 hero:
-  name: "shockz Blog"
-  text: "shockz Blog with vitePress"
-  tagline: My great project tagline
+  name: 'shockz Blog'
+  text: '개발과 기술, 그리고 경험을 공유합니다'
+  tagline: VitePress로 만든 개인 기술 블로그
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 태그 보기
+      link: /tags
     - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: Playground
+      link: /playground
 ---
 
+<RecentPosts />

@@ -5,8 +5,11 @@ meta:
   - name: description
     content: VisualStudio Code 디버깅
   - name: keywords
-    content: debugging, vscode
-tags: ["vscode", "debugging", "edge"]
+    content: 'debugging, vscode'
+tags:
+  - vscode
+  - debugging
+  - edge
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +17,11 @@ feed:
   description: VisualStudio Code 디버깅
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/vscode-debugging.html
+      link: 'https://shockzinfinity.github.io/etc/vscode-debugging.html'
+created: '2020-08-09'
+updated: '2025-10-20'
 ---
 
 # Using edge debugger in vscode

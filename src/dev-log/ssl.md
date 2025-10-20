@@ -6,7 +6,10 @@ meta:
     content: SSL 과 관련된 설정에 대해 다룹니다.
   - name: keywords
     content: ssl
-tags: ["ssl", "x509", "certificate"]
+tags:
+  - ssl
+  - x509
+  - certificate
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +17,11 @@ feed:
   description: SSL 과 관련된 설정에 대해 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/ssl.html
+      link: 'https://shockzinfinity.github.io/dev-log/ssl.html'
+created: '2020-09-06'
+updated: '2025-10-20'
 ---
 
 # SSL tip

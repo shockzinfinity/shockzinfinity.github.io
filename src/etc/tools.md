@@ -5,8 +5,10 @@ meta:
   - name: description
     content: 각종 개발 툴 설치 및 구성에 관련된 내용입니다.
   - name: keywords
-    content: development, env
-tags: ["dev", "env"]
+    content: 'development, env'
+tags:
+  - dev
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: 각종 개발 툴 설치 및 구성에 관련된 내용입니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/tools.html
+      link: 'https://shockzinfinity.github.io/etc/tools.html'
+created: '2021-02-08'
+updated: '2025-10-20'
 ---
 
 # Development tool install & configuration

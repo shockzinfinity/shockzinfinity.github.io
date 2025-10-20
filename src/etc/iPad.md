@@ -5,8 +5,10 @@ meta:
   - name: description
     content: iPad 사용관련 내용입니다.
   - name: keywords
-    content: mac, development, env
-tags: ["ipad", "env"]
+    content: 'mac, development, env'
+tags:
+  - ipad
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: iPad 사용관련 내용입니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/iPad.html
+      link: 'https://shockzinfinity.github.io/etc/iPad.html'
+created: '2020-10-31'
+updated: '2025-10-20'
 ---
 
 # iPad 사용 중 관련 내용

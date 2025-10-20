@@ -5,8 +5,12 @@ meta:
   - name: description
     content: aws 관련 내용
   - name: keywords
-    content: aws, redis, docker
-tags: ["aws", "redis", "docker", "docker-compose"]
+    content: 'aws, redis, docker'
+tags:
+  - aws
+  - redis
+  - docker
+  - docker-compose
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +18,11 @@ feed:
   description: aws 관련 내용
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/aws.html
+      link: 'https://shockzinfinity.github.io/dev-log/aws.html'
+created: '2020-11-10'
+updated: '2025-10-20'
 ---
 
 # AWS 관련 설정 및 팁

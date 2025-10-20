@@ -5,8 +5,11 @@ meta:
   - name: description
     content: Windows 개발 환경 구성 시 참고
   - name: keywords
-    content: windows, development, env
-tags: ['windows', 'dev', 'env']
+    content: 'windows, development, env'
+tags:
+  - windows
+  - dev
+  - env
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +19,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/etc/windows.html
+      link: 'https://shockzinfinity.github.io/etc/windows.html'
+created: '2020-12-16'
+updated: '2025-10-20'
 ---
 
 # Windows 개발 환경 구성

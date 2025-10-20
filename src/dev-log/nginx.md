@@ -3,21 +3,24 @@ title: Nginx
 lang: ko-KR
 meta:
   - name: description
-    content: Nginx 설정 파일, 기타 내용을 다룹니다.
+    content: 'Nginx 설정 파일, 기타 내용을 다룹니다.'
   - name: keywords
     content: nginx
-tags: ["nginx", "reverse proxy"]
+tags:
+  - nginx
+  - reverse proxy
 sidebar: auto
 feed:
   enable: true
   title: Nginx
-  description: Nginx 설정 파일, 기타 내용을 다룹니다.
+  description: 'Nginx 설정 파일, 기타 내용을 다룹니다.'
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/nginx.html
+      link: 'https://shockzinfinity.github.io/dev-log/nginx.html'
+created: '2020-09-06'
+updated: '2025-10-20'
 ---
 
 # Nginx

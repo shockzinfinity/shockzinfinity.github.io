@@ -6,7 +6,9 @@ meta:
     content: Jenkins 관련 설정을 다룹니다.
   - name: keywords
     content: jenkins
-tags: ["jenkins", "docker"]
+tags:
+  - jenkins
+  - docker
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +16,11 @@ feed:
   description: Jenkins 관련 설정을 다룹니다.
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/jenkins.html
+      link: 'https://shockzinfinity.github.io/dev-log/jenkins.html'
+created: '2020-10-14'
+updated: '2025-10-20'
 ---
 
 # Jenkins

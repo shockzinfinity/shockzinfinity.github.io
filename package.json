@@ -26,6 +26,8 @@
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@types/node": "^24.8.1",
+    "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
     "vitepress": "2.0.0-alpha.12",
     "vitepress-plugin-google-analytics": "^1.0.2",
     "vitepress-sidebar": "^1.33.0"
@@ -33,7 +35,9 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "update-dates": "node scripts/update-frontmatter-dates.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "konva": "^10.0.2",

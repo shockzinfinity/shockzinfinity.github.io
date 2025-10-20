@@ -5,8 +5,10 @@ meta:
   - name: description
     content: Synology NAS 에 대한 내용을 다룹니다.
   - name: keywords
-    content: synology, NAS
-tags: ['nas', 'synology']
+    content: 'synology, NAS'
+tags:
+  - nas
+  - synology
 sidebar: auto
 feed:
   enable: true
@@ -16,7 +18,9 @@ feed:
   author:
     - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/synology.html
+      link: 'https://shockzinfinity.github.io/dev-log/synology.html'
+created: '2020-09-02'
+updated: '2025-10-20'
 ---
 
 # Synology

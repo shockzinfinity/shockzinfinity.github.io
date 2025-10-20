@@ -6,7 +6,8 @@ meta:
     content: VuePress 관련 설정
   - name: keywords
     content: vuepress
-tags: ["vuepress"]
+tags:
+  - vuepress
 sidebar: auto
 feed:
   enable: true
@@ -14,10 +15,11 @@ feed:
   description: VuePress 관련 설정
   image: /public/img/logo.png
   author:
-    -
-      name: shockz
+    - name: shockz
       email: shockzinfinity@gmail.com
-      link: https://shockzinfinity.github.io/dev-log/vuepress.html
+      link: 'https://shockzinfinity.github.io/dev-log/vuepress.html'
+created: '2020-09-08'
+updated: '2025-10-20'
 ---
 
 # VuePress
