@@ -14,3 +14,6 @@ package-lock.json
 dist/
 yarn-error.log
 *.rdb
+
+.vitepress/cache
+.vitepress/dist
