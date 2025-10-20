@@ -1,3 +1,0 @@
-User-agent:*
-Allow:/
-Sitemap:https://shockzinfinity.github.io/sitemap.xml
