@@ -42,11 +42,8 @@ yarn.lock
 *.swp
 *.swo
 
-# Private/Draft content (비공개 콘텐츠)
-src/drafts/
-src/_private/
-src/**/*draft*.md
-src/**/*wip*.md
+# Private content (비공개 콘텐츠)
+src/excludes/
 
 # Temp files
 run
