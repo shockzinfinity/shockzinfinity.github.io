@@ -1,16 +1,20 @@
 ---
-sidebar: false
+title: TODO App tutorial
+description: Todo App 을 만드는 **꽤** 복잡한 방법
+tags:
+  - net
+  - todo
 created: '2020-09-09'
 updated: '2025-10-20'
 ---
 
 # Tutorial
 
-## Todo App (backend + frontend)
+## Todo App
 
 > 부제: Todo App 을 만드는 **꽤** 복잡한 방법
 
-Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과정에 대한 Tutorial 입니다.
+Todo App 을 만드는 전체적인 과정에 대한 Tutorial 입니다.
 
 ### [#1. Todo App - Introduction](./todoapp.1.md)
 
