@@ -13,18 +13,6 @@ const vitePressOptions = {
     // 상대 경로 링크 무시 (일부 레거시 링크)
     /^\.\.?\//,
   ],
-  // Draft 페이지 필터링 (프로덕션 빌드에서 제외)
-  transformPageData(pageData) {
-    const isDraft = pageData.frontmatter?.draft === true;
-    const isProduction = process.env.NODE_ENV === 'production';
-
-    if (isDraft && isProduction) {
-      // draft 페이지는 404로 리다이렉트
-      pageData.frontmatter.layout = 'page';
-      pageData.title = '404 - Page Not Found';
-      pageData.description = 'This page is not available.';
-    }
-  },
   head: [
     ['link', { rel: 'icon', href: '/img/icons/favicon.ico' }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
@@ -106,7 +94,8 @@ const vitePressOptions = {
   sitemap: {
     hostname: 'https://shockzinfinity.github.io',
     transformItems(items) {
-      // 비공개 페이지 제외
+      // excludes 폴더만 사이트맵에서 제외 (검색엔진 차단)
+      // example 폴더는 포함 (검색엔진 노출)
       return items.filter(item => {
         const url = item.url.toLowerCase();
         return !url.includes('excludes/');
@@ -119,14 +108,19 @@ const vitePressSidebarOptions = {
   documentRootPath: 'src',
   collapsed: false,
   capitalizeFirst: true,
-  // Glob 패턴으로 파일/폴더 제외
+  // 사이드바에서 제외할 파일/폴더 (Glob 패턴)
   excludePattern: [
-    'example/**',           // 예제 폴더 제외
-    'excludes/**',          // 비공개 폴더 제외 (Git에도 제외)
+    // 콘텐츠 분류 (2가지 제외 규칙)
+    'example/**',           // 예제 폴더 (사이드바 제외, 사이트맵 포함, Git 포함)
+    'excludes/**',          // 비공개 폴더 (모든 곳에서 제외, Git 제외)
+
+    // 정적 파일
     'public/**',            // 정적 파일 폴더
+
+    // 특수 페이지 (네비게이션/자동으로 접근)
     '404.md',               // 404 페이지
-    'tags.md',              // 태그 페이지
-    'playground.md',        // Playground 페이지
+    'tags.md',              // 태그 페이지 (네비게이션 링크)
+    'playground.md',        // Playground 페이지 (네비게이션 링크)
   ],
   useFolderLinkFromSameNameSubFile: true,
 };
