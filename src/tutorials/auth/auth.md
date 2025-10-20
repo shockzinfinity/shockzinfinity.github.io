@@ -66,9 +66,9 @@ feed:
 }
 ```
 
-![email](./images/auth/email.1.png)
-![postman.test](./images/auth/postman.test.1.png)
-![postman.test](./images/auth/postman.test.2.png)
+![email](./images/email.1.png)
+![postman.test](./images/postman.test.1.png)
+![postman.test](./images/postman.test.2.png)
 
 ### Verify an account
 
@@ -80,7 +80,7 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.3.png)
+![postman.test](./images/postman.test.3.png)
 
 ### Access an account with forgotten password
 
@@ -92,8 +92,8 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.4.png)
-![email](./images/auth/email.2.png)
+![postman.test](./images/postman.test.4.png)
+![email](./images/email.2.png)
 
 ### Reset the password of an account
 
@@ -105,7 +105,7 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.5.png)
+![postman.test](./images/postman.test.5.png)
 
 ### Authenticate to get a JWT token and a refresh token
 
@@ -116,12 +116,12 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.6.png)
-![postman.test](./images/auth/postman.test.7.png)
+![postman.test](./images/postman.test.6.png)
+![postman.test](./images/postman.test.7.png)
 
 ### Get a list of all accounts (Admin)
 
-![postman.test](./images/auth/postman.test.8.png)
+![postman.test](./images/postman.test.8.png)
 
 ### Update an account
 
@@ -132,12 +132,12 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.9.png)
+![postman.test](./images/postman.test.9.png)
 
 ### Use a refresh token to get a new JWT token
 
 > 발급받은 jwt token 을 이용해 refresh token 을 재발급 받을 수 있다.
-> ![postman.test](./images/auth/postman.test.10.png) > ![table.query](./images/auth/table.query.1.png)
+> ![postman.test](./images/postman.test.10.png) > ![table.query](./images/table.query.1.png)
 
 ### Revoke a refresh token
 
@@ -149,18 +149,18 @@ feed:
 }
 ```
 
-![postman.test](./images/auth/postman.test.11.png)
-![postman.test](./images/auth/postman.test.12.png)
+![postman.test](./images/postman.test.11.png)
+![postman.test](./images/postman.test.12.png)
 
 ### Delete an account
 
-![postman.test](./images/auth/postman.test.13.png)
+![postman.test](./images/postman.test.13.png)
 
 ::: warning
 현재는 테스트를 위해 Gmail smtp 를 사용하고 있으나 추후 smtp 에 대한 근본적인 해결책이 필요한 상황입니다.  
 현재의 Tutorial 은 docker 컨테이너를 통해 nginx reverse proxy 에 api 가 구동되는 구조인데, Mailkit smtp client 상에서 ssl handshake 문제가 발생하고 있습니다.  
 임시적으로 해결하기 위해 Gmail smtp 의 보안수준을 낮추고, `EmailService` 에서 ssl handshake 관련 예외를 회피하도록 구성되어 있습니다.  
-![google.setting](./images/auth/google.setting.1.png)
+![google.setting](./images/google.setting.1.png)
 
 ```csharp{6-7}
 public void Send(string to, string subject, string html, string from = null)

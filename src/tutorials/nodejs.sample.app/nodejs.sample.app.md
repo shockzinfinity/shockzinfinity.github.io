@@ -102,7 +102,7 @@ $ docker build -t sample .
 $ docker run -p 3000:3000 sample
 ```
 
-![sample.app](./images/nodejs.sample.app/sample.app.1.png)
+![sample.app](./images/sample.app.1.png)
 
 - ghcr.io 에 업로드
   ::: tip
@@ -118,6 +118,6 @@ $ docker push ghcr.io/shockzinfinity/node-sample-app:latest
 
 - 추후 사용시 다운로드 받아서 사용 (단, 해당 이미지가 private 로 되어 있을 경우는 github 로그인 혹은 토큰이 있을 경우에만 사용이 가능합니다.)
 - public 으로의 설정은 해당 이미지의 repository 에서 설정 가능
-  ![ghcr.image.public](./images/nodejs.sample.app/ghcr.image.public.1.png)
-  ![ghcr.image.public](./images/nodejs.sample.app/ghcr.image.public.2.png)
-  ![ghcr.image.public](./images/nodejs.sample.app/ghcr.image.public.3.png)
+  ![ghcr.image.public](./images/ghcr.image.public.1.png)
+  ![ghcr.image.public](./images/ghcr.image.public.2.png)
+  ![ghcr.image.public](./images/ghcr.image.public.3.png)

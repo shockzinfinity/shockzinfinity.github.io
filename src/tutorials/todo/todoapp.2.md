@@ -89,11 +89,11 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 ::: tip
 여기서 만들어지는 Todo App 은 nginx reverse proxy 를 이용하여 docker container 형태로 구동이 될 예정이므로 디버깅 환경을 비슷하게 하기 위하여 Kestrel 웹 서버 방식을 사용할 예정입니다.
 Kestrel 웹서버 방식으로 테스트하기 위해서는 Visual Studo 등의 디버깅 환경을 적절하게 조정해줘야 합니다. (~~IIS Express 테스트하게 되면 인증서등의 문제가 좀 귀찮아 집니다.~~)  
-![kestrel](./images/todo/vsdebug.1.png)  
+![kestrel](./images/vsdebug.1.png)  
 참고: [ASP.NET Core에서 Kestrel 웹 서버 구현](https://docs.microsoft.com/ko-kr/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.1)
 :::
 - [Postman](https://www.postman.com/downloads/) 등과 같은 툴로 기본적인 테스트를 진행합니다.  
-   ![postman](./images/todo/postman.test.1.png)
+   ![postman](./images/postman.test.1.png)
 - 프로젝트에 `Models` 폴더를 생성하고 `TodoItem.cs` 모델을 추가합니다.
 ```csharp
 namespace todoCore3.Api.Models
@@ -196,8 +196,8 @@ $ dotnet ef database update --project todoCore3.Api.csproj
 ```
 - DB tool을 이용해 확인합니다.
    > [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-   ![efcore](./images/todo/efcore.1.png)
-   ![efcore](./images/todo/efcore.2.png)
+   ![efcore](./images/efcore.1.png)
+   ![efcore](./images/efcore.2.png)
 
 - api Controller scaffolding (선택사항)  
    IDE 를 이용하거나 수동으로 직접 추가해도 됩니다.
@@ -227,8 +227,8 @@ public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
   "IsCompleted": false
 }
 ```
-   ![postman](./images/todo/postman.test.4.png)
-   ![postman](./images/todo/postman.test.5.png)
+   ![postman](./images/postman.test.4.png)
+   ![postman](./images/postman.test.5.png)
 
 ### Dockerize
 
@@ -270,8 +270,8 @@ public void ConfigureServices(IServiceCollection services)
 $ docker build -t todo-api -f Api.Dockerfile .
 $ docker run -d -p 5000:5000 --network=todo-core --name todo-api todo-api
 ```
-   ![postman](./images/todo/postman.test.2.png)
-   ![postman](./images/todo/postman.test.3.png)
+   ![postman](./images/postman.test.2.png)
+   ![postman](./images/postman.test.3.png)
 
 ### Nginx reverse proxy
 
@@ -402,22 +402,22 @@ ENTRYPOINT ["/wait-for-it.sh", "sql:1433", "-t", "120", "--", "dotnet", "todoCor
 $ docker-compose up --build
 ```
 - Postman 으로 테스트해보면,
-   ![postman](./images/todo/postman.test.6.png)
-   ![postman](./images/todo/postman.test.7.png)
-   ![postman](./images/todo/postman.test.8.png)
+   ![postman](./images/postman.test.6.png)
+   ![postman](./images/postman.test.7.png)
+   ![postman](./images/postman.test.8.png)
 
 ### SSL 적용
 
 - dotnet SDK 를 설치하거나 Visual Studio 를 통해 디버깅을 하게 되면 보통 자체 서명 인증서 등록되어 있으므로 그것을 이용하겠습니다.  
-   ![certificate](./image/../images/todo/certificate.1.png)
-   ![certificate](./image/../images/todo/certificate.2.png)
+   ![certificate](./image/../images/certificate.1.png)
+   ![certificate](./image/../images/certificate.2.png)
 - `localhost.pfx`로 *내보내기* 후 **Nginx** 폴더에 저장
-   ![certificate](./image/../images/todo/certificate.3.png)
-   ![certificate](./image/../images/todo/certificate.4.png)
-   ![certificate](./image/../images/todo/certificate.5.png)
-   ![certificate](./image/../images/todo/certificate.6.png)
-   ![certificate](./image/../images/todo/certificate.7.png)
-   ![certificate](./image/../images/todo/certificate.8.png)
+   ![certificate](./image/../images/certificate.3.png)
+   ![certificate](./image/../images/certificate.4.png)
+   ![certificate](./image/../images/certificate.5.png)
+   ![certificate](./image/../images/certificate.6.png)
+   ![certificate](./image/../images/certificate.7.png)
+   ![certificate](./image/../images/certificate.8.png)
 ::: tip
 Windows 환경에서 자체 서명 인증서 발급 방법에 대해서는 아래의 주소를 참고합니다.  
 [Windows](../dev-log/ssl)  
@@ -539,11 +539,11 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 - 브라우저 테스트  
-   ![certificate](./images/todo/certificate.9.png)
+   ![certificate](./images/certificate.9.png)
 - **Postman** 테스트
-   ![postman](./images/todo/postman.test.9.png)
-   ![postman](./images/todo/postman.test.10.png)
-   ![postman](./images/todo/postman.test.11.png)
+   ![postman](./images/postman.test.9.png)
+   ![postman](./images/postman.test.10.png)
+   ![postman](./images/postman.test.11.png)
 
 ### Improvements & Fix
 
@@ -651,8 +651,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 - 생성된 스크립트는 [Azure Data Studio](https://docs.microsoft.com/ko-kr/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15) 혹은 [SSMS](https://docs.microsoft.com/ko-kr/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) 등을 통해 수동으로 마이그레이션 합니다.
 - 추후 production level 에서는 App Instance 실행 시점에서 마이그레이션 하는 것이 아닌 수동으로 마이그레이션 하는 것이 좋습니다.  
    [런타임에 마이그레이션 적용](https://docs.microsoft.com/ko-kr/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)
-   ![migrations](./images/todo/migrations.1.png)
-   ![migrations](./images/todo/migrations.2.png)
+   ![migrations](./images/migrations.1.png)
+   ![migrations](./images/migrations.2.png)
 ::: tip
 개발 및 테스트 단계에서는 편의성을 위해 SQL Server를 1433 포트로 노출 시키지만, 프로덕션 레벨에서는 보안상의 이유로 SQL Server 를 외부에 노출시키지 않는 것이 좋습니다.  
 언제든지 `docker-compose.yml` 에서 sql 서비스의 포트 매핑을 제거하고 expose로 변경하면 됩니다.
@@ -669,7 +669,7 @@ $ docker-compose down
 $ docker-compose up --build -d
 ```
 - 마이그레이션 이후 Postman 등으로 테스트 하게 되면 추가된 필드를 확인할 수 있습니다.
-   ![postman](./images/todo/postman.test.12.png)
+   ![postman](./images/postman.test.12.png)
 
 ### DTO 사용
 
@@ -790,7 +790,7 @@ private static TodoItemDTO ItemToDTO(TodoItem todoItem) => new TodoItemDTO
 ...
 ```
 - Postman 으로 확인해보면 DTO를 통해 데이터가 전달되는 것을 확인할 수 있습니다.
-   ![postman](./images/todo/postman.test.13.png)
+   ![postman](./images/postman.test.13.png)
 
 ### general domain ssl 적용 (shockz.io)
 
@@ -865,9 +865,9 @@ COPY privkey.pem /etc/ssl/private/privkey.pem
   }
 ```
 - `$ docker-compose up --build -d`로 확인합니다.
-   ![docker-compose](./images/todo/docker-compose.1.png)
-   ![docker-compose](./images/todo/docker-compose.2.png)
-   ![postman](./images/todo/postman.test.14.png)
+   ![docker-compose](./images/docker-compose.1.png)
+   ![docker-compose](./images/docker-compose.2.png)
+   ![postman](./images/postman.test.14.png)
 ::: tip
 docker 컨테이너들이 자동 시작되도록 하기 위해서는 다음의 옵션 중에 하나를 선택할 수 있습니다.
 > docker-compose restart 옵션  
@@ -1010,7 +1010,7 @@ networks:
 ...
 ```
 - `docker-compose up --build -d` 로 컨테이너를 작동시킨 후 **seq logger (http://localhost:5340)** 로 접속하여 확인합니다
-   ![seq](./images/todo/seq.result.1.png)
+   ![seq](./images/seq.result.1.png)
 
 ### Swagger (OpenAPI)
 
@@ -1082,7 +1082,7 @@ services.AddSwaggerGen(c =>
   });
 });
 ```
-![swagger](./images/todo/swagger.2.png)
+![swagger](./images/swagger.2.png)
 
 - 각 엔드포인트의 XML 주석을 표현하기 위해서 다음과 같이 작업합니다.
    1. 프로젝트 빌드시에 XML generate 되도록 합니다.
@@ -1173,8 +1173,8 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
   ...
 }
 ```
-![swagger](./images/todo/swagger.3.png)
-![swagger](./images/todo/swagger.4.png)
+![swagger](./images/swagger.3.png)
+![swagger](./images/swagger.4.png)
 
 - data annotations 으로 모델에도 적용이 가능합니다.
 ```csharp{5,8,19,22}
@@ -1203,7 +1203,7 @@ public class TodoItemDTO
   public bool IsComplete { get; set; }
 }
 ```
-![swagger](./images/todo/swagger.5.png)
+![swagger](./images/swagger.5.png)
 
 - Http Status Code 에 따른 주석 추가도 가능합니다.
 ```csharp{2-3}
@@ -1632,13 +1632,13 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 - Postman 을 통해 확인해보겠습니다.
 - 사용자 등록
-![postman.test](./images/todo/postman.test.18.png)
+![postman.test](./images/postman.test.18.png)
 - 사용자 인증
-![postman.test](./images/todo/postman.test.19.png)
+![postman.test](./images/postman.test.19.png)
 - JWT 토큰을 이용한 API 호출
-![postman.test](./images/todo/postman.test.20.png)
+![postman.test](./images/postman.test.20.png)
 - 토큰 검증
-![postman.test](./images/todo/postman.test.21.png)
+![postman.test](./images/postman.test.21.png)
 
 ::: warning
 여기에서 구현한 인증은 실제 production level 에서 사용하기에는 무리가 좀 있습니다. 실제 인증 서비스에서는 refresh token, HTTP Only cookie, XSS (cross site scripting), CSRF (cross site request forgery) 등 고려해야할 사항이 많습니다.  
@@ -1900,9 +1900,9 @@ public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO
 ```
 
 - Postman 등으로 테스트 해봅니다.
-![postman.test](./images/todo/postman.test.15.png)
-![postman.test](./images/todo/postman.test.16.png)
-![postman.test](./images/todo/postman.test.17.png)
+![postman.test](./images/postman.test.15.png)
+![postman.test](./images/postman.test.16.png)
+![postman.test](./images/postman.test.17.png)
 
 ### Conclusion
 
