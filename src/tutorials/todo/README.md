@@ -12,16 +12,16 @@ updated: '2025-10-20'
 
 Todo App (Backend + Frontend) 를 만드는 전체적인 과정 및 변화 과정에 대한 Tutorial 입니다.
 
-### [#1. Todo App - Introduction](./todo/todoapp.1.md)
+### [#1. Todo App - Introduction](./todoapp.1.md)
 
 > 소개
 
-### [#2. Todo App - Backend](./todo/todoapp.2.md)
+### [#2. Todo App - Backend](./todoapp.2.md)
 
 > Backend 부분
 
-### [#3. Todo App - Frontend](./todo/todoapp.3.md)
+### [#3. Todo App - Frontend](./todoapp.3.md)
 
 > Frontend 부분
 
-### [#4. Todo App - Refactoring](./todo/todoapp.4.md)
+### [#4. Todo App - Refactoring](./todoapp.4.md)
