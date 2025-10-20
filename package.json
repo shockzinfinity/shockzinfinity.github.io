@@ -1,4 +1,28 @@
 {
+  "name": "shockzinfinity-blog",
+  "version": "2.0.0",
+  "description": "개인 기술 블로그 - VitePress 기반 정적 사이트",
+  "author": "Jun Yu (shockz) <shockzinfinity@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://shockzinfinity.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shockzinfinity/shockzinfinity.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shockzinfinity/shockzinfinity.github.io/issues"
+  },
+  "keywords": [
+    "vitepress",
+    "blog",
+    "vue",
+    "typescript",
+    "static-site"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@types/node": "^24.8.1",

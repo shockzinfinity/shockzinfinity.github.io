@@ -73,13 +73,17 @@ const vitePressOptions = {
     ['meta', { name: 'og:description', content: 'Development log for ironPot42' }],
     ['meta', { name: 'og:url', content: 'https://shockzinfinity.github.io' }],
     ['meta', { name: 'og:image', content: '/img/logo.png' }],
+    // SEO
+    ['meta', { name: 'keywords', content: 'VitePress, Vue, TypeScript, 기술블로그, 개발, 프론트엔드, 백엔드' }],
+    ['meta', { name: 'author', content: 'Jun Yu (shockz)' }],
+    ['link', { rel: 'canonical', href: 'https://shockzinfinity.github.io' }],
     // Google Analytics는 vitepress-plugin-google-analytics로 처리됨 (theme/index.ts)
   ] as HeadConfig[],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'Examples', link: '/example/markdown-examples' },
       { text: 'Playground', link: '/playground' }
     ],
 
@@ -100,8 +104,14 @@ const vitePressOptions = {
   },
   sitemap: {
     hostname: 'https://shockzinfinity.github.io',
-    transformItem: (items) => {
-      return items;
+    transformItems(items) {
+      // draft 페이지 및 비공개 페이지 제외
+      return items.filter(item => {
+        const url = item.url.toLowerCase();
+        return !url.includes('draft') &&
+          !url.includes('_private') &&
+          !url.includes('wip');
+      });
     }
   }
 };
