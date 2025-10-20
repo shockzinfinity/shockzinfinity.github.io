@@ -83,8 +83,9 @@ const vitePressOptions = {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/example/markdown-examples' },
-      { text: 'Playground', link: '/playground' }
+      { text: 'Tags', link: '/tags' },
+      { text: 'Playground', link: '/playground' },
+      { text: 'Examples', link: '/example/markdown-examples' }
     ],
 
     socialLinks: [
@@ -120,7 +121,19 @@ const vitePressSidebarOptions = {
   documentRootPath: 'src',
   collapsed: false,
   capitalizeFirst: true,
-  // excludeByGlobPattern: ['nodejs.sample.app/']
+  // Glob 패턴으로 파일/폴더 제외
+  excludePattern: [
+    'example/**',           // example 폴더 전체 제외
+    '**/drafts/**',         // 모든 drafts 폴더 제외
+    '**/*draft*.md',        // draft가 포함된 파일 제외
+    '**/*wip*.md',          // wip가 포함된 파일 제외
+    '**/temp.md',           // temp.md 파일 제외
+    'public/**',            // public 폴더 제외 (정적 파일)
+    '404.md',               // 404 페이지 제외 (오류 발생 시 자동 표시)
+    'tags.md',              // tags 페이지 제외 (TagList 컴포넌트로 동적 생성)
+    'playground.md',        // playground 페이지 제외 (상단 네비게이션에서 접근)
+  ],
+  // Frontmatter로 제외 (exclude: true인 페이지)
   excludeFilesByFrontmatterFieldName: "exclude",
   useFolderLinkFromSameNameSubFile: true,
 };

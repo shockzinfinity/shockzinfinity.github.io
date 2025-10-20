@@ -281,6 +281,59 @@ tags: [vitepress, vue, blog]
 VitePress는 Vue 기반의 정적 사이트 생성기입니다...
 ```
 
+## 📑 사이드바 제외
+
+사이드바에서 특정 페이지를 제외하는 방법이 3가지 있습니다.
+
+### 방법 1: Frontmatter로 제외 (개별 페이지)
+
+```markdown
+---
+title: 사이드바에 표시 안됨
+exclude: true
+---
+
+# 비공개 페이지
+```
+
+### 방법 2: Glob 패턴으로 제외 (여러 파일/폴더)
+
+`.vitepress/config.mts`에서 설정:
+
+```typescript
+const vitePressSidebarOptions = {
+  excludePattern: [
+    'example/**', // example 폴더 전체 제외
+    '**/drafts/**', // 모든 drafts 폴더 제외
+    '**/*draft*.md', // draft가 포함된 파일 제외
+    '**/*wip*.md', // wip가 포함된 파일 제외
+    '**/temp.md', // temp.md 파일 제외
+    '404.md', // 404 페이지 제외
+    'tags.md', // 태그 페이지 제외 (네비게이션에서 접근)
+    'playground.md', // playground 제외 (네비게이션에서 접근)
+  ],
+};
+```
+
+### 제외 패턴 예시
+
+| 패턴            | 설명              | 제외되는 파일                      |
+| --------------- | ----------------- | ---------------------------------- |
+| `example/**`    | example 폴더 전체 | `src/example/` 모든 파일           |
+| `**/drafts/**`  | 모든 drafts 폴더  | 어디든 `drafts/` 폴더              |
+| `**/*draft*.md` | draft 포함 파일   | `post-draft.md`, `draft-new.md` 등 |
+| `**/temp.md`    | 특정 파일명       | 모든 경로의 `temp.md`              |
+| `404.md`        | 루트 특정 파일    | 루트의 `404.md`                    |
+
+### 특수 페이지 제외
+
+다음 페이지들은 사이드바에 표시하지 않고 다른 방식으로 접근합니다:
+
+- **`tags.md`** - TagList 컴포넌트로 동적 태그 목록 표시
+- **`playground.md`** - 상단 네비게이션에서 접근
+- **`404.md`** - 404 오류 시 자동 표시
+- **`index.md`** - 홈페이지 (별도 처리)
+
 ## 🔍 검색
 
 로컬 검색 기능이 내장되어 있습니다. 사이트 상단의 검색 바를 사용하세요.
