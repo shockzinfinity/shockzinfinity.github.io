@@ -15,6 +15,8 @@ updated: ''
 
 ## Mac
 
+> Mac 에서 실행
+
 ```bash
 $ brew install uv
 $ uv --version
