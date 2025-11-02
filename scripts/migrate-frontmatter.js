@@ -4,11 +4,29 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import matter from 'gray-matter';
 
+const FRONTMATTER_EXCLUDED_FILES = new Set(['index.md', '404.md', 'tags.md', 'playground.md']);
+const FRONTMATTER_EXCLUDED_DIRS = new Set(['node_modules', '.vitepress', 'public', 'excludes']);
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const srcDir = path.resolve(__dirname, '../src');
 const backupDir = path.resolve(__dirname, '../.backup-frontmatter');
+
+function shouldSkipByFileName(filePath) {
+  const fileName = path.basename(filePath);
+  return FRONTMATTER_EXCLUDED_FILES.has(fileName);
+}
+
+function normalizeDate(value, fallback) {
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (trimmed) {
+      return trimmed;
+    }
+  }
+  return fallback;
+}
 
 // Git에서 파일의 생성 날짜와 수정 날짜 가져오기
 function getGitDates(filePath) {
@@ -63,7 +81,9 @@ function findMdFiles(dir) {
     const stats = fs.statSync(fullPath);
 
     if (stats.isDirectory()) {
-      files.push(...findMdFiles(fullPath));
+      if (!FRONTMATTER_EXCLUDED_DIRS.has(item)) {
+        files.push(...findMdFiles(fullPath));
+      }
     } else if (stats.isFile() && item.endsWith('.md')) {
       files.push(fullPath);
     }
@@ -95,19 +115,17 @@ function extractDescription(meta) {
 
 // VitePress 표준 frontmatter로 변환
 function migrateFrontmatter(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const { data, content: markdownContent } = matter(content);
-
-  // 특수 페이지는 제외
-  const fileName = path.basename(filePath);
-  if (['index.md', '404.md', 'tags.md', 'playground.md'].includes(fileName)) {
+  if (shouldSkipByFileName(filePath)) {
     console.log(`⏭️  건너뜀 (특수 페이지): ${filePath}`);
     return false;
   }
 
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const { data, content: markdownContent } = matter(content);
+
   // 이미 마이그레이션된 파일인지 확인
-  const hasLegacyFields = data.lang || data.meta || data.feed || data.sidebar;
-  const hasModernFields = data.created && data.updated;
+  const hasLegacyFields = data.lang || data.meta || data.feed || data.sidebar || data.author;
+  const hasModernFields = typeof data.created === 'string' && typeof data.updated === 'string';
 
   if (!hasLegacyFields && hasModernFields) {
     console.log(`✅ 이미 최신 형식: ${filePath}`);
@@ -148,8 +166,8 @@ function migrateFrontmatter(filePath) {
 
   // created, updated (Git 히스토리에서)
   const dates = getGitDates(filePath);
-  newData.created = data.created || dates.created;
-  newData.updated = data.updated || dates.updated;
+  newData.created = normalizeDate(data.created, dates.created);
+  newData.updated = normalizeDate(data.updated, dates.updated);
 
   // disqus (false만 유지)
   if (data.disqus === false || data.disqus === 'no') {
@@ -159,18 +177,13 @@ function migrateFrontmatter(filePath) {
 
   // 레거시 필드 제거 목록
   const removedFields = [];
-  const legacyFields = ['lang', 'meta', 'feed', 'sidebar', 'author'];
+  const legacyFields = ['lang', 'meta', 'feed', 'sidebar', 'author', 'exclude'];
 
   legacyFields.forEach(field => {
     if (data[field]) {
       removedFields.push(field);
     }
   });
-
-  // exclude 필드 제거 (폴더 기반으로 관리)
-  if (data.exclude) {
-    removedFields.push('exclude');
-  }
 
   // 새 파일 쓰기
   const newContent = matter.stringify(markdownContent, newData);
@@ -233,4 +246,3 @@ function main() {
 }
 
 main();
-
