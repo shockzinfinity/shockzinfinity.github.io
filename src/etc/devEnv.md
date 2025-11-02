@@ -48,6 +48,7 @@ $ brew cask install dotnet-sdk
 ## zsh-autosuggestion color
 
 - `.zshrc` 에 다음 라인 추가
+-
 
 ```bash
 # zsh-autosuggestion suggest color
@@ -133,9 +134,7 @@ date.timezone = Asia/Seoul
 ## mac 에서 윈도우용 키보드 사용 시
 
 > 시스템 환경설정 > 키보드
-> ![mac.keyboard](./image/mac.keyboard.1.png)
-> ![mac.keyboard](./image/mac.keyboard.2.png)
-> ![mac.keyboard](./image/mac.keyboard.3.png)
+> ![mac.keyboard](./image/mac.keyboard.1.png) > ![mac.keyboard](./image/mac.keyboard.2.png) > ![mac.keyboard](./image/mac.keyboard.3.png)
 
 ## jdk 설치
 
