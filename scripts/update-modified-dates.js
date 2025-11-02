@@ -36,7 +36,7 @@ function updateModifiedDate(filePath) {
   const today = new Date().toISOString().split('T')[0];
 
   // updated 날짜가 오늘과 다르면 갱신
-  if (data.updated !== today) {
+  if (data.updated === '' || data.updated !== today) {
     data.updated = today;
     const newContent = matter.stringify(markdownContent, data);
     fs.writeFileSync(filePath, newContent, 'utf-8');
