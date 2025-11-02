@@ -4,7 +4,7 @@ description: Python version management UV
 tags:
   - uv
 created: '2025-11-02'
-updated: ''
+updated: '2025-11-02'
 ---
 
 # UV
@@ -18,7 +18,6 @@ updated: ''
 > Mac 에서 실행
 
 ```bash
-# install
 $ brew install uv
 $ uv --version
 $ uv init "project name"
