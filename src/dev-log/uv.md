@@ -29,4 +29,5 @@ $ uv python pin 3.13
 $ uv python install 3.13
 $ uv python list
 $ uv python update-shell
+$ uv pip install -r requirements.txt
 ```

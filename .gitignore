@@ -53,3 +53,5 @@ run
 .basement
 *.tmp
 *.temp
+
+.playwright-mcp/
