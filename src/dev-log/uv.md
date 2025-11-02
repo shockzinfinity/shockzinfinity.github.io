@@ -18,6 +18,7 @@ updated: ''
 > Mac 에서 실행
 
 ```bash
+# install
 $ brew install uv
 $ uv --version
 $ uv init "project name"
