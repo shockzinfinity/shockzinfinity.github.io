@@ -42,6 +42,7 @@ function getStagedMdFiles() {
         };
       })
       .filter(({ filePath }) => filePath && filePath.endsWith('.md') && filePath.startsWith('src/'))
+      .filter(({ filePath }) => !filePath.startsWith('src/excludes/'))
       .filter(({ filePath }) => {
         const fileName = filePath.split('/').pop();
         return fileName ? !FRONTMATTER_EXCLUDED_FILES.has(fileName) : false;
