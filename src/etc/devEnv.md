@@ -6,7 +6,7 @@ tags:
   - dev
   - env
 created: '2020-09-06'
-updated: '2025-10-20'
+updated: '2025-11-04'
 ---
 
 # Development Settings on Mac
@@ -24,6 +24,18 @@ $ vi ~/.zshrc
 code () { VOCODE_CWD ="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 $ source ~/.zshrc
+```
+
+## Mac 한글 키보드에서 항상 원화(₩)대신 백틱(`) 입력되게 하기
+
+```bash
+# ~/Library/KeyBindings
+$ mkdir -p ~/Library/KeyBindings
+$ vi ~/Library/KeyBindins/DefaultKeyBinding.dict
+
+{
+  "₩" = ("insertText:", "`");
+}
 ```
 
 ## .net core sdk on mac

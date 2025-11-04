@@ -808,3 +808,15 @@ server {
 }
 # e.g. http://api.shockz.io -> https://api.shockz.io 로 redirect
 ```
+
+## 사용중인 포트 확인 후 종료
+
+```bash
+# 사용중인 포트 찾기
+$ lsof -ti:5173
+
+# 프로세스 종료
+$ kill -9 $(lsof -ti:5173)
+# 또는
+pkill -f "vitepress dev"
+```
