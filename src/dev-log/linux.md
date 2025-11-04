@@ -388,6 +388,23 @@ $ chmod +x ~/.docker/cli-plugins/docker-compose
 $ ssh-keygen -t rsa
 # 연결할 서버에 생성된 키를 복사
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <port> id@address
+# 클립보드에 복사
+$ pbcopy < ~/.ssh/id_rsa.pub
+# ssh-copy-id
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p <포트번호> <호스트주소>
+
+# permission
+$ chmod 700 ~/.ssh
+$ chmod 600 ~/.ssh/id_rsa
+$ chmod 644 ~/.ssh/id_rsa.pub
+$ chmod 600 ~/.ssh/config
+
+# ~/.ssh/config
+Host <호스트주소>
+  HostName <ip or hostname>
+  User <username>
+  Port <port>
+  IdentityFile ~/.ssh/id_rsa
 ```
 
 ## sudo 사용 시 패스워드 없이 사용하고자 할때
