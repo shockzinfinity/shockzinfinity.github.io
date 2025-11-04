@@ -5,8 +5,10 @@ tags:
   - windows
   - dev
   - env
+  - wsl
+  - cmder
 created: '2020-12-16'
-updated: '2025-10-20'
+updated: '2025-11-04'
 ---
 
 # Windows 개발 환경 구성
