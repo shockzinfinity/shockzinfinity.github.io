@@ -4,16 +4,12 @@ description: docker 사용 및 관련 설정 내용을 다룹니다.
 tags:
   - docker
 created: '2020-08-24'
-updated: '2025-10-20'
+updated: '2025-11-04'
 ---
 
 # Docker
 
 <TagLinks />
-
-:::warning
-Podman 의 네트워크 설정 및 compose 기능 미완성으로 인해 당분간 Docker를 사용 (2020년8월24일 기준)
-:::
 
 [[toc]]
 
