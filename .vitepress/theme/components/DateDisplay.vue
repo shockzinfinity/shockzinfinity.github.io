@@ -17,13 +17,15 @@
 
 <script setup lang="ts">
 import { useData } from 'vitepress';
+import { computed } from 'vue';
 
 const { frontmatter } = useData();
 
-const created = frontmatter.value.created;
-const updated = frontmatter.value.updated;
+const created = computed(() => frontmatter.value.created);
+const updated = computed(() => frontmatter.value.updated);
 
-const formatDate = (dateString: string): string => {
+const formatDate = (dateString: string | undefined): string => {
+  if (!dateString) return '';
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
