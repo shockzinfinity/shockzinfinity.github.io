@@ -5,7 +5,7 @@ tags:
   - game
   - The Farmer was replaced
 created: '2025-11-05'
-updated: '2025-11-05'
+updated: '2025-11-06'
 ---
 
 # 농부는 대체되었다.
@@ -19,6 +19,8 @@ updated: '2025-11-05'
 ### 개요
 
 영역을 기반으로 한 선인장 수확에 대한 함수
+
+[YouTube 영상 보기](https://youtu.be/J8OSWxTJuh4)
 
 1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 선인장)` 형태로 지정
 2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
