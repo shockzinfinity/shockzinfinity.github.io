@@ -20,7 +20,14 @@ updated: '2025-11-06'
 
 영역을 기반으로 한 선인장 수확에 대한 함수
 
-[YouTube 영상 보기](https://youtu.be/J8OSWxTJuh4)
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/VIDEO_ID" 
+    frameborder="0" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 선인장)` 형태로 지정
 2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
