@@ -23,7 +23,7 @@ updated: '2025-11-06'
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe 
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://youtu.be/J8OSWxTJuh4" 
+    src="https://youtu.be/J8OSWxTJuh4?si=cmMZjECXUNOrH9Rz" 
     frameborder="0" 
     allowfullscreen>
   </iframe>
