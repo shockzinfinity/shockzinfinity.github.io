@@ -14,39 +14,11 @@ updated: '2025-11-07'
 
 [[toc]]
 
-## 선인장 수확
+## 공통 함수
 
-### 개요
-
-영역을 기반으로 한 선인장 수확에 대한 함수
-
-<YoutubeDisplay shareId="J8OSWxTJuh4?si=hgdW1SUa1TyuF6q4" />
-
-1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 선인장)` 형태로 지정
-2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
-3. **정렬 단계**:
-   - 2D 셰이킹 정렬 방식으로 행과 열을 번갈아가며 버블 정렬 수행
-   - 각 단계마다 정렬 상태를 검증하여 완료되면 종료
-   - 최소 6회, 최대 12회까지 반복 (영역 크기에 따라 자동 조정)
-4. **수확 및 다시심기**:
-   - 선인장은 정렬해놓으면 한번에 수확 가능
-   - 수확 하고 나서 바로 다시 심기
-
-이걸 `while True:`하면 무한 반복
+- 필요시 별도의 파일로 빼서 `import f0` 처럼 사용 가능
 
 ```python
-# 이런 방식으로 호출 (메인 드론이라면...멀티 드론 환경이라면 별도 함수 만들어서 spawn)
-while True:
-  manage_cactus_region(REGION["cactus1"])
-```
-
-- 영역 지정 및 헬퍼 함수
-
-```python
-REGIONS = {
-  # x = 0 ~ 4, y = 12 ~ 16 으로 세팅
-  "cactus1": (0, 12, 4, 16, Entities.Cactus),
-}
 
 # 위치 이동 함수
 def move_to(target_x, target_y):
@@ -124,6 +96,42 @@ def measure_region(region):
     going_up = not going_up
 
   return results
+```
+
+## 선인장 수확
+
+영역을 기반으로 한 선인장 수확에 대한 함수
+
+<YoutubeDisplay shareId="J8OSWxTJuh4?si=hgdW1SUa1TyuF6q4" />
+
+1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 선인장)` 형태로 지정
+2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
+3. **정렬 단계**:
+   - 2D 셰이킹 정렬 방식으로 행과 열을 번갈아가며 버블 정렬 수행
+   - 각 단계마다 정렬 상태를 검증하여 완료되면 종료
+   - 최소 6회, 최대 12회까지 반복 (영역 크기에 따라 자동 조정)
+4. **수확 및 다시심기**:
+   - 선인장은 정렬해놓으면 한번에 수확 가능
+   - 수확 하고 나서 바로 다시 심기
+
+이걸 `while True:`하면 무한 반복
+
+```python
+# 이런 방식으로 호출 (메인 드론이라면...멀티 드론 환경이라면 별도 함수 만들어서 spawn)
+while True:
+  manage_cactus_region(REGION["cactus1"])
+```
+
+- 영역 지정 및 헬퍼 함수
+
+```python
+# 공통함수를 f0.py 로 만든 경우
+import f0
+
+REGIONS = {
+  # x = 0 ~ 4, y = 12 ~ 16 으로 세팅
+  "cactus1": (0, 12, 4, 16, Entities.Cactus),
+}
 
 # 수집된 2D 맵이 행/열 모두 오름차순으로 정렬되었는지 확인
 def is_sorted_2d(measure_map, region):
@@ -162,7 +170,6 @@ def is_sorted_2d(measure_map, region):
           return False
 
   return True
-
 
 # 단일 행을 버블 정렬 방식으로 정렬
 def sort_row(region, measure_map, y, left_to_right):
