@@ -14,6 +14,7 @@ import VueKonva from 'vue-konva';
 import Disqus from './components/Disqus.vue';
 import TagList from './components/TagList.vue';
 import TagLinks from './components/TagLinks.vue';
+import YoutubeDisplay from './components/YoutubeDisplay.vue';
 import RecentPosts from './components/RecentPosts.vue';
 import DateDisplay from './components/DateDisplay.vue';
 import DemoComponent from './components/demo-component.vue';
@@ -41,6 +42,7 @@ export default {
     ctx.app.component('vImageViewer', vImageViewer);
     ctx.app.component('TagList', TagList);
     ctx.app.component('TagLinks', TagLinks);
+    ctx.app.component('YoutubeDisplay', YoutubeDisplay);
     ctx.app.component('RecentPosts', RecentPosts);
     ctx.app.component('DateDisplay', DateDisplay);
     ctx.app.component('DemoComponent', DemoComponent);
