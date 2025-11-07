@@ -19,7 +19,6 @@ updated: '2025-11-07'
 - 필요시 별도의 파일로 빼서 `import f0` 처럼 사용 가능
 
 ```python
-
 # 위치 이동 함수
 def move_to(target_x, target_y):
   current_x = get_pos_x()
@@ -96,6 +95,131 @@ def measure_region(region):
     going_up = not going_up
 
   return results
+```
+
+## 호박 수확
+
+1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 호박)` 형태로 지정
+2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
+3. **죽은 호박 판단 후 재심기**
+   - 호박은 20% 확률로 죽은 호박이 되기 때문에 다시 심기
+4. **수확 및 다시심기**:
+   - 호박은 성정하고 나면 조건이 맞다면 주변 호박과 흡수해서 커짐
+   - 수확 하고 나서 바로 다시 심기
+
+드론이 많은 상황이면 동시에 여러개 드론을 사용하여 심기/수확을 할 수 있을거라고 판단
+
+```python
+# 공통함수를 f0.py 로 만든 경우
+import f0
+
+REGIONS = {
+  "pumpkin1": (0, 0, 11, 11, Entities.Pumpkin),
+}
+
+def replace_dead_pumpkin():
+  if get_entity_type() == Entities.Dead_Pumpkin:
+    plant(Entities.Pumpkin)
+    if get_water() < 0.25:
+      use_item(Items.Water)
+    return True
+  elif not get_entity_type() == Entities.Pumpkin:
+    plant(Entities.Pumpkin)
+    if get_water() < 0.25:
+      use_item(Items.Water)
+    return False
+  return False
+
+def check_dead_pumpkins_region(region):
+  x1, y1, x2, y2, _ = region
+  dead_positions = {}
+
+  f0.move_to(x1, y1)
+  x = x1
+  going_up = True
+
+  while x <= x2:
+    if going_up:
+      f0._align_y(y1)
+      y = y1
+      while y <= y2:
+        if replace_dead_pumpkin():
+          dead_positions[(x, y)] = True
+        if y < y2:
+          move(North)
+          y += 1
+        else:
+          break
+    else:
+      f0._align_y(y2)
+      y = y2
+      while y >= y1:
+        if replace_dead_pumpkin():
+          dead_positions[(x, y)] = True
+        if y > y1:
+          move(South)
+          y -= 1
+        else:
+          break
+
+    if x < x2:
+      move(East)
+    x += 1
+    going_up = not going_up
+
+  while len(dead_positions) > 0:
+    still_dead = {}
+    for pos in dead_positions:
+      x, y = pos
+      f0.move_to(x, y)
+      if get_entity_type() == Entities.Dead_Pumpkin:
+        plant(Entities.Pumpkin)
+        still_dead[(x, y)] = True
+    dead_positions = still_dead
+
+def harvest_and_replant(region):
+  x1, y1, x2, y2, _ = region
+
+  f0.move_to(x1, y1)
+  x = x1
+  going_up = True
+
+  while x <= x2:
+    if going_up:
+      f0._align_y(y1)
+      y = y1
+      while y <= y2:
+        if can_harvest():
+          harvest()
+
+        if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
+          plant(Entities.Pumpkin)
+
+        if y < y2:
+          move(North)
+          y += 1
+        else:
+          break
+    else:
+      f0._align_y(y2)
+      y = y2
+      while y >= y1:
+        if can_harvest():
+          harvest()
+
+        if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
+          plant(Entities.Pumpkin)
+
+        if y > y1:
+          move(South)
+          y -= 1
+        else:
+          break
+
+    if x < x2:
+      move(East)
+    x += 1
+    going_up = not going_up
 ```
 
 ## 선인장 수확
@@ -191,7 +315,7 @@ def sort_row(region, measure_map, y, left_to_right):
         else:
           b = None
         if not a == None and not b == None and a > b:
-          move_to(x, y)
+          f0.move_to(x, y)
           swap(East)
           measure_map[(x, y)] = b
           measure_map[(x + 1, y)] = a
@@ -208,7 +332,7 @@ def sort_row(region, measure_map, y, left_to_right):
         else:
           b = None
         if not a == None and not b == None and a < b:
-          move_to(x, y)
+          f0.move_to(x, y)
           swap(West)
           measure_map[(x, y)] = b
           measure_map[(x - 1, y)] = a
@@ -239,7 +363,7 @@ def sort_column(region, measure_map, x):
       else:
         b = None
       if not a == None and not b == None and a > b:
-        move_to(x, y)
+        f0.move_to(x, y)
         swap(North)
         measure_map[(x, y)] = b
         measure_map[(x, y + 1)] = a
@@ -265,7 +389,7 @@ def harvest_and_replant(region):
   # 지그재그로 순회하며 빈 칸일 때만 식재
   while x <= x2:
     if going_up:
-      _align_y(y1)
+      f0._align_y(y1)
       y = y1
       while y <= y2:
         if get_entity_type() == None:
@@ -277,7 +401,7 @@ def harvest_and_replant(region):
         else:
           break
     else:
-      _align_y(y2)
+      f0._align_y(y2)
       y = y2
       while y >= y1:
         if get_entity_type() == None:
