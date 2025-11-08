@@ -5,7 +5,7 @@ tags:
   - game
   - The Farmer was replaced
 created: '2025-11-05'
-updated: '2025-11-07'
+updated: '2025-11-08'
 ---
 
 # 농부는 대체되었다.
@@ -98,6 +98,8 @@ def measure_region(region):
 ```
 
 ## 호박 수확
+
+<YoutubeDisplay shareId="FGLGwO33K_s?si=H8ic9uMeZY_7ZXPr" />
 
 1. **영역 정의**: 직사각형 영역을 `(x1, y1, x2, y2, 호박)` 형태로 지정
 2. **측정 단계**: 영역을 지그재그(snake 방식)로 스캔하며 수확 필요 여부 판단
