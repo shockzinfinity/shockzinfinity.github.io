@@ -111,24 +111,24 @@ const vitePressOptions = {
         const url = item.url.toLowerCase();
         return !url.includes('excludes/');
       });
-    },
-    transformPageData(pageData) {
-      if (pageData.relativePath === 'index.md') {
-        if (!pageData.frontmatter.hero) {
-          pageData.frontmatter.hero = {}
-        }
-
-        if (siteTitle) {
-          pageData.frontmatter.hero.name = siteTitle
-        }
-
-        if (siteDescription) {
-          pageData.frontmatter.hero.text = siteDescription
-        }
+    }
+  },
+  transformPageData(pageData) {
+    if (pageData.relativePath === 'index.md') {
+      if (!pageData.frontmatter.hero) {
+        pageData.frontmatter.hero = {}
       }
 
-      return pageData
+      if (siteTitle) {
+        pageData.frontmatter.hero.name = siteTitle
+      }
+
+      if (siteDescription) {
+        pageData.frontmatter.hero.text = siteDescription
+      }
     }
+
+    return pageData
   }
 };
 
