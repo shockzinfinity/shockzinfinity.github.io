@@ -24,6 +24,9 @@ const vitePressOptions = {
       'meta',
       { name: 'naver-site-verification', content: 'cd32f721debd9633141e4a04c83fad98d36a5abc' },
     ],
+    ['meta',
+      { name: 'google-adsense-account', content: 'ca-pub-9143954087848526' }
+    ],
     ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
