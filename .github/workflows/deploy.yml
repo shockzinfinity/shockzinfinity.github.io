@@ -50,6 +50,7 @@ jobs:
 
       - name: Build with VitePress
         env:
+          NODE_ENV: production
           VITE_GOOGLE_VERIFICATION: ${{ secrets.VITE_GOOGLE_VERIFICATION }}
           VITE_NAVER_VERIFICATION: ${{ secrets.VITE_NAVER_VERIFICATION }}
           VITE_GOOGLE_ADSENSE_ACCOUNT: ${{ secrets.VITE_GOOGLE_ADSENSE_ACCOUNT }}
