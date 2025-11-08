@@ -23,6 +23,8 @@ import FooBar from './components/Foo/Bar.vue';
 import KonvaTest from './components/KonvaTest.vue';
 import KonvaTest2 from './components/KonvaTest2.vue';
 
+const googleAnalyticsCode = process.env.VITE_SITE_GOOGLE_ANALYTICS_CODE || ''
+
 export default {
   extends: DefaultTheme,
   Layout: () => {
@@ -55,7 +57,7 @@ export default {
 
     // Initialize Google Analytics
     googleAnalytics({
-      id: 'G-MM4TDVZJ85'
+      id: googleAnalyticsCode
     });
   },
   setup() {

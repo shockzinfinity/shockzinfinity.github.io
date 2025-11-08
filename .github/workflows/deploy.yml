@@ -49,6 +49,15 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build with VitePress
+        env:
+          VITE_GOOGLE_VERIFICATION: ${{ secrets.VITE_GOOGLE_VERIFICATION }}
+          VITE_NAVER_VERIFICATION: ${{ secrets.VITE_NAVER_VERIFICATION }}
+          VITE_GOOGLE_ADSENSE_ACCOUNT: ${{ secrets.VITE_GOOGLE_ADSENSE_ACCOUNT }}
+          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
+          VITE_SITE_TITLE: ${{ secrets.VITE_SITE_TITLE }}
+          VITE_SITE_DESC: ${{ secrets.VITE_SITE_DESC }}
+          VITE_SITE_KEYWORD: ${{ secrets.VITE_SITE_KEYWORD }}
+          VITE_SITE_GOOGLE_ANALYTICS_CODE: ${{ secrets.VITE_SITE_GOOGLE_ANALYTICS_CODE }}
         run: pnpm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

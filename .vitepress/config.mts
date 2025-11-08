@@ -1,11 +1,19 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { withSidebar } from 'vitepress-sidebar'
 
+const googleAdsenseAccount = process.env.VITE_GOOGLE_ADSENSE_ACCOUNT || ''
+const googleVerificationCode = process.env.VITE_GOOGLE_VERIFICATION_CODE || ''
+const naverVerificationCode = process.env.VITE_NAVER_VERIFICATION_CODE || ''
+const siteUrl = process.env.VITE_SITE_URL || 'https://shockzinfinity.github.io'
+const siteTitle = process.env.VITE_SITE_TITLE || 'shockz dev Blog'
+const siteDescription = process.env.VITE_SITE_DESCRIPTION || 'shockz dev Blog with vitePress'
+const siteKeywords = process.env.VITE_SITE_KEYWORDS || 'VitePress, Vue, TypeScript, 기술블로그, 개발, 프론트엔드, 백엔드'
+
 // https://vitepress.dev/reference/site-config
 const vitePressOptions = {
-  title: "shockz Blog",
+  title: siteTitle,
   lang: 'ko-KR',
-  description: "shockz Blog with vitePress",
+  description: siteDescription,
   srcDir: 'src',
   ignoreDeadLinks: [
     // localhost 링크 무시 (개발/데모용)
@@ -18,14 +26,14 @@ const vitePressOptions = {
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     [
       'meta',
-      { name: 'google-site-verification', content: 'hwS5SAeZJGMx-RCbFtzbcv0IGdU4nIN8mAfE2iAMhSA' },
+      { name: 'google-site-verification', content: googleVerificationCode },
     ],
     [
       'meta',
-      { name: 'naver-site-verification', content: 'cd32f721debd9633141e4a04c83fad98d36a5abc' },
+      { name: 'naver-site-verification', content: naverVerificationCode },
     ],
     ['meta',
-      { name: 'google-adsense-account', content: 'ca-pub-9143954087848526' }
+      { name: 'google-adsense-account', content: googleAdsenseAccount }
     ],
     ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
@@ -60,14 +68,14 @@ const vitePressOptions = {
     ['meta', { name: 'msapplication-TileColor', content: '#2196f3' }],
     ['meta', { name: 'msapplication-TileImage', content: '/img/icons/ms-icon-144x144.png' }],
     ['meta', { name: 'og:type', content: 'website' }],
-    ['meta', { name: 'og:title', content: 'shockz dev log site' }],
-    ['meta', { name: 'og:description', content: 'Development log for shockz' }],
-    ['meta', { name: 'og:url', content: 'https://shockzinfinity.github.io' }],
+    ['meta', { name: 'og:title', content: siteTitle }],
+    ['meta', { name: 'og:description', content: siteDescription }],
+    ['meta', { name: 'og:url', content: siteUrl }],
     ['meta', { name: 'og:image', content: '/img/logo.png' }],
     // SEO
-    ['meta', { name: 'keywords', content: 'VitePress, Vue, TypeScript, 기술블로그, 개발, 프론트엔드, 백엔드' }],
+    ['meta', { name: 'keywords', content: siteKeywords }],
     ['meta', { name: 'author', content: 'Jun Yu (shockz)' }],
-    ['link', { rel: 'canonical', href: 'https://shockzinfinity.github.io' }],
+    ['link', { rel: 'canonical', href: siteUrl }],
     // Google Analytics는 vitepress-plugin-google-analytics로 처리됨 (theme/index.ts)
   ] as HeadConfig[],
   themeConfig: {
@@ -95,7 +103,7 @@ const vitePressOptions = {
     }
   },
   sitemap: {
-    hostname: 'https://shockzinfinity.github.io',
+    hostname: siteUrl,
     transformItems(items) {
       // excludes 폴더만 사이트맵에서 제외 (검색엔진 차단)
       // example 폴더는 포함 (검색엔진 노출)
