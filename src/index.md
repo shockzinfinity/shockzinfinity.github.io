@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: ''
-  text: ''
-  tagline: VitePress로 만든 개인 기술 블로그
+  name:
+  text:
+  tagline:
   actions:
     - theme: brand
       text: 태그 보기

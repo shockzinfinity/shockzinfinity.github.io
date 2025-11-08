@@ -126,6 +126,10 @@ const vitePressOptions = {
       if (siteDescription) {
         pageData.frontmatter.hero.text = siteDescription
       }
+
+      if (siteKeywords) {
+        pageData.frontmatter.hero.tagline = siteKeywords
+      }
     }
 
     return pageData
