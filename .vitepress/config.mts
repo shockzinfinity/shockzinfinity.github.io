@@ -2,8 +2,8 @@ import { defineConfig, type HeadConfig } from 'vitepress'
 import { withSidebar } from 'vitepress-sidebar'
 
 const googleAdsenseAccount = process.env.VITE_GOOGLE_ADSENSE_ACCOUNT || ''
-const googleVerificationCode = process.env.VITE_GOOGLE_VERIFICATION_CODE || ''
-const naverVerificationCode = process.env.VITE_NAVER_VERIFICATION_CODE || ''
+const googleVerification = process.env.VITE_GOOGLE_VERIFICATION || ''
+const naverVerification = process.env.VITE_NAVER_VERIFICATION || ''
 const siteUrl = process.env.VITE_SITE_URL || 'https://shockzinfinity.github.io'
 const siteTitle = process.env.VITE_SITE_TITLE || 'shockz dev Blog'
 const siteDescription = process.env.VITE_SITE_DESCRIPTION || 'shockz dev Blog with vitePress'
@@ -26,11 +26,11 @@ const vitePressOptions = {
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     [
       'meta',
-      { name: 'google-site-verification', content: googleVerificationCode },
+      { name: 'google-site-verification', content: googleVerification },
     ],
     [
       'meta',
-      { name: 'naver-site-verification', content: naverVerificationCode },
+      { name: 'naver-site-verification', content: naverVerification },
     ],
     ['meta',
       { name: 'google-adsense-account', content: googleAdsenseAccount }
@@ -38,7 +38,7 @@ const vitePressOptions = {
     ['meta', { name: 'theme-color', content: '#2196f3' }],
     ['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-title', content: 'ironPot' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }],
     [
       'link',
@@ -111,6 +111,23 @@ const vitePressOptions = {
         const url = item.url.toLowerCase();
         return !url.includes('excludes/');
       });
+    },
+    transformPageData(pageData) {
+      if (pageData.relativePath === 'index.md') {
+        if (!pageData.frontmatter.hero) {
+          pageData.frontmatter.hero = {}
+        }
+
+        if (siteTitle) {
+          pageData.frontmatter.hero.name = siteTitle
+        }
+
+        if (siteDescription) {
+          pageData.frontmatter.hero.text = siteDescription
+        }
+      }
+
+      return pageData
     }
   }
 };
