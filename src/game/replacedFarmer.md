@@ -5,7 +5,7 @@ tags:
   - game
   - The Farmer was replaced
 created: '2025-11-05'
-updated: '2025-11-08'
+updated: '2025-11-11'
 ---
 
 # 농부는 대체되었다.
@@ -116,7 +116,11 @@ def measure_region(region):
 import f0
 
 REGIONS = {
-  "pumpkin1": (0, 0, 11, 11, Entities.Pumpkin),
+  "pumpkin1": (0, 0, 5, 5, Entities.Pumpkin),
+  "pumpkin2": (6, 0, 11, 5, Entities.Pumpkin),
+  "pumpkin3": (0, 6, 5, 11, Entities.Pumpkin),
+  "pumpkin4": (6, 6, 11, 11, Entities.Pumpkin),
+  "pumpkin": (0, 0, 11, 11, Entities.Pumpkin)
 }
 
 def replace_dead_pumpkin():
@@ -222,6 +226,41 @@ def harvest_and_replant(region):
       move(East)
     x += 1
     going_up = not going_up
+
+while True:
+  check_dead_pumpkins_region(REGIONS["pumpkin"])
+  harvest_and_replant(REGIONS["pumpkin"])
+```
+
+### 호박 멀티 드론
+
+- 죽은 호박 체크 드론 : 4 개
+- 메인 드론은 수확 및 재 심기: 약간의 간격을 두고 수확 (죽은 호박 체크 후 다시 심는 간격을 기다리고 수확)
+
+```python
+def worker_pumpkin_dead_1():
+  while True:
+    check_dead_pumpkins_region(REGIONS["pumpkin1"])
+def worker_pumpkin_dead_2():
+  while True:
+    check_dead_pumpkins_region(REGIONS["pumpkin2"])
+def worker_pumpkin_dead_3():
+  while True:
+    check_dead_pumpkins_region(REGIONS["pumpkin3"])
+def worker_pumpkin_dead_4():
+  while True:
+    check_dead_pumpkins_region(REGIONS["pumpkin4"])
+
+spawn_drone(worker_pumpkin_dead_1)
+spawn_drone(worker_pumpkin_dead_2)
+spawn_drone(worker_pumpkin_dead_3)
+spawn_drone(worker_pumpkin_dead_4)
+
+# 메인 드론 : 5번 플립 후 다시
+while True:
+  harvest_and_replant(REGIONS["pumpkin"])
+  for _ in range(5):
+    do_a_flip()
 ```
 
 ## 선인장 수확
