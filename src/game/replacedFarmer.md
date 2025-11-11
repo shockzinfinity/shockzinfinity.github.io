@@ -232,7 +232,7 @@ while True:
   harvest_and_replant(REGIONS["pumpkin"])
 ```
 
-### 호박 멀티 드론
+## 호박 멀티 드론
 
 <YoutubeDisplay shareId="8v_pVNf01EA?si=sTWt6yRyD5JXQSgg" />
 
