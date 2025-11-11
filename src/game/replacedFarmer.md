@@ -237,7 +237,8 @@ while True:
 <YoutubeDisplay shareId="8v_pVNf01EA?si=sTWt6yRyD5JXQSgg" />
 
 - 죽은 호박 체크 드론 : 4 개
-- 메인 드론은 수확 및 재 심기: 약간의 간격을 두고 수확 (죽은 호박 체크 후 다시 심는 간격을 기다리고 수확)
+- 메인 드론은 수확 및 재 심기: 약간의 간격을 두고 수확
+  > 죽은 호박 체크 후 다시 심는 간격을 기다리고 수확
 
 ```python
 REGIONS = {
