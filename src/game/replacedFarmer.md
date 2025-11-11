@@ -240,6 +240,14 @@ while True:
 - 메인 드론은 수확 및 재 심기: 약간의 간격을 두고 수확 (죽은 호박 체크 후 다시 심는 간격을 기다리고 수확)
 
 ```python
+REGIONS = {
+  "pumpkin1": (0, 0, 5, 5, Entities.Pumpkin),
+  "pumpkin2": (6, 0, 11, 5, Entities.Pumpkin),
+  "pumpkin3": (0, 6, 5, 11, Entities.Pumpkin),
+  "pumpkin4": (6, 6, 11, 11, Entities.Pumpkin),
+  "pumpkin": (0, 0, 11, 11, Entities.Pumpkin)
+}
+
 def worker_pumpkin_dead_1():
   while True:
     check_dead_pumpkins_region(REGIONS["pumpkin1"])
