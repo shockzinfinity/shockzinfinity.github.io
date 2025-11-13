@@ -6,7 +6,7 @@ tags:
   - dev
   - env
 created: '2020-10-24'
-updated: '2025-10-20'
+updated: '2025-11-13'
 ---
 
 # mac 사용상 문제해결
@@ -46,3 +46,22 @@ $ defaults write com.apple.finder NSSystemFont -string D2Coding;killall Finder
 # rollback
 $ defaults delete com.apple.finder NSSystemFont;killall Finder
 ```
+
+## 메뉴 막대로 윈도우를 드래그하여 화면 채우기
+
+- 실행되고 있는 앱을 끌어서 특정 위치에 정렬하고 싶을때 자동으로 전체 화면으로 되는 경우를 방지
+- `데스크탑 및 Dock` -> `메뉴 막대로 윈도우를 드래그하여 화면 채우기` 를 체크 해제
+
+## 터미널에서 Visual Studio Code 실행
+
+- `Command + Shift + P` 로 명령 실행 창 팝업
+- `shell` 입력하면 `Shell Command: Install 'code' command in PATH` 항목을 선택
+
+```bash
+# 현재 디렉토리에서 visual studio code 실행
+$ code .
+```
+
+## 한/영 전환키 변경
+
+- 윈도우와 맥을 자주 변경하는 입장에서 한/영 전환을 비슷하게 맞추고자 설정
