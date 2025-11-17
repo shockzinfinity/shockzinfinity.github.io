@@ -4,7 +4,7 @@ description: Node version management NVM
 tags:
   - nvm
 created: '2025-11-02'
-updated: ''
+updated: '2025-11-17'
 ---
 
 # NVM
@@ -34,6 +34,29 @@ $ nvm install 12
 Now using node v12.22.6 (npm v6.14.5)
 $ node -v
 v12.22.6
+```
+
+## Windows
+
+> [NVM for Windows](https://github.com/coreybutler/nvm-windows)
+
+```powershell
+
+> nvm version
+1.2.2
+> nvm install lts
+Downloading node.js version 24.11.1 (64-bit)...
+Extracting node and npm...
+Complete
+Installation complete.
+If you want to use this version, type:
+
+nvm use 24.11.1
+> nvm use 24
+Now using node v24.11.1 (64-bit)
+> nvm ls
+
+  * 24.11.1 (Currently using 64-bit executable)
 ```
 
 ## Reference

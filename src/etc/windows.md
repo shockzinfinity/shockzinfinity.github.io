@@ -8,7 +8,7 @@ tags:
   - wsl
   - cmder
 created: '2020-12-16'
-updated: '2025-11-04'
+updated: '2025-11-17'
 ---
 
 # Windows 개발 환경 구성
@@ -1080,21 +1080,34 @@ unable to start ssh-agent service, error :1058
 
 ## Oh-My-Posh
 
+> [Installation](https://learn.microsoft.com/ko-kr/windows/terminal/tutorials/custom-prompt-setup)
+
 - Font: MesloLGS NF
 
 ```powershell
-> Install-Module posh-git -Scope CurrentUser
-> Install-Module oh-my-posh -Scope CurrentUser
-# PSReadLine: PowerShell 명령줄 편집 환경 사용자 지정
-> Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
-> notepad $PROFILE
-# 아래 모듈 추가
-Import-Module posh-git
-Import-Module oh-my-posh
-Set-PoshPrompt Paradox
+# Profile 위치 확인
+> $PROFILE | Select-Object *
 
-# 오류 발생 시
-> Set-ExecutionPolicy RemoteSigned
+# install
+> winget install JanDeDobbeleer.OhMyPosh --source winget
+# update
+> winget upgrade JanDeDobbeleer.OhMyPosh --source winget
+# store 버전 (업데이트 되면 자동 업데이트 되는 버전)
+> winget install XP8K0HKJFRXGCK
+
+# profile 편집 (없으면 생성)
+> notepad $PROFILE
+> new-item -type file -path $profile -force
+# font install
+> oh-my-posh font install meslo
+# shell 확인
+> oh-my-posh get shell
+
+# theme 설치 (atomic 테마)
+> oh-my-posh init pwsh --config ‘https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json’ | Invoke-Expression
+
+# 터미널 아이콘 설치
+> Install-Module -Name Terminal-Icons -Repository PSGallery
 ```
 
 ## Cmder on VS Code
