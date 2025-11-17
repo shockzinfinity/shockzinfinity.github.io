@@ -62,3 +62,4 @@ Now using node v24.11.1 (64-bit)
 ## Reference
 
 - [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+- [Windows](https://github.com/coreybutler/nvm-windows)
