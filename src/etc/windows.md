@@ -8,7 +8,7 @@ tags:
   - wsl
   - cmder
 created: '2020-12-16'
-updated: '2025-11-17'
+updated: '2025-11-18'
 ---
 
 # Windows 개발 환경 구성
@@ -468,10 +468,13 @@ let g:spacevim_custom_color_palette = [
 }
 ```
 
-### fzf, fasd, tig, jq, neofetch
+### fzf fasd, tig, jq, neofetch
 
 ```bash
-$ sudo apt install fzf fasd tig jq neofetch
+$ sudo apt install fasd tig jq neofetch
+
+# fzf 의 경우 아래로 최신 설치
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # .zshrc plugins 에 추가
 plugins=(
@@ -1098,13 +1101,13 @@ unable to start ssh-agent service, error :1058
 # profile 편집 (없으면 생성)
 > notepad $PROFILE
 > new-item -type file -path $profile -force
+# $PROFILE 에 command 추가 - theme 설치 (atomic 테마)
+oh-my-posh init pwsh --config ‘https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json’ | Invoke-Expression
+
 # font install
 > oh-my-posh font install meslo
 # shell 확인
 > oh-my-posh get shell
-
-# theme 설치 (atomic 테마)
-> oh-my-posh init pwsh --config ‘https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json’ | Invoke-Expression
 
 # 터미널 아이콘 설치
 > Install-Module -Name Terminal-Icons -Repository PSGallery
@@ -1142,39 +1145,18 @@ unable to start ssh-agent service, error :1058
   },
 ```
 
-## Python on Windows (/w virtualenv)
+## JEnv for Windows
 
-- [www.python.org/downloads](https://www.python.org/downloads/)
-- `Add Python x.x to PATH` 체크
-- `Install for all users` 체크
-- 추후 쉬운 관리를 위해 경로 변경 `C:\Python\Python311`
+```powershell
+> git clone https://github.com/FelixSelter/JEnv-for-Windows.git
 
-```bash
-# python version 확인
-$ python -V
+# PATH 에 해당 디렉토리 추가
 
-# pip upgrade
-$ python -m pip install --upgrade pip
-$ pip -V
-
-# 가상환경 모듈 설치
-$ pip install virtualenv virtualenvwrapper-win
-
-# 시스템 환경변수에 가상환경 저장경로 설정
-$ setx WORKON_HOME 'C:\.virtualenv' -m
-
-# 가상환경 생성
-$ mkvirtualenv test
-
-# 가상환경 리스트
-$ workon
-
-# 가상환경 사용
-$ workon test
-
-# 가상환경 종료
-$ deactivate
-
-# 가상환경 삭제
-$ rmvirtualenv test
+> jenv
+> jenv add jdk17 C:\java\jdk-17.0.2
+> jenv change jdk17
+> java -version
+openjdk version "17.0.2" 2022-01-18
+OpenJDK Runtime Environment (build 17.0.2+8-86)
+OpenJDK 64-Bit Server VM (build 17.0.2+8-86, mixed mode, sharing)
 ```
