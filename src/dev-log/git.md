@@ -45,6 +45,9 @@ $ git config --global user.email "test2@test.com"
 $ git config --list --global
 
 $ git config --get user.email
+test2@test.com
+
+$ git config --global credential.helper osxkeychain
 ```
 
 ## GitHub Actions 를 활용한 Github Container Registry 에 Docker image 배포
