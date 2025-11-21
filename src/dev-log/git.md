@@ -1,6 +1,6 @@
 ---
-title: GitHub
-description: github 사용 관련 내용을 다룹니다.
+title: Git
+description: git 사용 관련 내용을 다룹니다.
 tags:
   - git
   - github
@@ -9,10 +9,10 @@ tags:
   - actions
   - workflow
 created: '2020-12-19'
-updated: '2025-10-20'
+updated: '2025-11-21'
 ---
 
-# GitHub
+# Git
 
 <TagLinks />
 
@@ -21,6 +21,31 @@ updated: '2025-10-20'
 [[toc]]
 
 ---
+
+## Git config
+
+- 전역 설정 파일: `~/.gitconfig`
+- repository 설정 파일: repository 별 `.git/config`
+
+```bash
+# 전역 설정
+$ cat ~/.gitconfig
+[user]
+	name = test
+	email = test@test.com
+[core]
+	precomposeunicode = true
+	quotepath = false
+	editor = nvim
+[init]
+	defaultBranch = main
+
+$ git config --global core.editor nvim
+$ git config --global user.email "test2@test.com"
+$ git config --list --global
+
+$ git config --get user.email
+```
 
 ## GitHub Actions 를 활용한 Github Container Registry 에 Docker image 배포
 
