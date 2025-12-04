@@ -178,3 +178,29 @@ uv run -m pytest tests/ --verbose  # pytest에 옵션 전달
 # 환경 변수 설정
 uv run --env VAR1=value1 --env VAR2=value2 script.py  # 환경 변수 설정
 ```
+
+## FastAPI 예시
+
+```bash
+# 프로젝트 생성
+uv init web-api --python 3.11
+cd web-api
+
+# FastAPI 및 관련 패키지 설치
+uv pip install fastapi==0.103.0 uvicorn==0.23.0
+uv pip install sqlalchemy==2.0.20 alembic==1.12.0
+uv pip install pydantic==2.3.0 python-jose==3.3.0 passlib==1.7.4
+
+# 개발 도구 설치
+uv pip install --dev pytest==7.4.0 httpx==0.24.1
+uv pip install --dev black==23.7.0 isort==5.12.0
+uv pip install --dev mypy==1.5.0 types-requests==2.31.0.2
+
+# 데이터베이스 마이그레이션 설정
+uv run alembic init migrations
+uv run alembic revision --autogenerate -m "initial migration"
+uv run alembic upgrade head
+
+# 개발 서버 실행
+uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
